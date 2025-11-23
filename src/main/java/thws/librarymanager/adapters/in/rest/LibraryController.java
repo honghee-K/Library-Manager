@@ -4,4 +4,4 @@ package thws.librarymanager.adapters.in.rest;
 import jakarta.ws.rs.Path;
 
 @Path("/library")
-public class LibraryResource {}
+public class LibraryController {}

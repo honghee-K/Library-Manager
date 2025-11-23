@@ -5,11 +5,10 @@ import thws.librarymanager.application.domain.model.Loan;
 
 
 public interface BookUseCase {
-    Book getById(long id);
-    //CRUD Operation
-    //TODO
-
-    boolean isOnLoan(Loan loan);
+    Book create(Book book);
+    void update(Book book);
+    void delete(long isbn);
+    Book getByIsbn(long isbn);
 
 
 }
