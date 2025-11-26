@@ -10,5 +10,8 @@ public interface BookUseCase {
     void delete(long isbn);
     Book getByIsbn(long isbn);
 
+    void temp();
+
+
 
 }
