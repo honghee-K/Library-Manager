@@ -60,4 +60,8 @@ public class BookService implements BookUseCase {
         persistBook.deleteByIsbn(isbn);
     }
 
+    @Override
+    public void temp() {
+
+    }
 }
