@@ -82,7 +82,7 @@ public class LoanService implements LoanUseCase {
 
         Loan loan = getNotNullLoan(loanId);
 
-        loan.getUser().endLoan(loan);
+        //loan.getUser().endLoan(loan);
 
         //loan.getBook().setCurrentLoan(null);
     }
