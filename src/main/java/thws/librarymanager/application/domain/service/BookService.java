@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 
 public class BookService implements BookUseCase {
 
-
     private final BookPort persistBookPort;
 
     public BookService(BookPort persistence) {
@@ -25,7 +24,6 @@ public class BookService implements BookUseCase {
         if (persistBookPort.getBookByIsbn(book.getIsbn()).isPresent()) { //.isPresent() -> Methode of Optional
             throw new IllegalArgumentException("Book with this ISBN already exists.");
         }
-
         return persistBookPort.save(book);
     }
 
@@ -38,6 +36,21 @@ public class BookService implements BookUseCase {
     @Override
     public List<Book> getAllBooks(int page, int size, String author, String genre) {
         return persistBookPort.findAll(page, size, author, genre);
+    }
+
+
+    //ToDo .orElseThrow()
+    @Override
+    public void startLoanForBook(Long bookIsbn, Long loanId) {
+        // 1. Buch laden (Load the Book)
+        Book book = persistBookPort.getBookByIsbn(bookIsbn)
+                .orElseThrow(() -> new IllegalArgumentException("Book not found for ISBN: " + bookIsbn));
+
+        // 2. Domänenverhalten ausführen (Execute the Domain Behavior)
+        book.startLoan(loanId);
+
+        // 3. Statusänderung speichern (Save the status change)
+        persistBookPort.save(book);
     }
 
     @Override

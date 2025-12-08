@@ -1,3 +1,7 @@
 package thws.librarymanager.application.domain.model;
 
-public class User {}
+import java.util.ArrayList;
+import java.util.List;
+
+public class User {
+}
