@@ -53,7 +53,7 @@ public class LoanService implements LoanUseCase {
             BookNotFoundException,
             BookAlreadyOnLoanException {
 
-        User user = userUseCase.getById(userId);
+      /*  User user = userUseCase.getById(userId);
         if (user == null)
             throw new UserNotFoundException("User not found with id: " + userId);
 
@@ -72,7 +72,7 @@ public class LoanService implements LoanUseCase {
 
         loanStore.put(loanIdCounter++, loan);
 
-        return loan;
+        return loan;*/ return null;
     }
 
 
@@ -84,7 +84,7 @@ public class LoanService implements LoanUseCase {
 
         loan.getUser().endLoan(loan);
 
-        loan.getBook().setCurrentLoan(null);
+        //loan.getBook().setCurrentLoan(null);
     }
 
 

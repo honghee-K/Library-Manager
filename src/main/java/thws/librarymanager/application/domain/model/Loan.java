@@ -21,7 +21,7 @@ public class Loan {
     // ✅ DOMAIN: Kitap iade işlemi
     public void returnBook() {
         this.status = LoanStatus.RETURNED;
-        this.book.clearLoan();  // Book artık boş
+        //this.book.clearLoan();  // Book artık boş
     }
 
     // ✅ DOMAIN: Gecikme kontrolü
