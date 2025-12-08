@@ -12,6 +12,7 @@ public interface BookUseCase {
     void deleteBook(long isbn);
     Optional<Book> getBookByIsbn(Long isbn);
     List<Book> getAllBooks(int page, int size, String author, String genre);
+    void startLoanForBook(Long bookIsbn, Long loanId);
 
     BookStatistics getBookCounts();
 }
