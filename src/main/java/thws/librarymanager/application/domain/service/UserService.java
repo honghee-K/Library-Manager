@@ -8,14 +8,4 @@ import java.util.Map;
 
 public class UserService implements UserUseCase {
 
-    private final Map<Long, User> userStore = new HashMap<>();
-
-    public User getById(Long userId) {
-        return userStore.get(userId);
-    }
-
-    // (İstersen test için kullanıcı eklemek adına)
-    public void save(User user) {
-        userStore.put(user.getId(), user);
-    }
 }
