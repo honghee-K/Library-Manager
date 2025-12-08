@@ -1,4 +1,5 @@
 package thws.librarymanager.application.ports.in;
 
-public interface UserUseCase {
-}
+import thws.librarymanager.application.domain.model.User;
+
+public interface UserUseCase { }
