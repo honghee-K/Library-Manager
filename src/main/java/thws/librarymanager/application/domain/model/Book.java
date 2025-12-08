@@ -5,71 +5,60 @@ public class Book {
     private String title;
     private String author;
     private String genre;
-    private Library library;
-    private Loan currentLoan;
+    private Long libraryId; // don't reuse classes in different components (4) , to allow loanId to be null
+    private Long loanId; // don't reuse classes in different components (4), to allow libraryId to be null
 
-    public Book(Long isbn, String title, String author, String genre, Library library, Loan currentLoan) {
+    public Book(Long isbn, String title, String author, String genre, Long libraryId, Long loanId) {
         this.isbn = isbn;
         this.title = title;
         this.author = author;
         this.genre = genre;
-        this.library = library;
-        this.currentLoan = currentLoan;
+        this.libraryId = libraryId;
+        this.loanId = loanId;
     }
 
     public Long getIsbn() {
         return isbn;
     }
-
-    public void setIsbn(Long isbn) {
-        this.isbn = isbn;
-    }
-
     public String getTitle() {
         return title;
     }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getAuthor() {
         return author;
     }
+    public String getGenre() { return genre; }
+    public Long getLibraryId() { return libraryId; }
+    public Long getLoanId() { return loanId; }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void updateBook(String title, String author, String genre) {
+        if (title != null && !title.isBlank()) {
+            this.title = title;
+        }
+        if (author != null && !author.isBlank()) {
+            this.author = author;
+        }
+        if (genre != null && !genre.isBlank()) {
+            this.genre = genre;
+        }
     }
 
-    public String getGenre() {
-        return genre;
+    public void startLoan(Long newLoanId) {
+        if (this.loanId != null) {
+            throw new IllegalStateException("Book is already on loan.");
+        }
+        this.loanId = newLoanId; //activate
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void endLoan() {
+        if (this.loanId == null) {
+            throw new IllegalStateException("Book is not currently on loan.");
+        }
+        this.loanId = null; //deactivate
     }
-
-    public Library getLibrary() {
-        return library;
-    }
-
-    public void setLibrary(Library library) {
-        this.library = library;
-    }
-
-    public Loan getCurrentLoan() {
-        return currentLoan;
-    }
-
-    public void setCurrentLoan(Loan currentLoan) {
-        this.currentLoan = currentLoan;
-    }
-
    public boolean isOnLoan() {
-        return  false;
+        return this.loanId != null;
         //currentLoan != null && currentLoan.getStatus().equals("ACTIVE");
 
     }
-
 
 }
