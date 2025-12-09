@@ -1,26 +1,23 @@
 package thws.librarymanager.application.ports.in;
 
-import thws.librarymanager.application.domain.exceptions.*;
 import thws.librarymanager.application.domain.model.Loan;
+import thws.librarymanager.application.domain.model.LoanStatus;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface LoanUseCase {
 
-    Loan createLoan(Long userId, String bookIsbn)
-            throws UserNotFoundException,
-            BookNotFoundException,
-            BookAlreadyOnLoanException;
+    Loan createLoan(Long userId, Long bookId);
+    Loan returnLoan(Long loanId);
+    Loan getLoanById(Long loanId);
+    List<Loan> searchLoans(Long userId,
+                           Long bookId,
+                           LoanStatus status,
+                           int page,
+                           int size);
 
-    void returnBook(Long loanId)
-            throws LoanNotFoundException;
-
-    Loan getLoanById(Long loanId)
-            throws LoanNotFoundException;
-
-    List<Loan> getActiveLoans();
-
+    Loan extendLoanPeriod(Long loanId, LocalDate newDueDate);
     List<Loan> getOverdueLoans();
-
-
+    List<Loan> getActiveLoans();
 }

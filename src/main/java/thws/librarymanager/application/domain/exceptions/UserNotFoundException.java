@@ -1,8 +1,11 @@
 package thws.librarymanager.application.domain.exceptions;
 
-public class UserNotFoundException extends Exception {
-    public UserNotFoundException(String message) {
-        super(message);
+// Thrown when a user with the given ID cannot be found
+public class UserNotFoundException extends RuntimeException {
+
+    public UserNotFoundException(Long userId) {
+        super("User not found with id: " + userId);
     }
 }
+
 
