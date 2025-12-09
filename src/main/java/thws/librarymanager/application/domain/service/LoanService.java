@@ -19,15 +19,14 @@ import thws.librarymanager.application.ports.out.repository.UserPort;
 import java.time.LocalDate;
 import java.util.List;
 
-@ApplicationScoped
-@Transactional
+
 public class LoanService implements LoanUseCase {
 
     private final LoanPort loanPort;
     private final UserPort userPort;
     private final BookPort bookPort;
 
-    @Inject
+
     public LoanService(LoanPort loanPort,
                        UserPort userPort,
                        BookPort bookPort) {
