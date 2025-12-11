@@ -1,7 +1,9 @@
 package thws.librarymanager.application.domain.exceptions;
 
-public class LoanNotFoundException extends Exception {
-    public LoanNotFoundException(String message) {
-        super(message);
+// Thrown when a loan with the given ID cannot be found
+public class LoanNotFoundException extends RuntimeException {
+
+    public LoanNotFoundException(Long loanId) {
+        super("Loan not found with id: " + loanId);
     }
 }
