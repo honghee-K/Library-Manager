@@ -55,12 +55,12 @@ public class Loan {
     }
 
     // Factory method to create a new active loan
-    public static Loan createNew(User user, Book book, LocalDate loanDate, LocalDate dueDate) {
+    public static Loan createLoan(User user, Book book, LocalDate loanDate, LocalDate dueDate) {
         return new Loan(null, user, book, loanDate, dueDate, null, LoanStatus.ACTIVE);
     }
 
     // Marks the loan as returned and sets the return date
-    public void markReturned(LocalDate returnDate) {
+    public void setReturned(LocalDate returnDate) {
         if (this.status == LoanStatus.RETURNED) {
             throw new IllegalStateException("Loan already returned");
         }
@@ -110,7 +110,7 @@ public class Loan {
     public LoanStatus getStatus() { return status; }
 
     // Sets the ID only once (used by the persistence layer)
-    public void setId(Long id) {
+    public void setLoanId(Long id) {
         if (this.id != null) {
             throw new IllegalStateException("ID already set");
         }

@@ -18,6 +18,5 @@ public interface LoanUseCase {
                            int size);
 
     Loan extendLoanPeriod(Long loanId, LocalDate newDueDate);
-    List<Loan> getOverdueLoans();
-    List<Loan> getActiveLoans();
+
 }

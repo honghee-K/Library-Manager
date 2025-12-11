@@ -35,15 +35,15 @@ public class LoanService implements LoanUseCase {
         this.bookPort = bookPort;
     }
 
-    // ✅ Creates a new loan
+    // Creates a new loan
     @Override
     public Loan createLoan(Long userId, Long bookId) {
-        return null;
 
-        /*User user = userPort.findById(userId)
-               .orElseThrow(() -> new UserNotFoundException(userId));
 
-        Book book = bookPort.findById(bookId)
+         //User user = userPort.findById(userId)
+           //    .orElseThrow(() -> new UserNotFoundException(userId));
+
+        Book book = bookPort.getBookByIsbn(bookId)
                 .orElseThrow(() -> new BookNotFoundException(bookId));
 
         if (loanPort.existsActiveLoanForBook(bookId)) {
@@ -53,29 +53,30 @@ public class LoanService implements LoanUseCase {
         LocalDate today = LocalDate.now();
         LocalDate due = today.plusDays(14);
 
-        Loan loan = Loan.createNew(user, book, today, due);
-        return loanPort.save(loan);*/
+       // Loan loan = Loan.createLoan(user, book, today, due);
+                //loanPort.save(loan);
+        return null;
     }
 
-    // ✅ Returns a loan
+    //  Returns a loan
     @Override
     public Loan returnLoan(Long loanId) {
 
         Loan loan = loanPort.findById(loanId)
                 .orElseThrow(() -> new LoanNotFoundException(loanId));
 
-        loan.markReturned(LocalDate.now());
+        loan.setReturned(LocalDate.now());
         return loanPort.save(loan);
     }
 
-    // ✅ Gets a loan by ID
+    //  Gets a loan by ID
     @Override
     public Loan getLoanById(Long loanId) {
         return loanPort.findById(loanId)
                 .orElseThrow(() -> new LoanNotFoundException(loanId));
     }
 
-    // ✅ Searches loans with filters and paging
+    //  Searches loans with filters and paging
     @Override
     public List<Loan> searchLoans(Long userId,
                                   Long bookId,
@@ -90,20 +91,12 @@ public class LoanService implements LoanUseCase {
         return loanPort.findLoans(userId, bookId, status, page, size);
     }
 
-    // ✅ Extends the loan period (extra safety added)
+    //  Extends the loan period (extra safety added)
     @Override
     public Loan extendLoanPeriod(Long loanId, LocalDate newDueDate) {
 
         Loan loan = loanPort.findById(loanId)
                 .orElseThrow(() -> new LoanNotFoundException(loanId));
-        /*
-        Optional<Loan> optionalLoan = loanPort.findById(loanId);
-
-        if (optionalLoan.isEmpty()) {
-            throw new LoanNotFoundException(loanId);
-        }
-        Loan loan = optionalLoan.get();
-        */
 
         if (loan.isReturned()) {
             throw new IllegalStateException("Returned loan cannot be extended");
@@ -111,17 +104,5 @@ public class LoanService implements LoanUseCase {
 
         loan.changeDueDate(newDueDate);
         return loanPort.save(loan);
-    }
-
-    // ✅ Gets all overdue loans
-    @Override
-    public List<Loan> getOverdueLoans() {
-        return loanPort.findOverdueLoans(LocalDate.now());
-    }
-
-    // ✅ Gets all active loans
-    @Override
-    public List<Loan> getActiveLoans() {
-        return loanPort.findActiveLoans();
     }
 }
