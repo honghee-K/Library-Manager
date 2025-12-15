@@ -5,7 +5,15 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import thws.librarymanager.application.domain.model.Loan;
+import thws.librarymanager.application.domain.model.LoanStatus;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+
 public interface LoanPort {
+
     Loan save(Loan loan);
     Optional<Loan> findById(Long id);
     List<Loan> findAll();
@@ -17,4 +25,5 @@ public interface LoanPort {
 
     void deleteById(Long id);
     boolean existsById(Long id);
+
 }

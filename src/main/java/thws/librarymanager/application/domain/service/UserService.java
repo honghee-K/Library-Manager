@@ -1,8 +1,7 @@
 package thws.librarymanager.application.domain.service;
-import thws.librarymanager.application.domain.model.User;
 import thws.librarymanager.application.ports.in.UserUseCase;
 import thws.librarymanager.application.ports.out.repository.UserPort;
-
+import thws.librarymanager.application.domain.model.User;
 import java.util.List;
 import java.util.Optional;
 
