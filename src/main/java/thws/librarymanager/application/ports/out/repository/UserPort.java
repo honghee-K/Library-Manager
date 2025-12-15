@@ -1,8 +1,7 @@
 package thws.librarymanager.application.ports.out.repository;
-import thws.librarymanager.application.domain.model.User;
 import java.util.List;
 import java.util.Optional;
-
+import thws.librarymanager.application.domain.model.User;
 public interface UserPort {  // Create or Update
     User save(User user);
 

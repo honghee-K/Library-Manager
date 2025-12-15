@@ -1,19 +1,13 @@
 package thws.librarymanager.application.domain.service;
 
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
 import thws.librarymanager.application.domain.exceptions.BookAlreadyOnLoanException;
 import thws.librarymanager.application.domain.exceptions.BookNotFoundException;
 import thws.librarymanager.application.domain.exceptions.LoanNotFoundException;
-import thws.librarymanager.application.domain.exceptions.UserNotFoundException;
 import thws.librarymanager.application.domain.model.Book;
 import thws.librarymanager.application.domain.model.Loan;
 import thws.librarymanager.application.domain.model.LoanStatus;
-import thws.librarymanager.application.domain.model.User;
 import thws.librarymanager.application.ports.in.LoanUseCase;
 import thws.librarymanager.application.ports.out.repository.BookPort;
-import thws.librarymanager.application.ports.out.repository.LoanPort;
 import thws.librarymanager.application.ports.out.repository.UserPort;
 
 import java.time.LocalDate;
