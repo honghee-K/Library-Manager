@@ -22,7 +22,6 @@ public class LibraryService implements LibraryUseCase {
 
     @Override
     public Library addLibrary(Library library) {
-        // Business Rule: Library name must be unique
         if (libraryPort.getLibraryByName(library.getName()).isPresent()) {
             throw new IllegalArgumentException("Library with this name already exists.");
         }
@@ -60,7 +59,6 @@ public class LibraryService implements LibraryUseCase {
         Library existingLibrary = libraryPort.getLibraryById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Library not found for ID: " + id));
 
-        // Business Rule: Cannot delete a library if it still contains books (or if any books are on loan)
         if (bookPort.findAll(0, Integer.MAX_VALUE, null, null).stream()
                 .anyMatch(book -> existingLibrary.getId().equals(book.getLibraryId()))) {
             throw new IllegalStateException("Cannot delete library that contains registered books.");
@@ -96,7 +94,6 @@ public class LibraryService implements LibraryUseCase {
         existingLibrary.removeBook(bookToRemove);
         libraryPort.save(existingLibrary);
     }
-
 
 
     @Override

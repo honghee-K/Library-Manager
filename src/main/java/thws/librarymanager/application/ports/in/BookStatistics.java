@@ -12,7 +12,6 @@ public final class BookStatistics {
     private final Map<String, Long> countByGenre;
     private final Map<String, Long> countByAuthor;
 
-    // The single constructor that initializes all fields.
     public BookStatistics(long totalBooks, Map<String, Long> countByGenre, Map<String, Long> countByAuthor) {
         this.totalBooks = totalBooks;
         // Maps are copied and wrapped to maintain immutability.
@@ -25,12 +24,10 @@ public final class BookStatistics {
     }
 
     public Map<String, Long> getCountByGenre() {
-        // Returns an Immutable View to prevent external modification of the map.
         return Collections.unmodifiableMap(countByGenre);
     }
 
     public Map<String, Long> getCountByAuthor() {
-        // Returns an Immutable View to prevent external modification of the map.
         return Collections.unmodifiableMap(countByAuthor);
     }
 

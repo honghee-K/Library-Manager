@@ -8,14 +8,12 @@ public class User {
     private String name;
     private String email;
 
-    // Constructor
     public User(Long id, String name, String email) {
         this.id = id;
         this.name = name;
         this.email = email;
     }
 
-    // Getters
     public Long getId() {
         return id;
     }
@@ -28,7 +26,28 @@ public class User {
         return email;
     }
 
-    // Business Logic: Update user information
+    public void setId(Long id) {
+        if (this.id != null) {
+            throw new IllegalStateException("ID is already set and cannot be changed.");
+        }
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("Name cannot be empty.");
+        }
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        if (email == null || email.isBlank() || !isValidEmail(email)) {
+            throw new IllegalArgumentException("Invalid email format.");
+        }
+        this.email = email;
+    }
+
+
     public void updateInfo(String newName, String newEmail) {
         if (newName != null && !newName.isBlank()) {
             this.name = newName;
@@ -38,7 +57,6 @@ public class User {
         }
     }
 
-    // Validation logic
     private boolean isValidEmail(String email) {
         return email.contains("@") && email.contains(".");
     }

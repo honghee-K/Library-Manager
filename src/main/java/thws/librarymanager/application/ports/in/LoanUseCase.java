@@ -9,8 +9,11 @@ import java.util.List;
 public interface LoanUseCase {
 
     Loan createLoan(Long userId, Long bookId);
+
     Loan returnLoan(Long loanId);
+
     Loan getLoanById(Long loanId);
+
     List<Loan> searchLoans(Long userId,
                            Long bookId,
                            LoanStatus status,

@@ -7,9 +7,8 @@ public class Library {
     private Long id;
     private String name;
     private String location;
-    private List<Book> books; // List of Book objects associated with this Library
+    private List<Book> books;
 
-    // Constructor used by persistence layer to reconstruct the object
     public Library(Long id, String name, String location, List<Book> books) {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("Library name must not be null or blank");
@@ -24,37 +23,41 @@ public class Library {
         this.books = books;
     }
 
-    // --- Getters ---
-    public Long getId() { return id; }
-    public String getName() { return name; }
-    public String getLocation() { return location; }
-    public List<Book> getBooks() { return books; } // Returns the list of book objects
+    public Long getId() {
+        return id;
+    }
 
-    // --- Domain Behavior (Business Logic) ---
+    public String getName() {
+        return name;
+    }
 
-    // UML Method: Adds a book to the library's collection
+    public String getLocation() {
+        return location;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+
     public void addBook(Book book) {
         if (book == null) {
             throw new IllegalArgumentException("Book must not be null.");
         }
-        // Business rule: Ensure the book is not already in this list (optional, but safer)
         if (this.books.contains(book)) {
             throw new IllegalStateException("Book is already registered in this library.");
         }
         this.books.add(book);
     }
 
-    // UML Method: Removes a book from the library's collection
     public void removeBook(Book book) {
         if (book == null) {
             throw new IllegalArgumentException("Book must not be null.");
         }
-        // Business rule: The book must be in the library
         if (!this.books.contains(book)) {
             throw new IllegalStateException("Book is not registered in this library.");
         }
 
-        // Business rule: Cannot remove a book that is currently on loan (delegated check)
         if (book.isOnLoan()) {
             throw new IllegalStateException("Cannot remove a book that is currently on loan.");
         }
@@ -62,7 +65,6 @@ public class Library {
         this.books.remove(book);
     }
 
-    // UML Method: Searches books by genre
     public List<Book> getBooksByGenre(String genre) {
         if (genre == null || genre.isBlank()) {
             throw new IllegalArgumentException("Genre must not be null or blank.");
@@ -72,7 +74,6 @@ public class Library {
                 .collect(Collectors.toList());
     }
 
-    // UML Method: Searches books by author
     public List<Book> getBooksByAuthor(String author) {
         if (author == null || author.isBlank()) {
             throw new IllegalArgumentException("Author must not be null or blank.");

@@ -11,6 +11,7 @@ import thws.librarymanager.application.domain.model.Book;
 import thws.librarymanager.application.domain.model.Loan;
 import thws.librarymanager.application.domain.model.LoanStatus;
 import thws.librarymanager.application.domain.model.User;
+import thws.librarymanager.application.ports.in.BookUseCase;
 import thws.librarymanager.application.ports.in.LoanUseCase;
 import thws.librarymanager.application.ports.out.repository.BookPort;
 import thws.librarymanager.application.ports.out.repository.LoanPort;
@@ -26,22 +27,26 @@ public class LoanService implements LoanUseCase {
     private final UserPort userPort;
     private final BookPort bookPort;
 
+    private final BookUseCase bookUseCase;
+
 
     public LoanService(LoanPort loanPort,
                        UserPort userPort,
-                       BookPort bookPort) {
+                       BookPort bookPort,
+                       BookUseCase bookUseCase) {
+
         this.loanPort = loanPort;
         this.userPort = userPort;
         this.bookPort = bookPort;
+        this.bookUseCase = bookUseCase;
     }
 
-    // Creates a new loan
     @Override
     public Loan createLoan(Long userId, Long bookId) {
 
 
-         //User user = userPort.findById(userId)
-           //    .orElseThrow(() -> new UserNotFoundException(userId));
+        User user = userPort.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException(userId));
 
         Book book = bookPort.getBookByIsbn(bookId)
                 .orElseThrow(() -> new BookNotFoundException(bookId));
@@ -53,12 +58,13 @@ public class LoanService implements LoanUseCase {
         LocalDate today = LocalDate.now();
         LocalDate due = today.plusDays(14);
 
-       // Loan loan = Loan.createLoan(user, book, today, due);
-                //loanPort.save(loan);
-        return null;
+        Loan loan = Loan.createLoan(user, book, today, due);
+        loanPort.save(loan);
+
+        bookUseCase.startLoanForBook(bookId, loan.getId());
+        return loan;
     }
 
-    //  Returns a loan
     @Override
     public Loan returnLoan(Long loanId) {
 
@@ -69,14 +75,12 @@ public class LoanService implements LoanUseCase {
         return loanPort.save(loan);
     }
 
-    //  Gets a loan by ID
     @Override
     public Loan getLoanById(Long loanId) {
         return loanPort.findById(loanId)
                 .orElseThrow(() -> new LoanNotFoundException(loanId));
     }
 
-    //  Searches loans with filters and paging
     @Override
     public List<Loan> searchLoans(Long userId,
                                   Long bookId,
@@ -91,7 +95,6 @@ public class LoanService implements LoanUseCase {
         return loanPort.findLoans(userId, bookId, status, page, size);
     }
 
-    //  Extends the loan period (extra safety added)
     @Override
     public Loan extendLoanPeriod(Long loanId, LocalDate newDueDate) {
 

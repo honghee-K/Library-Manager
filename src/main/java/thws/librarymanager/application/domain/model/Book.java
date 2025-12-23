@@ -9,6 +9,7 @@ public class Book {
     private Long loanId; // don't reuse classes in different components (4), to allow libraryId to be null
 
     public Book(Long isbn, String title, String author, String genre, Long libraryId, Long loanId) {
+        if (isbn == null) throw new IllegalArgumentException("ISBN cannot be null.");
         this.isbn = isbn;
         this.title = title;
         this.author = author;
@@ -20,15 +21,26 @@ public class Book {
     public Long getIsbn() {
         return isbn;
     }
+
     public String getTitle() {
         return title;
     }
+
     public String getAuthor() {
         return author;
     }
-    public String getGenre() { return genre; }
-    public Long getLibraryId() { return libraryId; }
-    public Long getLoanId() { return loanId; }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public Long getLibraryId() {
+        return libraryId;
+    }
+
+    public Long getLoanId() {
+        return loanId;
+    }
 
     public void updateBook(String title, String author, String genre) {
         if (title != null && !title.isBlank()) {
@@ -55,14 +67,10 @@ public class Book {
         }
         this.loanId = null; //deactivate
     }
-   public boolean isOnLoan() {
+
+    public boolean isOnLoan() {
         return this.loanId != null;
-        //currentLoan != null && currentLoan.getStatus().equals("ACTIVE");
-
     }
 
-    public void test(){
-
-    }
 
 }

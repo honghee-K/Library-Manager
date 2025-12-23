@@ -7,11 +7,16 @@ import java.util.Optional;
 
 
 public interface BookUseCase {
-    Book addBook(Book book);
+    Book addBook(Long isbn, String title, String author, String genre, Long libraryId);
+
     void updateBook(Long isbn, String title, String author, String genre);
+
     void deleteBook(long isbn);
+
     Optional<Book> getBookByIsbn(Long isbn);
+
     List<Book> getAllBooks(int page, int size, String author, String genre);
+
     void startLoanForBook(Long bookIsbn, Long loanId);
 
     BookStatistics getBookCounts();

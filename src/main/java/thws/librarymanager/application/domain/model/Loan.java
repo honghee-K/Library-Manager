@@ -54,12 +54,10 @@ public class Loan {
         this.status = status;
     }
 
-    // Factory method to create a new active loan
     public static Loan createLoan(User user, Book book, LocalDate loanDate, LocalDate dueDate) {
         return new Loan(null, user, book, loanDate, dueDate, null, LoanStatus.ACTIVE);
     }
 
-    // Marks the loan as returned and sets the return date
     public void setReturned(LocalDate returnDate) {
         if (this.status == LoanStatus.RETURNED) {
             throw new IllegalStateException("Loan already returned");
@@ -75,7 +73,6 @@ public class Loan {
     }
 
 
-    // Changes the due date of an active loan only
     public void changeDueDate(LocalDate newDueDate) {
         if (newDueDate == null || newDueDate.isBefore(this.loanDate)) {
             throw new IllegalArgumentException("New dueDate must be >= loanDate");
@@ -99,17 +96,34 @@ public class Loan {
         return today.isAfter(dueDate);
     }
 
-    // ✅ Getter’lar
+    public Long getId() {
+        return id;
+    }
 
-    public Long getId() { return id; }
-    public User getUser() { return user; }
-    public Book getBook() { return book; }
-    public LocalDate getLoanDate() { return loanDate; }
-    public LocalDate getDueDate() { return dueDate; }
-    public LocalDate getReturnDate() { return returnDate; }
-    public LoanStatus getStatus() { return status; }
+    public User getUser() {
+        return user;
+    }
 
-    // Sets the ID only once (used by the persistence layer)
+    public Book getBook() {
+        return book;
+    }
+
+    public LocalDate getLoanDate() {
+        return loanDate;
+    }
+
+    public LocalDate getDueDate() {
+        return dueDate;
+    }
+
+    public LocalDate getReturnDate() {
+        return returnDate;
+    }
+
+    public LoanStatus getStatus() {
+        return status;
+    }
+
     public void setLoanId(Long id) {
         if (this.id != null) {
             throw new IllegalStateException("ID already set");
