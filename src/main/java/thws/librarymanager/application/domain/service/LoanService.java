@@ -1,8 +1,5 @@
 package thws.librarymanager.application.domain.service;
 
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
 import thws.librarymanager.application.domain.exceptions.BookAlreadyOnLoanException;
 import thws.librarymanager.application.domain.exceptions.BookNotFoundException;
 import thws.librarymanager.application.domain.exceptions.LoanNotFoundException;
@@ -15,7 +12,7 @@ import thws.librarymanager.application.ports.in.BookUseCase;
 import thws.librarymanager.application.ports.in.LoanUseCase;
 import thws.librarymanager.application.ports.out.repository.BookPort;
 import thws.librarymanager.application.ports.out.repository.LoanPort;
-import thws.librarymanager.application.ports.out.repository.UserPort;
+import thws.librarymanager.application.ports.out.repository.UserRepository;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -24,19 +21,19 @@ import java.util.List;
 public class LoanService implements LoanUseCase {
 
     private final LoanPort loanPort;
-    private final UserPort userPort;
+    private final UserRepository userRepository;
     private final BookPort bookPort;
 
     private final BookUseCase bookUseCase;
 
 
     public LoanService(LoanPort loanPort,
-                       UserPort userPort,
+                       UserRepository userRepository,
                        BookPort bookPort,
                        BookUseCase bookUseCase) {
 
         this.loanPort = loanPort;
-        this.userPort = userPort;
+        this.userRepository = userRepository;
         this.bookPort = bookPort;
         this.bookUseCase = bookUseCase;
     }
@@ -45,7 +42,7 @@ public class LoanService implements LoanUseCase {
     public Loan createLoan(Long userId, Long bookId) {
 
 
-        User user = userPort.findById(userId)
+        User user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException(userId));
 
         Book book = bookPort.getBookByIsbn(bookId)
