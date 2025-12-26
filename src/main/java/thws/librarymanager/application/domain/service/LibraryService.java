@@ -60,7 +60,7 @@ public class LibraryService implements LibraryUseCase {
                 .orElseThrow(() -> new IllegalArgumentException("Library not found for ID: " + id));
 
         if (bookPort.findAll(0, Integer.MAX_VALUE, null, null).stream()
-                .anyMatch(book -> existingLibrary.getId().equals(book.getLibraryId()))) {
+                .anyMatch(book -> existingLibrary.getId().equals(book.getLibrary()))) {
             throw new IllegalStateException("Cannot delete library that contains registered books.");
         }
 
@@ -87,7 +87,7 @@ public class LibraryService implements LibraryUseCase {
         Book bookToRemove = bookPort.getBookByIsbn(bookIsbn)
                 .orElseThrow(() -> new IllegalArgumentException("Book not found for ISBN: " + bookIsbn));
 
-        if (!libraryId.equals(bookToRemove.getLibraryId())) {
+        if (!libraryId.equals(bookToRemove.getLibrary())) {
             throw new IllegalStateException("Book does not belong to this library.");
         }
 
