@@ -58,7 +58,7 @@ public class LoanService implements LoanUseCase {
         Loan loan = Loan.createLoan(user, book, today, due);
         loanPort.save(loan);
 
-        bookUseCase.startLoanForBook(bookId, loan.getId());
+        bookUseCase.startLoanForBook(bookId, loan);
         return loan;
     }
 
@@ -69,6 +69,10 @@ public class LoanService implements LoanUseCase {
                 .orElseThrow(() -> new LoanNotFoundException(loanId));
 
         loan.setReturned(LocalDate.now());
+
+        Book book = loan.getBook();
+        book.endLoan();
+
         return loanPort.save(loan);
     }
 

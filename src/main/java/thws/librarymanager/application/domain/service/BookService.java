@@ -1,6 +1,9 @@
 package thws.librarymanager.application.domain.service;
 
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import thws.librarymanager.application.domain.model.Book;
+import thws.librarymanager.application.domain.model.Library;
 import thws.librarymanager.application.domain.model.Loan;
 import thws.librarymanager.application.ports.in.BookStatistics;
 import thws.librarymanager.application.ports.in.BookUseCase;
@@ -11,23 +14,24 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-
+// @ApplicationScoped
 public class BookService implements BookUseCase {
 
     private final BookPort persistBookPort;
 
 
+    //@Inject
     public BookService(BookPort persistence) {
         this.persistBookPort = persistence;
     }
 
     @Override
-    public Book addBook(Long isbn, String title, String author, String genre, Long libraryId) {
+    public Book addBook(Long isbn, String title, String author, String genre, Library library) {
         if (persistBookPort.getBookByIsbn(isbn).isPresent()) { //.isPresent() -> Methode of Optional
             throw new IllegalArgumentException("Book with this ISBN already exists.");
         }
 
-        Book book = new Book(isbn, title, author, genre, libraryId, null);
+        Book book = new Book(isbn, title, author, genre, library, null);
 
         return persistBookPort.save(book);
     }
@@ -45,11 +49,11 @@ public class BookService implements BookUseCase {
 
 
     @Override
-    public void startLoanForBook(Long bookIsbn, Long loanId) {
+    public void startLoanForBook(Long bookIsbn, Loan loan) {
         Book book = persistBookPort.getBookByIsbn(bookIsbn)
                 .orElseThrow(() -> new IllegalArgumentException("Book not found for ISBN: " + bookIsbn));
 
-        book.startLoan(loanId);
+        book.startLoan(loan);
 
         persistBookPort.save(book);
     }

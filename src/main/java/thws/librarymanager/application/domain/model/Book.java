@@ -5,17 +5,17 @@ public class Book {
     private String title;
     private String author;
     private String genre;
-    private Long libraryId; // don't reuse classes in different components (4) , to allow loanId to be null
-    private Long loanId; // don't reuse classes in different components (4), to allow libraryId to be null
+    private Library library;
+    private Loan currentLoan;
 
-    public Book(Long isbn, String title, String author, String genre, Long libraryId, Long loanId) {
+    public Book(Long isbn, String title, String author, String genre, Library library, Loan currentLoan) {
         if (isbn == null) throw new IllegalArgumentException("ISBN cannot be null.");
         this.isbn = isbn;
         this.title = title;
         this.author = author;
         this.genre = genre;
-        this.libraryId = libraryId;
-        this.loanId = loanId;
+        this.library = library;
+        this.currentLoan = currentLoan;
     }
 
     public Long getIsbn() {
@@ -34,12 +34,12 @@ public class Book {
         return genre;
     }
 
-    public Long getLibraryId() {
-        return libraryId;
+    public Library getLibrary() {
+        return library;
     }
 
-    public Long getLoanId() {
-        return loanId;
+    public Loan getCurrentLoan() {
+        return currentLoan;
     }
 
     public void updateBook(String title, String author, String genre) {
@@ -54,22 +54,22 @@ public class Book {
         }
     }
 
-    public void startLoan(Long newLoanId) {
-        if (this.loanId != null) {
+    public void startLoan(Loan newLoan) {
+        if (this.currentLoan != null) {
             throw new IllegalStateException("Book is already on loan.");
         }
-        this.loanId = newLoanId; //activate
+        this.currentLoan = newLoan; //activate
     }
 
     public void endLoan() {
-        if (this.loanId == null) {
+        if (this.currentLoan == null) {
             throw new IllegalStateException("Book is not currently on loan.");
         }
-        this.loanId = null; //deactivate
+        this.currentLoan = null; //deactivate
     }
 
     public boolean isOnLoan() {
-        return this.loanId != null;
+        return this.currentLoan != null;
     }
 
 
