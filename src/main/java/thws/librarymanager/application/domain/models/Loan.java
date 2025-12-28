@@ -53,6 +53,18 @@ public class Loan {
         this.status = status;
     }
 
+    public static Loan restore(
+            Long id,
+            User user,
+            Book book,
+            LocalDate loanDate,
+            LocalDate dueDate,
+            LocalDate returnDate,
+            LoanStatus status
+    ) {
+        return new Loan(id, user, book, loanDate, dueDate, returnDate, status);
+    }
+
     public static Loan createLoan(User user, Book book, LocalDate loanDate, LocalDate dueDate) {
         return new Loan(null, user, book, loanDate, dueDate, null, LoanStatus.ACTIVE);
     }
