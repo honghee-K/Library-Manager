@@ -6,9 +6,9 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import thws.librarymanager.adapters.out.jpa.converter.LoanConverter;
-import thws.librarymanager.adapters.out.jpa.entity.LoanEntity;
-import thws.librarymanager.application.domain.model.Loan;
-import thws.librarymanager.application.domain.model.LoanStatus;
+import thws.librarymanager.adapters.out.jpa.entities.LoanEntity;
+import thws.librarymanager.application.domain.models.Loan;
+import thws.librarymanager.application.domain.models.LoanStatus;
 import thws.librarymanager.application.ports.out.repository.LoanPort;
 
 import java.time.LocalDate;

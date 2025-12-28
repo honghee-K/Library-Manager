@@ -2,9 +2,9 @@ package thws.librarymanager.adapters.out.jpa.converter;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import thws.librarymanager.adapters.out.jpa.entity.LoanEntity;
-import thws.librarymanager.application.domain.model.Loan;
-import thws.librarymanager.application.domain.model.LoanStatus;
+import thws.librarymanager.adapters.out.jpa.entities.LoanEntity;
+import thws.librarymanager.application.domain.models.Loan;
+import thws.librarymanager.application.domain.models.LoanStatus;
 
 import java.util.Collections;
 import java.util.List;
