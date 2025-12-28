@@ -1,5 +1,7 @@
 package thws.librarymanager.application.domain.services;
 
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import thws.librarymanager.application.domain.models.Book;
 import thws.librarymanager.application.domain.models.Library;
 import thws.librarymanager.application.domain.models.Loan;
@@ -12,13 +14,13 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-// @ApplicationScoped
+@ApplicationScoped
 public class BookService implements BookUseCase {
 
     private final BookPort persistBookPort;
 
 
-    //@Inject
+    @Inject
     public BookService(BookPort persistence) {
         this.persistBookPort = persistence;
     }
@@ -29,7 +31,7 @@ public class BookService implements BookUseCase {
             throw new IllegalArgumentException("Book with this ISBN already exists.");
         }
 
-        Book book = new Book(isbn, title, author, genre, library, null);
+        Book book = new Book(null, isbn, title, author, genre, library, null);
 
         return persistBookPort.save(book);
     }
