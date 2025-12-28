@@ -1,34 +1,52 @@
-package thws.librarymanager.application.domain.model;
+package thws.librarymanager.application.domain.models;
 
 public class Book {
+    private Long id;
     private Long isbn;
     private String title;
     private String author;
     private String genre;
-    private Long libraryId; // don't reuse classes in different components (4) , to allow loanId to be null
-    private Long loanId; // don't reuse classes in different components (4), to allow libraryId to be null
+    private Library library;
+    private Loan currentLoan;
 
-    public Book(Long isbn, String title, String author, String genre, Long libraryId, Long loanId) {
+    public Book(Long id, Long isbn, String title, String author, String genre, Library library, Loan currentLoan) {
+        this.id = id;
+        if (isbn == null) throw new IllegalArgumentException("ISBN cannot be null.");
         this.isbn = isbn;
         this.title = title;
         this.author = author;
         this.genre = genre;
-        this.libraryId = libraryId;
-        this.loanId = loanId;
+        this.library = library;
+        this.currentLoan = currentLoan;
+    }
+
+    public Long getId(){
+        return id;
     }
 
     public Long getIsbn() {
         return isbn;
     }
+
     public String getTitle() {
         return title;
     }
+
     public String getAuthor() {
         return author;
     }
-    public String getGenre() { return genre; }
-    public Long getLibraryId() { return libraryId; }
-    public Long getLoanId() { return loanId; }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public Library getLibrary() {
+        return library;
+    }
+
+    public Loan getCurrentLoan() {
+        return currentLoan;
+    }
 
     public void updateBook(String title, String author, String genre) {
         if (title != null && !title.isBlank()) {
@@ -42,23 +60,23 @@ public class Book {
         }
     }
 
-    public void startLoan(Long newLoanId) {
-        if (this.loanId != null) {
+    public void startLoan(Loan newLoan) {
+        if (this.currentLoan != null) {
             throw new IllegalStateException("Book is already on loan.");
         }
-        this.loanId = newLoanId; //activate
+        this.currentLoan = newLoan; //activate
     }
 
     public void endLoan() {
-        if (this.loanId == null) {
+        if (this.currentLoan == null) {
             throw new IllegalStateException("Book is not currently on loan.");
         }
-        this.loanId = null; //deactivate
+        this.currentLoan = null; //deactivate
     }
-   public boolean isOnLoan() {
-        return this.loanId != null;
-        //currentLoan != null && currentLoan.getStatus().equals("ACTIVE");
 
+    public boolean isOnLoan() {
+        return this.currentLoan != null;
     }
+
 
 }

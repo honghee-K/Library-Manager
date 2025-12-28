@@ -1,17 +1,18 @@
 package thws.librarymanager.application.ports.out.repository;
 
-import thws.librarymanager.application.domain.model.Book;
+import thws.librarymanager.application.domain.models.Book;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface BookPort {
-    Book save(Book book); //C oder U
+    Book save(Book book);
 
-    Optional<Book> getBookByIsbn(Long isbn); //R
+    Optional<Book> getBookByIsbn(Long isbn);
 
-    void deleteByIsbn(Long isbn); //D
+    void deleteByIsbn(Long isbn);
 
-    List<Book> findAll(int page, int size, String genre, String author); //R(Filtering oder Paging)
+    List<Book> findAll(int page, int size, String genre, String author);
+
     List<Book> findAllForStatistics();
 }

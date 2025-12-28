@@ -1,6 +1,10 @@
-package thws.librarymanager.application.domain.service;
+package thws.librarymanager.application.domain.services;
 
-import thws.librarymanager.application.domain.model.Book;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import thws.librarymanager.application.domain.models.Book;
+import thws.librarymanager.application.domain.models.Library;
+import thws.librarymanager.application.domain.models.Loan;
 import thws.librarymanager.application.ports.in.BookStatistics;
 import thws.librarymanager.application.ports.in.BookUseCase;
 import thws.librarymanager.application.ports.out.repository.BookPort;
@@ -10,20 +14,25 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-
+@ApplicationScoped
 public class BookService implements BookUseCase {
 
     private final BookPort persistBookPort;
 
+
+    @Inject
     public BookService(BookPort persistence) {
         this.persistBookPort = persistence;
     }
 
     @Override
-    public Book addBook(Book book) {
-        if (persistBookPort.getBookByIsbn(book.getIsbn()).isPresent()) { //.isPresent() -> Methode of Optional
+    public Book addBook(Long isbn, String title, String author, String genre, Library library) {
+        if (persistBookPort.getBookByIsbn(isbn).isPresent()) { //.isPresent() -> Methode of Optional
             throw new IllegalArgumentException("Book with this ISBN already exists.");
         }
+
+        Book book = new Book(null, isbn, title, author, genre, library, null);
+
         return persistBookPort.save(book);
     }
 
@@ -39,39 +48,30 @@ public class BookService implements BookUseCase {
     }
 
 
-    //ToDo .orElseThrow()
     @Override
-    public void startLoanForBook(Long bookIsbn, Long loanId) {
-        // 1. Buch laden (Load the Book)
+    public void startLoanForBook(Long bookIsbn, Loan loan) {
         Book book = persistBookPort.getBookByIsbn(bookIsbn)
                 .orElseThrow(() -> new IllegalArgumentException("Book not found for ISBN: " + bookIsbn));
 
-        // 2. Domänenverhalten ausführen (Execute the Domain Behavior)
-        book.startLoan(loanId);
+        book.startLoan(loan);
 
-        // 3. Statusänderung speichern (Save the status change)
         persistBookPort.save(book);
     }
 
     @Override
     public void updateBook(Long isbn, String title, String author, String genre) {
-        // 1. Existing Book Lookup
         Book existing = persistBookPort.getBookByIsbn(isbn).orElse(null); // Optional 대신 null을 명시적으로 사용
 
         if (existing == null) {
             throw new IllegalArgumentException("Book not found for ISBN: " + isbn);
         }
 
-        // 2. Business Rule Validation
         if (existing.isOnLoan()) {
             throw new IllegalStateException("Cannot update book that is currently on loan.");
         }
 
-        // 3. Use the Domain Model's Behavior Method
         existing.updateBook(title, author, genre);
 
-
-        // 4. Save
         persistBookPort.save(existing);
     }
 
@@ -92,19 +92,16 @@ public class BookService implements BookUseCase {
 
     @Override
     public BookStatistics getBookCounts() {
-        // 1. Retrieve all book data via BookPort.
         List<Book> allBooks = persistBookPort.findAllForStatistics();
 
         long totalBooks = allBooks.size();
 
-        // 2. Calculate counts by genre/author using the Stream API.
         Map<String, Long> countByGenre = allBooks.stream()
                 .collect(Collectors.groupingBy(Book::getGenre, Collectors.counting()));
 
         Map<String, Long> countByAuthor = allBooks.stream()
                 .collect(Collectors.groupingBy(Book::getAuthor, Collectors.counting()));
 
-        // 3. Call the constructor of the BookStatistics class and return the object.
         return new BookStatistics(totalBooks, countByGenre, countByAuthor);
     }
 

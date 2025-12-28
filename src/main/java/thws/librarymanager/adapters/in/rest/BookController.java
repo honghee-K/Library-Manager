@@ -1,16 +1,5 @@
-//package thws.librarymanager.adapters.in.rest;
-//
-//
-//import thws.librarymanager.application.domain.model.Book;
-//import thws.librarymanager.application.ports.in.BookUseCase;
-//import jakarta.inject.Inject;
-//import jakarta.ws.rs.*;
-//import jakarta.ws.rs.core.MediaType;
-//import jakarta.ws.rs.core.Response;
-//import jakarta.ws.rs.core.UriInfo;
-//import jakarta.ws.rs.core.Context;
-//import java.net.URI;
-//import java.util.List;
+import java.net.URI;
+import java.util.List;
 //import java.util.Optional;
 //import java.util.stream.Collectors;
 //
