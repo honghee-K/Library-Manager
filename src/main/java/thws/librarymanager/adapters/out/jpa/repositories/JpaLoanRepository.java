@@ -1,4 +1,4 @@
-package thws.librarymanager.adapters.out.jpa.repository;
+package thws.librarymanager.adapters.out.jpa.repositories;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -17,7 +17,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @ApplicationScoped
-public class LoanRepositoryAdapter implements LoanPort {
+public class JpaLoanRepository implements LoanPort {
 
     @Inject
     EntityManager em;
