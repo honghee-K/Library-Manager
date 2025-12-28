@@ -19,8 +19,8 @@ public class LoanEntity {
     private UserEntity user;
 
     // Kitap ilişkisi
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "book_id", nullable = false)
+    //@ManyToOne(fetch = FetchType.LAZY, optional = false)
+    //@JoinColumn(name = "book_id", nullable = false)
     //private BookEntity book;
 
     // Tarihler
