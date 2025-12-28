@@ -1,6 +1,6 @@
 package thws.librarymanager.application.ports.in;
 
-import thws.librarymanager.application.domain.model.User;
+import thws.librarymanager.application.domain.models.User;
 
 import java.util.List;
 import java.util.Optional;

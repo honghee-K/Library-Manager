@@ -1,4 +1,4 @@
-package thws.librarymanager.adapters.in.rest;
+    package thws.librarymanager.adapters.in.rest;
 
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
@@ -7,7 +7,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.jwt.JsonWebToken;
-import thws.librarymanager.adapters.in.rest.service.JwtAuthService;
+import thws.librarymanager.adapters.in.rest.services.JwtAuthService;
 import thws.librarymanager.application.ports.in.AuthUseCase;
 
 @Path("/auth")

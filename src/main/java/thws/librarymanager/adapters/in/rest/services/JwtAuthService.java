@@ -1,11 +1,11 @@
-package thws.librarymanager.adapters.in.rest.service;
+package thws.librarymanager.adapters.in.rest.services;
 
 import io.smallrye.jwt.build.Jwt;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import thws.librarymanager.application.domain.model.User;
+import thws.librarymanager.application.domain.models.User;
 import thws.librarymanager.application.ports.in.AuthUseCase;
-import thws.librarymanager.application.ports.out.repository.UserRepository;
+import thws.librarymanager.application.ports.out.repository.UserPort;
 
 import java.time.Duration;
 import java.util.Set;
@@ -18,7 +18,7 @@ public class JwtAuthService implements AuthUseCase {
     public static final String USER_ID_CLAIM = "user_id";
 
     @Inject
-    private UserRepository userRepository;
+    private UserPort userPort;
 
     public JwtAuthService() {}
 
@@ -33,7 +33,7 @@ public class JwtAuthService implements AuthUseCase {
 
     @Override
     public String generateAccessToken(String name, String password) {
-        User user = userRepository.findByName(name).orElseThrow();
+        User user = userPort.findByName(name).orElseThrow();
         return generateToken(user.getId());
     }
 }

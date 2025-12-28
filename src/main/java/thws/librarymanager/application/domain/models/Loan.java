@@ -1,7 +1,6 @@
-package thws.librarymanager.application.domain.model;
+package thws.librarymanager.application.domain.models;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
 public class Loan {
 

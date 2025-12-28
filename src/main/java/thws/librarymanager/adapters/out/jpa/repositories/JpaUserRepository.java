@@ -1,19 +1,19 @@
-package thws.librarymanager.adapters.out.jpa.repository;
+package thws.librarymanager.adapters.out.jpa.repositories;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import thws.librarymanager.adapters.out.jpa.converter.JpaConverter;
-import thws.librarymanager.adapters.out.jpa.entity.UserEntity;
-import thws.librarymanager.application.domain.model.User;
-import thws.librarymanager.application.ports.out.repository.UserRepository;
+import thws.librarymanager.adapters.out.jpa.entities.UserEntity;
+import thws.librarymanager.application.domain.models.User;
+import thws.librarymanager.application.ports.out.repository.UserPort;
 
 import java.util.List;
 import java.util.Optional;
 
 @ApplicationScoped
-public class JpaUserRepository implements UserRepository {
+public class JpaUserRepository implements UserPort {
 
     @Inject
     private JpaConverter jpaConverter;

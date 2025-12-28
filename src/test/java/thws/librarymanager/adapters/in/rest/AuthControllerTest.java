@@ -8,8 +8,8 @@ import io.quarkus.test.common.http.TestHTTPEndpoint;
 import io.quarkus.test.junit.QuarkusTest;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.*;
-import thws.librarymanager.application.domain.model.User;
-import thws.librarymanager.application.ports.out.repository.UserRepository;
+import thws.librarymanager.application.domain.models.User;
+import thws.librarymanager.application.ports.out.repository.UserPort;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -18,7 +18,7 @@ import thws.librarymanager.application.ports.out.repository.UserRepository;
 public class AuthControllerTest {
 
     @Inject
-    private UserRepository userRepository;
+    private UserPort userPort;
 
     private String jwtToken;
 
@@ -28,7 +28,7 @@ public class AuthControllerTest {
     public void initTestData() {
 
         User user = new User(1L, "honghee", "honghee@example.com");
-        userRepository.save(user);
+        userPort.save(user);
     }
 
     @Test

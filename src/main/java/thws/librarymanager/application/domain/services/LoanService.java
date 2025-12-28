@@ -1,18 +1,18 @@
-package thws.librarymanager.application.domain.service;
+package thws.librarymanager.application.domain.services;
 
 import thws.librarymanager.application.domain.exceptions.BookAlreadyOnLoanException;
 import thws.librarymanager.application.domain.exceptions.BookNotFoundException;
 import thws.librarymanager.application.domain.exceptions.LoanNotFoundException;
 import thws.librarymanager.application.domain.exceptions.UserNotFoundException;
-import thws.librarymanager.application.domain.model.Book;
-import thws.librarymanager.application.domain.model.Loan;
-import thws.librarymanager.application.domain.model.LoanStatus;
-import thws.librarymanager.application.domain.model.User;
+import thws.librarymanager.application.domain.models.Book;
+import thws.librarymanager.application.domain.models.Loan;
+import thws.librarymanager.application.domain.models.LoanStatus;
+import thws.librarymanager.application.domain.models.User;
 import thws.librarymanager.application.ports.in.BookUseCase;
 import thws.librarymanager.application.ports.in.LoanUseCase;
 import thws.librarymanager.application.ports.out.repository.BookPort;
 import thws.librarymanager.application.ports.out.repository.LoanPort;
-import thws.librarymanager.application.ports.out.repository.UserRepository;
+import thws.librarymanager.application.ports.out.repository.UserPort;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -21,19 +21,19 @@ import java.util.List;
 public class LoanService implements LoanUseCase {
 
     private final LoanPort loanPort;
-    private final UserRepository userRepository;
+    private final UserPort userPort;
     private final BookPort bookPort;
 
     private final BookUseCase bookUseCase;
 
 
     public LoanService(LoanPort loanPort,
-                       UserRepository userRepository,
+                       UserPort userPort,
                        BookPort bookPort,
                        BookUseCase bookUseCase) {
 
         this.loanPort = loanPort;
-        this.userRepository = userRepository;
+        this.userPort = userPort;
         this.bookPort = bookPort;
         this.bookUseCase = bookUseCase;
     }
@@ -42,7 +42,7 @@ public class LoanService implements LoanUseCase {
     public Loan createLoan(Long userId, Long bookId) {
 
 
-        User user = userRepository.findById(userId)
+        User user = userPort.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException(userId));
 
         Book book = bookPort.getBookByIsbn(bookId)

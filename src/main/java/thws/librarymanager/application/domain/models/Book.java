@@ -1,6 +1,7 @@
-package thws.librarymanager.application.domain.model;
+package thws.librarymanager.application.domain.models;
 
 public class Book {
+    private Long id;
     private Long isbn;
     private String title;
     private String author;
@@ -8,7 +9,8 @@ public class Book {
     private Library library;
     private Loan currentLoan;
 
-    public Book(Long isbn, String title, String author, String genre, Library library, Loan currentLoan) {
+    public Book(Long id, Long isbn, String title, String author, String genre, Library library, Loan currentLoan) {
+        this.id = id;
         if (isbn == null) throw new IllegalArgumentException("ISBN cannot be null.");
         this.isbn = isbn;
         this.title = title;
@@ -16,6 +18,10 @@ public class Book {
         this.genre = genre;
         this.library = library;
         this.currentLoan = currentLoan;
+    }
+
+    public Long getId(){
+        return id;
     }
 
     public Long getIsbn() {

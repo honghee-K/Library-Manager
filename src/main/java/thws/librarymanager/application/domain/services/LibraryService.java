@@ -1,7 +1,7 @@
-package thws.librarymanager.application.domain.service;
+package thws.librarymanager.application.domain.services;
 
-import thws.librarymanager.application.domain.model.Book;
-import thws.librarymanager.application.domain.model.Library;
+import thws.librarymanager.application.domain.models.Book;
+import thws.librarymanager.application.domain.models.Library;
 import thws.librarymanager.application.ports.in.LibraryUseCase;
 import thws.librarymanager.application.ports.out.repository.BookPort;
 import thws.librarymanager.application.ports.out.repository.LibraryPort;

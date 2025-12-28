@@ -1,10 +1,8 @@
-package thws.librarymanager.application.domain.service;
+package thws.librarymanager.application.domain.services;
 
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
-import thws.librarymanager.application.domain.model.Book;
-import thws.librarymanager.application.domain.model.Library;
-import thws.librarymanager.application.domain.model.Loan;
+import thws.librarymanager.application.domain.models.Book;
+import thws.librarymanager.application.domain.models.Library;
+import thws.librarymanager.application.domain.models.Loan;
 import thws.librarymanager.application.ports.in.BookStatistics;
 import thws.librarymanager.application.ports.in.BookUseCase;
 import thws.librarymanager.application.ports.out.repository.BookPort;

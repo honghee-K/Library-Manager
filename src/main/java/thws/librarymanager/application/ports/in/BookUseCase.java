@@ -1,8 +1,8 @@
 package thws.librarymanager.application.ports.in;
 
-import thws.librarymanager.application.domain.model.Book;
-import thws.librarymanager.application.domain.model.Library;
-import thws.librarymanager.application.domain.model.Loan;
+import thws.librarymanager.application.domain.models.Book;
+import thws.librarymanager.application.domain.models.Library;
+import thws.librarymanager.application.domain.models.Loan;
 
 import java.util.List;
 import java.util.Optional;

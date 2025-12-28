@@ -1,7 +1,4 @@
-package thws.librarymanager.application.domain.model;
-
-import java.util.ArrayList;
-import java.util.List;
+package thws.librarymanager.application.domain.models;
 
 public class User {
     private Long id;

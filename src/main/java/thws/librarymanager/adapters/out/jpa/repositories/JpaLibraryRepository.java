@@ -1,11 +1,11 @@
-package thws.librarymanager.adapters.out.jpa.repository;
+package thws.librarymanager.adapters.out.jpa.repositories;
 
 import jakarta.enterprise.context.ApplicationScoped;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
-import thws.librarymanager.adapters.out.jpa.entity.LibraryEntity;
-import thws.librarymanager.application.domain.model.Book;
-import thws.librarymanager.application.domain.model.Library;
+import thws.librarymanager.adapters.out.jpa.entities.LibraryEntity;
+import thws.librarymanager.application.domain.models.Book;
+import thws.librarymanager.application.domain.models.Library;
 import thws.librarymanager.application.ports.out.repository.LibraryPort;
 
 import java.util.List;

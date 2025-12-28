@@ -1,4 +1,4 @@
-package thws.librarymanager.adapters.out.jpa.entity;
+package thws.librarymanager.adapters.out.jpa.entities;
 
 import jakarta.persistence.*;
 

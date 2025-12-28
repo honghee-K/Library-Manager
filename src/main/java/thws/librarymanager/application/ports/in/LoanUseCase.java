@@ -1,7 +1,7 @@
 package thws.librarymanager.application.ports.in;
 
-import thws.librarymanager.application.domain.model.Loan;
-import thws.librarymanager.application.domain.model.LoanStatus;
+import thws.librarymanager.application.domain.models.Loan;
+import thws.librarymanager.application.domain.models.LoanStatus;
 
 import java.time.LocalDate;
 import java.util.List;
