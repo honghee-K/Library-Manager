@@ -16,7 +16,8 @@ public class LoanConverter {
 
     @Inject
     JpaConverter jpaConverter; // User ve Book nesneleri için yardımcı converter
-
+    @Inject
+    LoanStatusConverter statusConverter;
     public LoanConverter() {}
 
     public LoanEntity toEntity(Loan loan) {
@@ -27,7 +28,7 @@ public class LoanConverter {
         entity.setLoanDate(loan.getLoanDate());
         entity.setDueDate(loan.getDueDate());
         entity.setReturnDate(loan.getReturnDate());
-        entity.setStatus(loan.getStatus() != null ? loan.getStatus() : LoanStatus.ACTIVE);
+        entity.setStatus(statusConverter.toJpa(loan.getStatus()));
 
         if (loan.getUser() != null)
             entity.setUser(jpaConverter.toJpaUser(loan.getUser()));
@@ -49,7 +50,7 @@ public class LoanConverter {
                 entity.getLoanDate(),
                 entity.getDueDate(),
                 entity.getReturnDate(),
-                entity.getStatus()
+                statusConverter.toDomain(entity.getStatus())
         );
 
     }
@@ -82,7 +83,7 @@ public class LoanConverter {
                 entity.getLoanDate(),
                 entity.getDueDate(),
                 entity.getReturnDate(),
-                entity.getStatus()
+                statusConverter.toDomain(entity.getStatus())
         );
     }
 }

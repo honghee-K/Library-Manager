@@ -7,6 +7,7 @@ import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import thws.librarymanager.adapters.out.jpa.converter.LoanConverter;
 import thws.librarymanager.adapters.out.jpa.entities.LoanEntity;
+import thws.librarymanager.adapters.out.jpa.enums.LoanStatusJpa;
 import thws.librarymanager.application.domain.models.Loan;
 import thws.librarymanager.application.domain.models.LoanStatus;
 import thws.librarymanager.application.ports.out.repository.LoanPort;
@@ -58,7 +59,7 @@ public class JpaLoanRepository implements LoanPort {
                                 "WHERE l.book.id = :bookId AND l.status = :status",
                         Long.class)
                 .setParameter("bookId", bookId)
-                .setParameter("status", LoanStatus.ACTIVE)
+                .setParameter("status", LoanStatusJpa.ACTIVE)
                 .getSingleResult();
 
         return count > 0;
@@ -78,7 +79,7 @@ public class JpaLoanRepository implements LoanPort {
 
         if (userId != null) query.setParameter("userId", userId);
         if (bookId != null) query.setParameter("bookId", bookId);
-        if (status != null) query.setParameter("status", status);
+        if (status != null) query.setParameter("status", LoanStatusJpa.valueOf(status.name()));
 
         query.setFirstResult(page * size);
         query.setMaxResults(size);
@@ -94,7 +95,7 @@ public class JpaLoanRepository implements LoanPort {
         return em.createQuery(
                         "SELECT l FROM LoanEntity l WHERE l.status = :status",
                         LoanEntity.class)
-                .setParameter("status", LoanStatus.ACTIVE)
+                .setParameter("status", LoanStatusJpa.ACTIVE)
                 .getResultList()
                 .stream()
                 .map(converter::toDomain)
@@ -108,7 +109,7 @@ public class JpaLoanRepository implements LoanPort {
                         "SELECT l FROM LoanEntity l " +
                                 "WHERE l.status = :status AND l.dueDate < :today",
                         LoanEntity.class)
-                .setParameter("status", LoanStatus.ACTIVE)
+                .setParameter("status", LoanStatusJpa.ACTIVE)
                 .setParameter("today", today)
                 .getResultList()
                 .stream()
