@@ -13,7 +13,7 @@ public class LibraryEntity {}
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)git push origin temp
+    @Column(nullable = false, unique = true)
     private String name;
 
     @Column(nullable = false)
