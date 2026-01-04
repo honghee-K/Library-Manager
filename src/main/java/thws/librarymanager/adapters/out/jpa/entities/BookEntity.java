@@ -17,7 +17,7 @@ public class BookEntity {
     private String author;
     private String genre;
 
-    /*@ManyToOne(fetch = FetchType.LAZY)
+/*    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "library_id")
     private LibraryEntity library;
 
@@ -27,7 +27,6 @@ public class BookEntity {
 
     public BookEntity() {}
 
-    // Getter & Setter
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
