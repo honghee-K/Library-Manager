@@ -54,6 +54,25 @@ public class LibraryController {
                 .orElseGet(() -> Response.status(Response.Status.NOT_FOUND).build());
     }
 
+    // CREATE LIBRARY
+    @POST
+    public Response addLibrary(LibraryRequest request) {
+
+        Library library = new Library(
+                null,                 // id → DB verecek
+                request.name,
+                request.location,
+                List.of()             // books boş başlar
+        );
+
+        Library created = libraryUseCase.addLibrary(library);
+
+        return Response
+                .status(Response.Status.CREATED)
+                .entity(toResponse(created))
+                .build();
+    }
+
 
     // HATEOAS MAPPING
     private LibraryResponse toResponse(Library library) {
@@ -103,5 +122,10 @@ public class LibraryController {
         public void addLink(String rel, String href) {
             _links.put(rel, new Link(href, "GET","application/json"));
         }
+    }
+
+    public class LibraryRequest {
+        public String name;
+        public String location;
     }
 }

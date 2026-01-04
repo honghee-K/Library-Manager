@@ -5,9 +5,10 @@ import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
-import thws.librarymanager.adapters.out.jpa.converter.LoanConverter;
+
 import thws.librarymanager.adapters.out.jpa.entities.LoanEntity;
 import thws.librarymanager.adapters.out.jpa.enums.LoanStatusJpa;
+import thws.librarymanager.adapters.out.jpa.converter.JpaConverter;
 import thws.librarymanager.application.domain.models.Loan;
 import thws.librarymanager.application.domain.models.LoanStatus;
 import thws.librarymanager.application.ports.out.repository.LoanPort;
@@ -24,30 +25,29 @@ public class JpaLoanRepository implements LoanPort {
     EntityManager em;
 
     @Inject
-    LoanConverter converter;
+    JpaConverter converter;
 
     // -------------------- SAVE --------------------
     @Override
     @Transactional
     public Loan save(Loan loan) {
-        LoanEntity entity = converter.toEntity(loan);
+        LoanEntity entity = converter.toJpaLoan(loan);
 
         if (loan.getId() == null) {
-            em.persist(entity); // (INSERT)
+            em.persist(entity); // INSERT
         } else {
-            entity = em.merge(entity); // (UPDATE)
+            entity = em.merge(entity); // UPDATE
         }
 
-        return converter.toDomain(entity);
+        return converter.toLoan(entity);
     }
-
 
     @Override
     @Transactional(Transactional.TxType.SUPPORTS)
     public Optional<Loan> findById(Long id) {
         LoanEntity entity = em.find(LoanEntity.class, id);
         return entity != null
-                ? Optional.of(converter.toDomain(entity))
+                ? Optional.of(converter.toLoan(entity))
                 : Optional.empty();
     }
 
@@ -56,7 +56,7 @@ public class JpaLoanRepository implements LoanPort {
     public boolean existsActiveLoanForBook(Long bookId) {
         Long count = em.createQuery(
                         "SELECT COUNT(l) FROM LoanEntity l " +
-                                "WHERE l.book.id = :bookId AND l.status = :status",
+                                "WHERE l.bookId = :bookId AND l.status = :status",
                         Long.class)
                 .setParameter("bookId", bookId)
                 .setParameter("status", LoanStatusJpa.ACTIVE)
@@ -65,14 +65,18 @@ public class JpaLoanRepository implements LoanPort {
         return count > 0;
     }
 
-    // -------------------- FIND LOANS WITH FILTERS --------------------
     @Override
     @Transactional(Transactional.TxType.SUPPORTS)
-    public List<Loan> findLoans(Long userId, Long bookId, LoanStatus status, int page, int size) {
+    public List<Loan> findLoans(Long userId,
+                                Long bookId,
+                                LoanStatus status,
+                                int page,
+                                int size) {
+
         StringBuilder jpql = new StringBuilder("SELECT l FROM LoanEntity l WHERE 1=1 ");
 
-        if (userId != null) jpql.append("AND l.user.id = :userId ");
-        if (bookId != null) jpql.append("AND l.book.id = :bookId ");
+        if (userId != null) jpql.append("AND l.userId = :userId ");
+        if (bookId != null) jpql.append("AND l.bookId = :bookId ");
         if (status != null) jpql.append("AND l.status = :status ");
 
         TypedQuery<LoanEntity> query = em.createQuery(jpql.toString(), LoanEntity.class);
@@ -84,8 +88,9 @@ public class JpaLoanRepository implements LoanPort {
         query.setFirstResult(page * size);
         query.setMaxResults(size);
 
-        return query.getResultList().stream()
-                .map(converter::toDomain)
+        return query.getResultList()
+                .stream()
+                .map(converter::toLoan)
                 .collect(Collectors.toList());
     }
 
@@ -98,7 +103,7 @@ public class JpaLoanRepository implements LoanPort {
                 .setParameter("status", LoanStatusJpa.ACTIVE)
                 .getResultList()
                 .stream()
-                .map(converter::toDomain)
+                .map(converter::toLoan)
                 .collect(Collectors.toList());
     }
 
@@ -113,7 +118,7 @@ public class JpaLoanRepository implements LoanPort {
                 .setParameter("today", today)
                 .getResultList()
                 .stream()
-                .map(converter::toDomain)
+                .map(converter::toLoan)
                 .collect(Collectors.toList());
     }
 }

@@ -45,7 +45,7 @@ public class LoanService implements LoanUseCase {
         User user = userPort.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException(userId));
 
-        Book book = bookPort.getBookByIsbn(bookId)
+       Book book = bookPort.getBookByIsbn(bookId)
                 .orElseThrow(() -> new BookNotFoundException(bookId));
 
         if (loanPort.existsActiveLoanForBook(bookId)) {
@@ -55,11 +55,12 @@ public class LoanService implements LoanUseCase {
         LocalDate today = LocalDate.now();
         LocalDate due = today.plusDays(14);
 
-        Loan loan = Loan.createLoan(user, book, today, due);
-        loanPort.save(loan);
+        Loan loan = Loan.createLoan(userId, bookId, today, due);
+        Loan savedLoan =loanPort.save(loan);
 
-        bookUseCase.startLoanForBook(bookId, loan);
-        return loan;
+        book.startLoan(savedLoan);
+        bookPort.save(book);
+        return savedLoan;
     }
 
     @Override
@@ -70,8 +71,11 @@ public class LoanService implements LoanUseCase {
 
         loan.setReturned(LocalDate.now());
 
-        Book book = loan.getBook();
+        Book book = bookPort.getBookByIsbn(loan.getBookId())
+                .orElseThrow(() -> new BookNotFoundException(loan.getBookId()));
+
         book.endLoan();
+        bookPort.save(book);
 
         return loanPort.save(loan);
     }

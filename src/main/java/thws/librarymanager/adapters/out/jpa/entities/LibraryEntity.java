@@ -5,11 +5,11 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Entity
-//@Table(name = "library")
-public class LibraryEntity {}
+@Entity
+@Table(name = "library")
+public class LibraryEntity {
 
-   /* @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -42,17 +42,17 @@ public class LibraryEntity {}
     public List<BookEntity> getBooks() { return books; }
     public void setBooks(List<BookEntity> books) { this.books = books; }
 
-    // Yardımcı metodlar
-    public void addBook(BookEntity book) {
+
+   public void addBook(BookEntity book) {
         books.add(book);
-        book.setLibrary(this);
+        //book.setLibrary(this);
     }
 
     public void removeBook(BookEntity book) {
         books.remove(book);
-        book.setLibrary(null);
+        //book.setLibrary(null);
     }
 }
 
 
-*/
+

@@ -17,8 +17,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @ApplicationScoped
-public class JpaLibraryRepository {}
-        /*implements LibraryPort {
+public class JpaLibraryRepository implements LibraryPort {
 
     @Inject
     EntityManager em;
@@ -35,7 +34,7 @@ public class JpaLibraryRepository {}
         } else {
             entity = em.merge(entity);
         }
-        return converter.toDomainLibrary(entity);
+        return converter.toLibrary(entity);
     }
 
     @Override
@@ -43,7 +42,7 @@ public class JpaLibraryRepository {}
     public Optional<Library> getLibraryById(Long id) {
         LibraryEntity entity = em.find(LibraryEntity.class, id);
         return entity != null
-                ? Optional.of(converter.toDomainLibrary(entity))
+                ? Optional.of(converter.toLibrary(entity))
                 : Optional.empty();
     }
 
@@ -54,7 +53,7 @@ public class JpaLibraryRepository {}
                 "SELECT l FROM LibraryEntity l WHERE l.name = :name", LibraryEntity.class);
         query.setParameter("name", name);
         List<LibraryEntity> result = query.getResultList();
-        return result.isEmpty() ? Optional.empty() : Optional.of(converter.toDomainLibrary(result.get(0)));
+        return result.isEmpty() ? Optional.empty() : Optional.of(converter.toLibrary(result.get(0)));
     }
 
     @Override
@@ -63,7 +62,7 @@ public class JpaLibraryRepository {}
         return em.createQuery("SELECT l FROM LibraryEntity l", LibraryEntity.class)
                 .getResultList()
                 .stream()
-                .map(converter::toDomainLibrary)
+                .map(converter::toLibrary)
                 .collect(Collectors.toList());
     }
 
@@ -96,4 +95,4 @@ public class JpaLibraryRepository {}
                 .map(converter::toBook)
                 .collect(Collectors.toList());
     }
-} */
+}

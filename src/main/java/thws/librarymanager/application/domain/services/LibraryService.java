@@ -1,5 +1,6 @@
 package thws.librarymanager.application.domain.services;
 
+import jakarta.enterprise.context.ApplicationScoped;
 import thws.librarymanager.application.domain.models.Book;
 import thws.librarymanager.application.domain.models.Library;
 import thws.librarymanager.application.ports.in.LibraryUseCase;
@@ -8,7 +9,7 @@ import thws.librarymanager.application.ports.out.repository.LibraryPort;
 
 import java.util.List;
 import java.util.Optional;
-
+@ApplicationScoped
 public class LibraryService implements LibraryUseCase {
 
     private final LibraryPort libraryPort;

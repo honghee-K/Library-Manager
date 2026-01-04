@@ -5,27 +5,27 @@ import java.time.LocalDate;
 public class Loan {
 
     private Long id;
-    private final User user;
-    private final Book book;
+    private final Long userId;
+    private final Long bookId;
     private final LocalDate loanDate;
     private LocalDate dueDate;
     private LocalDate returnDate;
     private LoanStatus status; // ACTIVE | RETURNED
 
     private Loan(Long id,
-                 User user,
-                 Book book,
+                 Long userId,
+                 Long bookId,
                  LocalDate loanDate,
                  LocalDate dueDate,
                  LocalDate returnDate,
                  LoanStatus status) {
 
-        if (user == null) {
-            throw new IllegalArgumentException("user must not be null");
+        if (userId == null) {
+            throw new IllegalArgumentException("userId must not be null");
         }
 
-        if (book == null) {
-            throw new IllegalArgumentException("book must not be null");
+        if (bookId == null) {
+            throw new IllegalArgumentException("bookId must not be null");
         }
 
         if (loanDate == null) {
@@ -45,8 +45,8 @@ public class Loan {
         }
 
         this.id = id;
-        this.user = user;
-        this.book = book;
+        this.userId = userId;
+        this.bookId = bookId;
         this.loanDate = loanDate;
         this.dueDate = dueDate;
         this.returnDate = returnDate;
@@ -55,18 +55,18 @@ public class Loan {
 
     public static Loan restore(
             Long id,
-            User user,
-            Book book,
+            Long userId,
+            Long bookId,
             LocalDate loanDate,
             LocalDate dueDate,
             LocalDate returnDate,
             LoanStatus status
     ) {
-        return new Loan(id, user, book, loanDate, dueDate, returnDate, status);
+        return new Loan(id, userId, bookId, loanDate, dueDate, returnDate, status);
     }
 
-    public static Loan createLoan(User user, Book book, LocalDate loanDate, LocalDate dueDate) {
-        return new Loan(null, user, book, loanDate, dueDate, null, LoanStatus.ACTIVE);
+    public static Loan createLoan(Long userId, Long bookId, LocalDate loanDate, LocalDate dueDate) {
+        return new Loan(null, userId, bookId, loanDate, dueDate, null, LoanStatus.ACTIVE);
     }
 
     public void setReturned(LocalDate returnDate) {
@@ -111,12 +111,12 @@ public class Loan {
         return id;
     }
 
-    public User getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    public Book getBook() {
-        return book;
+    public Long getBookId() {
+        return bookId;
     }
 
     public LocalDate getLoanDate() {
