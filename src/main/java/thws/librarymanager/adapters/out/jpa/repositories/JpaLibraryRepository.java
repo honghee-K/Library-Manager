@@ -1,8 +1,12 @@
 package thws.librarymanager.adapters.out.jpa.repositories;
 
 import jakarta.enterprise.context.ApplicationScoped;
-
-import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
+import jakarta.inject.Inject;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
+import thws.librarymanager.adapters.out.jpa.converter.JpaConverter;
+import thws.librarymanager.adapters.out.jpa.entities.BookEntity;
 import thws.librarymanager.adapters.out.jpa.entities.LibraryEntity;
 import thws.librarymanager.application.domain.models.Book;
 import thws.librarymanager.application.domain.models.Library;
@@ -10,45 +14,86 @@ import thws.librarymanager.application.ports.out.repository.LibraryPort;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @ApplicationScoped
-public class JpaLibraryRepository implements PanacheRepositoryBase<LibraryEntity, Long>, LibraryPort {
+public class JpaLibraryRepository {}
+        /*implements LibraryPort {
 
-    public JpaLibraryRepository() {}
+    @Inject
+    EntityManager em;
+
+    @Inject
+    JpaConverter converter; // User/Book dönüştürme işlemleri için
 
     @Override
+    @Transactional
     public Library save(Library library) {
-        return null;
+        LibraryEntity entity = converter.toJpaLibrary(library);
+        if (library.getId() == null) {
+            em.persist(entity);
+        } else {
+            entity = em.merge(entity);
+        }
+        return converter.toDomainLibrary(entity);
     }
 
     @Override
+    @Transactional(Transactional.TxType.SUPPORTS)
     public Optional<Library> getLibraryById(Long id) {
-        return Optional.empty();
+        LibraryEntity entity = em.find(LibraryEntity.class, id);
+        return entity != null
+                ? Optional.of(converter.toDomainLibrary(entity))
+                : Optional.empty();
     }
 
     @Override
+    @Transactional(Transactional.TxType.SUPPORTS)
     public Optional<Library> getLibraryByName(String name) {
-        return Optional.empty();
+        TypedQuery<LibraryEntity> query = em.createQuery(
+                "SELECT l FROM LibraryEntity l WHERE l.name = :name", LibraryEntity.class);
+        query.setParameter("name", name);
+        List<LibraryEntity> result = query.getResultList();
+        return result.isEmpty() ? Optional.empty() : Optional.of(converter.toDomainLibrary(result.get(0)));
     }
 
     @Override
+    @Transactional(Transactional.TxType.SUPPORTS)
     public List<Library> findAllLibraries() {
-        return null;
+        return em.createQuery("SELECT l FROM LibraryEntity l", LibraryEntity.class)
+                .getResultList()
+                .stream()
+                .map(converter::toDomainLibrary)
+                .collect(Collectors.toList());
     }
 
     @Override
+    @Transactional
     public void deleteLibraryById(Long id) {
-
+        LibraryEntity entity = em.find(LibraryEntity.class, id);
+        if (entity != null) {
+            em.remove(entity);
+        }
     }
 
     @Override
+    @Transactional(Transactional.TxType.SUPPORTS)
     public Long countTotalBooks(Long libraryId) {
-        return null;
+        TypedQuery<Long> query = em.createQuery(
+                "SELECT COUNT(b) FROM BookEntity b WHERE b.library.id = :libraryId", Long.class);
+        query.setParameter("libraryId", libraryId);
+        return query.getSingleResult();
     }
 
     @Override
+    @Transactional(Transactional.TxType.SUPPORTS)
     public List<Book> findBooksInLibrary(Long libraryId) {
-        return null;
+        TypedQuery<BookEntity> query = em.createQuery(
+                "SELECT b FROM BookEntity b WHERE b.library.id = :libraryId", BookEntity.class);
+        query.setParameter("libraryId", libraryId);
+        return query.getResultList()
+                .stream()
+                .map(converter::toBook)
+                .collect(Collectors.toList());
     }
-
-}
+} */

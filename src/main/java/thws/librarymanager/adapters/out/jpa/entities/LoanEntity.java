@@ -2,7 +2,9 @@ package thws.librarymanager.adapters.out.jpa.entities;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
-import thws.librarymanager.application.domain.models.LoanStatus;
+
+import thws.librarymanager.adapters.out.jpa.enums.LoanStatusJpa;
+import thws.librarymanager.adapters.out.jpa.enums.LoanStatusJpa;
 
 @Entity
 @Table(name = "loan")
@@ -35,7 +37,7 @@ public class LoanEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private LoanStatus status;
+    private LoanStatusJpa status;
 
     // ---- CONSTRUCTORS ----
     public LoanEntity() {}
@@ -67,12 +69,12 @@ public class LoanEntity {
     public LocalDate getReturnDate() { return returnDate; }
     public void setReturnDate(LocalDate returnDate) { this.returnDate = returnDate; }
 
-    public LoanStatus getStatus() { return status; }
-    public void setStatus(LoanStatus status) { this.status = status; }
+    public LoanStatusJpa getStatus() { return status; }
+    public void setStatus(LoanStatusJpa status) { this.status = status; }
 
     // ---- YARDIMCI METOTLAR (optional ama çok faydalı) ----
     public boolean isReturned() {
-        return this.status == LoanStatus.RETURNED;
+        return this.status == LoanStatusJpa.RETURNED;
     }
 
     public boolean isOverdue(LocalDate today) {
@@ -81,6 +83,6 @@ public class LoanEntity {
 
     public void markAsReturned(LocalDate returnDate) {
         this.returnDate = returnDate != null ? returnDate : LocalDate.now();
-        this.status = LoanStatus.RETURNED;
+        this.status = LoanStatusJpa.RETURNED;
     }
 }
