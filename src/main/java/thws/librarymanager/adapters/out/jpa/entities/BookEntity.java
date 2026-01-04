@@ -17,13 +17,13 @@ public class BookEntity {
     private String author;
     private String genre;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+/*    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "library_id")
-    //private LibraryEntity library;
+    private LibraryEntity library;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "current_loan_id")
-    private LoanEntity currentLoan;
+    private LoanEntity currentLoan;*/
 
     public BookEntity() {}
 
