@@ -15,7 +15,7 @@ import thws.librarymanager.application.domain.models.Library;
 @ApplicationScoped
 public class RestMapper {
 
-    public BookDTO toDTO(Book book, UriInfo uriInfo) {
+    public BookDTO toBookDTO(Book book, UriInfo uriInfo) {
         if (book == null) return null;
 
         BookDTO dto = new BookDTO();
@@ -36,6 +36,7 @@ public class RestMapper {
 
         return dto;
     }
+
     public LibraryDTO toLibraryDTO(Library library, UriInfo uriInfo) {
         if (library == null) return null;
 

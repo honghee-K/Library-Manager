@@ -4,14 +4,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.*;
 
 import thws.librarymanager.adapters.in.rest.mapper.RestMapper;
 import thws.librarymanager.adapters.in.rest.models.BookDTO;
-import thws.librarymanager.adapters.in.rest.services.JwtAuthService;
 import thws.librarymanager.application.domain.models.Book;
 import thws.librarymanager.application.ports.in.BookUseCase;
 
@@ -62,7 +60,7 @@ public class BookController {
     public Response getBookByIsbn(@PathParam("isbn") Long isbn) {
         Optional<Book> book = bookUseCase.getBookByIsbn(isbn);
 
-        return book.map(b -> restMapper.toDTO(b, uriInfo))
+        return book.map(b -> restMapper.toBookDTO(b, uriInfo))
                 .map(dto -> Response.ok(dto).build())
                 .orElseGet(() -> Response.status(Response.Status.NOT_FOUND).build());
     }
@@ -77,7 +75,7 @@ public class BookController {
         List<Book> books = bookUseCase.getAllBooks(page, size, author, genre);
 
         List<BookDTO> dtos =
-                books.stream().map(book -> restMapper.toDTO(book, uriInfo)).collect(Collectors.toList());
+                books.stream().map(book -> restMapper.toBookDTO(book, uriInfo)).collect(Collectors.toList());
 
         return Response.ok(dtos).build();
     }
