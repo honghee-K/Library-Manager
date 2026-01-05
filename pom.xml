@@ -16,7 +16,7 @@
         <encoding>UTF-8</encoding>
         <java.version>17</java.version>
         <!-- dependencies -->
-        <quarkus.version>3.30.4</quarkus.version>
+        <quarkus.version>3.30.5</quarkus.version>
         <!-- maven plugins -->
         <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
         <maven.compiler.source>${java.version}</maven.compiler.source>
@@ -161,13 +161,6 @@
                             <order>java,jakarta,javax</order>
                         </importOrder>
                     </java>
-                    <yaml>
-                        <includes>
-                            <include>**/*.yml</include>
-                            <include>**/*.yaml</include>
-                        </includes>
-                        <jackson/>
-                    </yaml>
                 </configuration>
             </plugin>
 
