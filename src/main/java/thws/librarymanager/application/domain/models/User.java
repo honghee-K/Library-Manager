@@ -44,7 +44,6 @@ public class User {
         this.email = email;
     }
 
-
     public void updateInfo(String newName, String newEmail) {
         if (newName != null && !newName.isBlank()) {
             this.name = newName;

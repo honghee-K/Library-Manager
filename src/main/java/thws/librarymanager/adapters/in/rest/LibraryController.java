@@ -15,6 +15,7 @@ package thws.librarymanager.adapters.in.rest;
         import java.util.stream.Collectors;
 
 @Path("/library")
+
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class LibraryController {

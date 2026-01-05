@@ -1,9 +1,9 @@
 package thws.librarymanager.adapters.out.jpa.entities;
 
-import jakarta.persistence.*;
 import java.time.LocalDate;
 
-import thws.librarymanager.adapters.out.jpa.enums.LoanStatusJpa;
+import jakarta.persistence.*;
+
 import thws.librarymanager.adapters.out.jpa.enums.LoanStatusJpa;
 
 @Entity
@@ -21,9 +21,9 @@ public class LoanEntity {
     private UserEntity user;
 
     // Kitap ilişkisi
-    //@ManyToOne(fetch = FetchType.LAZY, optional = false)
-    //@JoinColumn(name = "book_id", nullable = false)
-    //private BookEntity book;
+    // @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    // @JoinColumn(name = "book_id", nullable = false)
+    // private BookEntity book;
 
     // Tarihler
     @Column(name = "loan_date", nullable = false)
@@ -42,7 +42,7 @@ public class LoanEntity {
     // ---- CONSTRUCTORS ----
     public LoanEntity() {}
 
-   /* public LoanEntity(UserEntity user, BookEntity book, LocalDate loanDate, LocalDate dueDate, LoanStatus status) {
+    /* public LoanEntity(UserEntity user, BookEntity book, LocalDate loanDate, LocalDate dueDate, LoanStatus status) {
         this.user = user;
         this.book = book;
         this.loanDate = loanDate;
@@ -51,26 +51,56 @@ public class LoanEntity {
     }*/
 
     // ---- GETTERS & SETTERS ----
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public UserEntity getUser() { return user; }
-    public void setUser(UserEntity user) { this.user = user; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    //public BookEntity getBook() { return book; }
-    //public void setBook(BookEntity book) { this.book = book; }
+    public UserEntity getUser() {
+        return user;
+    }
 
-    public LocalDate getLoanDate() { return loanDate; }
-    public void setLoanDate(LocalDate loanDate) { this.loanDate = loanDate; }
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
 
-    public LocalDate getDueDate() { return dueDate; }
-    public void setDueDate(LocalDate dueDate) { this.dueDate = dueDate; }
+    // public BookEntity getBook() { return book; }
+    // public void setBook(BookEntity book) { this.book = book; }
 
-    public LocalDate getReturnDate() { return returnDate; }
-    public void setReturnDate(LocalDate returnDate) { this.returnDate = returnDate; }
+    public LocalDate getLoanDate() {
+        return loanDate;
+    }
 
-    public LoanStatusJpa getStatus() { return status; }
-    public void setStatus(LoanStatusJpa status) { this.status = status; }
+    public void setLoanDate(LocalDate loanDate) {
+        this.loanDate = loanDate;
+    }
+
+    public LocalDate getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    public LocalDate getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(LocalDate returnDate) {
+        this.returnDate = returnDate;
+    }
+
+    public LoanStatusJpa getStatus() {
+        return status;
+    }
+
+    public void setStatus(LoanStatusJpa status) {
+        this.status = status;
+    }
 
     // ---- YARDIMCI METOTLAR (optional ama çok faydalı) ----
     public boolean isReturned() {

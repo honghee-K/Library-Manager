@@ -1,14 +1,15 @@
 package thws.librarymanager.adapters.in.rest.services;
 
-import io.smallrye.jwt.build.Jwt;
+import java.time.Duration;
+import java.util.Set;
+
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+
+import io.smallrye.jwt.build.Jwt;
 import thws.librarymanager.application.domain.models.User;
 import thws.librarymanager.application.ports.in.AuthUseCase;
 import thws.librarymanager.application.ports.out.repository.UserPort;
-
-import java.time.Duration;
-import java.util.Set;
 
 @ApplicationScoped
 public class JwtAuthService implements AuthUseCase {

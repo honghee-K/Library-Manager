@@ -1,16 +1,17 @@
 package thws.librarymanager.adapters.out.jpa.repositories;
 
+import java.util.List;
+import java.util.Optional;
+
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
+
 import thws.librarymanager.adapters.out.jpa.converter.JpaConverter;
 import thws.librarymanager.adapters.out.jpa.entities.UserEntity;
 import thws.librarymanager.application.domain.models.User;
 import thws.librarymanager.application.ports.out.repository.UserPort;
-
-import java.util.List;
-import java.util.Optional;
 
 @ApplicationScoped
 public class JpaUserRepository implements UserPort {
@@ -45,7 +46,8 @@ public class JpaUserRepository implements UserPort {
     @Transactional
     public Optional<User> findByName(String name) {
 
-        Object user = entityManager.createQuery("from UserEntity where name = :name")
+        Object user = entityManager
+                .createQuery("from UserEntity where name = :name")
                 .setParameter("name", name)
                 .getSingleResultOrNull();
 

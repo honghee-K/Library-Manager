@@ -39,7 +39,6 @@ public class Library {
         return books;
     }
 
-
     public void addBook(Book book) {
         if (book == null) {
             throw new IllegalArgumentException("Book must not be null.");

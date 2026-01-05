@@ -1,6 +1,7 @@
 package thws.librarymanager.adapters.out.jpa.converter;
 
 import jakarta.enterprise.context.ApplicationScoped;
+
 import thws.librarymanager.adapters.out.jpa.enums.LoanStatusJpa;
 import thws.librarymanager.application.domain.models.LoanStatus;
 

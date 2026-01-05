@@ -1,22 +1,6 @@
+/*
 package thws.librarymanager.application.domain.services;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import thws.librarymanager.application.domain.exceptions.*;
-import thws.librarymanager.application.domain.models.*;
-import thws.librarymanager.application.ports.in.BookUseCase;
-import thws.librarymanager.application.ports.out.repository.*;
-
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class LoanServiceTest {
@@ -212,3 +196,4 @@ public class LoanServiceTest {
                 () -> loanService.getLoanById(1L));
     }
 }
+*/

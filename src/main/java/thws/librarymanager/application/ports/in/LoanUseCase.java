@@ -1,10 +1,10 @@
 package thws.librarymanager.application.ports.in;
 
-import thws.librarymanager.application.domain.models.Loan;
-import thws.librarymanager.application.domain.models.LoanStatus;
-
 import java.time.LocalDate;
 import java.util.List;
+
+import thws.librarymanager.application.domain.models.Loan;
+import thws.librarymanager.application.domain.models.LoanStatus;
 
 public interface LoanUseCase {
 
@@ -14,12 +14,7 @@ public interface LoanUseCase {
 
     Loan getLoanById(Long loanId);
 
-    List<Loan> searchLoans(Long userId,
-                           Long bookId,
-                           LoanStatus status,
-                           int page,
-                           int size);
+    List<Loan> searchLoans(Long userId, Long bookId, LoanStatus status, int page, int size);
 
     Loan extendLoanPeriod(Long loanId, LocalDate newDueDate);
-
 }

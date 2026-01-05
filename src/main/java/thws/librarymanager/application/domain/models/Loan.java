@@ -12,13 +12,14 @@ public class Loan {
     private LocalDate returnDate;
     private LoanStatus status; // ACTIVE | RETURNED
 
-    private Loan(Long id,
-                 User user,
-                 Book book,
-                 LocalDate loanDate,
-                 LocalDate dueDate,
-                 LocalDate returnDate,
-                 LoanStatus status) {
+    private Loan(
+            Long id,
+            User user,
+            Book book,
+            LocalDate loanDate,
+            LocalDate dueDate,
+            LocalDate returnDate,
+            LoanStatus status) {
 
         if (user == null) {
             throw new IllegalArgumentException("user must not be null");
@@ -60,8 +61,7 @@ public class Loan {
             LocalDate loanDate,
             LocalDate dueDate,
             LocalDate returnDate,
-            LoanStatus status
-    ) {
+            LoanStatus status) {
         return new Loan(id, user, book, loanDate, dueDate, returnDate, status);
     }
 
@@ -82,7 +82,6 @@ public class Loan {
 
         this.status = LoanStatus.RETURNED;
     }
-
 
     public void changeDueDate(LocalDate newDueDate) {
         if (newDueDate == null || newDueDate.isBefore(this.loanDate)) {

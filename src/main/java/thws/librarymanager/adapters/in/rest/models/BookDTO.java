@@ -1,38 +1,14 @@
-package thws.librarymanager.adapters.out.jpa.entities;
+package thws.librarymanager.adapters.in.rest.models;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "books")
-public class BookEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(nullable = false, unique = true)
+public class BookDTO extends BaseDTO {
     private Long isbn;
-
     private String title;
     private String author;
     private String genre;
+    private boolean isOnLoan;
 
-    /*    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "library_id")
-    private LibraryEntity library;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "current_loan_id")
-    private LoanEntity currentLoan;*/
-
-    public BookEntity() {}
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public BookDTO() {
+        super();
     }
 
     public Long getIsbn() {
@@ -65,5 +41,13 @@ public class BookEntity {
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+
+    public boolean isOnLoan() {
+        return isOnLoan;
+    }
+
+    public void setOnLoan(boolean onLoan) {
+        isOnLoan = onLoan;
     }
 }

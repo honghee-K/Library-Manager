@@ -1,21 +1,22 @@
 package thws.librarymanager.adapters.out.jpa.repositories;
 
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
+
 import thws.librarymanager.adapters.out.jpa.converter.LoanConverter;
 import thws.librarymanager.adapters.out.jpa.entities.LoanEntity;
 import thws.librarymanager.adapters.out.jpa.enums.LoanStatusJpa;
 import thws.librarymanager.application.domain.models.Loan;
 import thws.librarymanager.application.domain.models.LoanStatus;
 import thws.librarymanager.application.ports.out.repository.LoanPort;
-
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class JpaLoanRepository implements LoanPort {
@@ -41,22 +42,18 @@ public class JpaLoanRepository implements LoanPort {
         return converter.toDomain(entity);
     }
 
-
     @Override
     @Transactional(Transactional.TxType.SUPPORTS)
     public Optional<Loan> findById(Long id) {
         LoanEntity entity = em.find(LoanEntity.class, id);
-        return entity != null
-                ? Optional.of(converter.toDomain(entity))
-                : Optional.empty();
+        return entity != null ? Optional.of(converter.toDomain(entity)) : Optional.empty();
     }
 
     @Override
     @Transactional(Transactional.TxType.SUPPORTS)
     public boolean existsActiveLoanForBook(Long bookId) {
         Long count = em.createQuery(
-                        "SELECT COUNT(l) FROM LoanEntity l " +
-                                "WHERE l.book.id = :bookId AND l.status = :status",
+                        "SELECT COUNT(l) FROM LoanEntity l " + "WHERE l.book.id = :bookId AND l.status = :status",
                         Long.class)
                 .setParameter("bookId", bookId)
                 .setParameter("status", LoanStatusJpa.ACTIVE)
@@ -84,17 +81,14 @@ public class JpaLoanRepository implements LoanPort {
         query.setFirstResult(page * size);
         query.setMaxResults(size);
 
-        return query.getResultList().stream()
-                .map(converter::toDomain)
-                .collect(Collectors.toList());
+        return query.getResultList().stream().map(converter::toDomain).collect(Collectors.toList());
     }
 
     @Override
     @Transactional(Transactional.TxType.SUPPORTS)
     public List<Loan> findActiveLoans() {
-        return em.createQuery(
-                        "SELECT l FROM LoanEntity l WHERE l.status = :status",
-                        LoanEntity.class)
+        return em
+                .createQuery("SELECT l FROM LoanEntity l WHERE l.status = :status", LoanEntity.class)
                 .setParameter("status", LoanStatusJpa.ACTIVE)
                 .getResultList()
                 .stream()
@@ -105,9 +99,9 @@ public class JpaLoanRepository implements LoanPort {
     @Override
     @Transactional(Transactional.TxType.SUPPORTS)
     public List<Loan> findOverdueLoans(LocalDate today) {
-        return em.createQuery(
-                        "SELECT l FROM LoanEntity l " +
-                                "WHERE l.status = :status AND l.dueDate < :today",
+        return em
+                .createQuery(
+                        "SELECT l FROM LoanEntity l " + "WHERE l.status = :status AND l.dueDate < :today",
                         LoanEntity.class)
                 .setParameter("status", LoanStatusJpa.ACTIVE)
                 .setParameter("today", today)

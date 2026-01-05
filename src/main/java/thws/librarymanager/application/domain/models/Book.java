@@ -20,7 +20,7 @@ public class Book {
         this.currentLoan = currentLoan;
     }
 
-    public Long getId(){
+    public Long getId() {
         return id;
     }
 
@@ -64,19 +64,17 @@ public class Book {
         if (this.currentLoan != null) {
             throw new IllegalStateException("Book is already on loan.");
         }
-        this.currentLoan = newLoan; //activate
+        this.currentLoan = newLoan; // activate
     }
 
     public void endLoan() {
         if (this.currentLoan == null) {
             throw new IllegalStateException("Book is not currently on loan.");
         }
-        this.currentLoan = null; //deactivate
+        this.currentLoan = null; // deactivate
     }
 
     public boolean isOnLoan() {
         return this.currentLoan != null;
     }
-
-
 }
