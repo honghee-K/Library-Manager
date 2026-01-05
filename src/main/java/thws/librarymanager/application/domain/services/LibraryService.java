@@ -3,29 +3,30 @@ package thws.librarymanager.application.domain.services;
 import java.util.List;
 import java.util.Optional;
 
-import thws.librarymanager.application.domain.models.Book;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import thws.librarymanager.application.domain.models.Library;
 import thws.librarymanager.application.ports.in.LibraryUseCase;
 import thws.librarymanager.application.ports.out.repository.BookPort;
 import thws.librarymanager.application.ports.out.repository.LibraryPort;
-
+@ApplicationScoped
 public class LibraryService implements LibraryUseCase {
 
     private final LibraryPort libraryPort;
     private final BookPort bookPort;
-
+    @Inject
     public LibraryService(LibraryPort libraryPort, BookPort bookPort) {
         this.libraryPort = libraryPort;
         this.bookPort = bookPort;
     }
 
-    @Override
+    /*@Override
     public Library addLibrary(Library library) {
         if (libraryPort.getLibraryByName(library.getName()).isPresent()) {
             throw new IllegalArgumentException("Library with this name already exists.");
         }
         return libraryPort.save(library);
-    }
+    }*/
 
     @Override
     public Optional<Library> getLibraryById(Long id) {
@@ -37,7 +38,7 @@ public class LibraryService implements LibraryUseCase {
         return libraryPort.findAllLibraries();
     }
 
-    @Override
+   /* @Override
     public void updateLibraryDetails(Long id, String name, String location) {
         Library existingLibrary = libraryPort
                 .getLibraryById(id)
@@ -101,5 +102,5 @@ public class LibraryService implements LibraryUseCase {
     @Override
     public Long getTotalBookCount(Long libraryId) {
         return libraryPort.countTotalBooks(libraryId);
-    }
+    }*/
 }
