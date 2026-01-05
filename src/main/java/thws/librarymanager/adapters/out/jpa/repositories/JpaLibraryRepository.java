@@ -23,18 +23,18 @@ public class JpaLibraryRepository implements LibraryPort {
     @Inject
     JpaConverter converter; // User/Book dönüştürme işlemleri için
 
-    /* @Override
-        @Transactional
-        public Library save(Library library) {
-            LibraryEntity entity = converter.toJpaLibrary(library);
-            if (library.getId() == null) {
-                em.persist(entity);
-            } else {
-                entity = em.merge(entity);
-            }
-            return converter.toDomainLibrary(entity);
+    @Override
+    @Transactional
+    public Library save(Library library) {
+        LibraryEntity entity = converter.toJpaLibrary(library);
+        if (library.getId() == null) {
+            em.persist(entity);
+        } else {
+            entity = em.merge(entity); // TODO
         }
-    */
+        return converter.toLibrary(entity);
+    }
+
     @Override
     @Transactional(Transactional.TxType.SUPPORTS)
     public Optional<Library> getLibraryById(Long id) {

@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import thws.librarymanager.application.domain.models.Book;
+import thws.librarymanager.application.domain.models.Library;
 
 public interface BookUseCase {
-    /*    Book addBook(Long isbn, String title, String author, String genre, Library library);
+    Book addBook(Long isbn, String title, String author, String genre, Library library);
 
-    void updateBook(Long isbn, String title, String author, String genre);
+    /*    void updateBook(Long isbn, String title, String author, String genre);
 
     void deleteBook(long isbn);*/
 
