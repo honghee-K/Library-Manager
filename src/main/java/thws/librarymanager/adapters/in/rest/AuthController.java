@@ -31,7 +31,7 @@ public class AuthController {
         return Response.ok(accessToken).build();
     }
 
-    @RolesAllowed(JwtAuthService.USER_ROLE)
+    @RolesAllowed(JwtAuthService.USER_ROLE) //TODO später in aderen Methode
     @GET
     @Path("test")
     public Response test() {
