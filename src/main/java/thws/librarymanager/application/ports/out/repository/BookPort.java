@@ -6,7 +6,8 @@ import java.util.Optional;
 import thws.librarymanager.application.domain.models.Book;
 
 public interface BookPort {
-    /*    Book save(Book book);*/
+
+    Book save(Book book);
 
     Optional<Book> getBookByIsbn(Long isbn);
 

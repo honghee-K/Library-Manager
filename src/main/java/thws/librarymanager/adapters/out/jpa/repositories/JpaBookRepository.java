@@ -26,19 +26,17 @@ public class JpaBookRepository implements BookPort {
 
     public JpaBookRepository() {}
 
-    /*
-        @Override
-        @Transactional
-        public Book save(Book book) {
-            BookEntity entity = jpaConverter.toJpaBook(book);
-            if (entity.getId() == null) {
-                entityManager.persist(entity);
-            } else {
-                entity = entityManager.merge(entity);
-            }
-            return jpaConverter.toBook(entity);
+    @Override
+    @Transactional
+    public Book save(Book book) {
+        BookEntity entity = jpaConverter.toJpaBook(book);
+        if (entity.getId() == null) {
+            entityManager.persist(entity);
+        } else {
+            entity = entityManager.merge(entity);
         }
-    */
+        return jpaConverter.toBook(entity);
+    }
 
     @Override
     @Transactional
