@@ -88,6 +88,6 @@ public class BookControllerTest {
 
         Assertions.assertNotNull(bookDTOs2);
         Assertions.assertEquals(1, bookDTOs2.size());
-        Assertions.assertEquals(1235L, bookDTOs2.getFirst().getIsbn());
+        Assertions.assertEquals(1235L, bookDTOs2.get(0).getIsbn());
     }
 }

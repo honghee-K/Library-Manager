@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.*;
 
 import thws.librarymanager.adapters.in.rest.mapper.RestMapper;
 import thws.librarymanager.adapters.in.rest.models.BookDTO;
+import thws.librarymanager.adapters.in.rest.services.JwtAuthService;
 import thws.librarymanager.application.domain.models.Book;
 import thws.librarymanager.application.ports.in.BookUseCase;
 
