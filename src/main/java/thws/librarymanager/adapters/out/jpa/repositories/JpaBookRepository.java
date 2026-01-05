@@ -25,6 +25,7 @@ public class JpaBookRepository implements BookPort {
 
     public JpaBookRepository() {}
 
+/*
     @Override
     @Transactional
     public Book save(Book book) {
@@ -36,6 +37,7 @@ public class JpaBookRepository implements BookPort {
         }
         return jpaConverter.toBook(entity);
     }
+*/
 
     @Override
     @Transactional
@@ -47,7 +49,7 @@ public class JpaBookRepository implements BookPort {
                 .map(jpaConverter::toBook);
     }
 
-    @Override
+/*    @Override
     @Transactional
     public void deleteByIsbn(Long isbn) {
         getBookByIsbn(isbn).ifPresent(book -> {
@@ -56,19 +58,21 @@ public class JpaBookRepository implements BookPort {
                 entityManager.remove(entity);
             }
         });
-    }
+    }*/
 
-/*    @Override
+    @Override
     @Transactional
-    public List<Book> findAll(int page, int size, String genre, String author) {
+    public List<Book> findAll(int page, int size, String author, String genre) {
         StringBuilder jpql = new StringBuilder("from BookEntity b where 1=1");
-        if (genre != null && !genre.isBlank()) jpql.append(" and b.genre = :genre");
         if (author != null && !author.isBlank()) jpql.append(" and b.author = :author");
+        if (genre != null && !genre.isBlank()) jpql.append(" and b.genre = :genre");
 
+        jpql.append(" order by b.id");
         TypedQuery<BookEntity> query = entityManager.createQuery(jpql.toString(), BookEntity.class);
 
-        if (genre != null && !genre.isBlank()) query.setParameter("genre", genre);
         if (author != null && !author.isBlank()) query.setParameter("author", author);
+        if (genre != null && !genre.isBlank()) query.setParameter("genre", genre);
+
 
         return query.setFirstResult(page * size)
                 .setMaxResults(size)
@@ -76,20 +80,9 @@ public class JpaBookRepository implements BookPort {
                 .stream()
                 .map(jpaConverter::toBook)
                 .collect(Collectors.toList());
-    }*/
-    @Override
-    @Transactional
-    public List<Book> findAll(int page, int size, String genre, String author) {
-        //test
-        return entityManager.createQuery("SELECT b FROM BookEntity b", BookEntity.class)
-                .setFirstResult(page * size)
-                .setMaxResults(size)
-                .getResultList()
-                .stream()
-                .map(jpaConverter::toBook)
-                .toList();
     }
-    @Override
+
+/*    @Override
     @Transactional
     public List<Book> findAllForStatistics() {
         return entityManager.createQuery("SELECT b FROM BookEntity b", BookEntity.class)
@@ -97,7 +90,7 @@ public class JpaBookRepository implements BookPort {
                 .stream()
                 .map(jpaConverter::toBook)
                 .toList();
-    }
+    }*/
 
 /*    @Override
     @Transactional

@@ -25,8 +25,9 @@ public class BookService implements BookUseCase {
         this.persistBookPort = persistence;
     }
 
-    @Override
+  /*  @Override
     public Book addBook(Long isbn, String title, String author, String genre, Library library) {
+
         if (persistBookPort.getBookByIsbn(isbn).isPresent()) { //.isPresent() -> Methode of Optional
             throw new IllegalArgumentException("Book with this ISBN already exists.");
         }
@@ -34,7 +35,7 @@ public class BookService implements BookUseCase {
         Book book = new Book(null, isbn, title, author, genre, library, null);
 
         return persistBookPort.save(book);
-    }
+    }*/
 
 
     @Override
@@ -47,6 +48,7 @@ public class BookService implements BookUseCase {
         return persistBookPort.findAll(page, size, author, genre);
     }
 
+/*
 
     @Override
     public void startLoanForBook(Long bookIsbn, Loan loan) {
@@ -104,5 +106,6 @@ public class BookService implements BookUseCase {
 
         return new BookStatistics(totalBooks, countByGenre, countByAuthor);
     }
+*/
 
 }

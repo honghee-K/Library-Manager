@@ -58,7 +58,7 @@ public class LoanService implements LoanUseCase {
         Loan loan = Loan.createLoan(user, book, today, due);
         loanPort.save(loan);
 
-        bookUseCase.startLoanForBook(bookId, loan);
+       // bookUseCase.startLoanForBook(bookId, loan);
         return loan;
     }
 

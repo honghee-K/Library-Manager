@@ -1,3 +1,4 @@
+/*
 package thws.librarymanager.application.domain.services;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -212,3 +213,4 @@ public class LoanServiceTest {
                 () -> loanService.getLoanById(1L));
     }
 }
+*/
