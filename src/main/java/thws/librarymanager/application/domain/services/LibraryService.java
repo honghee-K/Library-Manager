@@ -1,13 +1,13 @@
 package thws.librarymanager.application.domain.services;
 
+import java.util.List;
+import java.util.Optional;
+
 import thws.librarymanager.application.domain.models.Book;
 import thws.librarymanager.application.domain.models.Library;
 import thws.librarymanager.application.ports.in.LibraryUseCase;
 import thws.librarymanager.application.ports.out.repository.BookPort;
 import thws.librarymanager.application.ports.out.repository.LibraryPort;
-
-import java.util.List;
-import java.util.Optional;
 
 public class LibraryService implements LibraryUseCase {
 
@@ -18,7 +18,6 @@ public class LibraryService implements LibraryUseCase {
         this.libraryPort = libraryPort;
         this.bookPort = bookPort;
     }
-
 
     @Override
     public Library addLibrary(Library library) {
@@ -40,15 +39,17 @@ public class LibraryService implements LibraryUseCase {
 
     @Override
     public void updateLibraryDetails(Long id, String name, String location) {
-        Library existingLibrary = libraryPort.getLibraryById(id)
+        Library existingLibrary = libraryPort
+                .getLibraryById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Library not found for ID: " + id));
 
-
         if (name != null && !name.isBlank()) {
-            existingLibrary = new Library(existingLibrary.getId(), name, existingLibrary.getLocation(), existingLibrary.getBooks());
+            existingLibrary = new Library(
+                    existingLibrary.getId(), name, existingLibrary.getLocation(), existingLibrary.getBooks());
         }
         if (location != null && !location.isBlank()) {
-            existingLibrary = new Library(existingLibrary.getId(), existingLibrary.getName(), location, existingLibrary.getBooks());
+            existingLibrary = new Library(
+                    existingLibrary.getId(), existingLibrary.getName(), location, existingLibrary.getBooks());
         }
 
         libraryPort.save(existingLibrary);
@@ -56,7 +57,8 @@ public class LibraryService implements LibraryUseCase {
 
     @Override
     public void deleteLibrary(Long id) {
-        Library existingLibrary = libraryPort.getLibraryById(id)
+        Library existingLibrary = libraryPort
+                .getLibraryById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Library not found for ID: " + id));
 
         if (bookPort.findAll(0, Integer.MAX_VALUE, null, null).stream()
@@ -67,10 +69,10 @@ public class LibraryService implements LibraryUseCase {
         libraryPort.deleteLibraryById(id);
     }
 
-
     @Override
     public void addBookToLibrary(Long libraryId, Long bookIsbn) {
-        Library existingLibrary = libraryPort.getLibraryById(libraryId)
+        Library existingLibrary = libraryPort
+                .getLibraryById(libraryId)
                 .orElseThrow(() -> new IllegalArgumentException("Library not found for ID: " + libraryId));
 
         Book book = bookPort.getBookByIsbn(bookIsbn).orElseThrow(() -> new IllegalArgumentException("Book not found."));
@@ -81,7 +83,8 @@ public class LibraryService implements LibraryUseCase {
 
     @Override
     public void removeBookFromLibrary(Long libraryId, Long bookIsbn) {
-        Library existingLibrary = libraryPort.getLibraryById(libraryId)
+        Library existingLibrary = libraryPort
+                .getLibraryById(libraryId)
                 .orElseThrow(() -> new IllegalArgumentException("Library not found for ID: " + libraryId));
 
         Book bookToRemove = bookPort.getBookByIsbn(bookIsbn)
@@ -95,11 +98,8 @@ public class LibraryService implements LibraryUseCase {
         libraryPort.save(existingLibrary);
     }
 
-
     @Override
     public Long getTotalBookCount(Long libraryId) {
         return libraryPort.countTotalBooks(libraryId);
     }
 }
-
-

@@ -1,5 +1,8 @@
 package thws.librarymanager.application.domain.services;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import thws.librarymanager.application.domain.exceptions.BookAlreadyOnLoanException;
 import thws.librarymanager.application.domain.exceptions.BookNotFoundException;
 import thws.librarymanager.application.domain.exceptions.LoanNotFoundException;
@@ -14,10 +17,6 @@ import thws.librarymanager.application.ports.out.repository.BookPort;
 import thws.librarymanager.application.ports.out.repository.LoanPort;
 import thws.librarymanager.application.ports.out.repository.UserPort;
 
-import java.time.LocalDate;
-import java.util.List;
-
-
 public class LoanService implements LoanUseCase {
 
     private final LoanPort loanPort;
@@ -26,11 +25,7 @@ public class LoanService implements LoanUseCase {
 
     private final BookUseCase bookUseCase;
 
-
-    public LoanService(LoanPort loanPort,
-                       UserPort userPort,
-                       BookPort bookPort,
-                       BookUseCase bookUseCase) {
+    public LoanService(LoanPort loanPort, UserPort userPort, BookPort bookPort, BookUseCase bookUseCase) {
 
         this.loanPort = loanPort;
         this.userPort = userPort;
@@ -41,12 +36,9 @@ public class LoanService implements LoanUseCase {
     @Override
     public Loan createLoan(Long userId, Long bookId) {
 
+        User user = userPort.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
 
-        User user = userPort.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException(userId));
-
-        Book book = bookPort.getBookByIsbn(bookId)
-                .orElseThrow(() -> new BookNotFoundException(bookId));
+        Book book = bookPort.getBookByIsbn(bookId).orElseThrow(() -> new BookNotFoundException(bookId));
 
         if (loanPort.existsActiveLoanForBook(bookId)) {
             throw new BookAlreadyOnLoanException(bookId);
@@ -58,15 +50,14 @@ public class LoanService implements LoanUseCase {
         Loan loan = Loan.createLoan(user, book, today, due);
         loanPort.save(loan);
 
-       // bookUseCase.startLoanForBook(bookId, loan);
+        // bookUseCase.startLoanForBook(bookId, loan);
         return loan;
     }
 
     @Override
     public Loan returnLoan(Long loanId) {
 
-        Loan loan = loanPort.findById(loanId)
-                .orElseThrow(() -> new LoanNotFoundException(loanId));
+        Loan loan = loanPort.findById(loanId).orElseThrow(() -> new LoanNotFoundException(loanId));
 
         loan.setReturned(LocalDate.now());
 
@@ -78,16 +69,11 @@ public class LoanService implements LoanUseCase {
 
     @Override
     public Loan getLoanById(Long loanId) {
-        return loanPort.findById(loanId)
-                .orElseThrow(() -> new LoanNotFoundException(loanId));
+        return loanPort.findById(loanId).orElseThrow(() -> new LoanNotFoundException(loanId));
     }
 
     @Override
-    public List<Loan> searchLoans(Long userId,
-                                  Long bookId,
-                                  LoanStatus status,
-                                  int page,
-                                  int size) {
+    public List<Loan> searchLoans(Long userId, Long bookId, LoanStatus status, int page, int size) {
 
         if (page < 0 || size <= 0) {
             throw new IllegalArgumentException("page must be >= 0 and size > 0");
@@ -99,8 +85,7 @@ public class LoanService implements LoanUseCase {
     @Override
     public Loan extendLoanPeriod(Long loanId, LocalDate newDueDate) {
 
-        Loan loan = loanPort.findById(loanId)
-                .orElseThrow(() -> new LoanNotFoundException(loanId));
+        Loan loan = loanPort.findById(loanId).orElseThrow(() -> new LoanNotFoundException(loanId));
 
         if (loan.isReturned()) {
             throw new IllegalStateException("Returned loan cannot be extended");

@@ -1,15 +1,12 @@
 package thws.librarymanager.application.ports.in;
 
-import thws.librarymanager.application.domain.models.Book;
-import thws.librarymanager.application.domain.models.Library;
-import thws.librarymanager.application.domain.models.Loan;
-
 import java.util.List;
 import java.util.Optional;
 
+import thws.librarymanager.application.domain.models.Book;
 
 public interface BookUseCase {
-/*    Book addBook(Long isbn, String title, String author, String genre, Library library);
+    /*    Book addBook(Long isbn, String title, String author, String genre, Library library);
 
     void updateBook(Long isbn, String title, String author, String genre);
 
@@ -19,7 +16,7 @@ public interface BookUseCase {
 
     List<Book> getAllBooks(int page, int size, String author, String genre);
 
-/*    void startLoanForBook(Long isbn, Loan loan);
+    /*    void startLoanForBook(Long isbn, Loan loan);
 
     BookStatistics getBookCounts();*/
 }

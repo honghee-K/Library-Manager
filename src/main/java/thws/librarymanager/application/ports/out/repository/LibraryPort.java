@@ -1,10 +1,10 @@
 package thws.librarymanager.application.ports.out.repository;
 
-import thws.librarymanager.application.domain.models.Library;
-import thws.librarymanager.application.domain.models.Book;
-
-import java.util.Optional;
 import java.util.List;
+import java.util.Optional;
+
+import thws.librarymanager.application.domain.models.Book;
+import thws.librarymanager.application.domain.models.Library;
 
 public interface LibraryPort {
     Library save(Library library);

@@ -1,16 +1,17 @@
 package thws.librarymanager.adapters.in.rest;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.*;
+
 import thws.librarymanager.adapters.in.rest.mapper.RestMapper;
 import thws.librarymanager.adapters.in.rest.models.BookDTO;
 import thws.librarymanager.application.domain.models.Book;
 import thws.librarymanager.application.ports.in.BookUseCase;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Path("/books")
 @Produces(MediaType.APPLICATION_JSON)
@@ -19,6 +20,7 @@ public class BookController {
 
     @Inject
     private BookUseCase bookUseCase;
+
     @Inject
     private RestMapper restMapper;
 
@@ -30,7 +32,7 @@ public class BookController {
         this.bookUseCase = bookUseCase;
     }
 
-       /*
+    /*
     @POST
     public Response addBook(Book book) {
         Book newBook = bookUseCase.addBook(book);
@@ -72,23 +74,18 @@ public class BookController {
 
         List<Book> books = bookUseCase.getAllBooks(page, size, author, genre);
 
-        List<BookDTO> dtos = books.stream()
-                .map(book -> restMapper.toDTO(book, uriInfo))
-                .collect(Collectors.toList());
+        List<BookDTO> dtos =
+                books.stream().map(book -> restMapper.toDTO(book, uriInfo)).collect(Collectors.toList());
 
         return Response.ok(dtos).build();
     }
 
-
-
-   /* @GET
+    /* @GET
     @Path("/statistics")
     public Response getBookStatistics() {
         BookStatistics stats = bookUseCase.getBookCounts();
 
         return Response.ok(stats).build();
     } */
-
-
 
 }

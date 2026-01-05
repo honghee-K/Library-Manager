@@ -1,6 +1,7 @@
 package thws.librarymanager.adapters.out.jpa.converter;
 
 import jakarta.enterprise.context.ApplicationScoped;
+
 import thws.librarymanager.adapters.out.jpa.entities.BookEntity;
 import thws.librarymanager.adapters.out.jpa.entities.UserEntity;
 import thws.librarymanager.application.domain.models.Book;
@@ -11,9 +12,8 @@ public class JpaConverter {
 
     public JpaConverter() {}
 
-
     /**
-     TODO : Library
+     * TODO : Library
      */
 
     // Entity -> Domain (bringen aus DB)
@@ -24,9 +24,9 @@ public class JpaConverter {
                 entity.getTitle(),
                 entity.getAuthor(),
                 entity.getGenre(),
-                null, //Todo
-                null //Todo
-        );
+                null, // Todo
+                null // Todo
+                );
     }
 
     // Domain -> Entity (speichern ins DB)
@@ -47,9 +47,8 @@ public class JpaConverter {
     }
 
     /**
-     TODO : Loan
+     * TODO : Loan
      */
-
     public User toUser(UserEntity userEntity) {
 
         return new User(userEntity.getId(), userEntity.getName(), userEntity.getEmail());
@@ -64,5 +63,4 @@ public class JpaConverter {
 
         return result;
     }
-
 }

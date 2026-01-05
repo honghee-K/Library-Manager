@@ -2,10 +2,11 @@ package thws.librarymanager.adapters.in.rest;
 
 import static io.restassured.RestAssured.given;
 
-import io.restassured.RestAssured;
 import jakarta.inject.Inject;
+
 import io.quarkus.test.common.http.TestHTTPEndpoint;
 import io.quarkus.test.junit.QuarkusTest;
+import io.restassured.RestAssured;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.*;
 import thws.librarymanager.application.domain.models.User;
@@ -66,5 +67,4 @@ public class AuthControllerTest {
 
         Assertions.assertNotNull(message);
     }
-
 }

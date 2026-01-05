@@ -1,10 +1,10 @@
 package thws.librarymanager.application.ports.in;
 
-import java.util.Map;
 import java.util.Collections;
+import java.util.Map;
 
 /**
- An Immutable Data Transfer Object (DTO) to hold book statistics data.
+ * An Immutable Data Transfer Object (DTO) to hold book statistics data.
  */
 public final class BookStatistics {
 
@@ -30,5 +30,4 @@ public final class BookStatistics {
     public Map<String, Long> getCountByAuthor() {
         return Collections.unmodifiableMap(countByAuthor);
     }
-
 }

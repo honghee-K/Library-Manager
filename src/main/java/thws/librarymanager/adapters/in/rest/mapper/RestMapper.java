@@ -1,8 +1,9 @@
 package thws.librarymanager.adapters.in.rest.mapper;
 
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.ws.rs.core.UriInfo;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.UriInfo;
+
 import thws.librarymanager.adapters.in.rest.BookController;
 import thws.librarymanager.adapters.in.rest.models.BookDTO;
 import thws.librarymanager.adapters.in.rest.models.Link;
@@ -25,7 +26,8 @@ public class RestMapper {
         String selfHref = uriInfo.getBaseUriBuilder()
                 .path(BookController.class)
                 .path(BookController.class, "getBookByIsbn")
-                .build(book.getIsbn()).toString();
+                .build(book.getIsbn())
+                .toString();
 
         dto.setSelfLink(new Link(selfHref, "self", MediaType.APPLICATION_JSON));
 

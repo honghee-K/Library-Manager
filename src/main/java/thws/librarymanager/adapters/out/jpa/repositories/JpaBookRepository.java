@@ -1,18 +1,19 @@
 package thws.librarymanager.adapters.out.jpa.repositories;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
+
 import thws.librarymanager.adapters.out.jpa.converter.JpaConverter;
 import thws.librarymanager.adapters.out.jpa.entities.BookEntity;
 import thws.librarymanager.application.domain.models.Book;
 import thws.librarymanager.application.ports.out.repository.BookPort;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class JpaBookRepository implements BookPort {
@@ -25,31 +26,32 @@ public class JpaBookRepository implements BookPort {
 
     public JpaBookRepository() {}
 
-/*
-    @Override
-    @Transactional
-    public Book save(Book book) {
-        BookEntity entity = jpaConverter.toJpaBook(book);
-        if (entity.getId() == null) {
-            entityManager.persist(entity);
-        } else {
-            entity = entityManager.merge(entity);
+    /*
+        @Override
+        @Transactional
+        public Book save(Book book) {
+            BookEntity entity = jpaConverter.toJpaBook(book);
+            if (entity.getId() == null) {
+                entityManager.persist(entity);
+            } else {
+                entity = entityManager.merge(entity);
+            }
+            return jpaConverter.toBook(entity);
         }
-        return jpaConverter.toBook(entity);
-    }
-*/
+    */
 
     @Override
     @Transactional
     public Optional<Book> getBookByIsbn(Long isbn) {
-        return entityManager.createQuery("from BookEntity where isbn = :isbn", BookEntity.class)
+        return entityManager
+                .createQuery("from BookEntity where isbn = :isbn", BookEntity.class)
                 .setParameter("isbn", isbn)
                 .getResultStream()
                 .findFirst()
                 .map(jpaConverter::toBook);
     }
 
-/*    @Override
+    /*    @Override
     @Transactional
     public void deleteByIsbn(Long isbn) {
         getBookByIsbn(isbn).ifPresent(book -> {
@@ -73,16 +75,12 @@ public class JpaBookRepository implements BookPort {
         if (author != null && !author.isBlank()) query.setParameter("author", author);
         if (genre != null && !genre.isBlank()) query.setParameter("genre", genre);
 
-
-        return query.setFirstResult(page * size)
-                .setMaxResults(size)
-                .getResultList()
-                .stream()
+        return query.setFirstResult(page * size).setMaxResults(size).getResultList().stream()
                 .map(jpaConverter::toBook)
                 .collect(Collectors.toList());
     }
 
-/*    @Override
+    /*    @Override
     @Transactional
     public List<Book> findAllForStatistics() {
         return entityManager.createQuery("SELECT b FROM BookEntity b", BookEntity.class)
@@ -92,7 +90,7 @@ public class JpaBookRepository implements BookPort {
                 .toList();
     }*/
 
-/*    @Override
+    /*    @Override
     @Transactional
     public List<Book> findAllForStatistics() {
         return entityManager.createQuery("from BookEntity", BookEntity.class)

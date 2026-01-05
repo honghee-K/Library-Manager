@@ -1,7 +1,8 @@
 package thws.librarymanager.adapters.in.rest.models;
 
-import jakarta.validation.constraints.PositiveOrZero;
 import java.io.Serializable;
+
+import jakarta.validation.constraints.PositiveOrZero;
 
 public abstract class BaseDTO implements Serializable {
 
@@ -14,9 +15,19 @@ public abstract class BaseDTO implements Serializable {
         this.selfLink = new Link();
     }
 
-    public long getId() { return id; }
-    public void setId(final long id) { this.id = id; }
+    public long getId() {
+        return id;
+    }
 
-    public Link getSelfLink() { return selfLink; }
-    public void setSelfLink(Link selfLink) { this.selfLink = selfLink; }
+    public void setId(final long id) {
+        this.id = id;
+    }
+
+    public Link getSelfLink() {
+        return selfLink;
+    }
+
+    public void setSelfLink(Link selfLink) {
+        this.selfLink = selfLink;
+    }
 }

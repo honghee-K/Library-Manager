@@ -1,4 +1,3 @@
 package thws.librarymanager.adapters.in.rest;
 
-public class UserController {
-}
+public class UserController {}

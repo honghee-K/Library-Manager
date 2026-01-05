@@ -1,11 +1,11 @@
 package thws.librarymanager.application.domain.services;
 
-import thws.librarymanager.application.ports.in.UserUseCase;
-import thws.librarymanager.application.ports.out.repository.UserPort;
-import thws.librarymanager.application.domain.models.User;
-
 import java.util.List;
 import java.util.Optional;
+
+import thws.librarymanager.application.domain.models.User;
+import thws.librarymanager.application.ports.in.UserUseCase;
+import thws.librarymanager.application.ports.out.repository.UserPort;
 
 public class UserService implements UserUseCase {
     private final UserPort userPort;
@@ -41,8 +41,8 @@ public class UserService implements UserUseCase {
 
     @Override
     public void updateUser(Long id, String name, String email) {
-        User user = userPort.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("User not found with id: " + id));
+        User user =
+                userPort.findById(id).orElseThrow(() -> new IllegalArgumentException("User not found with id: " + id));
 
         user.updateInfo(name, email);
 
@@ -60,5 +60,4 @@ public class UserService implements UserUseCase {
 
         userPort.deleteById(id);
     }
-
 }

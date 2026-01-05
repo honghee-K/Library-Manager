@@ -3,7 +3,7 @@ package thws.librarymanager.adapters.in.rest.models;
 import jakarta.xml.bind.annotation.XmlRootElement;
 
 /**
- Portfolio 3 - Nr.6
+ * Portfolio 3 - Nr.6
  */
 @XmlRootElement(name = "link")
 public class Link {
@@ -17,8 +17,7 @@ public class Link {
     // 3. Media Type - application/json
     private String type;
 
-    public Link() {
-    }
+    public Link() {}
 
     public Link(String href, String rel, String type) {
         this.href = href;
@@ -52,10 +51,6 @@ public class Link {
 
     @Override
     public String toString() {
-        return "Link{" +
-                "href='" + href + '\'' +
-                ", rel='" + rel + '\'' +
-                ", type='" + type + '\'' +
-                '}';
+        return "Link{" + "href='" + href + '\'' + ", rel='" + rel + '\'' + ", type='" + type + '\'' + '}';
     }
 }
