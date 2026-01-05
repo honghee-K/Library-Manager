@@ -7,17 +7,17 @@ import thws.librarymanager.application.domain.models.Book;
 import thws.librarymanager.application.domain.models.Library;
 
 public interface LibraryPort {
-    Library save(Library library);
+    //Library save(Library library);
 
     Optional<Library> getLibraryById(Long id);
 
-    Optional<Library> getLibraryByName(String name);
+    //Optional<Library> getLibraryByName(String name);
 
     List<Library> findAllLibraries();
 
-    void deleteLibraryById(Long id);
+    /*void deleteLibraryById(Long id);
 
     Long countTotalBooks(Long libraryId);
 
-    List<Book> findBooksInLibrary(Long libraryId);
+    List<Book> findBooksInLibrary(Long libraryId);*/
 }
