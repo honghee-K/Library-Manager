@@ -11,7 +11,6 @@ public interface LibraryUseCase {
 
     List<Library> getAllLibraries(String location, String name);
 
-
     Library addLibrary(Library library);
 
      void updateLibrary(Long id, String name, String location);

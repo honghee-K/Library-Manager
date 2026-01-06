@@ -11,8 +11,8 @@ import java.util.List;
 public class LibraryEntity {
 
     @Id
-       @GeneratedValue(strategy = GenerationType.IDENTITY)
-       private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
 
     @Column(nullable = false, unique = true)
@@ -22,8 +22,8 @@ public class LibraryEntity {
     private String location;
 
 
-       //@OneToMany(mappedBy = "library", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-       //private List<BookEntity> books = new ArrayList<>();
+    @OneToMany(mappedBy = "library", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<BookEntity> books = new ArrayList<>();
 
 
     public LibraryEntity() {}
@@ -33,7 +33,6 @@ public class LibraryEntity {
         this.location = location;
     }
 
-    // --- Getters & Setters ---
     public Long getId() {
         return id;
     }
@@ -47,19 +46,19 @@ public class LibraryEntity {
     }
 
 
-       /*public List<BookEntity> getBooks() { return books; }
+       public List<BookEntity> getBooks() { return books; }
        public void setBooks(List<BookEntity> books) { this.books = books; }
 
        // Yardımcı metodlar
        public void addBook(BookEntity book) {
            books.add(book);
-          // book.setLibrary(this);
+           book.setLibrary(this);
        }
 
        public void removeBook(BookEntity book) {
            books.remove(book);
-          // book.setLibrary(null);
-       }*/
+           book.setLibrary(null);
+       }
 
 
     public void setName(String name) {

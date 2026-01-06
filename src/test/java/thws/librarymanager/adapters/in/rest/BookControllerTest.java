@@ -3,6 +3,7 @@ package thws.librarymanager.adapters.in.rest;
 import java.util.List;
 
 import jakarta.inject.Inject;
+import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.core.MediaType;
 
@@ -25,6 +26,8 @@ import thws.librarymanager.application.ports.out.repository.LibraryPort;
 public class BookControllerTest {
 
     @Inject
+    EntityManager em;
+    @Inject
     private BookPort bookPort;
 
     @Inject
@@ -38,14 +41,17 @@ public class BookControllerTest {
     @Transactional
     public void initTestData() {
 
-       /* Library library = new Library(null, "Main Library", "Würzburg", null);
-        Library savedLibrary = libraryPort.save(library);
-        this.testLibraryId = savedLibrary.getId();*/
+        em.createQuery("DELETE FROM BookEntity").executeUpdate();
+        em.createQuery("DELETE FROM LibraryEntity").executeUpdate();
 
-        Book book1 = new Book(null, 1234L, "title1", "author1", "genre", null, null);
+        Library library = new Library(null, "Main Library", "Würzburg", null);
+        Library savedLibrary = libraryPort.save(library);
+        this.testLibraryId = savedLibrary.getId();
+
+        Book book1 = new Book(null, 1234L, "title1", "author1", "genre", savedLibrary, null);
         bookPort.save(book1);
 
-        Book book2 = new Book(null, 1235L, "title2", "author2", "genre", null, null);
+        Book book2 = new Book(null, 1235L, "title2", "author2", "genre", savedLibrary, null);
         bookPort.save(book2);
     }
 
@@ -105,7 +111,7 @@ public class BookControllerTest {
         Assertions.assertEquals(1235L, bookDTOs2.get(0).getIsbn());
     }
 
- /*   @Test // TODO: JpaLibraryRepository muss korrigiert werden.
+    @Test
     @Order(3)
     public void addBook() {
         BookDTO newBookDTO = new BookDTO();
@@ -113,7 +119,7 @@ public class BookControllerTest {
         newBookDTO.setTitle("New Book Title");
         newBookDTO.setAuthor("New Author");
         newBookDTO.setGenre("New Genre");
-        newBookDTO.setLibraryId(null);
+        newBookDTO.setLibraryId(testLibraryId);
 
         RestAssured.given()
                 .contentType(MediaType.APPLICATION_JSON)
@@ -125,7 +131,7 @@ public class BookControllerTest {
                 .header("Location", Matchers.containsString("9988"))
                 .body("isbn", Matchers.equalTo(9988))
                 .body("author", Matchers.equalTo("New Author"));
-    }*/
+    }
 
     @Test
     @Order(4)
