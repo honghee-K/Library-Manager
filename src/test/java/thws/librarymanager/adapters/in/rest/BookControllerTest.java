@@ -3,6 +3,7 @@ package thws.librarymanager.adapters.in.rest;
 import java.util.List;
 
 import jakarta.inject.Inject;
+import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.core.MediaType;
 
@@ -25,6 +26,8 @@ import thws.librarymanager.application.ports.out.repository.LibraryPort;
 public class BookControllerTest {
 
     @Inject
+    EntityManager em;
+    @Inject
     private BookPort bookPort;
 
     @Inject
@@ -38,7 +41,10 @@ public class BookControllerTest {
     @Transactional
     public void initTestData() {
 
-       Library library = new Library(null, "Main Library", "Würzburg", null);
+        em.createQuery("DELETE FROM BookEntity").executeUpdate();
+        em.createQuery("DELETE FROM LibraryEntity").executeUpdate();
+
+        Library library = new Library(null, "Main Library", "Würzburg", null);
         Library savedLibrary = libraryPort.save(library);
         this.testLibraryId = savedLibrary.getId();
 

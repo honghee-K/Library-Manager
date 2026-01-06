@@ -2,12 +2,15 @@ package thws.librarymanager.adapters.in.rest;
 
 import java.util.List;
 
+import io.quarkus.test.TestTransaction;
 import jakarta.inject.Inject;
 
 import io.quarkus.test.common.http.TestHTTPEndpoint;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.RestAssured;
 import io.restassured.common.mapper.TypeRef;
+import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.*;
 
 import thws.librarymanager.adapters.in.rest.models.LibraryDTO;
@@ -21,12 +24,22 @@ import thws.librarymanager.application.ports.out.repository.LibraryPort;
 public class LibraryControllerTest {
 
     @Inject
+    EntityManager em;
+    @Inject
     LibraryPort libraryPort;
 
+    private Long lib1Id;
+
+
     @BeforeAll
+    @Transactional
     void setup() {
-        libraryPort.save(new Library(null, "Central Library", "Berlin", null));
+        em.createQuery("DELETE FROM BookEntity").executeUpdate();
+        em.createQuery("DELETE FROM LibraryEntity").executeUpdate();
+
+        Library lib1 = libraryPort.save(new Library(null, "Central Library", "Berlin", null));
         libraryPort.save(new Library(null, "City Library", "Hamburg", null));
+        this.lib1Id = lib1.getId();
     }
 
 
@@ -37,7 +50,7 @@ public class LibraryControllerTest {
 
         LibraryDTO dto = RestAssured.given()
                 .when()
-                .pathParam("id", 1L)
+                .pathParam("id", lib1Id)
                 .get("/{id}")
                 .then()
                 .statusCode(200)
