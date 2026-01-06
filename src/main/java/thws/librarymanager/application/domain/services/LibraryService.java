@@ -41,6 +41,17 @@ public class LibraryService implements LibraryUseCase {
 
         return libraryPort.findAllLibraries(location, name);
     }
+    @Override
+    public Library addLibrary(Library library) {
+
+        if (libraryPort.findByName(library.getName()).isPresent()) {
+            throw new IllegalArgumentException(
+                    "Library with name '" + library.getName() + "' already exists."
+            );
+        }
+        return libraryPort.save(library);
+    }
+
 
 
    /* @Override
