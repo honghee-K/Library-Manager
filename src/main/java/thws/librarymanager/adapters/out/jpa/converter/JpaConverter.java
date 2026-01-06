@@ -11,6 +11,10 @@ import thws.librarymanager.application.domain.models.Book;
 import thws.librarymanager.application.domain.models.Library;
 import thws.librarymanager.application.domain.models.User;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @ApplicationScoped
 public class JpaConverter {
 
@@ -26,14 +30,18 @@ public class JpaConverter {
         }
 
         /*List<Book> books = entity.getBooks() != null
-        ? entity.getBooks().stream()
-        .map(this::toBook)
-        .collect(Collectors.toList())
-        : new ArrayList<>();*/
+                ? entity.getBooks().stream()
+                .map(this::toBook)
+                .collect(Collectors.toList())
+                : new ArrayList<>();*/
 
         return new Library(
-                entity.getId(), entity.getName(), entity.getLocation(), new ArrayList<>() // books
-                );
+                entity.getId(),
+                entity.getName(),
+                entity.getLocation(),
+                new ArrayList<>() //books
+        );
+
     }
 
     // Domain -> Entity
@@ -46,6 +54,7 @@ public class JpaConverter {
         entity.setId(library.getId());
         entity.setName(library.getName());
         entity.setLocation(library.getLocation());
+
 
         /* if (library.getBooks() != null) {
             List<BookEntity> bookEntities = library.getBooks().stream()
