@@ -17,9 +17,9 @@ public class BookEntity {
     private String author;
     private String genre;
 
-    /*    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "library_id")
-    private LibraryEntity library;*/
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "library_id", nullable = false)
+    private LibraryEntity library;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "current_loan_id", referencedColumnName = "id")
@@ -65,5 +65,21 @@ public class BookEntity {
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+
+    public LibraryEntity getLibrary() {
+        return library;
+    }
+
+    public void setLibrary(LibraryEntity library) {
+        this.library = library;
+    }
+
+    public LoanEntity getCurrentLoan() {
+        return currentLoan;
+    }
+
+    public void setCurrentLoan(LoanEntity currentLoan) {
+        this.currentLoan = currentLoan;
     }
 }

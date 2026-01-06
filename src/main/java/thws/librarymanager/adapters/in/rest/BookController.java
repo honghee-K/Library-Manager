@@ -14,6 +14,7 @@ import thws.librarymanager.adapters.in.rest.models.BookDTO;
 import thws.librarymanager.application.domain.models.Book;
 import thws.librarymanager.application.domain.models.Library;
 import thws.librarymanager.application.ports.in.BookUseCase;
+import thws.librarymanager.application.ports.in.LibraryUseCase;
 import thws.librarymanager.application.ports.out.repository.LibraryPort;
 
 @Path("/books")
@@ -28,10 +29,11 @@ public class BookController {
     private BookUseCase bookUseCase;
 
     @Inject
-    private RestMapper restMapper;
+    private LibraryUseCase libraryUseCase;
 
     @Inject
-    LibraryPort libraryPort;
+    private RestMapper restMapper;
+
 
     @Inject
     public BookController(BookUseCase bookUseCase) {
@@ -40,8 +42,10 @@ public class BookController {
 
     @POST
     public Response addBook(BookDTO bookDTO) {
-        Library library = libraryPort
-                .getLibraryById(bookDTO.getLibraryId())
+        if (bookDTO.getLibraryId() == null) {
+            throw new BadRequestException("Library ID must not be null");
+        }
+        Library library = libraryUseCase.getLibraryById(bookDTO.getLibraryId())
                 .orElseThrow(() -> new NotFoundException("Library not found"));
 
         Book newBook = bookUseCase.addBook(

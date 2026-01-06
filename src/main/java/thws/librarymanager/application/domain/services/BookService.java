@@ -28,7 +28,7 @@ public class BookService implements BookUseCase {
     @Override
     public Book addBook(Long isbn, String title, String author, String genre, Library library) {
 
-        if (persistBookPort.getBookByIsbn(isbn).isPresent()) { // .isPresent() -> Methode of Optional
+        if (persistBookPort.getBookByIsbn(isbn).isPresent()) {
             throw new IllegalArgumentException("Book with this ISBN already exists.");
         }
 

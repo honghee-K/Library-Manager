@@ -8,10 +8,8 @@ import thws.librarymanager.adapters.out.jpa.entities.BookEntity;
 import thws.librarymanager.adapters.out.jpa.entities.LibraryEntity;
 import thws.librarymanager.adapters.out.jpa.entities.LoanEntity;
 import thws.librarymanager.adapters.out.jpa.entities.UserEntity;
-import thws.librarymanager.application.domain.models.Book;
-import thws.librarymanager.application.domain.models.Library;
-import thws.librarymanager.application.domain.models.Loan;
-import thws.librarymanager.application.domain.models.User;
+import thws.librarymanager.adapters.out.jpa.enums.LoanStatusJpa;
+import thws.librarymanager.application.domain.models.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,31 +20,41 @@ public class JpaConverter {
 
     public JpaConverter() {}
 
-    /**
-     * TODO : Library
-     */
-    // Entity -> Domain
+
+    public Library toLibraryMinimal(LibraryEntity entity) {
+        if (entity == null) return null;
+        return new Library(entity.getId(), entity.getName(), entity.getLocation(), new ArrayList<>());
+    }
+
     public Library toLibrary(LibraryEntity entity) {
         if (entity == null) {
             return null;
         }
 
-        /*List<Book> books = entity.getBooks() != null
+        List<Book> books = entity.getBooks() != null
                 ? entity.getBooks().stream()
-                .map(this::toBook)
+                .map(this::toBookMinimal)
                 .collect(Collectors.toList())
-                : new ArrayList<>();*/
+                : new ArrayList<>();
 
         return new Library(
                 entity.getId(),
                 entity.getName(),
                 entity.getLocation(),
-                new ArrayList<>() //books
+                books
         );
 
     }
 
-    // Domain -> Entity
+    public LibraryEntity toJpaLibraryMinimal(Library library) {
+        if (library == null) return null;
+        LibraryEntity entity = new LibraryEntity();
+        entity.setId(library.getId());
+        entity.setName(library.getName());
+        entity.setLocation(library.getLocation());
+        return entity;
+    }
+
     public LibraryEntity toJpaLibrary(Library library) {
         if (library == null) {
             return null;
@@ -58,60 +66,131 @@ public class JpaConverter {
         entity.setLocation(library.getLocation());
 
 
-        /* if (library.getBooks() != null) {
+        if (library.getBooks() != null) {
             List<BookEntity> bookEntities = library.getBooks().stream()
-                    .map(this::toJpaBook)
+                    .map(this::toJpaBookMinimal)
                     .collect(Collectors.toList());
 
             bookEntities.forEach(entity::addBook);
-        }*/
+        }
 
         return entity;
     }
 
-    // Entity -> Domain (bringen aus DB)
-    public Book toBook(BookEntity entity) {
+    public Book toBookMinimal(BookEntity entity) {
+        if (entity == null) return null;
         return new Book(
                 entity.getId(),
                 entity.getIsbn(),
                 entity.getTitle(),
                 entity.getAuthor(),
                 entity.getGenre(),
-                null, // Todo
-                null // Todo
+                null,
+                null
+        );
+    }
+
+    public Book toBook(BookEntity entity) {
+        if (entity == null) return null;
+
+        return new Book(
+                entity.getId(),
+                entity.getIsbn(),
+                entity.getTitle(),
+                entity.getAuthor(),
+                entity.getGenre(),
+                toLibraryMinimal(entity.getLibrary()),
+                toLoan(entity.getCurrentLoan())
                 );
     }
 
-    // Domain -> Entity (speichern ins DB)
-    public BookEntity toJpaBook(Book book) {
+    public BookEntity toJpaBookMinimal(Book book) {
+        if (book == null) return null;
         BookEntity entity = new BookEntity();
         entity.setId(book.getId());
         entity.setIsbn(book.getIsbn());
         entity.setTitle(book.getTitle());
         entity.setAuthor(book.getAuthor());
         entity.setGenre(book.getGenre());
-        /*if (book.getLibrary() != null) {
-            entity.setLibrary(toJpaLibrary(book.getLibrary()));
-        }
-        if (book.getCurrentLoan() != null) {
-            entity.setCurrentLoan(toJpaLoan(book.getCurrentLoan()));
-        }*/
+        entity.setLibrary(toJpaLibraryMinimal(book.getLibrary()));
         return entity;
     }
 
- /*   public Loan toLoan(LoanEntity entity) {
+    public BookEntity toJpaBook(Book book) {
+        if (book == null) return null;
+
+        BookEntity entity = new BookEntity();
+        entity.setId(book.getId());
+        entity.setIsbn(book.getIsbn());
+        entity.setTitle(book.getTitle());
+        entity.setAuthor(book.getAuthor());
+        entity.setGenre(book.getGenre());
+
+        if (book.getLibrary() != null) {
+            entity.setLibrary(toJpaLibraryMinimal(book.getLibrary()));
+        }
+        if (book.getCurrentLoan() != null) {
+            entity.setCurrentLoan(toJpaLoan(book.getCurrentLoan()));
+        }
+        return entity;
+    }
+
+    private LoanStatusJpa toJpaLoanStatus(LoanStatus status) {
+        if (status == null) return null;
+        return LoanStatusJpa.valueOf(status.name());
+    }
+    private LoanStatus toLoanStatus(LoanStatusJpa jpaStatus) {
+        if (jpaStatus == null) return null;
+        return LoanStatus.valueOf(jpaStatus.name());
+    }
+
+    public Loan toLoan(LoanEntity entity) {
         if (entity == null) return null;
+
+        Book bookInLoan = new Book(
+                entity.getBook().getId(),
+                entity.getBook().getIsbn(),
+                entity.getBook().getTitle(),
+                entity.getBook().getAuthor(),
+                entity.getBook().getGenre(),
+                toLibraryMinimal(entity.getBook().getLibrary()),
+                null
+        );
 
         return Loan.restore(
                 entity.getId(),
                 toUser(entity.getUser()),
-                null,
+                bookInLoan,
                 entity.getLoanDate(),
                 entity.getDueDate(),
                 entity.getReturnDate(),
-                statusConverter.toDomain(entity.getStatus())
+                toLoanStatus(entity.getStatus())
         );
-    }*/
+    }
+
+
+        public LoanEntity toJpaLoan(Loan loan) {
+        if (loan == null) return null;
+
+        LoanEntity entity = new LoanEntity();
+        entity.setId(loan.getId());
+        entity.setLoanDate(loan.getLoanDate());
+        entity.setDueDate(loan.getDueDate());
+        entity.setReturnDate(loan.getReturnDate());
+        entity.setStatus(toJpaLoanStatus(loan.getStatus()));
+
+        if (loan.getUser() != null) {
+            entity.setUser(toJpaUser(loan.getUser()));
+        }
+
+        if (loan.getBook() != null) {
+            entity.setBook(toJpaBookMinimal(loan.getBook()));
+        }
+
+        return entity;
+    }
+
+
     public User toUser(UserEntity userEntity) {
 
         return new User(userEntity.getId(), userEntity.getName(), userEntity.getEmail());

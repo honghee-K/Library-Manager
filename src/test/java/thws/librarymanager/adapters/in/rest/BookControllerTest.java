@@ -38,14 +38,14 @@ public class BookControllerTest {
     @Transactional
     public void initTestData() {
 
-       /* Library library = new Library(null, "Main Library", "Würzburg", null);
+       Library library = new Library(null, "Main Library", "Würzburg", null);
         Library savedLibrary = libraryPort.save(library);
-        this.testLibraryId = savedLibrary.getId();*/
+        this.testLibraryId = savedLibrary.getId();
 
-        Book book1 = new Book(null, 1234L, "title1", "author1", "genre", null, null);
+        Book book1 = new Book(null, 1234L, "title1", "author1", "genre", savedLibrary, null);
         bookPort.save(book1);
 
-        Book book2 = new Book(null, 1235L, "title2", "author2", "genre", null, null);
+        Book book2 = new Book(null, 1235L, "title2", "author2", "genre", savedLibrary, null);
         bookPort.save(book2);
     }
 
@@ -105,7 +105,7 @@ public class BookControllerTest {
         Assertions.assertEquals(1235L, bookDTOs2.get(0).getIsbn());
     }
 
- /*   @Test // TODO: JpaLibraryRepository muss korrigiert werden.
+    @Test
     @Order(3)
     public void addBook() {
         BookDTO newBookDTO = new BookDTO();
@@ -113,7 +113,7 @@ public class BookControllerTest {
         newBookDTO.setTitle("New Book Title");
         newBookDTO.setAuthor("New Author");
         newBookDTO.setGenre("New Genre");
-        newBookDTO.setLibraryId(null);
+        newBookDTO.setLibraryId(testLibraryId);
 
         RestAssured.given()
                 .contentType(MediaType.APPLICATION_JSON)
@@ -125,7 +125,7 @@ public class BookControllerTest {
                 .header("Location", Matchers.containsString("9988"))
                 .body("isbn", Matchers.equalTo(9988))
                 .body("author", Matchers.equalTo("New Author"));
-    }*/
+    }
 
     @Test
     @Order(4)
