@@ -49,7 +49,7 @@ public class JpaBookRepository implements BookPort {
                 .map(jpaConverter::toBook);
     }
 
-    /*    @Override
+    @Override
     @Transactional
     public void deleteByIsbn(Long isbn) {
         getBookByIsbn(isbn).ifPresent(book -> {
@@ -58,7 +58,7 @@ public class JpaBookRepository implements BookPort {
                 entityManager.remove(entity);
             }
         });
-    }*/
+    }
 
     @Override
     @Transactional
@@ -78,17 +78,7 @@ public class JpaBookRepository implements BookPort {
                 .collect(Collectors.toList());
     }
 
-    /*    @Override
-    @Transactional
-    public List<Book> findAllForStatistics() {
-        return entityManager.createQuery("SELECT b FROM BookEntity b", BookEntity.class)
-                .getResultList()
-                .stream()
-                .map(jpaConverter::toBook)
-                .toList();
-    }*/
-
-    /*    @Override
+    @Override
     @Transactional
     public List<Book> findAllForStatistics() {
         return entityManager.createQuery("from BookEntity", BookEntity.class)
@@ -97,5 +87,5 @@ public class JpaBookRepository implements BookPort {
                 .map(jpaConverter::toBook)
                 .collect(Collectors.toList());
 
-    }*/
+    }
 }

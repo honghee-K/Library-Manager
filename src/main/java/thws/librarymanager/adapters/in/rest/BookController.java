@@ -55,12 +55,14 @@ public class BookController {
                 .entity(restMapper.toBookDTO(newBook, uriInfo))
                 .build();
     }
-    /*
+
     @PUT
     @Path("/{isbn}")
-    public Response updateBook(@PathParam("isbn") Long isbn, Book updateBook) {
-         Book updated = bookUseCase.updateBook(isbn, updateBook.getTitle(), updateBook.getAuthor(), updateBook.getGenre());
-         return Response.ok(toBookResponse(updated)).build();
+    public Response updateBook(@PathParam("isbn") Long isbn, BookDTO updateDTO) {
+        bookUseCase.updateBook(isbn, updateDTO.getTitle(), updateDTO.getAuthor(), updateDTO.getGenre());
+        Book updatedBook = bookUseCase.getBookByIsbn(isbn)
+                .orElseThrow(() -> new NotFoundException("Book not found after update"));
+        return Response.ok(restMapper.toBookDTO(updatedBook, uriInfo)).build();
     }
 
     @DELETE
@@ -69,8 +71,7 @@ public class BookController {
         bookUseCase.deleteBook(isbn);
         return Response.noContent().build();
     }
-    */
-
+    
     @GET
     @Path("/{isbn}")
     public Response getBookByIsbn(@PathParam("isbn") Long isbn) {

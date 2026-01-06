@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import jakarta.persistence.*;
 
 import thws.librarymanager.adapters.out.jpa.enums.LoanStatusJpa;
+import thws.librarymanager.application.domain.models.LoanStatus;
 
 @Entity
 @Table(name = "loan")
@@ -21,9 +22,9 @@ public class LoanEntity {
     private UserEntity user;
 
     // Kitap ilişkisi
-    // @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    // @JoinColumn(name = "book_id", nullable = false)
-    // private BookEntity book;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "isbn", referencedColumnName = "isbn", nullable = false)
+    private BookEntity book;
 
     // Tarihler
     @Column(name = "loan_date", nullable = false)
@@ -39,18 +40,16 @@ public class LoanEntity {
     @Column(name = "status", nullable = false)
     private LoanStatusJpa status;
 
-    // ---- CONSTRUCTORS ----
     public LoanEntity() {}
 
-    /* public LoanEntity(UserEntity user, BookEntity book, LocalDate loanDate, LocalDate dueDate, LoanStatus status) {
+    public LoanEntity(UserEntity user, BookEntity book, LocalDate loanDate, LocalDate dueDate, LoanStatusJpa status) {
         this.user = user;
         this.book = book;
         this.loanDate = loanDate;
         this.dueDate = dueDate;
         this.status = status;
-    }*/
+    }
 
-    // ---- GETTERS & SETTERS ----
     public Long getId() {
         return id;
     }
@@ -67,8 +66,8 @@ public class LoanEntity {
         this.user = user;
     }
 
-    // public BookEntity getBook() { return book; }
-    // public void setBook(BookEntity book) { this.book = book; }
+    public BookEntity getBook() { return book; }
+    public void setBook(BookEntity book) { this.book = book; }
 
     public LocalDate getLoanDate() {
         return loanDate;

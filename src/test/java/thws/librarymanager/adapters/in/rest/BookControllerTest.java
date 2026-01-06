@@ -4,6 +4,7 @@ import java.util.List;
 
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import jakarta.ws.rs.core.MediaType;
 
 import io.quarkus.test.common.http.TestHTTPEndpoint;
 import io.quarkus.test.junit.QuarkusTest;
@@ -104,14 +105,14 @@ public class BookControllerTest {
         Assertions.assertEquals(1235L, bookDTOs2.get(0).getIsbn());
     }
 
-    /*    @Test //TODO: JpaLibraryRepository muss korrigiert werden.
+ /*   @Test // TODO: JpaLibraryRepository muss korrigiert werden.
     @Order(3)
     public void addBook() {
         BookDTO newBookDTO = new BookDTO();
         newBookDTO.setIsbn(9988L);
         newBookDTO.setTitle("New Book Title");
         newBookDTO.setAuthor("New Author");
-        newBookDTO.setGenre("Tech");
+        newBookDTO.setGenre("New Genre");
         newBookDTO.setLibraryId(null);
 
         RestAssured.given()
@@ -125,4 +126,54 @@ public class BookControllerTest {
                 .body("isbn", Matchers.equalTo(9988))
                 .body("author", Matchers.equalTo("New Author"));
     }*/
+
+    @Test
+    @Order(4)
+    public void updateBook(){
+        BookDTO updateDTO = new BookDTO();
+        updateDTO.setTitle("Updated Title");
+        updateDTO.setAuthor("Updated Author");
+        updateDTO.setGenre("Updated Genre");
+
+        RestAssured.given()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(updateDTO)
+                .when()
+                .pathParam("isbn", 1234L)
+                .put("/{isbn}")
+                .then()
+                .statusCode(200)
+                .body("title", Matchers.equalTo("Updated Title"))
+                .body("author", Matchers.equalTo("Updated Author"))
+                .body("genre", Matchers.equalTo("Updated Genre"));
+        //Check
+        RestAssured.given()
+                .when()
+                .pathParam("isbn", 1234L)
+                .get("/{isbn}")
+                .then()
+                .statusCode(200)
+                .body("title", Matchers.equalTo("Updated Title"));
+    }
+
+    @Test
+    @Order(5)
+    public void deleteBook(){
+        RestAssured.given()
+                .when()
+                .pathParam("isbn", 1235L)
+                .delete("/{isbn}")
+                .then()
+                .statusCode(204);
+        //check
+        RestAssured.given()
+                .when()
+                .pathParam("isbn", 1235L)
+                .get("/{isbn}")
+                .then()
+                .statusCode(404);
+    }
+
+
+
 }
