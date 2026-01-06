@@ -5,11 +5,11 @@ import java.util.Optional;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-
 import thws.librarymanager.application.domain.models.Library;
 import thws.librarymanager.application.ports.in.LibraryUseCase;
 import thws.librarymanager.application.ports.out.repository.BookPort;
 import thws.librarymanager.application.ports.out.repository.LibraryPort;
+
 
 @ApplicationScoped
 public class LibraryService implements LibraryUseCase {
@@ -37,11 +37,14 @@ public class LibraryService implements LibraryUseCase {
     }
 
     @Override
-    public List<Library> getAllLibraries() {
-        return libraryPort.findAllLibraries();
+    public List<Library> getAllLibraries(String location, String name) {
+
+        return libraryPort.findAllLibraries(location, name);
     }
 
-    /* @Override
+
+   /* @Override
+
     public void updateLibraryDetails(Long id, String name, String location) {
         Library existingLibrary = libraryPort
                 .getLibraryById(id)

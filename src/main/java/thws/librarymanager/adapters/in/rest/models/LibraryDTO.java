@@ -1,3 +1,4 @@
+
 package thws.librarymanager.adapters.in.rest.models;
 
 public class LibraryDTO extends BaseDTO {
@@ -23,3 +24,4 @@ public class LibraryDTO extends BaseDTO {
         this.location = location;
     }
 }
+

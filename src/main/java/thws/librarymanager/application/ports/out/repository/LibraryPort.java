@@ -10,9 +10,10 @@ public interface LibraryPort {
 
     Optional<Library> getLibraryById(Long id);
 
-    // Optional<Library> getLibraryByName(String name);
 
-    List<Library> findAllLibraries();
+    //Optional<Library> getLibraryByName(String name);
+
+    List<Library> findAllLibraries(String location, String name);
 
     /*void deleteLibraryById(Long id);
 

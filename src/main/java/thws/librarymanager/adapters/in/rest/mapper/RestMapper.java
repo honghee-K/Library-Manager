@@ -37,6 +37,8 @@ public class RestMapper {
         return dto;
     }
 
+
+
     public LibraryDTO toLibraryDTO(Library library, UriInfo uriInfo) {
         if (library == null) return null;
 

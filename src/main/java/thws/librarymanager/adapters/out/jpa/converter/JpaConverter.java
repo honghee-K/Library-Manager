@@ -13,6 +13,10 @@ import thws.librarymanager.application.domain.models.Library;
 import thws.librarymanager.application.domain.models.Loan;
 import thws.librarymanager.application.domain.models.User;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @ApplicationScoped
 public class JpaConverter {
 
@@ -28,14 +32,18 @@ public class JpaConverter {
         }
 
         /*List<Book> books = entity.getBooks() != null
-        ? entity.getBooks().stream()
-        .map(this::toBook)
-        .collect(Collectors.toList())
-        : new ArrayList<>();*/
+                ? entity.getBooks().stream()
+                .map(this::toBook)
+                .collect(Collectors.toList())
+                : new ArrayList<>();*/
 
         return new Library(
-                entity.getId(), entity.getName(), entity.getLocation(), new ArrayList<>() // books
-                );
+                entity.getId(),
+                entity.getName(),
+                entity.getLocation(),
+                new ArrayList<>() //books
+        );
+
     }
 
     // Domain -> Entity
@@ -48,6 +56,7 @@ public class JpaConverter {
         entity.setId(library.getId());
         entity.setName(library.getName());
         entity.setLocation(library.getLocation());
+
 
         /* if (library.getBooks() != null) {
             List<BookEntity> bookEntities = library.getBooks().stream()
@@ -90,7 +99,7 @@ public class JpaConverter {
         return entity;
     }
 
-    public Loan toLoan(LoanEntity entity) {
+ /*   public Loan toLoan(LoanEntity entity) {
         if (entity == null) return null;
 
         return Loan.restore(
@@ -102,7 +111,7 @@ public class JpaConverter {
                 entity.getReturnDate(),
                 statusConverter.toDomain(entity.getStatus())
         );
-    }
+    }*/
     public User toUser(UserEntity userEntity) {
 
         return new User(userEntity.getId(), userEntity.getName(), userEntity.getEmail());
