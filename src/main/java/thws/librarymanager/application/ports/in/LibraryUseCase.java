@@ -11,10 +11,10 @@ public interface LibraryUseCase {
 
     List<Library> getAllLibraries(String location, String name);
 
-    /*
+
     Library addLibrary(Library library);
 
-    void updateLibraryDetails(Long id, String name, String location);
+     /*void updateLibraryDetails(Long id, String name, String location);
 
     void deleteLibrary(Long id);
 

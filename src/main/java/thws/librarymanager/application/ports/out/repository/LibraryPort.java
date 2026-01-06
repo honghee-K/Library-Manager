@@ -9,11 +9,10 @@ public interface LibraryPort {
     Library save(Library library);
 
     Optional<Library> getLibraryById(Long id);
-
+    List<Library> findAllLibraries(String location, String name);
+    Optional<Library> findByName(String name);
 
     //Optional<Library> getLibraryByName(String name);
-
-    List<Library> findAllLibraries(String location, String name);
 
     /*void deleteLibraryById(Long id);
 

@@ -1,6 +1,7 @@
 package thws.librarymanager.adapters.in.rest;
 
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -55,5 +56,26 @@ public class LibraryController {
                 .map(lib -> mapper.toLibraryDTO(lib, uriInfo))
                 .map(dto -> Response.ok(dto).build())
                 .orElseGet(() -> Response.status(Response.Status.NOT_FOUND).build());
+    }
+    @POST
+    public Response addLibrary(LibraryDTO dto) {
+
+        Library library = new Library(
+                null,
+                dto.getName(),
+                dto.getLocation(),
+                null
+        );
+
+        Library saved = libraryUseCase.addLibrary(library);
+
+        URI uri = uriInfo.getAbsolutePathBuilder()
+                .path(String.valueOf(saved.getId()))
+                .build();
+
+        return Response
+                .created(uri) // 201 CREATED
+                .entity(mapper.toLibraryDTO(saved, uriInfo))
+                .build();
     }
 }

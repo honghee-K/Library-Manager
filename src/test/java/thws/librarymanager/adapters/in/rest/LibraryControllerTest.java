@@ -85,4 +85,29 @@ public class LibraryControllerTest {
         Assertions.assertEquals(1, libraries.size());
         Assertions.assertEquals("Berlin", libraries.get(0).getLocation());
     }
+
+    @Test
+    @Order(4)
+    void addLibrary() {
+
+        LibraryDTO request = new LibraryDTO();
+        request.setName("New Library");
+        request.setLocation("Munich");
+
+        LibraryDTO response =
+                RestAssured.given()
+                        .contentType("application/json")
+                        .body(request)
+                        .when()
+                        .post("/")
+                        .then()
+                        .statusCode(201)
+                        .extract()
+                        .as(LibraryDTO.class);
+
+        Assertions.assertNotNull(response.getId());
+        Assertions.assertEquals("New Library", response.getName());
+        Assertions.assertEquals("Munich", response.getLocation());
+    }
+
 }

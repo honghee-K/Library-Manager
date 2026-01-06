@@ -95,6 +95,18 @@ public class JpaLibraryRepository implements LibraryPort {
                 .map(converter::toLibrary)
                 .collect(Collectors.toList());
     }
+    @Override
+    @Transactional(Transactional.TxType.SUPPORTS)
+    public Optional<Library> findByName(String name) {
+        TypedQuery<LibraryEntity> query = em.createQuery(
+                "SELECT l FROM LibraryEntity l WHERE l.name = :name",
+                LibraryEntity.class
+        );
+        query.setParameter("name", name);
+        List<LibraryEntity> result = query.getResultList();
+        return result.isEmpty()
+                ? Optional.empty()
+                : Optional.of(converter.toLibrary(result.get(0))); }
 
    /* @Override
     @Transactional
