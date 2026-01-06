@@ -31,7 +31,8 @@ public class JpaLibraryRepository implements LibraryPort {
     JpaConverter converter; // User/Book dönüştürme işlemleri için
 
 
-    @Override
+
+   @Override
     @Transactional
     public Library save(Library library) {
         LibraryEntity entity = converter.toJpaLibrary(library);
@@ -64,6 +65,7 @@ public class JpaLibraryRepository implements LibraryPort {
 
     @Override
     @Transactional(Transactional.TxType.SUPPORTS)
+
     public List<Library> findAllLibraries(String location, String name) {
 
         String jpql = "SELECT l FROM LibraryEntity l WHERE 1=1";
@@ -88,6 +90,7 @@ public class JpaLibraryRepository implements LibraryPort {
         }
 
         return query.getResultList()
+
                 .stream()
                 .map(converter::toLibrary)
                 .collect(Collectors.toList());
@@ -112,14 +115,7 @@ public class JpaLibraryRepository implements LibraryPort {
 
     }
 
-    @Override
-    @Transactional(Transactional.TxType.SUPPORTS)
-    public Long countTotalBooks(Long libraryId) {
-        TypedQuery<Long> query = em.createQuery(
-                "SELECT COUNT(b) FROM BookEntity b WHERE b.library.id = :libraryId", Long.class);
-        query.setParameter("libraryId", libraryId);
-        return query.getSingleResult();
-    }
+
 
     @Override
     @Transactional(Transactional.TxType.SUPPORTS)
