@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import thws.librarymanager.application.domain.models.Book;
 import thws.librarymanager.application.domain.models.Library;
 import thws.librarymanager.application.ports.in.LibraryUseCase;
 import thws.librarymanager.application.ports.out.repository.BookPort;
@@ -23,13 +24,6 @@ public class LibraryService implements LibraryUseCase {
         this.bookPort = bookPort;
     }
 
-    /*@Override
-    public Library addLibrary(Library library) {
-        if (libraryPort.getLibraryByName(library.getName()).isPresent()) {
-            throw new IllegalArgumentException("Library with this name already exists.");
-        }
-        return libraryPort.save(library);
-    }*/
 
     @Override
     public Optional<Library> getLibraryById(Long id) {
@@ -54,35 +48,28 @@ public class LibraryService implements LibraryUseCase {
 
 
 
-   /* @Override
 
-    public void updateLibraryDetails(Long id, String name, String location) {
+    @Override
+    public void updateLibrary(Long id, String name, String location) {
         Library existingLibrary = libraryPort
                 .getLibraryById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Library not found for ID: " + id));
 
-        if (name != null && !name.isBlank()) {
-            existingLibrary = new Library(
-                    existingLibrary.getId(), name, existingLibrary.getLocation(), existingLibrary.getBooks());
-        }
-        if (location != null && !location.isBlank()) {
-            existingLibrary = new Library(
-                    existingLibrary.getId(), existingLibrary.getName(), location, existingLibrary.getBooks());
-        }
+        Library updatedLibrary = existingLibrary.updateLibrary(name, location);
 
-        libraryPort.save(existingLibrary);
+        libraryPort.save(updatedLibrary);
     }
+
 
     @Override
     public void deleteLibrary(Long id) {
         Library existingLibrary = libraryPort
                 .getLibraryById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Library not found for ID: " + id));
-
-        if (bookPort.findAll(0, Integer.MAX_VALUE, null, null).stream()
-                .anyMatch(book -> existingLibrary.getId().equals(book.getLibrary()))) {
+        if (libraryPort.countTotalBooks(id) > 0) {
             throw new IllegalStateException("Cannot delete library that contains registered books.");
         }
+
 
         libraryPort.deleteLibraryById(id);
     }
@@ -119,5 +106,5 @@ public class LibraryService implements LibraryUseCase {
     @Override
     public Long getTotalBookCount(Long libraryId) {
         return libraryPort.countTotalBooks(libraryId);
-    }*/
+    }
 }

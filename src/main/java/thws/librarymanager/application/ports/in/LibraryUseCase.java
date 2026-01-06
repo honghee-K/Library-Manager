@@ -11,10 +11,9 @@ public interface LibraryUseCase {
 
     List<Library> getAllLibraries(String location, String name);
 
-
     Library addLibrary(Library library);
 
-     /*void updateLibraryDetails(Long id, String name, String location);
+     void updateLibrary(Long id, String name, String location);
 
     void deleteLibrary(Long id);
 
@@ -22,5 +21,5 @@ public interface LibraryUseCase {
 
     void removeBookFromLibrary(Long libraryId, Long bookIsbn);
 
-    Long getTotalBookCount(Long libraryId);*/
+    Long getTotalBookCount(Long libraryId);
 }

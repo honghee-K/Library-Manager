@@ -78,4 +78,65 @@ public class LibraryController {
                 .entity(mapper.toLibraryDTO(saved, uriInfo))
                 .build();
     }
+
+
+
+    @PUT
+    @Path("/{id}")
+    public Response updateLibrary(
+            @PathParam("id") Long id,
+            LibraryDTO dto) {
+
+        libraryUseCase.updateLibrary(
+                id,
+                dto.getName(),
+                dto.getLocation()
+        );
+
+        return Response.noContent().build();
+    }
+
+    @DELETE
+    @Path("/{id}")
+    public Response deleteLibrary(@PathParam("id") Long id) {
+
+        libraryUseCase.deleteLibrary(id);
+
+        return Response.noContent().build();
+    }
+
+
+    @POST
+    @Path("/{libraryId}/books/{isbn}")
+    public Response addBookToLibrary(
+            @PathParam("libraryId") Long libraryId,
+            @PathParam("isbn") Long isbn) {
+
+        libraryUseCase.addBookToLibrary(libraryId, isbn);
+
+        return Response.noContent().build();
+    }
+
+    @DELETE
+    @Path("/{libraryId}/books/{isbn}")
+    public Response removeBookFromLibrary(
+            @PathParam("libraryId") Long libraryId,
+            @PathParam("isbn") Long isbn) {
+
+        libraryUseCase.removeBookFromLibrary(libraryId, isbn);
+
+        return Response.noContent().build();
+    }
+
+    @GET
+    @Path("/{libraryId}/books/count")
+    public Response getTotalBookCount(
+            @PathParam("libraryId") Long libraryId) {
+
+        Long count = libraryUseCase.getTotalBookCount(libraryId);
+
+        return Response.ok(count).build();
+    }
+
+
 }

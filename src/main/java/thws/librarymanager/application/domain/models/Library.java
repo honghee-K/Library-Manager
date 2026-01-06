@@ -81,4 +81,12 @@ public class Library {
                 .filter(book -> book.getAuthor().equalsIgnoreCase(author))
                 .collect(Collectors.toList());
     }
+    public Library updateLibrary(String newName, String newLocation) {
+        return new Library(
+                this.id,
+                (newName != null && !newName.isBlank()) ? newName : this.name,
+                (newLocation != null && !newLocation.isBlank()) ? newLocation : this.location,
+                this.books
+        );
+    }
 }
