@@ -1,24 +1,28 @@
 package thws.librarymanager.adapters.in.rest;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.*;
 
 import thws.librarymanager.adapters.in.rest.mapper.RestMapper;
 import thws.librarymanager.adapters.in.rest.models.BookDTO;
-import thws.librarymanager.adapters.in.rest.services.JwtAuthService;
 import thws.librarymanager.application.domain.models.Book;
+import thws.librarymanager.application.domain.models.Library;
 import thws.librarymanager.application.ports.in.BookUseCase;
+import thws.librarymanager.application.ports.out.repository.LibraryPort;
 
 @Path("/books")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class BookController {
+
+    @Context
+    UriInfo uriInfo;
 
     @Inject
     private BookUseCase bookUseCase;
@@ -26,22 +30,32 @@ public class BookController {
     @Inject
     private RestMapper restMapper;
 
-    @Context
-    UriInfo uriInfo;
+    @Inject
+    LibraryPort libraryPort;
 
     @Inject
     public BookController(BookUseCase bookUseCase) {
         this.bookUseCase = bookUseCase;
     }
 
-    /*
     @POST
-    public Response addBook(Book book) {
-        Book newBook = bookUseCase.addBook(book);
-        URI bookUri = uriInfo.getAbsolutePathBuilder().path(String.valueOf(newBook.getIsbn())).build();
-        return Response.created(bookUri).entity(toBookResponse(newBook)).build();
-    }
+    public Response addBook(BookDTO bookDTO) {
+        Library library = libraryPort
+                .getLibraryById(bookDTO.getLibraryId())
+                .orElseThrow(() -> new NotFoundException("Library not found"));
 
+        Book newBook = bookUseCase.addBook(
+                bookDTO.getIsbn(), bookDTO.getTitle(), bookDTO.getAuthor(), bookDTO.getGenre(), library);
+
+        URI bookUri = uriInfo.getAbsolutePathBuilder()
+                .path(String.valueOf(newBook.getIsbn()))
+                .build();
+
+        return Response.created(bookUri)
+                .entity(restMapper.toBookDTO(newBook, uriInfo))
+                .build();
+    }
+    /*
     @PUT
     @Path("/{isbn}")
     public Response updateBook(@PathParam("isbn") Long isbn, Book updateBook) {
@@ -62,7 +76,7 @@ public class BookController {
     public Response getBookByIsbn(@PathParam("isbn") Long isbn) {
         Optional<Book> book = bookUseCase.getBookByIsbn(isbn);
 
-        return book.map(b -> restMapper.toDTO(b, uriInfo))
+        return book.map(b -> restMapper.toBookDTO(b, uriInfo))
                 .map(dto -> Response.ok(dto).build())
                 .orElseGet(() -> Response.status(Response.Status.NOT_FOUND).build());
     }
@@ -77,7 +91,7 @@ public class BookController {
         List<Book> books = bookUseCase.getAllBooks(page, size, author, genre);
 
         List<BookDTO> dtos =
-                books.stream().map(book -> restMapper.toDTO(book, uriInfo)).collect(Collectors.toList());
+                books.stream().map(book -> restMapper.toBookDTO(book, uriInfo)).collect(Collectors.toList());
 
         return Response.ok(dtos).build();
     }

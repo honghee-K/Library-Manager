@@ -5,6 +5,7 @@ public class BookDTO extends BaseDTO {
     private String title;
     private String author;
     private String genre;
+    private Long libraryId;
     private boolean isOnLoan;
 
     public BookDTO() {
@@ -41,6 +42,14 @@ public class BookDTO extends BaseDTO {
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+
+    public Long getLibraryId() {
+        return libraryId;
+    }
+
+    public void setLibraryId(Long libraryId) {
+        this.libraryId = libraryId;
     }
 
     public boolean isOnLoan() {

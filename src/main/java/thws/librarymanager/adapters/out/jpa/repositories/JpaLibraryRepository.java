@@ -1,5 +1,9 @@
 package thws.librarymanager.adapters.out.jpa.repositories;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
@@ -16,6 +20,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+
 @ApplicationScoped
 public class JpaLibraryRepository implements LibraryPort {
 
@@ -24,6 +29,7 @@ public class JpaLibraryRepository implements LibraryPort {
 
     @Inject
     JpaConverter converter; // User/Book dönüştürme işlemleri için
+
 
    /* @Override
     @Transactional
@@ -82,6 +88,16 @@ public class JpaLibraryRepository implements LibraryPort {
                 "SELECT COUNT(b) FROM BookEntity b WHERE b.library.id = :libraryId", Long.class);
         query.setParameter("libraryId", libraryId);
         return query.getSingleResult();
+
+    }
+
+    @Override
+    @Transactional(Transactional.TxType.SUPPORTS)
+    public Long countTotalBooks(Long libraryId) {
+        TypedQuery<Long> query = em.createQuery(
+                "SELECT COUNT(b) FROM BookEntity b WHERE b.library.id = :libraryId", Long.class);
+        query.setParameter("libraryId", libraryId);
+        return query.getSingleResult();
     }
 
     @Override
@@ -96,3 +112,4 @@ public class JpaLibraryRepository implements LibraryPort {
                 .collect(Collectors.toList());
     }*/
 }
+

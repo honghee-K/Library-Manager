@@ -1,5 +1,7 @@
 package thws.librarymanager.adapters.out.jpa.converter;
 
+import java.util.ArrayList;
+
 import jakarta.enterprise.context.ApplicationScoped;
 
 import thws.librarymanager.adapters.out.jpa.entities.BookEntity;
@@ -39,6 +41,7 @@ public class JpaConverter {
                 entity.getLocation(),
                 new ArrayList<>() //books
         );
+
     }
 
     // Domain -> Entity
@@ -52,7 +55,8 @@ public class JpaConverter {
         entity.setName(library.getName());
         entity.setLocation(library.getLocation());
 
-       /* if (library.getBooks() != null) {
+
+        /* if (library.getBooks() != null) {
             List<BookEntity> bookEntities = library.getBooks().stream()
                     .map(this::toJpaBook)
                     .collect(Collectors.toList());

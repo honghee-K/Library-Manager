@@ -1,3 +1,4 @@
+
 package thws.librarymanager.adapters.in.rest.models;
 
 public class LibraryDTO extends BaseDTO {

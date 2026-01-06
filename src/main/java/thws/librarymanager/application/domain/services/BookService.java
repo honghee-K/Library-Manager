@@ -7,6 +7,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
 import thws.librarymanager.application.domain.models.Book;
+import thws.librarymanager.application.domain.models.Library;
 import thws.librarymanager.application.ports.in.BookUseCase;
 import thws.librarymanager.application.ports.out.repository.BookPort;
 
@@ -20,17 +21,17 @@ public class BookService implements BookUseCase {
         this.persistBookPort = persistence;
     }
 
-    /*  @Override
+    @Override
     public Book addBook(Long isbn, String title, String author, String genre, Library library) {
 
-        if (persistBookPort.getBookByIsbn(isbn).isPresent()) { //.isPresent() -> Methode of Optional
+        if (persistBookPort.getBookByIsbn(isbn).isPresent()) { // .isPresent() -> Methode of Optional
             throw new IllegalArgumentException("Book with this ISBN already exists.");
         }
 
         Book book = new Book(null, isbn, title, author, genre, library, null);
 
         return persistBookPort.save(book);
-    }*/
+    }
 
     @Override
     public Optional<Book> getBookByIsbn(Long isbn) {
