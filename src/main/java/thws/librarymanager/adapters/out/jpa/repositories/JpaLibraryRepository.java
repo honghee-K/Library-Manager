@@ -31,7 +31,7 @@ public class JpaLibraryRepository implements LibraryPort {
     JpaConverter converter; // User/Book dönüştürme işlemleri için
 
 
-   /* @Override
+    @Override
     @Transactional
     public Library save(Library library) {
         LibraryEntity entity = converter.toJpaLibrary(library);
@@ -40,9 +40,9 @@ public class JpaLibraryRepository implements LibraryPort {
         } else {
             entity = em.merge(entity);
         }
-        return converter.toDomainLibrary(entity);
+        return converter.toLibrary(entity);
     }
-*/
+
     @Override
     @Transactional(Transactional.TxType.SUPPORTS)
     public Optional<Library> getLibraryById(Long id) {
@@ -64,9 +64,30 @@ public class JpaLibraryRepository implements LibraryPort {
 
     @Override
     @Transactional(Transactional.TxType.SUPPORTS)
-    public List<Library> findAllLibraries() {
-        return em.createQuery("SELECT l FROM LibraryEntity l", LibraryEntity.class)
-                .getResultList()
+    public List<Library> findAllLibraries(String location, String name) {
+
+        String jpql = "SELECT l FROM LibraryEntity l WHERE 1=1";
+
+        if (location != null) {
+            jpql += " AND l.location = :location";
+        }
+
+        if (name != null) {
+            jpql += " AND l.name LIKE :name";
+        }
+
+        TypedQuery<LibraryEntity> query =
+                em.createQuery(jpql, LibraryEntity.class);
+
+        if (location != null) {
+            query.setParameter("location", location);
+        }
+
+        if (name != null) {
+            query.setParameter("name", "%" + name + "%");
+        }
+
+        return query.getResultList()
                 .stream()
                 .map(converter::toLibrary)
                 .collect(Collectors.toList());

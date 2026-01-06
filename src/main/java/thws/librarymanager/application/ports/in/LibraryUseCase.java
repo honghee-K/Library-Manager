@@ -9,7 +9,7 @@ public interface LibraryUseCase {
 
     Optional<Library> getLibraryById(Long id);
 
-    List<Library> getAllLibraries();
+    List<Library> getAllLibraries(String location, String name);
 
     /*
     Library addLibrary(Library library);
