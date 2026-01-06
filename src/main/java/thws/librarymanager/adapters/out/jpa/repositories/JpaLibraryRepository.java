@@ -53,15 +53,15 @@ public class JpaLibraryRepository implements LibraryPort {
                 : Optional.empty();
     }
 
-   /* @Override
+    @Override
     @Transactional(Transactional.TxType.SUPPORTS)
     public Optional<Library> getLibraryByName(String name) {
         TypedQuery<LibraryEntity> query = em.createQuery(
                 "SELECT l FROM LibraryEntity l WHERE l.name = :name", LibraryEntity.class);
         query.setParameter("name", name);
         List<LibraryEntity> result = query.getResultList();
-        return result.isEmpty() ? Optional.empty() : Optional.of(converter.toDomainLibrary(result.get(0)));
-    }*/
+        return result.isEmpty() ? Optional.empty() : Optional.of(converter.toLibrary(result.get(0)));
+    }
 
     @Override
     @Transactional(Transactional.TxType.SUPPORTS)
@@ -108,7 +108,7 @@ public class JpaLibraryRepository implements LibraryPort {
                 ? Optional.empty()
                 : Optional.of(converter.toLibrary(result.get(0))); }
 
-   /* @Override
+    @Override
     @Transactional
     public void deleteLibraryById(Long id) {
         LibraryEntity entity = em.find(LibraryEntity.class, id);
@@ -139,6 +139,6 @@ public class JpaLibraryRepository implements LibraryPort {
                 .stream()
                 .map(converter::toBook)
                 .collect(Collectors.toList());
-    }*/
+    }
 }
 
