@@ -19,11 +19,11 @@ public class BookEntity {
 
     /*    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "library_id")
-    private LibraryEntity library;
+    private LibraryEntity library;*/
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "current_loan_id")
-    private LoanEntity currentLoan;*/
+    @JoinColumn(name = "current_loan_id", referencedColumnName = "id")
+    private LoanEntity currentLoan;
 
     public BookEntity() {}
 

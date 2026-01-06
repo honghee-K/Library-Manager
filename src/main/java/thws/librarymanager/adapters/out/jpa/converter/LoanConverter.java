@@ -34,8 +34,8 @@ public class LoanConverter {
 
         if (loan.getUser() != null) entity.setUser(jpaConverter.toJpaUser(loan.getUser()));
 
-        //   if (loan.getBook() != null)
-        //     entity.setBook(jpaConverter.toJpaBook(loan.getBook()));
+        if (loan.getBook() != null)
+        entity.setBook(jpaConverter.toJpaBook(loan.getBook()));
 
         return entity;
     }

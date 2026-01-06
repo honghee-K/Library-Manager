@@ -50,11 +50,11 @@ public class LoanService implements LoanUseCase {
         Loan loan = Loan.createLoan(user, book, today, due);
         loanPort.save(loan);
 
-        // bookUseCase.startLoanForBook(bookId, loan);
+        bookUseCase.startLoanForBook(bookId, loan);
         return loan;
     }
 
-    @Override
+/*    @Override
     public Loan returnLoan(Long loanId) {
 
         Loan loan = loanPort.findById(loanId).orElseThrow(() -> new LoanNotFoundException(loanId));
@@ -65,14 +65,14 @@ public class LoanService implements LoanUseCase {
         book.endLoan();
 
         return loanPort.save(loan);
-    }
+    }*/
 
     @Override
     public Loan getLoanById(Long loanId) {
         return loanPort.findById(loanId).orElseThrow(() -> new LoanNotFoundException(loanId));
     }
 
-    @Override
+ /*   @Override
     public List<Loan> searchLoans(Long userId, Long bookId, LoanStatus status, int page, int size) {
 
         if (page < 0 || size <= 0) {
@@ -93,5 +93,5 @@ public class LoanService implements LoanUseCase {
 
         loan.changeDueDate(newDueDate);
         return loanPort.save(loan);
-    }
+    }*/
 }

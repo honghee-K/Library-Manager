@@ -27,16 +27,15 @@ public class JpaLoanRepository implements LoanPort {
     @Inject
     LoanConverter converter;
 
-    // -------------------- SAVE --------------------
     @Override
     @Transactional
     public Loan save(Loan loan) {
         LoanEntity entity = converter.toEntity(loan);
 
         if (loan.getId() == null) {
-            em.persist(entity); // (INSERT)
+            em.persist(entity);
         } else {
-            entity = em.merge(entity); // (UPDATE)
+            entity = em.merge(entity);
         }
 
         return converter.toDomain(entity);
@@ -51,19 +50,18 @@ public class JpaLoanRepository implements LoanPort {
 
     @Override
     @Transactional(Transactional.TxType.SUPPORTS)
-    public boolean existsActiveLoanForBook(Long bookId) {
+    public boolean existsActiveLoanForBook(Long isbn) {
         Long count = em.createQuery(
-                        "SELECT COUNT(l) FROM LoanEntity l " + "WHERE l.book.id = :bookId AND l.status = :status",
+                        "SELECT COUNT(l) FROM LoanEntity l WHERE l.book.isbn = :isbn AND l.status = :status",
                         Long.class)
-                .setParameter("bookId", bookId)
+                .setParameter("isbn", isbn)
                 .setParameter("status", LoanStatusJpa.ACTIVE)
                 .getSingleResult();
 
         return count > 0;
     }
 
-    // -------------------- FIND LOANS WITH FILTERS --------------------
-    @Override
+/*    @Override
     @Transactional(Transactional.TxType.SUPPORTS)
     public List<Loan> findLoans(Long userId, Long bookId, LoanStatus status, int page, int size) {
         StringBuilder jpql = new StringBuilder("SELECT l FROM LoanEntity l WHERE 1=1 ");
@@ -109,5 +107,5 @@ public class JpaLoanRepository implements LoanPort {
                 .stream()
                 .map(converter::toDomain)
                 .collect(Collectors.toList());
-    }
+    }*/
 }

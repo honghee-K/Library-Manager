@@ -6,9 +6,11 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 import thws.librarymanager.adapters.out.jpa.entities.BookEntity;
 import thws.librarymanager.adapters.out.jpa.entities.LibraryEntity;
+import thws.librarymanager.adapters.out.jpa.entities.LoanEntity;
 import thws.librarymanager.adapters.out.jpa.entities.UserEntity;
 import thws.librarymanager.application.domain.models.Book;
 import thws.librarymanager.application.domain.models.Library;
+import thws.librarymanager.application.domain.models.Loan;
 import thws.librarymanager.application.domain.models.User;
 
 @ApplicationScoped
@@ -88,9 +90,19 @@ public class JpaConverter {
         return entity;
     }
 
-    /**
-     * TODO : Loan
-     */
+    public Loan toLoan(LoanEntity entity) {
+        if (entity == null) return null;
+
+        return Loan.restore(
+                entity.getId(),
+                toUser(entity.getUser()),
+                null,
+                entity.getLoanDate(),
+                entity.getDueDate(),
+                entity.getReturnDate(),
+                statusConverter.toDomain(entity.getStatus())
+        );
+    }
     public User toUser(UserEntity userEntity) {
 
         return new User(userEntity.getId(), userEntity.getName(), userEntity.getEmail());

@@ -11,9 +11,9 @@ public interface BookPort {
 
     Optional<Book> getBookByIsbn(Long isbn);
 
-    /*    void deleteByIsbn(Long isbn);*/
+    void deleteByIsbn(Long isbn);
 
     List<Book> findAll(int page, int size, String author, String genre);
 
-    /*    List<Book> findAllForStatistics();*/
+    List<Book> findAllForStatistics();
 }
