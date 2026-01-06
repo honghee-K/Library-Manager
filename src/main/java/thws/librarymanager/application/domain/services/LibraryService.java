@@ -37,8 +37,9 @@ public class LibraryService implements LibraryUseCase {
     }
 
     @Override
-    public List<Library> getAllLibraries() {
-        return libraryPort.findAllLibraries();
+    public List<Library> getAllLibraries(String location, String name) {
+
+        return libraryPort.findAllLibraries(location, name);
     }
 
 

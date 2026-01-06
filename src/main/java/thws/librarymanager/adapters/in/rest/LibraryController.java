@@ -31,10 +31,15 @@ public class LibraryController {
     UriInfo uriInfo;
 
     @GET
-    public Response getAllLibraries() {
+    public Response getAllLibraries(
+            @QueryParam("location") String location,
+            @QueryParam("name") String name
+    ) {
 
-        List<LibraryDTO> dtos = libraryUseCase.getAllLibraries().stream()
-                .map(library -> mapper.toLibraryDTO(library, uriInfo))
+        List<LibraryDTO> dtos = libraryUseCase
+                .getAllLibraries(location, name)
+                .stream()
+                .map(lib -> mapper.toLibraryDTO(lib, uriInfo))
                 .collect(Collectors.toList());
 
         return Response.ok(dtos).build();
@@ -45,7 +50,9 @@ public class LibraryController {
     public Response getLibraryById(@PathParam("id") Long id) {
 
         Optional<Library> library = libraryUseCase.getLibraryById(id);
-        return library.map(l -> mapper.toLibraryDTO(l, uriInfo))
+
+        return library
+                .map(lib -> mapper.toLibraryDTO(lib, uriInfo))
                 .map(dto -> Response.ok(dto).build())
                 .orElseGet(() -> Response.status(Response.Status.NOT_FOUND).build());
     }
