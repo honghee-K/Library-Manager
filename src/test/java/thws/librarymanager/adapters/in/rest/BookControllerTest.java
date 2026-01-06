@@ -37,14 +37,14 @@ public class BookControllerTest {
     @Transactional
     public void initTestData() {
 
-        Library library = new Library(null, "Main Library", "Würzburg", null);
+       /* Library library = new Library(null, "Main Library", "Würzburg", null);
         Library savedLibrary = libraryPort.save(library);
-        this.testLibraryId = savedLibrary.getId();
+        this.testLibraryId = savedLibrary.getId();*/
 
-        Book book1 = new Book(null, 1234L, "title1", "author1", "genre", savedLibrary, null);
+        Book book1 = new Book(null, 1234L, "title1", "author1", "genre", null, null);
         bookPort.save(book1);
 
-        Book book2 = new Book(null, 1235L, "title2", "author2", "genre", savedLibrary, null);
+        Book book2 = new Book(null, 1235L, "title2", "author2", "genre", null, null);
         bookPort.save(book2);
     }
 
