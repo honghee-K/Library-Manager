@@ -31,7 +31,8 @@ public class JpaLibraryRepository implements LibraryPort {
     JpaConverter converter; // User/Book dönüştürme işlemleri için
 
 
-    @Override
+
+   /* @Override
     @Transactional
     public Library save(Library library) {
         LibraryEntity entity = converter.toJpaLibrary(library);
@@ -40,9 +41,9 @@ public class JpaLibraryRepository implements LibraryPort {
         } else {
             entity = em.merge(entity);
         }
-        return converter.toLibrary(entity);
+        return converter.toDomainLibrary(entity);
     }
-
+*/
     @Override
     @Transactional(Transactional.TxType.SUPPORTS)
     public Optional<Library> getLibraryById(Long id) {
