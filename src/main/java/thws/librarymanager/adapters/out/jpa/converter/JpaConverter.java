@@ -4,10 +4,7 @@ import java.util.ArrayList;
 
 import jakarta.enterprise.context.ApplicationScoped;
 
-import thws.librarymanager.adapters.out.jpa.entities.BookEntity;
-import thws.librarymanager.adapters.out.jpa.entities.LibraryEntity;
-import thws.librarymanager.adapters.out.jpa.entities.LoanEntity;
-import thws.librarymanager.adapters.out.jpa.entities.UserEntity;
+import thws.librarymanager.adapters.out.jpa.entities.*;
 import thws.librarymanager.adapters.out.jpa.enums.LoanStatusJpa;
 import thws.librarymanager.application.domain.models.*;
 
@@ -204,5 +201,18 @@ public class JpaConverter {
         result.setEmail(user.getEmail());
 
         return result;
+    }
+
+    public Librarian toLibrarian(LibrarianEntity entity) {
+        if (entity == null) return null;
+        return new Librarian(entity.getId(), entity.getName());
+    }
+
+    public LibrarianEntity toJpaLibrarian(Librarian librarian) {
+        if (librarian == null) return null;
+        LibrarianEntity entity = new LibrarianEntity();
+        entity.setId(librarian.getId());
+        entity.setName(librarian.getName());
+        return entity;
     }
 }

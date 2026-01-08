@@ -24,19 +24,19 @@ public class AuthController {
 
     @GET
     @Path("login")
-    public Response login(@QueryParam("name") String name, @QueryParam("password") String password) {
+    public Response login(@QueryParam("name") String name) {
 
         String accessToken = authUseCase.generateAccessToken(name);
 
         return Response.ok(accessToken).build();
     }
 
-    @RolesAllowed(JwtAuthService.USER_ROLE) // TODO später in aderen Methode
+    @RolesAllowed(JwtAuthService.Librarian_ROLE) // TODO später in aderen Methode
     @GET
     @Path("test")
     public Response test() {
 
-        long userId = Long.parseLong(jwt.getClaim(JwtAuthService.USER_ID_CLAIM));
+        long userId = Long.parseLong(jwt.getClaim(JwtAuthService.Librarian_ID_CLAIM));
 
         return Response.ok("Hi " + userId).build();
     }

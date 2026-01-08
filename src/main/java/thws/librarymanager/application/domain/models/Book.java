@@ -48,6 +48,13 @@ public class Book {
         return currentLoan;
     }
 
+    public void setLibrary(Library library) {
+        if (this.library != null && library != null) {
+            throw new IllegalStateException("This book is already assigned to a library and cannot be reassigned.");
+        }
+        this.library = library;
+    }
+
     public void updateBook(String title, String author, String genre) {
         if (title != null && !title.isBlank()) {
             this.title = title;
