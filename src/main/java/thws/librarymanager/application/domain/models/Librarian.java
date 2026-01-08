@@ -1,17 +1,16 @@
 package thws.librarymanager.application.domain.models;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class User {
+public class Librarian {
     private Long id;
     private String name;
     private String email;
 
     private List<Loan> loans;
 
-    public User(Long id, String name, String email) {
+    public Librarian(Long id, String name, String email) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -28,10 +27,6 @@ public class User {
 
     public String getEmail() {
         return email;
-    }
-
-    public List<Loan> getLoans() {
-        return loans != null ? loans : new ArrayList<>();
     }
 
     public void setId(Long id) {
@@ -55,12 +50,6 @@ public class User {
         this.email = email;
     }
 
-
-    private boolean isValidEmail(String email) {
-        return email.contains("@") && email.contains(".");
-    }
-
-
     public void updateInfo(String newName, String newEmail) {
         if (newName != null && !newName.isBlank()) {
             this.name = newName;
@@ -70,21 +59,7 @@ public class User {
         }
     }
 
-    public void addLoan(Loan loan) {
-        if (this.loans == null) {
-            this.loans = new ArrayList<>();
-        }
-        if (!this.loans.contains(loan)) {
-            this.loans.add(loan);
-        }
+    private boolean isValidEmail(String email) {
+        return email.contains("@") && email.contains(".");
     }
-
-    public void deleteLoan(Loan loan) {
-        loan.setReturned(LocalDate.now());
-    }
-
-    public boolean hasActiveLoans() {
-        return loans.stream().anyMatch(Loan::isActive);
-    }
-
 }

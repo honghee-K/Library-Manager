@@ -26,7 +26,7 @@ public class AuthController {
     @Path("login")
     public Response login(@QueryParam("name") String name, @QueryParam("password") String password) {
 
-        String accessToken = authUseCase.generateAccessToken(name, password);
+        String accessToken = authUseCase.generateAccessToken(name);
 
         return Response.ok(accessToken).build();
     }
