@@ -2,6 +2,7 @@ package thws.librarymanager.adapters.out.jpa.repositories;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -39,7 +40,8 @@ public class JpaUserRepository implements UserPort {
     @Override
     @Transactional
     public Optional<User> findById(Long id) {
-        throw new RuntimeException("not implemented");
+        UserEntity entity = entityManager.find(UserEntity.class, id);
+        return Optional.ofNullable(jpaConverter.toUser(entity));
     }
 
     @Override
@@ -62,15 +64,22 @@ public class JpaUserRepository implements UserPort {
     @Override
     @Transactional
     public List<User> findAll(int page, int size) {
-        return (List<User>) entityManager.createQuery("from UserEntity").getResultList();
+        return entityManager.createQuery("from UserEntity", UserEntity.class)
+                .setFirstResult(page * size)
+                .setMaxResults(size)
+                .getResultList().stream()
+                .map(jpaConverter::toUser)
+                .collect(Collectors.toList());
     }
 
     @Override
     @Transactional
     public void deleteById(Long id) {
-        throw new RuntimeException("not implemented");
+        UserEntity entity = entityManager.find(UserEntity.class, id);
+        if (entity != null) {
+            entityManager.remove(entity);
+        }
     }
-
     @Override
     @Transactional
     public boolean hasActiveLoans(Long userId) {
@@ -86,6 +95,9 @@ public class JpaUserRepository implements UserPort {
     @Override
     @Transactional
     public boolean existsByEmail(String email) {
-        throw new RuntimeException("not implemented");
+        Long count = entityManager.createQuery("select count(u) from UserEntity u where u.email = :email", Long.class)
+                .setParameter("email", email)
+                .getSingleResult();
+        return count > 0;
     }
 }

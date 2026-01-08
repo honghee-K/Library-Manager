@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
+import jakarta.transaction.Transactional;
 import thws.librarymanager.application.domain.models.Book;
 import thws.librarymanager.application.domain.models.Library;
 import thws.librarymanager.application.domain.models.Loan;
@@ -49,6 +50,20 @@ public class BookService implements BookUseCase {
         return persistBookPort.findAll(page, size, author, genre);
     }
 
+    @Override
+    @Transactional
+    public void addBookToLibrary(Long isbn, Library library) {
+        Book book = persistBookPort.getBookByIsbn(isbn)
+                .orElseThrow(() -> new IllegalArgumentException("Book not found"));
+
+        book.setLibrary(library);
+
+        if (library != null) {
+            library.addBook(book);
+        }
+
+        persistBookPort.save(book);
+    }
 
     @Override
     public void startLoanForBook(Long bookIsbn, Loan loan) {

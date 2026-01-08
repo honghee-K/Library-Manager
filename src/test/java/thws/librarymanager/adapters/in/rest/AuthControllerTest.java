@@ -9,8 +9,8 @@ import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.RestAssured;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.*;
-import thws.librarymanager.application.domain.models.User;
-import thws.librarymanager.application.ports.out.repository.UserPort;
+import thws.librarymanager.application.domain.models.Librarian;
+import thws.librarymanager.application.ports.out.repository.LibrarianPort;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -19,7 +19,7 @@ import thws.librarymanager.application.ports.out.repository.UserPort;
 public class AuthControllerTest {
 
     @Inject
-    private UserPort userPort;
+    private LibrarianPort librarianPort;
 
     private String jwtToken;
 
@@ -27,9 +27,9 @@ public class AuthControllerTest {
 
     @BeforeAll
     public void initTestData() {
-
-        User user = new User(1L, "hong", "hong@example.com");
-        userPort.save(user);
+        Librarian librarian = new Librarian(null, "hong");
+        Librarian saved = librarianPort.save(librarian);
+        System.out.println("Generated ID: " + saved.getId());
     }
 
     @Test
@@ -39,7 +39,6 @@ public class AuthControllerTest {
         String token = RestAssured.given()
                 .when()
                 .queryParam("name", "hong")
-                .queryParam("password", "1234") // password ist nur dummy
                 .get("login")
                 .then()
                 .statusCode(200)

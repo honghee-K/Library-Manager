@@ -5,10 +5,9 @@ import java.util.Optional;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import thws.librarymanager.application.domain.models.Book;
 import thws.librarymanager.application.domain.models.Library;
+import thws.librarymanager.application.ports.in.BookUseCase;
 import thws.librarymanager.application.ports.in.LibraryUseCase;
-import thws.librarymanager.application.ports.out.repository.BookPort;
 import thws.librarymanager.application.ports.out.repository.LibraryPort;
 
 
@@ -16,12 +15,12 @@ import thws.librarymanager.application.ports.out.repository.LibraryPort;
 public class LibraryService implements LibraryUseCase {
 
     private final LibraryPort libraryPort;
-    private final BookPort bookPort;
+    private final BookUseCase bookUseCase;
 
     @Inject
-    public LibraryService(LibraryPort libraryPort, BookPort bookPort) {
+    public LibraryService(LibraryPort libraryPort, BookUseCase bookUseCase) {
         this.libraryPort = libraryPort;
-        this.bookPort = bookPort;
+        this.bookUseCase = bookUseCase;
     }
 
 
@@ -47,8 +46,6 @@ public class LibraryService implements LibraryUseCase {
     }
 
 
-
-
     @Override
     public void updateLibrary(Long id, String name, String location) {
         Library existingLibrary = libraryPort
@@ -63,44 +60,25 @@ public class LibraryService implements LibraryUseCase {
 
     @Override
     public void deleteLibrary(Long id) {
-        Library existingLibrary = libraryPort
-                .getLibraryById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Library not found for ID: " + id));
         if (libraryPort.countTotalBooks(id) > 0) {
             throw new IllegalStateException("Cannot delete library that contains registered books.");
         }
-
 
         libraryPort.deleteLibraryById(id);
     }
 
     @Override
     public void addBookToLibrary(Long libraryId, Long bookIsbn) {
-        Library existingLibrary = libraryPort
+        Library library = libraryPort
                 .getLibraryById(libraryId)
                 .orElseThrow(() -> new IllegalArgumentException("Library not found for ID: " + libraryId));
 
-        Book book = bookPort.getBookByIsbn(bookIsbn).orElseThrow(() -> new IllegalArgumentException("Book not found."));
-
-        existingLibrary.addBook(book);
-        libraryPort.save(existingLibrary);
+        bookUseCase.addBookToLibrary(bookIsbn, library);
     }
 
     @Override
     public void removeBookFromLibrary(Long libraryId, Long bookIsbn) {
-        Library existingLibrary = libraryPort
-                .getLibraryById(libraryId)
-                .orElseThrow(() -> new IllegalArgumentException("Library not found for ID: " + libraryId));
-
-        Book bookToRemove = bookPort.getBookByIsbn(bookIsbn)
-                .orElseThrow(() -> new IllegalArgumentException("Book not found for ISBN: " + bookIsbn));
-
-        if (!libraryId.equals(bookToRemove.getLibrary())) {
-            throw new IllegalStateException("Book does not belong to this library.");
-        }
-
-        existingLibrary.removeBook(bookToRemove);
-        libraryPort.save(existingLibrary);
+        bookUseCase.addBookToLibrary(bookIsbn, null);
     }
 
     @Override
