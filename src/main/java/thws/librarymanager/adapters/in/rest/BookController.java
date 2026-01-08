@@ -17,6 +17,8 @@ import thws.librarymanager.application.ports.in.BookUseCase;
 import thws.librarymanager.application.ports.in.LibraryUseCase;
 import thws.librarymanager.application.ports.out.repository.LibraryPort;
 
+//TODO: CACHE - 1. Validation 2.Expiration Wählen!
+
 @Path("/books")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
