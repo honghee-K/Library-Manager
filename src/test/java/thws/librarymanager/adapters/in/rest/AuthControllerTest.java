@@ -28,7 +28,7 @@ public class AuthControllerTest {
     @BeforeAll
     public void initTestData() {
 
-        User user = new User(1L, "honghee", "honghee@example.com");
+        User user = new User(1L, "hong", "hong@example.com");
         userPort.save(user);
     }
 
@@ -38,7 +38,7 @@ public class AuthControllerTest {
 
         String token = RestAssured.given()
                 .when()
-                .queryParam("name", "honghee")
+                .queryParam("name", "hong")
                 .queryParam("password", "1234") // password ist nur dummy
                 .get("login")
                 .then()

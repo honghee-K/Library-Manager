@@ -58,15 +58,10 @@ public class JpaUserRepository implements UserPort {
         return Optional.empty();
     }
 
-    @Override
-    @Transactional
-    public Optional<User> findByEmail(String email) {
-        throw new RuntimeException("not implemented");
-    }
 
     @Override
     @Transactional
-    public List<User> findAll() {
+    public List<User> findAll(int page, int size) {
         return (List<User>) entityManager.createQuery("from UserEntity").getResultList();
     }
 

@@ -33,7 +33,7 @@ public class JwtAuthService implements AuthUseCase {
     }
 
     @Override
-    public String generateAccessToken(String name, String password) {
+    public String generateAccessToken(String name) {
         User user = userPort.findByName(name).orElseThrow();
         return generateToken(user.getId());
     }

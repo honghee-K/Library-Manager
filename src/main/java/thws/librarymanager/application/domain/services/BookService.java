@@ -61,6 +61,16 @@ public class BookService implements BookUseCase {
     }
 
     @Override
+    public void endLoanForBook(Long bookIsbn, Loan loan) {
+        Book book = persistBookPort.getBookByIsbn(bookIsbn)
+                .orElseThrow(() -> new IllegalArgumentException("Book not found for ISBN: " + bookIsbn));
+
+        book.endLoan(loan);
+
+        persistBookPort.save(book);
+    }
+
+    @Override
     public void updateBook(Long isbn, String title, String author, String genre) {
         Book existing = persistBookPort.getBookByIsbn(isbn).orElse(null);
 
