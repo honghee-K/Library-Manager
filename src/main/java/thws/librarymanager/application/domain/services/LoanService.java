@@ -15,24 +15,31 @@ import thws.librarymanager.application.domain.models.LoanStatus;
 import thws.librarymanager.application.domain.models.User;
 import thws.librarymanager.application.ports.in.BookUseCase;
 import thws.librarymanager.application.ports.in.LoanUseCase;
+import thws.librarymanager.application.ports.in.UserUseCase;
 import thws.librarymanager.application.ports.out.repository.BookPort;
 import thws.librarymanager.application.ports.out.repository.LoanPort;
 import thws.librarymanager.application.ports.out.repository.UserPort;
+import thws.librarymanager.application.ports.out.time.TimeProvider;
+
 @ApplicationScoped
 public class LoanService implements LoanUseCase {
 
     private final LoanPort loanPort;
     private final UserPort userPort;
     private final BookPort bookPort;
-
+    private final TimeProvider timeProvider;
     private final BookUseCase bookUseCase;
+    private final UserUseCase userUseCase;
     @Inject
-    public LoanService(LoanPort loanPort, UserPort userPort, BookPort bookPort, BookUseCase bookUseCase) {
+    public LoanService(LoanPort loanPort, UserPort userPort, BookPort bookPort, BookUseCase bookUseCase,TimeProvider timeProvider,UserUseCase userUseCase) {
 
         this.loanPort = loanPort;
         this.userPort = userPort;
         this.bookPort = bookPort;
         this.bookUseCase = bookUseCase;
+        this.timeProvider = timeProvider;
+        this.userUseCase= userUseCase;
+
     }
 
     @Override
@@ -42,7 +49,7 @@ public class LoanService implements LoanUseCase {
             throw new BookAlreadyOnLoanException(book.getIsbn());
         }
 
-        LocalDate today = LocalDate.now();
+        LocalDate today = timeProvider.today();
         LocalDate due = today.plusDays(14);
         Loan loan = Loan.createLoan(user, book, today, due);
 
@@ -52,18 +59,18 @@ public class LoanService implements LoanUseCase {
         return loan;
     }
 
-/*    @Override
+   @Override
     public Loan returnLoan(Long loanId) {
 
         Loan loan = loanPort.findById(loanId).orElseThrow(() -> new LoanNotFoundException(loanId));
 
-        loan.setReturned(LocalDate.now());
+        loan.setReturned(timeProvider.today());
 
-        Book book = loan.getBook();
-        book.endLoan();
+        bookUseCase.endLoanForBook(loan.getBook().getIsbn(), loan);
+        userUseCase.removeLoanFromUser(loan.getUser().getId(), loan);
 
         return loanPort.save(loan);
-    }*/
+    }
 
     @Override
     public Loan getLoanById(Long loanId) {

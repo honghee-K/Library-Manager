@@ -13,6 +13,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.*;
 
+import org.junit.jupiter.api.extension.MediaType;
+import thws.librarymanager.adapters.in.rest.models.BookDTO;
 import thws.librarymanager.adapters.in.rest.models.LibraryDTO;
 import thws.librarymanager.application.domain.models.Book;
 import thws.librarymanager.application.domain.models.Library;
@@ -128,7 +130,7 @@ public class LibraryControllerTest {
         Assertions.assertEquals("Munich", response.getLocation());
     }
 
-   /*@Test
+  /* @Test
     @Order(5)
     void updateLibrary() {
 
@@ -173,71 +175,48 @@ public class LibraryControllerTest {
 
         Assertions.assertEquals(0L, count);
     }
-  /*  @Test
+
+
+   /* @Test
     @Order(7)
-    @Transactional
     void addBookToLibrary() {
 
-        Library otherLib = libraryPort.save(
-                new Library(null, "Temp Library", "Munich", null)
-        );
-
-        bookPort.save(new Book(
-                null,
-                12345L,
-                "Test Book",
-                "Test Author",
-                "Test Genre",
-                otherLib,
-                null
-        ));
-
-        // ŞİMDİ hedef library’ye ekle
-        RestAssured.given()
-                .pathParam("libraryId", lib1Id)
-                .pathParam("isbn", 12345L)
-                .when()
-                .post("/{libraryId}/books/{isbn}")
-                .then()
-                .statusCode(204);
-
-        Long count =
-                RestAssured.given()
-                        .pathParam("libraryId", lib1Id)
-                        .get("/{libraryId}/books/count")
-                        .then()
-                        .statusCode(200)
-                        .extract()
-                        .as(Long.class);
-
-        Assertions.assertEquals(1L, count);
+        ;
     }
 
 
     @Test
     @Order(8)
+    @Transactional
     void removeBookFromLibrary() {
 
+        // GIVEN: library’ye bağlı bir kitap
+        Book book = bookPort.save(
+                new Book(
+                        null,
+                        12345L,
+                        "Test Book",
+                        "Test Author",
+                        "Test Genre",
+                        libraryPort.getLibraryById(lib1Id).orElseThrow(),
+                        null
+                )
+        );
+
+        // WHEN: kitabi library’den çıkar
         RestAssured.given()
                 .pathParam("libraryId", lib1Id)
-                .pathParam("isbn", 12345L)
+                .pathParam("isbn", book.getIsbn())
                 .when()
                 .delete("/{libraryId}/books/{isbn}")
                 .then()
                 .statusCode(204);
 
-        Long count =
-                RestAssured.given()
-                        .pathParam("libraryId", lib1Id)
-                        .get("/{libraryId}/books/count")
-                        .then()
-                        .statusCode(200)
-                        .extract()
-                        .as(Long.class);
+        // THEN: DB kontrol
+        Book updated = bookPort.getBookByIsbn(book.getIsbn()).orElseThrow();
+        Assertions.assertNull(updated.getLibrary());
+    }*/
 
-        Assertions.assertEquals(0L, count);
-    }
-*/
 
     @Test
     @Order(9)

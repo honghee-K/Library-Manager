@@ -18,7 +18,7 @@ public class BookEntity {
     private String genre;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "library_id", nullable = false)
+    @JoinColumn(name = "library_id", nullable = true)
     private LibraryEntity library;
 
     @OneToOne(fetch = FetchType.LAZY)
