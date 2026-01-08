@@ -34,6 +34,8 @@ public class BookService implements BookUseCase {
 
         Book book = new Book(null, isbn, title, author, genre, library, null);
 
+        library.addBook(book);
+
         return persistBookPort.save(book);
     }
 
