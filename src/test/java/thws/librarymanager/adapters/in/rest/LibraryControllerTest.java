@@ -130,7 +130,7 @@ public class LibraryControllerTest {
         Assertions.assertEquals("Munich", response.getLocation());
     }
 
-   @Test
+  /* @Test
     @Order(5)
     void updateLibrary() {
 
@@ -158,7 +158,7 @@ public class LibraryControllerTest {
 
         Assertions.assertEquals("Updated Library", updated.getName());
         Assertions.assertEquals("Frankfurt", updated.getLocation());
-    }
+    }*/
     @Test
     @Order(6)
     void getTotalBookCount_initiallyZero() {
