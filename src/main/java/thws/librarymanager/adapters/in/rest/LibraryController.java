@@ -128,6 +128,7 @@ public class LibraryController {
 
     @POST
     @Path("/{libraryId}/books/{isbn}")
+    @Consumes(MediaType.WILDCARD)
     public Response addBookToLibrary(
             @PathParam("libraryId") Long libraryId,
             @PathParam("isbn") Long isbn) {
@@ -139,6 +140,7 @@ public class LibraryController {
 
     @DELETE
     @Path("/{libraryId}/books/{isbn}")
+    @Consumes(MediaType.WILDCARD)
     public Response removeBookFromLibrary(
             @PathParam("libraryId") Long libraryId,
             @PathParam("isbn") Long isbn) {

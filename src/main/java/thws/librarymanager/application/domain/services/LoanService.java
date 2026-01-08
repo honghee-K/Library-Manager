@@ -15,6 +15,7 @@ import thws.librarymanager.application.domain.models.LoanStatus;
 import thws.librarymanager.application.domain.models.User;
 import thws.librarymanager.application.ports.in.BookUseCase;
 import thws.librarymanager.application.ports.in.LoanUseCase;
+import thws.librarymanager.application.ports.in.UserUseCase;
 import thws.librarymanager.application.ports.out.repository.BookPort;
 import thws.librarymanager.application.ports.out.repository.LoanPort;
 import thws.librarymanager.application.ports.out.repository.UserPort;
@@ -27,19 +28,17 @@ public class LoanService implements LoanUseCase {
     private final UserPort userPort;
     private final BookPort bookPort;
     private final TimeProvider timeProvider;
-
-
-
-
     private final BookUseCase bookUseCase;
+    private final UserUseCase userUseCase;
     @Inject
-    public LoanService(LoanPort loanPort, UserPort userPort, BookPort bookPort, BookUseCase bookUseCase,TimeProvider timeProvider) {
+    public LoanService(LoanPort loanPort, UserPort userPort, BookPort bookPort, BookUseCase bookUseCase,TimeProvider timeProvider,UserUseCase userUseCase) {
 
         this.loanPort = loanPort;
         this.userPort = userPort;
         this.bookPort = bookPort;
         this.bookUseCase = bookUseCase;
         this.timeProvider = timeProvider;
+        this.userUseCase= userUseCase;
 
     }
 
@@ -67,12 +66,10 @@ public class LoanService implements LoanUseCase {
 
         loan.setReturned(timeProvider.today());
 
+        bookUseCase.endLoanForBook(loan.getBook().getIsbn(), loan);
+        userUseCase.removeLoanFromUser(loan.getUser().getId(), loan);
 
-       //bookUseCase.endLoanForBook(book.getIsbn());
-
-
-
-       return loanPort.save(loan);
+        return loanPort.save(loan);
     }
 
     @Override

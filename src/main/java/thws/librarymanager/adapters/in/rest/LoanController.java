@@ -14,7 +14,6 @@ import thws.librarymanager.application.ports.in.LoanUseCase;
 import thws.librarymanager.application.ports.in.UserUseCase;
 
 import java.net.URI;
-
 @Path("/loans")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -23,88 +22,87 @@ public class LoanController {
     @Context
     UriInfo uriInfo;
 
-    @Inject
-    LoanUseCase loanUseCase;
+    @Context
+    Request request;
 
     @Inject
-    BookUseCase bookUseCase;
+    LoanUseCase loanUseCase;
 
     @Inject
     UserUseCase userUseCase;
 
     @Inject
+    BookUseCase bookUseCase;
+
+    @Inject
     RestMapper restMapper;
 
     @POST
-    public Response createLoan(LoanDTO loanDTO) {
+    public Response createLoan(LoanDTO dto) {
 
-        User user = userUseCase.getUserById(loanDTO.getUserId())
+        User user = userUseCase.getUserById(dto.getUserId())
                 .orElseThrow(() -> new NotFoundException("User not found"));
 
-        Book book = bookUseCase.getBookByIsbn(loanDTO.getIsbn())
+        Book book = bookUseCase.getBookByIsbn(dto.getIsbn())
                 .orElseThrow(() -> new NotFoundException("Book not found"));
 
-        Loan newLoan = loanUseCase.createLoan(user, book);
+        Loan loan = loanUseCase.createLoan(user, book);
 
         URI location = uriInfo.getAbsolutePathBuilder()
-                .path(String.valueOf(newLoan.getId()))
+                .path(String.valueOf(loan.getId()))
                 .build();
 
         return Response.created(location)
-                .entity(restMapper.toLoanDTO(newLoan, uriInfo))
+                .entity(restMapper.toLoanDTO(loan, uriInfo))
                 .build();
     }
+
     @PUT
     @Path("{id}/return")
-    public Response returnLoan(@Context Request request,
-                               @PathParam("id") Long loanId) {
+    public Response returnLoan(@PathParam("id") Long id) {
 
-        Loan loan = loanUseCase.getLoanById(loanId);
+        Loan loan = loanUseCase.getLoanById(id);
 
-        String etagValue = ETagGenerator.fromLoan(loan);
-        EntityTag etag = new EntityTag(etagValue);
+        EntityTag etag =
+                new EntityTag(ETagGenerator.fromLoan(loan));
 
-        Response.ResponseBuilder builder =
+        Response.ResponseBuilder precond =
                 request.evaluatePreconditions(etag);
 
-        if (builder != null) {
-            return builder.build();
+        if (precond != null) {
+            return precond.build(); // 412
         }
 
-        Loan returned = loanUseCase.returnLoan(loanId);
-
-        EntityTag newEtag =
-                new EntityTag(ETagGenerator.fromLoan(returned));
+        Loan returned = loanUseCase.returnLoan(id);
 
         return Response.noContent()
-                .tag(newEtag)
+                .tag(new EntityTag(ETagGenerator.fromLoan(returned)))
                 .build();
     }
+
     @GET
     @Path("{id}")
-    public Response getLoanById(@Context Request request,
-                                @PathParam("id") Long loanId) {
+    public Response getLoan(@PathParam("id") Long id) {
 
-        Loan loan = loanUseCase.getLoanById(loanId);
+        Loan loan = loanUseCase.getLoanById(id);
 
-        String etagValue = ETagGenerator.fromLoan(loan);
-        EntityTag etag = new EntityTag(etagValue);
+        EntityTag etag =
+                new EntityTag(ETagGenerator.fromLoan(loan));
 
-        Response.ResponseBuilder builder =
+        Response.ResponseBuilder precond =
                 request.evaluatePreconditions(etag);
 
-        if (builder != null) {
-            return builder.build();
+        if (precond != null) {
+            return precond.build(); // 304
         }
 
-        CacheControl cacheControl = new CacheControl();
-        cacheControl.setPrivate(true);
-        cacheControl.setMaxAge(3600); // 1 saat
+        CacheControl cc = new CacheControl();
+        cc.setPrivate(true);
+        cc.setMaxAge(3600);
 
         return Response.ok(restMapper.toLoanDTO(loan, uriInfo))
                 .tag(etag)
-                .cacheControl(cacheControl)
+                .cacheControl(cc)
                 .build();
     }
-
 }
