@@ -7,13 +7,11 @@ import jakarta.ws.rs.core.UriInfo;
 import thws.librarymanager.adapters.in.rest.BookController;
 import thws.librarymanager.adapters.in.rest.LibraryController;
 import thws.librarymanager.adapters.in.rest.LoanController;
-import thws.librarymanager.adapters.in.rest.models.BookDTO;
-import thws.librarymanager.adapters.in.rest.models.LibraryDTO;
-import thws.librarymanager.adapters.in.rest.models.Link;
-import thws.librarymanager.adapters.in.rest.models.LoanDTO;
+import thws.librarymanager.adapters.in.rest.models.*;
 import thws.librarymanager.application.domain.models.Book;
 import thws.librarymanager.application.domain.models.Library;
 import thws.librarymanager.application.domain.models.Loan;
+import thws.librarymanager.application.domain.models.User;
 
 @ApplicationScoped
 public class RestMapper {
@@ -29,17 +27,29 @@ public class RestMapper {
         dto.setGenre(book.getGenre());
         dto.setOnLoan(book.isOnLoan());
 
-        String selfHref = uriInfo.getBaseUriBuilder()
+        String bookHref = uriInfo.getBaseUriBuilder()
                 .path(BookController.class)
                 .path(BookController.class, "getBookByIsbn")
                 .build(book.getIsbn())
                 .toString();
 
-        dto.setSelfLink(new Link(selfHref, "self", MediaType.APPLICATION_JSON));
+        dto.addLink(bookHref, "self", MediaType.APPLICATION_JSON);
+
+        dto.addLink(bookHref, "update", MediaType.APPLICATION_JSON);
+
+        dto.addLink(bookHref, "delete", MediaType.APPLICATION_JSON);
+
+        if (book.getLibrary() != null) {
+            String libHref = uriInfo.getBaseUriBuilder()
+                    .path(LibraryController.class)
+                    .path(LibraryController.class, "getLibraryById")
+                    .build(book.getLibrary().getId())
+                    .toString();
+            dto.addLink(libHref, "library", MediaType.APPLICATION_JSON);
+        }
 
         return dto;
     }
-
 
 
     public LibraryDTO toLibraryDTO(Library library, UriInfo uriInfo) {
@@ -50,13 +60,15 @@ public class RestMapper {
         dto.setName(library.getName());
         dto.setLocation(library.getLocation());
 
-        String selfHref = uriInfo.getBaseUriBuilder()
+        String libraryHref = uriInfo.getBaseUriBuilder()
                 .path(LibraryController.class)
                 .path(LibraryController.class, "getLibraryById")
                 .build(library.getId())
                 .toString();
 
-        dto.setSelfLink(new Link(selfHref, "self", MediaType.APPLICATION_JSON));
+        dto.addLink(libraryHref, "self", MediaType.APPLICATION_JSON);
+
+        //Todo
 
         return dto;
     }
@@ -83,13 +95,23 @@ public class RestMapper {
         dto.setReturnDate(loan.getReturnDate());
         dto.setStatus(loan.getStatus());
 
-        String selfHref = uriInfo.getBaseUriBuilder()
+        String loanHref = uriInfo.getBaseUriBuilder()
                 .path(LoanController.class)
                 .path(LoanController.class, "getLoanById")
                 .build(loan.getId())
                 .toString();
-        dto.setSelfLink(new Link(selfHref, "self", MediaType.APPLICATION_JSON));
+
+        dto.addLink(loanHref, "self", MediaType.APPLICATION_JSON);
+
+        //TODO
 
         return dto;
+    }
+
+    public UserDTO toUserDTO(User user, UriInfo uriInfo) {
+
+        //TODO
+
+        return null;
     }
 }
