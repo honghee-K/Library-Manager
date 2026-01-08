@@ -3,6 +3,8 @@ package thws.librarymanager.application.domain.services;
 import java.time.LocalDate;
 import java.util.List;
 
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import thws.librarymanager.application.domain.exceptions.BookAlreadyOnLoanException;
 import thws.librarymanager.application.domain.exceptions.BookNotFoundException;
 import thws.librarymanager.application.domain.exceptions.LoanNotFoundException;
@@ -16,7 +18,7 @@ import thws.librarymanager.application.ports.in.LoanUseCase;
 import thws.librarymanager.application.ports.out.repository.BookPort;
 import thws.librarymanager.application.ports.out.repository.LoanPort;
 import thws.librarymanager.application.ports.out.repository.UserPort;
-
+@ApplicationScoped
 public class LoanService implements LoanUseCase {
 
     private final LoanPort loanPort;
@@ -24,7 +26,7 @@ public class LoanService implements LoanUseCase {
     private final BookPort bookPort;
 
     private final BookUseCase bookUseCase;
-
+    @Inject
     public LoanService(LoanPort loanPort, UserPort userPort, BookPort bookPort, BookUseCase bookUseCase) {
 
         this.loanPort = loanPort;

@@ -3,13 +3,17 @@ package thws.librarymanager.application.domain.services;
 import java.util.List;
 import java.util.Optional;
 
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import thws.librarymanager.application.domain.models.User;
 import thws.librarymanager.application.ports.in.UserUseCase;
 import thws.librarymanager.application.ports.out.repository.UserPort;
 
+@ApplicationScoped
 public class UserService implements UserUseCase {
     private final UserPort userPort;
 
+    @Inject
     public UserService(UserPort userPort) {
         this.userPort = userPort;
     }
