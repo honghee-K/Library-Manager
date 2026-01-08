@@ -61,7 +61,7 @@ public class JpaUserRepository implements UserPort {
 
     @Override
     @Transactional
-    public List<User> findAll() {
+    public List<User> findAll(int page, int size) {
         return (List<User>) entityManager.createQuery("from UserEntity").getResultList();
     }
 

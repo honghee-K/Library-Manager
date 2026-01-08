@@ -18,6 +18,7 @@ public interface UserUseCase {
     void deleteUser(Long id);
 
     void addLoanToUser(Long userId, Loan loan);
+
     void removeLoanFromUser(Long userId, Loan loan);
 
 }
