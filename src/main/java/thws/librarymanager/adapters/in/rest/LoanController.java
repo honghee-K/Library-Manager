@@ -5,6 +5,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.*;
 import thws.librarymanager.adapters.in.rest.mapper.RestMapper;
 import thws.librarymanager.adapters.in.rest.models.LoanDTO;
+import thws.librarymanager.adapters.in.rest.util.ETagGenerator;
 import thws.librarymanager.application.domain.models.Book;
 import thws.librarymanager.application.domain.models.Loan;
 import thws.librarymanager.application.domain.models.User;
@@ -36,6 +37,7 @@ public class LoanController {
 
     @POST
     public Response createLoan(LoanDTO loanDTO) {
+
         User user = userUseCase.getUserById(loanDTO.getUserId())
                 .orElseThrow(() -> new NotFoundException("User not found"));
 
@@ -52,13 +54,57 @@ public class LoanController {
                 .entity(restMapper.toLoanDTO(newLoan, uriInfo))
                 .build();
     }
+    @PUT
+    @Path("{id}/return")
+    public Response returnLoan(@Context Request request,
+                               @PathParam("id") Long loanId) {
 
+        Loan loan = loanUseCase.getLoanById(loanId);
+
+        String etagValue = ETagGenerator.fromLoan(loan);
+        EntityTag etag = new EntityTag(etagValue);
+
+        Response.ResponseBuilder builder =
+                request.evaluatePreconditions(etag);
+
+        if (builder != null) {
+            return builder.build();
+        }
+
+        Loan returned = loanUseCase.returnLoan(loanId);
+
+        EntityTag newEtag =
+                new EntityTag(ETagGenerator.fromLoan(returned));
+
+        return Response.noContent()
+                .tag(newEtag)
+                .build();
+    }
     @GET
-    @Path("/{id}")
-    public Response getLoanById(@PathParam("id") Long id) {
-        Loan loan = loanUseCase.getLoanById(id);
-        return Response.ok(restMapper.toLoanDTO(loan, uriInfo)).build();
+    @Path("{id}")
+    public Response getLoanById(@Context Request request,
+                                @PathParam("id") Long loanId) {
+
+        Loan loan = loanUseCase.getLoanById(loanId);
+
+        String etagValue = ETagGenerator.fromLoan(loan);
+        EntityTag etag = new EntityTag(etagValue);
+
+        Response.ResponseBuilder builder =
+                request.evaluatePreconditions(etag);
+
+        if (builder != null) {
+            return builder.build();
+        }
+
+        CacheControl cacheControl = new CacheControl();
+        cacheControl.setPrivate(true);
+        cacheControl.setMaxAge(3600); // 1 saat
+
+        return Response.ok(restMapper.toLoanDTO(loan, uriInfo))
+                .tag(etag)
+                .cacheControl(cacheControl)
+                .build();
     }
 
-    //TODO
 }
