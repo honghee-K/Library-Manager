@@ -12,11 +12,11 @@ public interface LoanUseCase {
 
     Loan createLoan(User user, Book book);
 
-    //Loan returnLoan(Long loanId);
+    //Loan returnLoan(Long loanId); //TODO
 
     Loan getLoanById(Long loanId);
 
 /*    List<Loan> searchLoans(Long userId, Long bookId, LoanStatus status, int page, int size);
 
-    Loan extendLoanPeriod(Long loanId, LocalDate newDueDate);*/
+    Loan extendLoanPeriod(Long loanId, LocalDate newDueDate);*/ //WEG!!!
 }

@@ -16,6 +16,8 @@ import thws.librarymanager.application.domain.models.User;
 @ApplicationScoped
 public class RestMapper {
 
+
+    //TODO: Jede andere Links in HEADER speichern (siehe das FOTO)
     public BookDTO toBookDTO(Book book, UriInfo uriInfo) {
         if (book == null) return null;
 
@@ -26,6 +28,10 @@ public class RestMapper {
         dto.setAuthor(book.getAuthor());
         dto.setGenre(book.getGenre());
         dto.setOnLoan(book.isOnLoan());
+
+        if (book.getLibrary() != null) {
+            dto.setLibraryId(book.getLibrary().getId());
+        }
 
         String bookHref = uriInfo.getBaseUriBuilder()
                 .path(BookController.class)
