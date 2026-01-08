@@ -13,6 +13,7 @@ import jakarta.ws.rs.core.*;
 
 import thws.librarymanager.adapters.in.rest.mapper.RestMapper;
 import thws.librarymanager.adapters.in.rest.models.LibraryDTO;
+import thws.librarymanager.adapters.in.rest.util.LibraryServiceLogger;
 import thws.librarymanager.application.domain.models.Library;
 import thws.librarymanager.application.ports.in.LibraryUseCase;
 
@@ -31,6 +32,7 @@ public class LibraryController {
     @Context
     UriInfo uriInfo;
 
+
     @GET
     public Response getAllLibraries(
             @QueryParam("location") String location,
@@ -43,8 +45,14 @@ public class LibraryController {
                 .map(lib -> mapper.toLibraryDTO(lib, uriInfo))
                 .collect(Collectors.toList());
 
-        return Response.ok(dtos).build();
+        LibraryServiceLogger.logGetAll();
+
+        return Response.ok(dtos)
+                .header(HttpHeaders.CACHE_CONTROL, "public, max-age=60")
+                .build();
     }
+
+
 
     @GET
     @Path("/{id}")
@@ -52,11 +60,23 @@ public class LibraryController {
 
         Optional<Library> library = libraryUseCase.getLibraryById(id);
 
-        return library
-                .map(lib -> mapper.toLibraryDTO(lib, uriInfo))
-                .map(dto -> Response.ok(dto).build())
-                .orElseGet(() -> Response.status(Response.Status.NOT_FOUND).build());
+        if (library.isEmpty()) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+
+        LibraryDTO dto = mapper.toLibraryDTO(library.get(), uriInfo);
+
+        CacheControl cacheControl = new CacheControl();
+        cacheControl.setPrivate(true);
+        cacheControl.setMaxAge(30);
+
+        LibraryServiceLogger.logGetAll();
+
+        return Response.ok(dto)
+                .cacheControl(cacheControl)
+                .build();
     }
+
     @POST
     public Response addLibrary(LibraryDTO dto) {
 
@@ -135,7 +155,13 @@ public class LibraryController {
 
         Long count = libraryUseCase.getTotalBookCount(libraryId);
 
-        return Response.ok(count).build();
+        CacheControl cacheControl = new CacheControl();
+        cacheControl.setPrivate(true);  // library’ye özel
+        cacheControl.setMaxAge(30);      // 30 saniye
+
+        return Response.ok(count)
+                .cacheControl(cacheControl)
+                .build();
     }
 
 
