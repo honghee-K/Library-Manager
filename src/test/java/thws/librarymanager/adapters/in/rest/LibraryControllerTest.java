@@ -2,7 +2,6 @@ package thws.librarymanager.adapters.in.rest;
 
 import java.util.List;
 
-import io.quarkus.test.TestTransaction;
 import jakarta.inject.Inject;
 
 import io.quarkus.test.common.http.TestHTTPEndpoint;
@@ -13,8 +12,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.*;
 
-import org.junit.jupiter.api.extension.MediaType;
-import thws.librarymanager.adapters.in.rest.models.BookDTO;
 import thws.librarymanager.adapters.in.rest.models.LibraryDTO;
 import thws.librarymanager.application.domain.models.Book;
 import thws.librarymanager.application.domain.models.Library;
@@ -178,10 +175,10 @@ public class LibraryControllerTest {
         Assertions.assertEquals(0L, count);
     }
 
-<<<<<<< HEAD
+
     @Test
     @Order(7)
-    void addBookToLibrary_existingBook_existingLibrary() {
+    void addBookToLibrary() {
 
         Long beforeCount =
                 RestAssured.given()
@@ -219,7 +216,7 @@ public class LibraryControllerTest {
 
     @Test
     @Order(8)
-    void removeBookFromLibrary_simple() {
+    void removeBookFromLibrary() {
 
         Long beforeCount =
                 RestAssured.given()
@@ -233,45 +230,11 @@ public class LibraryControllerTest {
         RestAssured.given()
                 .pathParam("libraryId", lib1Id)
                 .pathParam("isbn", 1234L)
-=======
-
-   /* @Test
-    @Order(7)
-    void addBookToLibrary() {
-
-        ;
-    }
-
-
-    @Test
-    @Order(8)
-    @Transactional
-    void removeBookFromLibrary() {
-
-        // GIVEN: library’ye bağlı bir kitap
-        Book book = bookPort.save(
-                new Book(
-                        null,
-                        12345L,
-                        "Test Book",
-                        "Test Author",
-                        "Test Genre",
-                        libraryPort.getLibraryById(lib1Id).orElseThrow(),
-                        null
-                )
-        );
-
-        // WHEN: kitabi library’den çıkar
-        RestAssured.given()
-                .pathParam("libraryId", lib1Id)
-                .pathParam("isbn", book.getIsbn())
->>>>>>> cbf021e000c600a5929ffe1841b3c96923ef700e
                 .when()
                 .delete("/{libraryId}/books/{isbn}")
                 .then()
                 .statusCode(204);
 
-<<<<<<< HEAD
         Long afterCount =
                 RestAssured.given()
                         .pathParam("libraryId", lib1Id)
@@ -286,13 +249,8 @@ public class LibraryControllerTest {
 
 
 
-=======
-        // THEN: DB kontrol
-        Book updated = bookPort.getBookByIsbn(book.getIsbn()).orElseThrow();
-        Assertions.assertNull(updated.getLibrary());
-    }*/
 
->>>>>>> cbf021e000c600a5929ffe1841b3c96923ef700e
+
 
     @Test
     @Order(9)
