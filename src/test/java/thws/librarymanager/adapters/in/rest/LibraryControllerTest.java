@@ -178,6 +178,7 @@ public class LibraryControllerTest {
         Assertions.assertEquals(0L, count);
     }
 
+<<<<<<< HEAD
     @Test
     @Order(7)
     void addBookToLibrary_existingBook_existingLibrary() {
@@ -232,11 +233,45 @@ public class LibraryControllerTest {
         RestAssured.given()
                 .pathParam("libraryId", lib1Id)
                 .pathParam("isbn", 1234L)
+=======
+
+   /* @Test
+    @Order(7)
+    void addBookToLibrary() {
+
+        ;
+    }
+
+
+    @Test
+    @Order(8)
+    @Transactional
+    void removeBookFromLibrary() {
+
+        // GIVEN: library’ye bağlı bir kitap
+        Book book = bookPort.save(
+                new Book(
+                        null,
+                        12345L,
+                        "Test Book",
+                        "Test Author",
+                        "Test Genre",
+                        libraryPort.getLibraryById(lib1Id).orElseThrow(),
+                        null
+                )
+        );
+
+        // WHEN: kitabi library’den çıkar
+        RestAssured.given()
+                .pathParam("libraryId", lib1Id)
+                .pathParam("isbn", book.getIsbn())
+>>>>>>> cbf021e000c600a5929ffe1841b3c96923ef700e
                 .when()
                 .delete("/{libraryId}/books/{isbn}")
                 .then()
                 .statusCode(204);
 
+<<<<<<< HEAD
         Long afterCount =
                 RestAssured.given()
                         .pathParam("libraryId", lib1Id)
@@ -251,6 +286,13 @@ public class LibraryControllerTest {
 
 
 
+=======
+        // THEN: DB kontrol
+        Book updated = bookPort.getBookByIsbn(book.getIsbn()).orElseThrow();
+        Assertions.assertNull(updated.getLibrary());
+    }*/
+
+>>>>>>> cbf021e000c600a5929ffe1841b3c96923ef700e
 
     @Test
     @Order(9)
