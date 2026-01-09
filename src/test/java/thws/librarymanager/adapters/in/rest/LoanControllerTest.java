@@ -26,7 +26,8 @@ import static io.restassured.RestAssured.given;
 @QuarkusTest
 @TestHTTPEndpoint(LoanController.class)
 public class LoanControllerTest {
-/*
+    /*
+
     @Inject
     EntityManager em;
 

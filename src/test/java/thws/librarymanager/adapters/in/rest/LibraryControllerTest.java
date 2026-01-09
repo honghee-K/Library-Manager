@@ -46,6 +46,8 @@ public class LibraryControllerTest {
         Library lib1 = libraryPort.save(new Library(null, "Central Library", "Berlin", null));
         libraryPort.save(new Library(null, "City Library", "Hamburg", null));
         this.lib1Id = lib1.getId();
+        Book book1 = new Book(null, 1234L, "title1", "author1", "genre", null, null);
+        bookPort.save(book1);
 
     }
 
@@ -176,46 +178,78 @@ public class LibraryControllerTest {
         Assertions.assertEquals(0L, count);
     }
 
-
-   /* @Test
+    @Test
     @Order(7)
-    void addBookToLibrary() {
+    void addBookToLibrary_existingBook_existingLibrary() {
 
-        ;
+        Long beforeCount =
+                RestAssured.given()
+                        .pathParam("libraryId", lib1Id)
+                        .when()
+                        .get("/{libraryId}/books/count")
+                        .then()
+                        .statusCode(200)
+                        .extract()
+                        .as(Long.class);
+
+        RestAssured.given()
+                .pathParam("libraryId", lib1Id)
+                .pathParam("isbn", 1234L)
+                .when()
+                .post("/{libraryId}/books/{isbn}")
+                .then()
+                .statusCode(204);
+
+        Long afterCount =
+                RestAssured.given()
+                        .pathParam("libraryId", lib1Id)
+                        .when()
+                        .get("/{libraryId}/books/count")
+                        .then()
+                        .statusCode(200)
+                        .extract()
+                        .as(Long.class);
+
+        Assertions.assertEquals(beforeCount + 1, afterCount);
     }
+
+
 
 
     @Test
     @Order(8)
-    @Transactional
-    void removeBookFromLibrary() {
+    void removeBookFromLibrary_simple() {
 
-        // GIVEN: library’ye bağlı bir kitap
-        Book book = bookPort.save(
-                new Book(
-                        null,
-                        12345L,
-                        "Test Book",
-                        "Test Author",
-                        "Test Genre",
-                        libraryPort.getLibraryById(lib1Id).orElseThrow(),
-                        null
-                )
-        );
+        Long beforeCount =
+                RestAssured.given()
+                        .pathParam("libraryId", lib1Id)
+                        .get("/{libraryId}/books/count")
+                        .then()
+                        .statusCode(200)
+                        .extract()
+                        .as(Long.class);
 
-        // WHEN: kitabi library’den çıkar
         RestAssured.given()
                 .pathParam("libraryId", lib1Id)
-                .pathParam("isbn", book.getIsbn())
+                .pathParam("isbn", 1234L)
                 .when()
                 .delete("/{libraryId}/books/{isbn}")
                 .then()
                 .statusCode(204);
 
-        // THEN: DB kontrol
-        Book updated = bookPort.getBookByIsbn(book.getIsbn()).orElseThrow();
-        Assertions.assertNull(updated.getLibrary());
-    }*/
+        Long afterCount =
+                RestAssured.given()
+                        .pathParam("libraryId", lib1Id)
+                        .get("/{libraryId}/books/count")
+                        .then()
+                        .statusCode(200)
+                        .extract()
+                        .as(Long.class);
+
+        Assertions.assertEquals(beforeCount - 1, afterCount);
+    }
+
+
 
 
     @Test
