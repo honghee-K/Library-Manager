@@ -119,7 +119,7 @@ public class UserControllerTest {
                 .get("/")
                 .then()
                 .statusCode(200)
-                .headers("Link", Matchers.hasItem(Matchers.containsString("rel=\"self\"")))
+                .header("Link", Matchers.containsString("rel=\"self\""))
                 .extract()
                 .as(new TypeRef<>() {});
 
@@ -142,7 +142,7 @@ public class UserControllerTest {
                 .put("/{id}")
                 .then()
                 .statusCode(204)
-                .headers("Link", Matchers.hasItem(Matchers.containsString("rel=\"self\"")));
+                .header("Link", Matchers.containsString("rel=\"self\""));
 
         RestAssured.given()
                 .when()
@@ -162,7 +162,7 @@ public class UserControllerTest {
                 .delete("/{id}")
                 .then()
                 .statusCode(204)
-                .headers("Link", Matchers.hasItem(Matchers.containsString("rel=\"collection\"")));
+                .header("Link", Matchers.containsString("rel=\"collection\""));
 
         RestAssured.given()
                 .when()

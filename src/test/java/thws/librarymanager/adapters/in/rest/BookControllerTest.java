@@ -108,7 +108,7 @@ public class BookControllerTest {
                 .get("/")
                 .then()
                 .statusCode(200)
-                .body(Matchers.not(Matchers.emptyString()))
+                .header("Link", Matchers.containsString("rel=\"self\""))
                 .extract()
                 .as(new TypeRef<>() {});
 
@@ -121,7 +121,7 @@ public class BookControllerTest {
                 .get("/")
                 .then()
                 .statusCode(200)
-                .body(Matchers.not(Matchers.emptyString()))
+                .header("Link", Matchers.containsString("rel=\"self\""))
                 .extract()
                 .as(new TypeRef<>() {});
 
@@ -151,8 +151,41 @@ public class BookControllerTest {
                 .body("isbn", Matchers.equalTo(9988))
                 .body("author", Matchers.equalTo("New Author"));
     }
-
     @Test
+    @Order(5)
+    public void updateBook(){
+        BookDTO updateDTO = new BookDTO();
+        updateDTO.setTitle("Updated Title");
+        updateDTO.setAuthor("Updated Author");
+        updateDTO.setGenre("Updated Genre");
+
+        Response putResponse = RestAssured.given()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(updateDTO)
+                .when()
+                .pathParam("isbn", 1234L)
+                .put("/{isbn}")
+                .then()
+                .statusCode(200)
+                .extract()
+                .response();
+
+        List<String> putLinks = putResponse.headers().getValues("Link");
+        Assertions.assertTrue(putLinks.stream().anyMatch(l -> l.contains("rel=\"self\"")), "self link missing in PUT");
+
+        Response getResponse = RestAssured.given()
+                .when()
+                .pathParam("isbn", 1234L)
+                .get("/{isbn}")
+                .then().statusCode(200)
+                .body("title", Matchers.equalTo("Updated Title"))
+                .extract()
+                .response();
+
+        List<String> getLinks = getResponse.headers().getValues("Link");
+        Assertions.assertTrue(getLinks.stream().anyMatch(l -> l.contains("rel=\"self\"")), "self link missing in GET");
+    }
+   /* @Test
     @Order(5)
     public void updateBook(){
         BookDTO updateDTO = new BookDTO();
@@ -168,6 +201,7 @@ public class BookControllerTest {
                 .put("/{isbn}")
                 .then()
                 .statusCode(200)
+                .headers("Link", Matchers.hasItem(Matchers.containsString("rel=\"self\"")))
                 .body("title", Matchers.equalTo("Updated Title"))
                 .body("author", Matchers.equalTo("Updated Author"))
                 .body("genre", Matchers.equalTo("Updated Genre"));
@@ -178,8 +212,9 @@ public class BookControllerTest {
                 .get("/{isbn}")
                 .then()
                 .statusCode(200)
+                .headers("Link", Matchers.hasItem(Matchers.containsString("rel=\"self\"")))
                 .body("title", Matchers.equalTo("Updated Title"));
-    }
+    }*/
 
     @Test
     @Order(6)

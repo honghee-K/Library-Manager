@@ -140,7 +140,7 @@ public class LibraryControllerTest {
         RestAssured.given()
                 .contentType("application/json")
                 .body(update)
-                .pathParam("id", 1L)
+                .pathParam("id", lib1Id)
                 .when()
                 .put("/{id}")
                 .then()
@@ -148,7 +148,7 @@ public class LibraryControllerTest {
 
         LibraryDTO updated =
                 RestAssured.given()
-                        .pathParam("id", 1L)
+                        .pathParam("id", lib1Id)
                         .get("/{id}")
                         .then()
                         .statusCode(200)
