@@ -189,7 +189,7 @@ public class JpaConverter {
 
 
     public User toUser(UserEntity userEntity) {
-
+        if (userEntity == null) return null;
         return new User(userEntity.getId(), userEntity.getName(), userEntity.getEmail());
     }
 

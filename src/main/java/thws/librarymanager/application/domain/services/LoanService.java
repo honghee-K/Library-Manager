@@ -31,14 +31,14 @@ public class LoanService implements LoanUseCase {
     private final BookUseCase bookUseCase;
     private final UserUseCase userUseCase;
     @Inject
-    public LoanService(LoanPort loanPort, UserPort userPort, BookPort bookPort, BookUseCase bookUseCase,TimeProvider timeProvider,UserUseCase userUseCase) {
+    public LoanService(LoanPort loanPort, UserPort userPort, BookPort bookPort, BookUseCase bookUseCase, UserUseCase userUseCase, TimeProvider timeProvider) {
 
         this.loanPort = loanPort;
         this.userPort = userPort;
         this.bookPort = bookPort;
         this.bookUseCase = bookUseCase;
-        this.timeProvider = timeProvider;
         this.userUseCase= userUseCase;
+        this.timeProvider = timeProvider;
 
     }
 
@@ -56,6 +56,7 @@ public class LoanService implements LoanUseCase {
         loanPort.save(loan);
 
         bookUseCase.startLoanForBook(book.getIsbn(), loan);
+        userUseCase.addLoanToUser(user.getId(), loan);
         return loan;
     }
 

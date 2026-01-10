@@ -2,8 +2,6 @@ package thws.librarymanager.adapters.in.rest;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
@@ -11,18 +9,16 @@ import jakarta.ws.rs.core.*;
 
 import thws.librarymanager.adapters.in.rest.mapper.RestMapper;
 import thws.librarymanager.adapters.in.rest.models.BookDTO;
+import thws.librarymanager.adapters.in.rest.util.ETagGenerator;
 import thws.librarymanager.application.domain.models.Book;
 import thws.librarymanager.application.domain.models.Library;
 import thws.librarymanager.application.ports.in.BookUseCase;
 import thws.librarymanager.application.ports.in.LibraryUseCase;
-import thws.librarymanager.application.ports.out.repository.LibraryPort;
-
-//TODO: CACHE - 1. Validation 2.Expiration Wählen!
 
 @Path("/books")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class BookController {
+public class BookController extends BaseController{
 
     @Context
     UriInfo uriInfo;
@@ -57,35 +53,69 @@ public class BookController {
                 .path(String.valueOf(newBook.getIsbn()))
                 .build();
 
-        return Response.created(bookUri)
-                .entity(restMapper.toBookDTO(newBook, uriInfo))
-                .build();
+        Response.ResponseBuilder rb = Response.created(bookUri);
+        addLink(rb, bookUri, "self");
+
+        return rb.entity(restMapper.toBookDTO(newBook)).build();
     }
 
     @PUT
     @Path("/{isbn}")
     public Response updateBook(@PathParam("isbn") Long isbn, BookDTO updateDTO) {
         bookUseCase.updateBook(isbn, updateDTO.getTitle(), updateDTO.getAuthor(), updateDTO.getGenre());
+
         Book updatedBook = bookUseCase.getBookByIsbn(isbn)
-                .orElseThrow(() -> new NotFoundException("Book not found after update"));
-        return Response.ok(restMapper.toBookDTO(updatedBook, uriInfo)).build();
+                .orElseThrow(() -> new NotFoundException("Book not found"));
+        BookDTO responseDto = restMapper.toBookDTO(updatedBook);
+
+        EntityTag etag = new EntityTag(ETagGenerator.fromBook(updatedBook));
+
+        Response.ResponseBuilder rb = Response.ok(responseDto);
+        addLink(rb, uriInfo.getAbsolutePath(), "self");
+
+        CacheControl cc = new CacheControl();
+        cc.setMaxAge(60);
+        cc.setPrivate(true);
+
+        return rb.tag(etag).cacheControl(cc).build();
     }
 
     @DELETE
     @Path("/{isbn}")
     public Response deleteBook(@PathParam("isbn") Long isbn) {
         bookUseCase.deleteBook(isbn);
-        return Response.noContent().build();
+
+        URI collectionUri = uriInfo.getBaseUriBuilder().path(BookController.class).build();
+        Response.ResponseBuilder rb = Response.noContent();
+        addLink(rb, collectionUri, "collection");
+
+        return rb.build();
     }
     
     @GET
     @Path("/{isbn}")
     public Response getBookByIsbn(@PathParam("isbn") Long isbn) {
-        Optional<Book> book = bookUseCase.getBookByIsbn(isbn);
+        Book book = bookUseCase.getBookByIsbn(isbn)
+                .orElseThrow(() -> new NotFoundException("Book not found"));
+        BookDTO dto = restMapper.toBookDTO(book);
 
-        return book.map(b -> restMapper.toBookDTO(b, uriInfo))
-                .map(dto -> Response.ok(dto).build())
-                .orElseGet(() -> Response.status(Response.Status.NOT_FOUND).build());
+        URI selfUri = uriInfo.getAbsolutePath();
+        Response.ResponseBuilder rb = Response.ok(dto);
+        addLink(rb, selfUri, "self");
+        addLink(rb, selfUri, "update");
+        addLink(rb, selfUri, "delete");
+
+        if (book.getLibrary() != null) {
+            addRelationLink(rb, uriInfo, LibraryController.class, "getLibraryById",
+                    book.getLibrary().getId(), "library");
+        }
+
+        CacheControl cc = new CacheControl();
+        cc.setMaxAge(60);
+        cc.setPrivate(true);
+        rb.cacheControl(cc);
+
+        return rb.build();
     }
 
     @GET
@@ -96,11 +126,16 @@ public class BookController {
             @QueryParam("author") String author) {
 
         List<Book> books = bookUseCase.getAllBooks(page, size, author, genre);
+        List<BookDTO> dtos = restMapper.toBookDTOs(books);
 
-        List<BookDTO> dtos =
-                books.stream().map(book -> restMapper.toBookDTO(book, uriInfo)).collect(Collectors.toList());
+        Response.ResponseBuilder rb = Response.ok(dtos);
+        addLink(rb, uriInfo.getAbsolutePath(), "self");
 
-        return Response.ok(dtos).build();
+        CacheControl cc = new CacheControl();
+        cc.setMaxAge(60);
+        rb.cacheControl(cc);
+
+        return rb.build();
     }
 
     /* @GET

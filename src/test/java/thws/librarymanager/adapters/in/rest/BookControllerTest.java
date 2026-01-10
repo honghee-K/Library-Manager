@@ -2,6 +2,7 @@ package thws.librarymanager.adapters.in.rest;
 
 import java.util.List;
 
+import io.restassured.response.Response;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -65,7 +66,6 @@ public class BookControllerTest {
                 .get("/{isbn}")
                 .then()
                 .statusCode(200)
-                .body(Matchers.not(Matchers.emptyString()))
                 .extract()
                 .as(BookDTO.class);
 
@@ -79,9 +79,28 @@ public class BookControllerTest {
                 .then()
                 .statusCode(404);
     }
-
     @Test
     @Order(2)
+    public void getBookByIsbn_HeaderAndCacheValidation() {
+        Response response = RestAssured.given()
+                .when()
+                .pathParam("isbn", 1234L)
+                .get("/{isbn}");
+
+        response.then().statusCode(200);
+
+        List<String> links = response.headers().getValues("Link");
+
+        Assertions.assertTrue(links.stream().anyMatch(l -> l.contains("rel=\"self\"")), "self missing");
+        Assertions.assertTrue(links.stream().anyMatch(l -> l.contains("rel=\"update\"")), "update missing");
+        Assertions.assertTrue(links.stream().anyMatch(l -> l.contains("rel=\"delete\"")), "delete missing");
+        Assertions.assertTrue(links.stream().anyMatch(l -> l.contains("rel=\"library\"")), "library relationship missing");
+
+        response.then().header("Cache-Control", Matchers.containsString("max-age=60"));
+    }
+
+    @Test
+    @Order(3)
     public void getAllBooks() {
 
         List<BookDTO> bookDTOs = RestAssured.given()
@@ -112,7 +131,7 @@ public class BookControllerTest {
     }
 
     @Test
-    @Order(3)
+    @Order(4)
     public void addBook() {
         BookDTO newBookDTO = new BookDTO();
         newBookDTO.setIsbn(9988L);
@@ -134,7 +153,7 @@ public class BookControllerTest {
     }
 
     @Test
-    @Order(4)
+    @Order(5)
     public void updateBook(){
         BookDTO updateDTO = new BookDTO();
         updateDTO.setTitle("Updated Title");
@@ -152,7 +171,7 @@ public class BookControllerTest {
                 .body("title", Matchers.equalTo("Updated Title"))
                 .body("author", Matchers.equalTo("Updated Author"))
                 .body("genre", Matchers.equalTo("Updated Genre"));
-        //Check
+
         RestAssured.given()
                 .when()
                 .pathParam("isbn", 1234L)
@@ -163,7 +182,7 @@ public class BookControllerTest {
     }
 
     @Test
-    @Order(5)
+    @Order(6)
     public void deleteBook(){
         RestAssured.given()
                 .when()
@@ -171,7 +190,7 @@ public class BookControllerTest {
                 .delete("/{isbn}")
                 .then()
                 .statusCode(204);
-        //check
+
         RestAssured.given()
                 .when()
                 .pathParam("isbn", 1235L)
@@ -179,7 +198,4 @@ public class BookControllerTest {
                 .then()
                 .statusCode(404);
     }
-
-
-
 }

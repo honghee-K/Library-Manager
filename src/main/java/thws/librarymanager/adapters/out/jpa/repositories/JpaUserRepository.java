@@ -11,6 +11,7 @@ import jakarta.transaction.Transactional;
 
 import thws.librarymanager.adapters.out.jpa.converter.JpaConverter;
 import thws.librarymanager.adapters.out.jpa.entities.UserEntity;
+import thws.librarymanager.adapters.out.jpa.enums.LoanStatusJpa;
 import thws.librarymanager.application.domain.models.User;
 import thws.librarymanager.application.ports.out.repository.UserPort;
 
@@ -28,38 +29,26 @@ public class JpaUserRepository implements UserPort {
     @Override
     @Transactional
     public User save(User user) {
-
         UserEntity userEntity = jpaConverter.toJpaUser(user);
-        userEntity.setId(null); // TODO
 
-        entityManager.persist(userEntity);
-
-        return jpaConverter.toUser(userEntity);
+        if (userEntity.getId() == null) {
+            entityManager.persist(userEntity);
+            return jpaConverter.toUser(userEntity);
+        } else {
+            UserEntity merged = entityManager.merge(userEntity);
+            return jpaConverter.toUser(merged);
+        }
     }
 
     @Override
     @Transactional
     public Optional<User> findById(Long id) {
         UserEntity entity = entityManager.find(UserEntity.class, id);
-        return Optional.ofNullable(jpaConverter.toUser(entity));
-    }
-
-    @Override
-    @Transactional
-    public Optional<User> findByName(String name) {
-
-        Object user = entityManager
-                .createQuery("from UserEntity where name = :name")
-                .setParameter("name", name)
-                .getSingleResultOrNull();
-
-        if (user instanceof UserEntity userEntity) {
-            return Optional.of(jpaConverter.toUser(userEntity));
+        if (entity == null) {
+            return Optional.empty();
         }
-
-        return Optional.empty();
+        return Optional.of(jpaConverter.toUser(entity));
     }
-
 
     @Override
     @Transactional
@@ -83,19 +72,17 @@ public class JpaUserRepository implements UserPort {
     @Override
     @Transactional
     public boolean hasActiveLoans(Long userId) {
-        throw new RuntimeException("not implemented");
-    }
-
-    @Override
-    @Transactional
-    public boolean existsById(Long id) {
-        throw new RuntimeException("not implemented");
+        return entityManager.createQuery(
+                        "SELECT COUNT(l) FROM LoanEntity l WHERE l.user.id = :userId AND l.status = :status", Long.class)
+                .setParameter("userId", userId)
+                .setParameter("status", LoanStatusJpa.ACTIVE)
+                .getSingleResult() > 0;
     }
 
     @Override
     @Transactional
     public boolean existsByEmail(String email) {
-        Long count = entityManager.createQuery("select count(u) from UserEntity u where u.email = :email", Long.class)
+        Long count = entityManager.createQuery("select COUNT(u) from UserEntity u where u.email = :email", Long.class)
                 .setParameter("email", email)
                 .getSingleResult();
         return count > 0;

@@ -21,7 +21,7 @@ import thws.librarymanager.application.ports.in.LibraryUseCase;
 @Path("/libraries")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class LibraryController {
+public class LibraryController extends BaseController{
 
     @Inject
     LibraryUseCase libraryUseCase;
@@ -42,17 +42,48 @@ public class LibraryController {
         List<LibraryDTO> dtos = libraryUseCase
                 .getAllLibraries(location, name)
                 .stream()
-                .map(lib -> mapper.toLibraryDTO(lib, uriInfo))
+                .map(lib -> mapper.toLibraryDTO(lib))
                 .collect(Collectors.toList());
 
         LibraryServiceLogger.logGetAll();
 
-        return Response.ok(dtos)
-                .header(HttpHeaders.CACHE_CONTROL, "public, max-age=60")
-                .build();
+        Response.ResponseBuilder rb = Response.ok(dtos);
+
+        addLink(rb, uriInfo.getAbsolutePath(), "self");
+
+        CacheControl cc = new CacheControl();
+        cc.setMaxAge(60);
+        cc.setPrivate(false);
+        rb.cacheControl(cc);
+
+        return rb.build();
     }
 
+//
+/*    @GET
+    public Response getAllLibraries(
+            @QueryParam("location") String location,
+            @QueryParam("name") String name) {
 
+
+        List<Library> libraries = libraryUseCase.getAllLibraries(location, name);
+        List<LibraryDTO> dtos = libraries.stream()
+                .map(lib -> mapper.toLibraryDTO(lib))
+                .collect(Collectors.toList());
+
+        LibraryServiceLogger.logGetAll();
+
+        Response.ResponseBuilder rb = Response.ok(dtos);
+
+        addLink(rb, uriInfo.getAbsolutePath(), "self");
+
+        CacheControl cc = new CacheControl();
+        cc.setMaxAge(60);
+        cc.setPrivate(false);
+        rb.cacheControl(cc);
+
+        return rb.build();
+    }*/
 
     @GET
     @Path("/{id}")
@@ -64,17 +95,28 @@ public class LibraryController {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
 
-        LibraryDTO dto = mapper.toLibraryDTO(library.get(), uriInfo);
+        LibraryDTO dto = mapper.toLibraryDTO(library.get());
+
+        Response.ResponseBuilder rb = Response.ok(dto);
+        URI selfUri = uriInfo.getAbsolutePath();
+        addLink(rb, selfUri, "self");
+        addLink(rb, selfUri, "update");
+        addLink(rb, selfUri, "delete");
+
+        URI booksInLibUri = uriInfo.getBaseUriBuilder()
+                .path(BookController.class)
+                .queryParam("libraryId", id)
+                .build();
+        addLink(rb, booksInLibUri, "books");
 
         CacheControl cacheControl = new CacheControl();
         cacheControl.setPrivate(true);
         cacheControl.setMaxAge(30);
+        rb.cacheControl(cacheControl);
 
         LibraryServiceLogger.logGetAll();
 
-        return Response.ok(dto)
-                .cacheControl(cacheControl)
-                .build();
+        return rb.build();
     }
 
     @POST
@@ -93,10 +135,10 @@ public class LibraryController {
                 .path(String.valueOf(saved.getId()))
                 .build();
 
-        return Response
-                .created(uri) // 201 CREATED
-                .entity(mapper.toLibraryDTO(saved, uriInfo))
-                .build();
+        Response.ResponseBuilder rb = Response.created(uri);
+        addLink(rb, uri, "self");
+
+        return rb.entity(mapper.toLibraryDTO(saved)).build(); // 201 CREATED
     }
 
 
@@ -113,7 +155,10 @@ public class LibraryController {
                 dto.getLocation()
         );
 
-        return Response.noContent().build();
+        Response.ResponseBuilder rb = Response.noContent();
+        addLink(rb, uriInfo.getAbsolutePath(), "self");
+
+        return rb.build();
     }
 
     @DELETE
@@ -122,7 +167,11 @@ public class LibraryController {
 
         libraryUseCase.deleteLibrary(id);
 
-        return Response.noContent().build();
+        URI collectionUri = uriInfo.getBaseUriBuilder().path(LibraryController.class).build();
+        Response.ResponseBuilder rb = Response.noContent();
+        addLink(rb, collectionUri, "collection");
+
+        return rb.build();
     }
 
 
@@ -135,7 +184,15 @@ public class LibraryController {
 
         libraryUseCase.addBookToLibrary(libraryId, isbn);
 
-        return Response.noContent().build();
+        URI libraryUri = uriInfo.getBaseUriBuilder()
+                .path(LibraryController.class)
+                .path(String.valueOf(libraryId))
+                .build();
+
+        Response.ResponseBuilder rb = Response.noContent();
+        addLink(rb, libraryUri, "library");
+
+        return rb.build();
     }
 
     @DELETE
@@ -157,13 +214,15 @@ public class LibraryController {
 
         Long count = libraryUseCase.getTotalBookCount(libraryId);
 
+        Response.ResponseBuilder rb = Response.ok(count);
+
         CacheControl cacheControl = new CacheControl();
         cacheControl.setPrivate(true);  // library’ye özel
         cacheControl.setMaxAge(30);      // 30 saniye
 
-        return Response.ok(count)
-                .cacheControl(cacheControl)
-                .build();
+        rb.cacheControl(cacheControl);
+
+        return rb.build();
     }
 
 

@@ -4,21 +4,18 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.UriInfo;
 
-import thws.librarymanager.adapters.in.rest.BookController;
-import thws.librarymanager.adapters.in.rest.LibraryController;
-import thws.librarymanager.adapters.in.rest.LoanController;
 import thws.librarymanager.adapters.in.rest.models.*;
-import thws.librarymanager.application.domain.models.Book;
-import thws.librarymanager.application.domain.models.Library;
-import thws.librarymanager.application.domain.models.Loan;
-import thws.librarymanager.application.domain.models.User;
+import thws.librarymanager.application.domain.models.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class RestMapper {
 
 
     //TODO: Jede andere Links in HEADER speichern (siehe das FOTO)
-    public BookDTO toBookDTO(Book book, UriInfo uriInfo) {
+    public BookDTO toBookDTO(Book book) {
         if (book == null) return null;
 
         BookDTO dto = new BookDTO();
@@ -33,32 +30,11 @@ public class RestMapper {
             dto.setLibraryId(book.getLibrary().getId());
         }
 
-        String bookHref = uriInfo.getBaseUriBuilder()
-                .path(BookController.class)
-                .path(BookController.class, "getBookByIsbn")
-                .build(book.getIsbn())
-                .toString();
-
-        dto.addLink(bookHref, "self", MediaType.APPLICATION_JSON);
-
-        dto.addLink(bookHref, "update", MediaType.APPLICATION_JSON);
-
-        dto.addLink(bookHref, "delete", MediaType.APPLICATION_JSON);
-
-        if (book.getLibrary() != null) {
-            String libHref = uriInfo.getBaseUriBuilder()
-                    .path(LibraryController.class)
-                    .path(LibraryController.class, "getLibraryById")
-                    .build(book.getLibrary().getId())
-                    .toString();
-            dto.addLink(libHref, "library", MediaType.APPLICATION_JSON);
-        }
-
         return dto;
     }
 
 
-    public LibraryDTO toLibraryDTO(Library library, UriInfo uriInfo) {
+    public LibraryDTO toLibraryDTO(Library library) {
         if (library == null) return null;
 
         LibraryDTO dto = new LibraryDTO();
@@ -66,21 +42,11 @@ public class RestMapper {
         dto.setName(library.getName());
         dto.setLocation(library.getLocation());
 
-        String libraryHref = uriInfo.getBaseUriBuilder()
-                .path(LibraryController.class)
-                .path(LibraryController.class, "getLibraryById")
-                .build(library.getId())
-                .toString();
-
-        dto.addLink(libraryHref, "self", MediaType.APPLICATION_JSON);
-
-        //Todo
-
         return dto;
     }
 
 
-    public LoanDTO toLoanDTO(Loan loan, UriInfo uriInfo) {
+    public LoanDTO toLoanDTO(Loan loan) {
         if (loan == null) return null;
 
         LoanDTO dto = new LoanDTO();
@@ -101,23 +67,29 @@ public class RestMapper {
         dto.setReturnDate(loan.getReturnDate());
         dto.setStatus(loan.getStatus());
 
-        String loanHref = uriInfo.getBaseUriBuilder()
-                .path(LoanController.class)
-                .path(LoanController.class, "getLoanById")
-                .build(loan.getId())
-                .toString();
+        return dto;
+    }
 
-        dto.addLink(loanHref, "self", MediaType.APPLICATION_JSON);
+    public UserDTO toUserDTO(User user) {
+        if (user == null) return null;
 
-        //TODO
+        UserDTO dto = new UserDTO();
+        dto.setId(user.getId());
+        dto.setName(user.getName());
+        dto.setEmail(user.getEmail());
 
         return dto;
     }
 
-    public UserDTO toUserDTO(User user, UriInfo uriInfo) {
+    public List<UserDTO> toUserDTOs(List<User> users) {
+        return users.stream().map(this::toUserDTO).collect(Collectors.toList());
+    }
 
-        //TODO
+    public List<BookDTO> toBookDTOs(List<Book> books) {
+        return books.stream().map(this::toBookDTO).collect(Collectors.toList());
+    }
 
-        return null;
+    public List<LibraryDTO> toLibraryDTOs(List<Library> libraries) {
+        return libraries.stream().map(this::toLibraryDTO).collect(Collectors.toList());
     }
 }

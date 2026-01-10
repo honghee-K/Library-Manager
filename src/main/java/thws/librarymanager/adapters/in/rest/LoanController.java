@@ -17,7 +17,7 @@ import java.net.URI;
 @Path("/loans")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class LoanController {
+public class LoanController extends BaseController{
 
     @Context
     UriInfo uriInfo;
@@ -52,9 +52,11 @@ public class LoanController {
                 .path(String.valueOf(loan.getId()))
                 .build();
 
-        return Response.created(location)
-                .entity(restMapper.toLoanDTO(loan, uriInfo))
-                .build();
+        Response.ResponseBuilder rb = Response.created(location);
+
+        addLink(rb, location, "self");
+
+        return rb.entity(restMapper.toLoanDTO(loan)).build();
     }
 
     @PUT
@@ -75,9 +77,14 @@ public class LoanController {
 
         Loan returned = loanUseCase.returnLoan(id);
 
-        return Response.noContent()
-                .tag(new EntityTag(ETagGenerator.fromLoan(returned)))
+        URI selfUri = uriInfo.getBaseUriBuilder()
+                .path(LoanController.class)
+                .path(id.toString())
                 .build();
+        addLink(precond, selfUri, "self");
+
+        EntityTag etagAfter = new EntityTag(ETagGenerator.fromLoan(returned));
+        return precond.tag(etagAfter).build();
     }
 
     @GET
@@ -85,6 +92,9 @@ public class LoanController {
     public Response getLoan(@PathParam("id") Long id) {
 
         Loan loan = loanUseCase.getLoanById(id);
+        if (loan == null) {
+            throw new NotFoundException("Loan not found");
+        }
 
         EntityTag etag =
                 new EntityTag(ETagGenerator.fromLoan(loan));
@@ -96,13 +106,18 @@ public class LoanController {
             return precond.build(); // 304
         }
 
+        LoanDTO dto = restMapper.toLoanDTO(loan);
+        precond = Response.ok(dto);
+
+        URI selfUri = uriInfo.getAbsolutePath();
+        addLink(precond, selfUri, "self");
+
+
         CacheControl cc = new CacheControl();
         cc.setPrivate(true);
         cc.setMaxAge(3600);
+        precond.cacheControl(cc);
 
-        return Response.ok(restMapper.toLoanDTO(loan, uriInfo))
-                .tag(etag)
-                .cacheControl(cc)
-                .build();
+        return precond.tag(etag).build();
     }
 }

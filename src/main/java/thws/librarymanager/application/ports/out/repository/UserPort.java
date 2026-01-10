@@ -11,16 +11,11 @@ public interface UserPort {
 
     Optional<User> findById(Long id);
 
-    Optional<User> findByName(String name);
-
-
     List<User> findAll(int page, int size);
 
     void deleteById(Long id);
 
     boolean hasActiveLoans(Long userId);
-
-    boolean existsById(Long id);
 
     boolean existsByEmail(String email);
 }
