@@ -1,10 +1,9 @@
+/*
 package thws.librarymanager.adapters.in.rest.models;
 
 import jakarta.xml.bind.annotation.XmlRootElement;
 
-/**
- * Portfolio 3 - Nr.6
- */
+
 @XmlRootElement(name = "link")
 public class Link {
 
@@ -54,3 +53,4 @@ public class Link {
         return "Link{" + "href='" + href + '\'' + ", rel='" + rel + '\'' + ", type='" + type + '\'' + '}';
     }
 }
+*/

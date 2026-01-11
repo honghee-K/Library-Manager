@@ -1,6 +1,7 @@
 package thws.librarymanager.adapters.in.rest;
 
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.*;
 import thws.librarymanager.adapters.in.rest.mapper.RestMapper;
@@ -38,6 +39,7 @@ public class LoanController extends BaseController{
     RestMapper restMapper;
 
     @POST
+    @Transactional
     public Response createLoan(LoanDTO dto) {
 
         User user = userUseCase.getUserById(dto.getUserId())
@@ -60,6 +62,7 @@ public class LoanController extends BaseController{
     }
 
     @PUT
+    @Transactional
     @Path("{id}/return")
     public Response returnLoan(@PathParam("id") Long id) {
 
@@ -76,6 +79,7 @@ public class LoanController extends BaseController{
         }
 
         Loan returned = loanUseCase.returnLoan(id);
+        precond = Response.ok(restMapper.toLoanDTO(returned));
 
         URI selfUri = uriInfo.getBaseUriBuilder()
                 .path(LoanController.class)
@@ -88,6 +92,7 @@ public class LoanController extends BaseController{
     }
 
     @GET
+    @Transactional
     @Path("{id}")
     public Response getLoan(@PathParam("id") Long id) {
 
