@@ -53,10 +53,12 @@ public class LoanService implements LoanUseCase {
         LocalDate due = today.plusDays(14);
         Loan loan = Loan.createLoan(user, book, today, due);
 
-        loanPort.save(loan);
-
         bookUseCase.startLoanForBook(book.getIsbn(), loan);
         userUseCase.addLoanToUser(user.getId(), loan);
+
+        loanPort.save(loan);
+
+
         return loan;
     }
 

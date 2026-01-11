@@ -46,7 +46,7 @@ public class UserService implements UserUseCase {
 
         user.addLoan(loan);
 
-        userPort.save(user);
+        //userPort.save(user);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class UserService implements UserUseCase {
 
         user.deleteLoan(loan);
 
-        userPort.save(user);
+        //userPort.save(user);
     }
 
     @Override
