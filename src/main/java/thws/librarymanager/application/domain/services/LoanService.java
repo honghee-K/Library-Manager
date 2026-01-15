@@ -5,6 +5,7 @@ import java.util.List;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import thws.librarymanager.application.domain.exceptions.BookAlreadyOnLoanException;
 import thws.librarymanager.application.domain.exceptions.BookNotFoundException;
 import thws.librarymanager.application.domain.exceptions.LoanNotFoundException;
@@ -22,6 +23,7 @@ import thws.librarymanager.application.ports.out.repository.UserPort;
 import thws.librarymanager.application.ports.out.time.TimeProvider;
 
 @ApplicationScoped
+@Transactional
 public class LoanService implements LoanUseCase {
 
     private final LoanPort loanPort;
@@ -53,13 +55,14 @@ public class LoanService implements LoanUseCase {
         LocalDate due = today.plusDays(14);
         Loan loan = Loan.createLoan(user, book, today, due);
 
-        bookUseCase.startLoanForBook(book.getIsbn(), loan);
-        userUseCase.addLoanToUser(user.getId(), loan);
+        // Erst das Loan speichern, damit es eine ID hat
+        Loan savedLoan = loanPort.save(loan);
 
-        loanPort.save(loan);
+        // Dann das Book und User mit dem gespeicherten Loan aktualisieren
+        bookUseCase.startLoanForBook(book.getIsbn(), savedLoan);
+        userUseCase.addLoanToUser(user.getId(), savedLoan);
 
-
-        return loan;
+        return savedLoan;
     }
 
    @Override
@@ -80,26 +83,19 @@ public class LoanService implements LoanUseCase {
         return loanPort.findById(loanId).orElseThrow(() -> new LoanNotFoundException(loanId));
     }
 
- /*   @Override
-    public List<Loan> searchLoans(Long userId, Long bookId, LoanStatus status, int page, int size) {
-
+    @Override
+    public List<Loan> getAllLoans(
+            Long userId,
+            Long isbn,
+            LoanStatus status,
+            Boolean overdue,
+            int page,
+            int size
+    ) {
         if (page < 0 || size <= 0) {
             throw new IllegalArgumentException("page must be >= 0 and size > 0");
         }
 
-        return loanPort.findLoans(userId, bookId, status, page, size);
+        return loanPort.findAll(userId, isbn, status, overdue, page, size);
     }
-
-    @Override
-    public Loan extendLoanPeriod(Long loanId, LocalDate newDueDate) {
-
-        Loan loan = loanPort.findById(loanId).orElseThrow(() -> new LoanNotFoundException(loanId));
-
-        if (loan.isReturned()) {
-            throw new IllegalStateException("Returned loan cannot be extended");
-        }
-
-        loan.changeDueDate(newDueDate);
-        return loanPort.save(loan);
-    }*/
 }

@@ -26,6 +26,10 @@ public class JpaLoanRepository implements LoanPort {
 
     @Inject
     JpaConverter converter;
+    @Inject
+    private JpaConverter jpaConverter;
+    @Inject
+    private EntityManager entityManager;
 
     @Override
     @Transactional
@@ -61,9 +65,8 @@ public class JpaLoanRepository implements LoanPort {
         return count > 0;
     }
 
-    @Override
     @Transactional(Transactional.TxType.SUPPORTS)
-    public List<Loan> findLoans(Long userId, Long bookId, LoanStatus status, int page, int size) {
+    public List<Loan> findAll(Long userId, Long bookId, LoanStatus status, int page, int size) {
         StringBuilder jpql = new StringBuilder("SELECT l FROM LoanEntity l WHERE 1=1 ");
 
         if (userId != null) jpql.append("AND l.user.id = :userId ");
@@ -108,4 +111,49 @@ public class JpaLoanRepository implements LoanPort {
                 .map(converter::toLoan)
                 .collect(Collectors.toList());
     }
+    @Override
+    public List<Loan> findAll(
+            Long userId,
+            Long isbn,
+            LoanStatus status,
+            Boolean overdue,
+            int page,
+            int size
+    ) {
+        StringBuilder jpql = new StringBuilder(
+                "select l from LoanEntity l where 1=1"
+        );
+
+        if (userId != null) {
+            jpql.append(" and l.user.id = :userId");
+        }
+        if (isbn != null) {
+            jpql.append(" and l.book.isbn = :isbn");
+        }
+        if (status != null) {
+            jpql.append(" and l.status = :status");
+        }
+        if (Boolean.TRUE.equals(overdue)) {
+            jpql.append(" and l.returnDate is null and l.dueDate < CURRENT_DATE");
+        }
+
+        jpql.append(" order by l.id");
+
+        TypedQuery<LoanEntity> query =
+                entityManager.createQuery(jpql.toString(), LoanEntity.class);
+
+        if (userId != null) query.setParameter("userId", userId);
+        if (isbn != null) query.setParameter("isbn", isbn);
+        if (status != null) query.setParameter("status", status);
+
+        query.setFirstResult(page * size);
+        query.setMaxResults(size);
+
+
+        return query.getResultList()
+                .stream()
+                .map(jpaConverter::toLoan)
+                .toList();
+    }
+
 }

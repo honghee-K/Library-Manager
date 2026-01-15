@@ -15,7 +15,7 @@ public interface LoanPort {
 
     boolean existsActiveLoanForBook(Long bookId);
 
-    List<Loan> findLoans(Long userId, Long bookId, LoanStatus status, int page, int size);
+    List<Loan> findAll(Long userId, Long bookId, LoanStatus status,Boolean overdue, int page, int size);
 
     List<Loan> findActiveLoans();
 
