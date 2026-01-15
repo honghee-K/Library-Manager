@@ -72,7 +72,7 @@ public class BookService implements BookUseCase {
 
         book.startLoan(loan);
 
-       // persistBookPort.save(book);
+        persistBookPort.save(book);
     }
 
     @Override

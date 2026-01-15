@@ -82,16 +82,16 @@ public class LoanController extends BaseController{
         }
 
         Loan returned = loanUseCase.returnLoan(id);
-        precond = Response.ok(restMapper.toLoanDTO(returned));
+        Response.ResponseBuilder rb = Response.noContent();
 
         URI selfUri = uriInfo.getBaseUriBuilder()
                 .path(LoanController.class)
                 .path(id.toString())
                 .build();
-        addLink(precond, selfUri, "self");
+        addLink(rb, selfUri, "self");
 
         EntityTag etagAfter = new EntityTag(ETagGenerator.fromLoan(returned));
-        return precond.tag(etagAfter).build();
+        return rb.tag(etagAfter).build();
     }
 
     @GET

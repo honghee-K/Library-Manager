@@ -9,15 +9,15 @@ import jakarta.validation.constraints.PositiveOrZero;
 public abstract class BaseDTO implements Serializable {
 
     @PositiveOrZero
-    protected long id;
+    protected Long id;
 
     protected BaseDTO() {}
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(final long id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 

@@ -136,7 +136,7 @@ public class LoanControllerTest {
                 .statusCode(304);
     }
 
-   /* // -------------------------------------------------------
+    // -------------------------------------------------------
     // 4️⃣ RETURN LOAN (Conditional PUT)
     // -------------------------------------------------------
     @Test
@@ -176,5 +176,5 @@ public class LoanControllerTest {
                 .statusCode(200)
                 .body("status", Matchers.equalTo("RETURNED"))
                 .body("returnDate", Matchers.notNullValue());
-    }*/
+    }
 }

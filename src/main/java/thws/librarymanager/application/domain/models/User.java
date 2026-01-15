@@ -1,6 +1,5 @@
 package thws.librarymanager.application.domain.models;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,8 +78,11 @@ public class User {
         }
     }
 
-    public void deleteLoan(Loan loan) {
-        loan.setReturned(LocalDate.now());
+    public void deleteLoan(Loan loan) {//TODO: Ohne Loan History?
+        if (this.loans != null) {
+            this.loans.remove(loan);
+        }
+        // loan.setReturned(LocalDate.now());
     }
 
     public boolean hasActiveLoans() {
