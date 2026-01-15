@@ -5,6 +5,7 @@ import java.util.List;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import thws.librarymanager.application.domain.exceptions.BookAlreadyOnLoanException;
 import thws.librarymanager.application.domain.exceptions.BookNotFoundException;
 import thws.librarymanager.application.domain.exceptions.LoanNotFoundException;
@@ -22,6 +23,7 @@ import thws.librarymanager.application.ports.out.repository.UserPort;
 import thws.librarymanager.application.ports.out.time.TimeProvider;
 
 @ApplicationScoped
+@Transactional
 public class LoanService implements LoanUseCase {
 
     private final LoanPort loanPort;
@@ -56,10 +58,10 @@ public class LoanService implements LoanUseCase {
         bookUseCase.startLoanForBook(book.getIsbn(), loan);
         userUseCase.addLoanToUser(user.getId(), loan);
 
-        loanPort.save(loan);
 
 
-        return loan;
+
+        return loanPort.save(loan);
     }
 
    @Override

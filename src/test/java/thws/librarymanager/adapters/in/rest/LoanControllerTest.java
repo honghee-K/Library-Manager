@@ -27,11 +27,6 @@ import static io.restassured.RestAssured.given;
 @TestHTTPEndpoint(LoanController.class)
 public class LoanControllerTest {
 
-    /*
-
-=======
-/*
->>>>>>> cbf021e000c600a5929ffe1841b3c96923ef700e
     @Inject
     EntityManager em;
 
@@ -141,7 +136,7 @@ public class LoanControllerTest {
                 .statusCode(304);
     }
 
-    // -------------------------------------------------------
+   /* // -------------------------------------------------------
     // 4️⃣ RETURN LOAN (Conditional PUT)
     // -------------------------------------------------------
     @Test

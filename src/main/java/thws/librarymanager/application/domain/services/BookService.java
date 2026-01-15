@@ -62,7 +62,7 @@ public class BookService implements BookUseCase {
             library.addBook(book);
         }
 
-        persistBookPort.save(book);
+        //persistBookPort.save(book);
     }
 
     @Override
@@ -82,7 +82,7 @@ public class BookService implements BookUseCase {
 
         book.endLoan(loan);
 
-        //persistBookPort.save(book);
+        persistBookPort.save(book);
     }
 
     @Override
