@@ -82,26 +82,19 @@ public class LoanService implements LoanUseCase {
         return loanPort.findById(loanId).orElseThrow(() -> new LoanNotFoundException(loanId));
     }
 
- /*   @Override
-    public List<Loan> searchLoans(Long userId, Long bookId, LoanStatus status, int page, int size) {
-
+    @Override
+    public List<Loan> getAllLoans(
+            Long userId,
+            Long isbn,
+            LoanStatus status,
+            Boolean overdue,
+            int page,
+            int size
+    ) {
         if (page < 0 || size <= 0) {
             throw new IllegalArgumentException("page must be >= 0 and size > 0");
         }
 
-        return loanPort.findLoans(userId, bookId, status, page, size);
+        return loanPort.findAll(userId, isbn, status, overdue, page, size);
     }
-
-    @Override
-    public Loan extendLoanPeriod(Long loanId, LocalDate newDueDate) {
-
-        Loan loan = loanPort.findById(loanId).orElseThrow(() -> new LoanNotFoundException(loanId));
-
-        if (loan.isReturned()) {
-            throw new IllegalStateException("Returned loan cannot be extended");
-        }
-
-        loan.changeDueDate(newDueDate);
-        return loanPort.save(loan);
-    }*/
 }
