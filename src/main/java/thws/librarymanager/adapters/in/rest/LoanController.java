@@ -9,12 +9,15 @@ import thws.librarymanager.adapters.in.rest.models.LoanDTO;
 import thws.librarymanager.adapters.in.rest.util.ETagGenerator;
 import thws.librarymanager.application.domain.models.Book;
 import thws.librarymanager.application.domain.models.Loan;
+import thws.librarymanager.application.domain.models.LoanStatus;
 import thws.librarymanager.application.domain.models.User;
 import thws.librarymanager.application.ports.in.BookUseCase;
 import thws.librarymanager.application.ports.in.LoanUseCase;
 import thws.librarymanager.application.ports.in.UserUseCase;
 
 import java.net.URI;
+import java.util.List;
+
 @Path("/loans")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -125,4 +128,34 @@ public class LoanController extends BaseController{
 
         return precond.tag(etag).build();
     }
+    @GET
+    public Response getAllLoans(
+            @QueryParam("userId") Long userId,
+            @QueryParam("isbn") Long isbn,
+            @QueryParam("status") LoanStatus status,
+            @QueryParam("overdue") Boolean overdue,
+            @QueryParam("page") @DefaultValue("0") int page,
+            @QueryParam("size") @DefaultValue("10") int size
+    ) {
+
+        List<LoanDTO> dtos = loanUseCase
+                .getAllLoans(userId, isbn, status, overdue, page, size)
+                .stream()
+                .map(restMapper::toLoanDTO)
+                .toList();
+
+        Response.ResponseBuilder rb = Response.ok(dtos);
+
+        addLink(rb, uriInfo.getAbsolutePath(), "self");
+
+        CacheControl cc = new CacheControl();
+        cc.setPrivate(true);
+        cc.setMaxAge(30);
+
+        rb.cacheControl(cc);
+
+        return rb.build();
+    }
+
+
 }

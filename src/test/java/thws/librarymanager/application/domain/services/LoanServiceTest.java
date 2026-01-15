@@ -158,13 +158,13 @@ public class LoanServiceTest {
 
     @Test
     void searchLoans_success() {
-        when(loanPort.findLoans(null, null, null, 0, 10))
+        when(loanPort.findAll(null, null, null, 0, 10))
                 .thenReturn(List.of(mock(Loan.class)));
 
         List<Loan> result = loanService.searchLoans(null, null, null, 0, 10);
 
         assertEquals(1, result.size());
-        verify(loanPort).findLoans(null, null, null, 0, 10);
+        verify(loanPort).findAll(null, null, null, 0, 10);
     }
 
     @Test
