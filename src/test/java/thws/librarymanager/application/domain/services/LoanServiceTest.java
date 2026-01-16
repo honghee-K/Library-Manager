@@ -69,7 +69,6 @@ class LoanServiceTest {
         );
     }
 
-    // ================= CREATE LOAN =================
 
     @Test
     void createLoan_success() {
@@ -100,7 +99,6 @@ class LoanServiceTest {
         verify(loanPort, never()).save(any());
     }
 
-    // ================= RETURN LOAN =================
 
     @Test
     void returnLoan_success() {
@@ -133,7 +131,6 @@ class LoanServiceTest {
                 () -> loanService.returnLoan(99L));
     }
 
-    // ================= GET BY ID =================
 
     @Test
     void getLoanById_success() {
@@ -153,7 +150,6 @@ class LoanServiceTest {
                 () -> loanService.getLoanById(1L));
     }
 
-    // ================= GET ALL LOANS =================
 
     @Test
     void getAllLoans_success() {
