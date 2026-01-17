@@ -5,199 +5,155 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ee0d4e81-f1a4-44b7-8c8f-09191ce76d03" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.github/dependabot.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/dependabot.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/build-push-image.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/build-push-image.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/maven.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/maven.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/format.sh" beforeDir="false" afterPath="$PROJECT_DIR$/format.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/BaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/BookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/LibraryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/LibraryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/LoanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/LoanController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/mapper/RestMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/mapper/RestMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/models/BaseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/models/BaseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/models/BookDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/models/BookDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/models/LibraryDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/models/LibraryDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/models/Link.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/models/Link.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/models/LoanDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/models/LoanDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/models/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/models/UserDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/services/JwtAuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/services/JwtAuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/util/ETagGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/util/ETagGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/util/LibraryServiceLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/util/LibraryServiceLogger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/converter/JpaConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/converter/JpaConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/entities/BookEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/entities/BookEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/entities/LibrarianEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/entities/LibrarianEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/entities/LibraryEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/entities/LibraryEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/entities/LoanEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/entities/LoanEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/entities/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/entities/UserEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/enums/LoanStatusJpa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/enums/LoanStatusJpa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/repositories/JpaBookRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/repositories/JpaBookRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/repositories/JpaLibrarianRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/repositories/JpaLibrarianRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/repositories/JpaLibraryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/repositories/JpaLibraryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/repositories/JpaLoanRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/repositories/JpaLoanRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/repositories/JpaUserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/repositories/JpaUserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/time/SystemTimeProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/time/SystemTimeProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/exceptions/BookAlreadyOnLoanException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/exceptions/BookAlreadyOnLoanException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/exceptions/BookNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/exceptions/BookNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/exceptions/LoanNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/exceptions/LoanNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/exceptions/UserNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/exceptions/UserNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/models/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/models/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/models/Librarian.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/models/Librarian.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/models/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/models/Library.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/models/Loan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/models/Loan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/models/LoanStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/models/LoanStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/services/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/services/BookService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/services/LibraryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/services/LibraryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/services/LoanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/services/LoanService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/in/AuthUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/in/AuthUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/in/BookStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/in/BookStatistics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/in/BookUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/in/BookUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/in/LibraryUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/in/LibraryUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/in/LoanUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/in/LoanUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/in/UserUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/in/UserUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/out/repository/BookPort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/out/repository/BookPort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/out/repository/LibrarianPort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/out/repository/LibrarianPort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/out/repository/LibraryPort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/out/repository/LibraryPort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/out/repository/LoanPort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/out/repository/LoanPort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/out/repository/UserPort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/out/repository/UserPort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/out/time/TimeProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/out/time/TimeProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/keys/generate-rsa-keys.sh" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/keys/generate-rsa-keys.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/keys/privateKey.pem" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/keys/privateKey.pem" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/keys/publicKey.pem" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/keys/publicKey.pem" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/keys/rsaPrivateKey.pem" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/keys/rsaPrivateKey.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/thws/librarymanager/adapters/in/rest/AuthControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/thws/librarymanager/adapters/in/rest/AuthControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/thws/librarymanager/adapters/in/rest/BookControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/thws/librarymanager/adapters/in/rest/BookControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/thws/librarymanager/adapters/in/rest/LibraryControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/thws/librarymanager/adapters/in/rest/LibraryControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/thws/librarymanager/adapters/in/rest/LoanControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/thws/librarymanager/adapters/in/rest/LoanControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/thws/librarymanager/adapters/in/rest/UserControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/thws/librarymanager/adapters/in/rest/UserControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/thws/librarymanager/application/domain/services/LoanServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/thws/librarymanager/application/domain/services/LoanServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/keys/generate-rsa-keys.sh" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/keys/generate-rsa-keys.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/keys/privateKey.pem" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/keys/privateKey.pem" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/keys/publicKey.pem" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/keys/publicKey.pem" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/keys/rsaPrivateKey.pem" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/keys/rsaPrivateKey.pem" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/library-manager-0.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/AuthController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/BaseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/BaseController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/BookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/BookController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/LibraryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/LibraryController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/LoanController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/LoanController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/mapper/RestMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/mapper/RestMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/models/BaseDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/models/BaseDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/models/BookDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/models/BookDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/models/LibraryDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/models/LibraryDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/models/LoanDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/models/LoanDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/models/UserDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/models/UserDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/services/JwtAuthService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/services/JwtAuthService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/util/ETagGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/util/ETagGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/util/LibraryServiceLogger.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/util/LibraryServiceLogger.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/converter/JpaConverter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/converter/JpaConverter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/entities/BookEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/entities/BookEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/entities/LibrarianEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/entities/LibrarianEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/entities/LibraryEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/entities/LibraryEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/entities/LoanEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/entities/LoanEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/entities/UserEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/entities/UserEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/enums/LoanStatusJpa.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/enums/LoanStatusJpa.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/repositories/JpaBookRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/repositories/JpaBookRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/repositories/JpaLibrarianRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/repositories/JpaLibrarianRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/repositories/JpaLibraryRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/repositories/JpaLibraryRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/repositories/JpaLoanRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/repositories/JpaLoanRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/repositories/JpaUserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/repositories/JpaUserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/time/SystemTimeProvider.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/time/SystemTimeProvider.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/exceptions/BookAlreadyOnLoanException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/exceptions/BookAlreadyOnLoanException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/exceptions/BookNotFoundException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/exceptions/BookNotFoundException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/exceptions/LoanNotFoundException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/exceptions/LoanNotFoundException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/exceptions/UserNotFoundException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/exceptions/UserNotFoundException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/models/Book.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/models/Book.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/models/Librarian.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/models/Librarian.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/models/Library.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/models/Library.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/models/Loan.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/models/Loan.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/models/LoanStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/models/LoanStatus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/models/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/models/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/services/BookService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/services/BookService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/services/LibraryService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/services/LibraryService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/services/LoanService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/services/LoanService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/services/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/services/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/in/AuthUseCase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/in/AuthUseCase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/in/BookStatistics.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/in/BookStatistics.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/in/BookUseCase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/in/BookUseCase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/in/LibraryUseCase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/in/LibraryUseCase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/in/LoanUseCase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/in/LoanUseCase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/in/UserUseCase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/in/UserUseCase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/out/repository/BookPort.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/out/repository/BookPort.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/out/repository/LibrarianPort.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/out/repository/LibrarianPort.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/out/repository/LibraryPort.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/out/repository/LibraryPort.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/out/repository/LoanPort.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/out/repository/LoanPort.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/out/repository/UserPort.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/out/repository/UserPort.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/out/time/TimeProvider.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/out/time/TimeProvider.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/app/library-manager-0.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/boot/io.quarkus.quarkus-bootstrap-runner-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/boot/io.quarkus.quarkus-classloader-commons-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/boot/io.quarkus.quarkus-development-mode-spi-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/boot/io.quarkus.quarkus-vertx-latebound-mdc-provider-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/boot/io.smallrye.common.smallrye-common-constraint-2.14.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/boot/io.smallrye.common.smallrye-common-cpu-2.14.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/boot/io.smallrye.common.smallrye-common-expression-2.14.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/boot/io.smallrye.common.smallrye-common-function-2.14.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/boot/io.smallrye.common.smallrye-common-io-2.14.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/boot/io.smallrye.common.smallrye-common-net-2.14.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/boot/io.smallrye.common.smallrye-common-os-2.14.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/boot/io.smallrye.common.smallrye-common-ref-2.14.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/boot/org.crac.crac-1.5.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/boot/org.jboss.logging.jboss-logging-3.6.1.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/boot/org.jboss.logmanager.jboss-logmanager-3.1.2.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/com.aayushatharva.brotli4j.brotli4j-1.16.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/com.aayushatharva.brotli4j.native-linux-x86_64-1.16.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/com.aayushatharva.brotli4j.service-1.16.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/com.fasterxml.classmate-1.7.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/com.fasterxml.jackson.core.jackson-annotations-2.20.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/com.fasterxml.jackson.core.jackson-core-2.20.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/com.fasterxml.jackson.core.jackson-databind-2.20.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/com.fasterxml.jackson.datatype.jackson-datatype-jdk8-2.20.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/com.fasterxml.jackson.datatype.jackson-datatype-jsr310-2.20.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/com.fasterxml.jackson.module.jackson-module-parameter-names-2.20.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/com.github.ben-manes.caffeine.caffeine-3.2.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/com.google.errorprone.error_prone_annotations-2.44.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/com.h2database.h2-2.4.240.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/com.sun.istack.istack-commons-runtime-4.1.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.agroal.agroal-api-2.8.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.agroal.agroal-narayana-2.8.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.agroal.agroal-pool-2.8.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.netty.netty-buffer-4.1.130.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.netty.netty-codec-4.1.130.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.netty.netty-codec-dns-4.1.130.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.netty.netty-codec-haproxy-4.1.130.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.netty.netty-codec-http-4.1.130.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.netty.netty-codec-http2-4.1.130.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.netty.netty-codec-socks-4.1.130.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.netty.netty-common-4.1.130.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.netty.netty-handler-4.1.130.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.netty.netty-handler-proxy-4.1.130.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.netty.netty-resolver-4.1.130.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.netty.netty-resolver-dns-4.1.130.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.netty.netty-transport-4.1.130.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.netty.netty-transport-native-unix-common-4.1.130.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.arc.arc-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-agroal-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-arc-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-caffeine-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-core-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-credentials-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-datasource-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-datasource-common-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-fs-util-1.2.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-hibernate-orm-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-hibernate-orm-panache-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-hibernate-orm-panache-common-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-hibernate-validator-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-jackson-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-jdbc-h2-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-jdbc-postgresql-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-jsonp-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-mutiny-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-narayana-jta-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-netty-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-panache-common-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-panache-hibernate-common-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-rest-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-rest-common-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-rest-jackson-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-rest-jackson-common-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-security-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-security-runtime-spi-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-smallrye-context-propagation-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-smallrye-jwt-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-smallrye-jwt-build-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-tls-registry-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-tls-registry-spi-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-transaction-annotations-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-vertx-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-vertx-http-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.quarkus-virtual-threads-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.resteasy.reactive.resteasy-reactive-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.resteasy.reactive.resteasy-reactive-common-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.resteasy.reactive.resteasy-reactive-common-types-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.resteasy.reactive.resteasy-reactive-jackson-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.resteasy.reactive.resteasy-reactive-vertx-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.security.quarkus-security-2.2.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.quarkus.vertx.utils.quarkus-vertx-utils-3.30.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.smallrye.certs.smallrye-private-key-pem-parser-0.9.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.smallrye.common.smallrye-common-annotation-2.14.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.smallrye.common.smallrye-common-classloader-2.14.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.smallrye.common.smallrye-common-vertx-context-2.14.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.smallrye.config.smallrye-config-3.14.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.smallrye.config.smallrye-config-common-3.14.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.smallrye.config.smallrye-config-core-3.14.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.smallrye.config.smallrye-config-validator-3.14.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.smallrye.reactive.mutiny-3.1.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.smallrye.reactive.mutiny-smallrye-context-propagation-3.1.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.smallrye.reactive.mutiny-zero-flow-adapters-1.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.smallrye.reactive.smallrye-mutiny-vertx-auth-common-3.21.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.smallrye.reactive.smallrye-mutiny-vertx-bridge-common-3.21.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.smallrye.reactive.smallrye-mutiny-vertx-core-3.21.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.smallrye.reactive.smallrye-mutiny-vertx-runtime-3.21.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.smallrye.reactive.smallrye-mutiny-vertx-uri-template-3.21.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.smallrye.reactive.smallrye-mutiny-vertx-web-3.21.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.smallrye.reactive.smallrye-mutiny-vertx-web-common-3.21.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.smallrye.reactive.smallrye-reactive-converter-api-3.0.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.smallrye.reactive.smallrye-reactive-converter-mutiny-3.0.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.smallrye.reactive.vertx-mutiny-generator-3.21.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.smallrye.smallrye-context-propagation-2.3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.smallrye.smallrye-context-propagation-api-2.3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.smallrye.smallrye-context-propagation-jta-2.3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.smallrye.smallrye-context-propagation-storage-2.3.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.smallrye.smallrye-fault-tolerance-vertx-6.9.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.smallrye.smallrye-jwt-4.6.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.smallrye.smallrye-jwt-build-4.6.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.smallrye.smallrye-jwt-common-4.6.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.vertx.vertx-auth-common-4.5.23.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.vertx.vertx-bridge-common-4.5.23.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.vertx.vertx-codegen-4.5.23.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.vertx.vertx-core-4.5.23.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.vertx.vertx-uri-template-4.5.23.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.vertx.vertx-web-4.5.23.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/io.vertx.vertx-web-common-4.5.23.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/jakarta.activation.jakarta.activation-api-2.1.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/jakarta.annotation.jakarta.annotation-api-3.0.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/jakarta.el.jakarta.el-api-6.0.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/jakarta.enterprise.jakarta.enterprise.cdi-api-4.1.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/jakarta.enterprise.jakarta.enterprise.lang-model-4.1.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/jakarta.inject.jakarta.inject-api-2.0.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/jakarta.interceptor.jakarta.interceptor-api-2.2.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/jakarta.json.jakarta.json-api-2.1.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/jakarta.persistence.jakarta.persistence-api-3.2.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/jakarta.resource.jakarta.resource-api-2.1.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/jakarta.transaction.jakarta.transaction-api-2.0.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/jakarta.validation.jakarta.validation-api-3.1.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/jakarta.ws.rs.jakarta.ws.rs-api-3.1.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/jakarta.xml.bind.jakarta.xml.bind-api-4.0.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/net.bytebuddy.byte-buddy-1.17.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/org.antlr.antlr4-runtime-4.13.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/org.bitbucket.b_c.jose4j-0.9.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/org.eclipse.angus.angus-activation-2.0.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/org.eclipse.microprofile.config.microprofile-config-api-3.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/org.eclipse.microprofile.context-propagation.microprofile-context-propagation-api-1.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/org.eclipse.microprofile.jwt.microprofile-jwt-auth-api-2.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/org.eclipse.microprofile.reactive-streams-operators.microprofile-reactive-streams-operators-api-3.0.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/org.eclipse.parsson.parsson-1.1.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/org.glassfish.expressly.expressly-6.0.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/org.glassfish.jaxb.jaxb-core-4.0.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/org.glassfish.jaxb.jaxb-runtime-4.0.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/org.glassfish.jaxb.txw2-4.0.6.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/org.hibernate.models.hibernate-models-1.0.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/org.hibernate.orm.hibernate-core-7.1.11.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/org.hibernate.orm.hibernate-graalvm-7.1.11.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/org.hibernate.quarkus-local-cache-0.3.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/org.hibernate.validator.hibernate-validator-9.1.0.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/org.jboss.invocation.jboss-invocation-2.0.0.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/org.jboss.jboss-transaction-spi-8.0.0.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/org.jboss.logging.commons-logging-jboss-logging-1.0.0.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/org.jboss.narayana.jta.narayana-jta-7.3.3.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/org.jboss.narayana.jts.narayana-jts-integration-7.3.3.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/org.jboss.slf4j.slf4j-jboss-logmanager-2.0.2.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/org.jboss.threads.jboss-threads-3.9.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/org.jctools.jctools-core-4.0.5.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/org.jspecify.jspecify-1.0.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/org.locationtech.jts.jts-core-1.19.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/org.postgresql.postgresql-42.7.8.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/org.reactivestreams.reactive-streams-1.0.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/org.slf4j.slf4j-api-2.0.17.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/lib/main/org.wildfly.common.wildfly-common-2.0.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/quarkus-app-dependencies.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/quarkus-run.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/quarkus/generated-bytecode.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/quarkus/quarkus-application.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-app/quarkus/transformed-bytecode.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/quarkus-artifact.properties" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/quarkus/bootstrap/test-app-model.dat" beforeDir="false" afterPath="$PROJECT_DIR$/target/quarkus/bootstrap/test-app-model.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-thws.librarymanager.adapters.in.rest.AuthControllerTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-thws.librarymanager.adapters.in.rest.AuthControllerTest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-thws.librarymanager.adapters.in.rest.BookControllerTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-thws.librarymanager.adapters.in.rest.BookControllerTest.xml" afterDir="false" />
@@ -209,6 +165,17 @@
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/thws.librarymanager.adapters.in.rest.LibraryControllerTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/thws.librarymanager.adapters.in.rest.LibraryControllerTest.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/thws.librarymanager.adapters.in.rest.LoanControllerTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/thws.librarymanager.adapters.in.rest.LoanControllerTest.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/surefire-reports/thws.librarymanager.adapters.in.rest.UserControllerTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/thws.librarymanager.adapters.in.rest.UserControllerTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/AuthControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/AuthControllerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/BookControllerTest$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/BookControllerTest$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/BookControllerTest$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/BookControllerTest$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/BookControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/BookControllerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/LibraryControllerTest$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/LibraryControllerTest$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/LibraryControllerTest$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/LibraryControllerTest$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/LibraryControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/LibraryControllerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/LoanControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/LoanControllerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/UserControllerTest$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/UserControllerTest$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/UserControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/UserControllerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/application/domain/services/LibraryServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/application/domain/services/LibraryServiceTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -262,17 +229,17 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.LibraryServiceTest">
-    <configuration name="BookControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.UserServiceTest">
+    <configuration name="BookServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="library-manager" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="thws.librarymanager.adapters.in.rest.*" />
+          <option name="PATTERN" value="thws.librarymanager.application.domain.services.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="thws.librarymanager.adapters.in.rest" />
-      <option name="MAIN_CLASS_NAME" value="thws.librarymanager.adapters.in.rest.BookControllerTest" />
+      <option name="PACKAGE_NAME" value="thws.librarymanager.application.domain.services" />
+      <option name="MAIN_CLASS_NAME" value="thws.librarymanager.application.domain.services.BookServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -308,22 +275,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoanControllerTest.returnLoan" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="library-manager" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="thws.librarymanager.adapters.in.rest.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="thws.librarymanager.adapters.in.rest" />
-      <option name="MAIN_CLASS_NAME" value="thws.librarymanager.adapters.in.rest.LoanControllerTest" />
-      <option name="METHOD_NAME" value="returnLoan" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="LoanServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="library-manager" />
       <extension name="coverage">
@@ -334,6 +285,21 @@
       </extension>
       <option name="PACKAGE_NAME" value="thws.librarymanager.application.domain.services" />
       <option name="MAIN_CLASS_NAME" value="thws.librarymanager.application.domain.services.LoanServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="library-manager" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="thws.librarymanager.application.domain.services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="thws.librarymanager.application.domain.services" />
+      <option name="MAIN_CLASS_NAME" value="thws.librarymanager.application.domain.services.UserServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -388,11 +354,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.UserServiceTest" />
+        <item itemvalue="JUnit.BookServiceTest" />
         <item itemvalue="JUnit.LibraryServiceTest" />
         <item itemvalue="JUnit.LoanServiceTest" />
         <item itemvalue="JUnit.LoanControllerTest" />
-        <item itemvalue="JUnit.BookControllerTest" />
-        <item itemvalue="JUnit.LoanControllerTest.returnLoan" />
       </list>
     </recent_temporary>
   </component>
