@@ -144,7 +144,13 @@ public class JpaLoanRepository implements LoanPort {
 
         if (userId != null) query.setParameter("userId", userId);
         if (isbn != null) query.setParameter("isbn", isbn);
-        if (status != null) query.setParameter("status", status);
+        if (status != null) {
+            query.setParameter(
+                    "status",
+                    LoanStatusJpa.valueOf(status.name())
+            );
+        }
+
 
         query.setFirstResult(page * size);
         query.setMaxResults(size);

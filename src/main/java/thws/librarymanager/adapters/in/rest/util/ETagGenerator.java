@@ -4,6 +4,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
 import thws.librarymanager.application.domain.models.Book;
+import thws.librarymanager.application.domain.models.Library;
 import thws.librarymanager.application.domain.models.Loan;
 import thws.librarymanager.application.domain.models.User;
 
@@ -27,6 +28,14 @@ public class ETagGenerator {
                 user.getEmail();
         return sha256(value);
     }
+    public static String fromLibrary(Library library) {
+        String value =
+                library.getId() + "-" +
+                        library.getName() + "-" +
+                        library.getLocation();
+        return sha256(value);
+    }
+
 
     private static String sha256(String input) {
         try {
