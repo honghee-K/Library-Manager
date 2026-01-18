@@ -1,5 +1,6 @@
 # Maven
 ../target/
+*.class
 
 # IntelliJ
 .idea/
@@ -10,5 +11,8 @@
 .classpath
 .project
 .settings/
-*.pem 
-# Test 
+*.pem
+src/main/resources/keys/*.pem
+
+# OS
+.DS_Store
