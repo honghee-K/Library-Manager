@@ -8,21 +8,13 @@ import thws.librarymanager.application.ports.in.StatisticsUseCase;
 
 @Path("/statistics")
 @Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
-public class StatisticsController extends BaseController {
-
-    @Context
-    UriInfo uriInfo;
+public class StatisticsController {
 
     @Inject
     StatisticsUseCase statisticsUseCase;
 
     @GET
-    public Response getStatistics(
-            @QueryParam("libraryId") Long libraryId,
-            @QueryParam("genre") String genre,
-            @QueryParam("author") String author
-    ) {
+    public StatisticsDTO getStatistics(@QueryParam("libraryId") Long libraryId) {
 
         if (libraryId == null) {
             throw new BadRequestException("libraryId is required");
@@ -30,41 +22,22 @@ public class StatisticsController extends BaseController {
 
         StatisticsDTO dto = new StatisticsDTO();
 
-        dto.setTotalBooks(
-                statisticsUseCase.getTotalBooks(libraryId)
-        );
+        StatisticsDTO.BooksStatistics books = new StatisticsDTO.BooksStatistics();
+        books.setTotal(statisticsUseCase.getTotalBooks(libraryId));
+        books.setBooksByGenre(statisticsUseCase.getBooksByGenre(libraryId));
+        books.setBooksByAuthor(statisticsUseCase.getBooksByAuthor(libraryId));
 
-        if (genre != null) {
-            dto.setBooksByGenre(
-                    statisticsUseCase.getBookCountByGenre(libraryId, genre)
-            );
-        }
+        StatisticsDTO.UsersStatistics users = new StatisticsDTO.UsersStatistics();
+        users.setRegistered(statisticsUseCase.getRegisteredUserCount());
 
-        if (author != null) {
-            dto.setBooksByAuthor(
-                    statisticsUseCase.getBookCountByAuthor(libraryId, author)
-            );
-        }
+        StatisticsDTO.LoansStatistics loans = new StatisticsDTO.LoansStatistics();
+        loans.setActive(statisticsUseCase.getActiveLoanCount());
 
-        dto.setActiveLoans(
-                statisticsUseCase.getActiveLoanCount()
-        );
+        dto.setBooks(books);
+        dto.setUsers(users);
+        dto.setLoans(loans);
 
-        dto.setRegisteredUsers(
-                statisticsUseCase.getRegisteredUserCount()
-        );
-
-        Response.ResponseBuilder rb = Response.ok(dto);
-
-        // HATEOAS self link
-        addLink(rb, uriInfo.getAbsolutePath(), "self");
-
-        // Cache
-        CacheControl cc = new CacheControl();
-        cc.setPrivate(true);
-        cc.setMaxAge(60);
-        rb.cacheControl(cc);
-
-        return rb.build();
+        return dto;
     }
 }
+

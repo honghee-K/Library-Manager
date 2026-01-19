@@ -1,6 +1,7 @@
 package thws.librarymanager.application.ports.out.repository;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import thws.librarymanager.application.domain.models.Book;
@@ -22,8 +23,9 @@ public interface LibraryPort {
     Long countTotalBooks(Long libraryId);
 
     List<Book> findBooksInLibrary(Long libraryId);
-    Long countBooksByGenre(Long libraryId, String genre);
+    Map<String, Long> countBooksGroupedByGenre(Long libraryId);
 
-    Long countBooksByAuthor(Long libraryId, String author);
+    Map<String, Long> countBooksGroupedByAuthor(Long libraryId);
+
 
 }

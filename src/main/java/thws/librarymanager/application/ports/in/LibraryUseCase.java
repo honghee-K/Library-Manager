@@ -22,8 +22,5 @@ public interface LibraryUseCase {
     void removeBookFromLibrary(Long libraryId, Long bookIsbn);
 
     Long getTotalBookCount(Long libraryId);
-    long getBookCountByGenre(Long libraryId, String genre);
-
-    long getBookCountByAuthor(Long libraryId, String author);
 
 }

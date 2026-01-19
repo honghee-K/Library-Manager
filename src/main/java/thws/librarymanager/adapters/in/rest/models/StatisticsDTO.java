@@ -1,54 +1,90 @@
 package thws.librarymanager.adapters.in.rest.models;
 
-public class StatisticsDTO extends BaseDTO {
+import java.util.Map;
 
-    private Long totalBooks;
-    private Long booksByGenre;
-    private Long booksByAuthor;
-    private Long activeLoans;
-    private Long registeredUsers;
+public class StatisticsDTO {
 
-    public StatisticsDTO() {
-        super();
+    private BooksStatistics books;
+    private UsersStatistics users;
+    private LoansStatistics loans;
+
+    public BooksStatistics getBooks() {
+        return books;
     }
 
-    public Long getTotalBooks() {
-        return totalBooks;
+    public void setBooks(BooksStatistics books) {
+        this.books = books;
     }
 
-    public void setTotalBooks(Long totalBooks) {
-        this.totalBooks = totalBooks;
+    public UsersStatistics getUsers() {
+        return users;
     }
 
-    public Long getBooksByGenre() {
-        return booksByGenre;
+    public void setUsers(UsersStatistics users) {
+        this.users = users;
     }
 
-    public void setBooksByGenre(Long booksByGenre) {
-        this.booksByGenre = booksByGenre;
+    public LoansStatistics getLoans() {
+        return loans;
     }
 
-    public Long getBooksByAuthor() {
-        return booksByAuthor;
+    public void setLoans(LoansStatistics loans) {
+        this.loans = loans;
     }
 
-    public void setBooksByAuthor(Long booksByAuthor) {
-        this.booksByAuthor = booksByAuthor;
+    // -------- INNER DTOs --------
+
+    public static class BooksStatistics {
+        private long total;
+        private Map<String, Long> booksByGenre;
+        private Map<String, Long> booksByAuthor;
+
+        public long getTotal() {
+            return total;
+        }
+
+        public void setTotal(long total) {
+            this.total = total;
+        }
+
+        public Map<String, Long> getBooksByGenre() {
+            return booksByGenre;
+        }
+
+        public void setBooksByGenre(Map<String, Long> booksByGenre) {
+            this.booksByGenre = booksByGenre;
+        }
+
+        public Map<String, Long> getBooksByAuthor() {
+            return booksByAuthor;
+        }
+
+        public void setBooksByAuthor(Map<String, Long> booksByAuthor) {
+            this.booksByAuthor = booksByAuthor;
+        }
     }
 
-    public Long getActiveLoans() {
-        return activeLoans;
+    public static class UsersStatistics {
+        private long registered;
+
+        public long getRegistered() {
+            return registered;
+        }
+
+        public void setRegistered(long registered) {
+            this.registered = registered;
+        }
     }
 
-    public void setActiveLoans(Long activeLoans) {
-        this.activeLoans = activeLoans;
-    }
+    public static class LoansStatistics {
+        private long active;
 
-    public Long getRegisteredUsers() {
-        return registeredUsers;
-    }
+        public long getActive() {
+            return active;
+        }
 
-    public void setRegisteredUsers(Long registeredUsers) {
-        this.registeredUsers = registeredUsers;
+        public void setActive(long active) {
+            this.active = active;
+        }
     }
 }

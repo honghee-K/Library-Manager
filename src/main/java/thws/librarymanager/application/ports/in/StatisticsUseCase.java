@@ -1,15 +1,18 @@
 package thws.librarymanager.application.ports.in;
 
+import java.util.Map;
+
 public interface StatisticsUseCase {
 
     long getTotalBooks(Long libraryId);
 
-    long getBookCountByGenre(Long libraryId, String genre);
+    Map<String, Long> getBooksByGenre(Long libraryId);
 
-    long getBookCountByAuthor(Long libraryId, String author);
-
-    long getActiveLoanCount();
+    Map<String, Long> getBooksByAuthor(Long libraryId);
 
     long getRegisteredUserCount();
+
+    long getActiveLoanCount();
 }
+
 

@@ -6,6 +6,9 @@ import thws.librarymanager.application.ports.in.LibraryUseCase;
 import thws.librarymanager.application.ports.in.LoanUseCase;
 import thws.librarymanager.application.ports.in.UserUseCase;
 import thws.librarymanager.application.ports.in.StatisticsUseCase;
+import thws.librarymanager.application.ports.out.repository.LibraryPort;
+
+import java.util.Map;
 
 @ApplicationScoped
 public class StatisticsService implements StatisticsUseCase {
@@ -13,6 +16,9 @@ public class StatisticsService implements StatisticsUseCase {
     private final LibraryUseCase libraryUseCase;
     private final LoanUseCase loanUseCase;
     private final UserUseCase userUseCase;
+
+    @Inject
+    LibraryPort libraryPort;
 
     @Inject
     public StatisticsService(
@@ -31,13 +37,13 @@ public class StatisticsService implements StatisticsUseCase {
     }
 
     @Override
-    public long getBookCountByGenre(Long libraryId, String genre) {
-        return libraryUseCase.getBookCountByGenre(libraryId, genre);
+    public Map<String, Long> getBooksByGenre(Long libraryId) {
+        return libraryPort.countBooksGroupedByGenre(libraryId);
     }
 
     @Override
-    public long getBookCountByAuthor(Long libraryId, String author) {
-        return libraryUseCase.getBookCountByAuthor(libraryId, author);
+    public Map<String, Long> getBooksByAuthor(Long libraryId) {
+        return libraryPort.countBooksGroupedByAuthor(libraryId);
     }
 
     @Override

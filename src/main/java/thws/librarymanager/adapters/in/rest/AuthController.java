@@ -31,13 +31,13 @@ public class AuthController {
         return Response.ok(accessToken).build();
     }
 
-    @RolesAllowed(JwtAuthService.Librarian_ROLE) // TODO später in aderen Methode
+    @RolesAllowed(JwtAuthService.Librarian_ROLE)
     @GET
     @Path("test")
     public Response test() {
 
         long userId = Long.parseLong(jwt.getClaim(JwtAuthService.Librarian_ID_CLAIM));
 
-        return Response.ok("Hi " + userId).build();
+        return Response.ok("Hi, librarian " + userId).build();
     }
 }
