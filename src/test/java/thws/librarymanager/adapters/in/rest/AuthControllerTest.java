@@ -25,12 +25,6 @@ public class AuthControllerTest {
 
     public AuthControllerTest() {}
 
-    @BeforeAll
-    public void initTestData() {
-        Librarian librarian = new Librarian(null, "hong");
-        Librarian saved = librarianPort.save(librarian);
-        System.out.println("Generated ID: " + saved.getId());
-    }
 
     @Test
     @Order(1)
@@ -38,7 +32,7 @@ public class AuthControllerTest {
 
         String token = RestAssured.given()
                 .when()
-                .queryParam("name", "hong")
+                .queryParam("name", "admin")
                 .get("login")
                 .then()
                 .statusCode(200)
