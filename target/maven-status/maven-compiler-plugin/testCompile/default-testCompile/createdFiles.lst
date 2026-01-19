@@ -1,11 +1,11 @@
-thws/librarymanager/application/domain/services/LoanServiceTest.class
-thws/librarymanager/adapters/in/rest/BookControllerTest$1.class
 thws/librarymanager/adapters/in/rest/UserControllerTest$1.class
 thws/librarymanager/adapters/in/rest/AuthControllerTest.class
+thws/librarymanager/adapters/in/rest/BookControllerTest$2.class
+thws/librarymanager/adapters/in/rest/LoanControllerTest.class
+thws/librarymanager/application/domain/services/LoanServiceTest.class
+thws/librarymanager/adapters/in/rest/BookControllerTest$1.class
 thws/librarymanager/adapters/in/rest/LibraryControllerTest$1.class
 thws/librarymanager/adapters/in/rest/LibraryControllerTest.class
-thws/librarymanager/adapters/in/rest/BookControllerTest$2.class
 thws/librarymanager/adapters/in/rest/UserControllerTest.class
-thws/librarymanager/adapters/in/rest/LoanControllerTest.class
 thws/librarymanager/adapters/in/rest/BookControllerTest.class
 thws/librarymanager/adapters/in/rest/LibraryControllerTest$2.class

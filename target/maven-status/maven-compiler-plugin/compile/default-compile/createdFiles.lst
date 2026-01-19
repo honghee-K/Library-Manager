@@ -1,5 +1,4 @@
 thws/librarymanager/adapters/out/jpa/entities/UserEntity.class
-thws/librarymanager/application/domain/exceptions/UserNotFoundException.class
 thws/librarymanager/adapters/in/rest/mapper/RestMapper.class
 thws/librarymanager/adapters/out/jpa/repositories/JpaLoanRepository.class
 thws/librarymanager/adapters/in/rest/LibraryController.class
@@ -29,7 +28,6 @@ thws/librarymanager/application/domain/exceptions/LoanNotFoundException.class
 thws/librarymanager/application/ports/in/UserUseCase.class
 thws/librarymanager/application/ports/out/repository/BookPort.class
 thws/librarymanager/application/ports/in/BookUseCase.class
-thws/librarymanager/application/domain/exceptions/BookNotFoundException.class
 thws/librarymanager/adapters/in/rest/models/BaseDTO.class
 thws/librarymanager/application/domain/services/BookService.class
 thws/librarymanager/application/domain/services/UserService.class

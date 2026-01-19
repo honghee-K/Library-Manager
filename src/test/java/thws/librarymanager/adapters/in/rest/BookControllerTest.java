@@ -19,6 +19,7 @@ import thws.librarymanager.application.domain.models.Book;
 import thws.librarymanager.application.domain.models.Library;
 import thws.librarymanager.application.ports.out.repository.BookPort;
 import thws.librarymanager.application.ports.out.repository.LibraryPort;
+import io.quarkus.test.security.TestSecurity;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -132,6 +133,7 @@ public class BookControllerTest {
 
     @Test
     @Order(4)
+    @TestSecurity(user = "admin", roles = "librarian")
     public void addBook() {
         BookDTO newBookDTO = new BookDTO();
         newBookDTO.setIsbn(9988L);
