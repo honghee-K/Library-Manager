@@ -37,7 +37,7 @@ public class LibraryService implements LibraryUseCase {
     @Override
     public Library addLibrary(Library library) {
 
-        if (libraryPort.findByName(library.getName()).isPresent()) {
+        if (libraryPort.getLibraryByName(library.getName()).isPresent()) {
             throw new IllegalArgumentException(
                     "Library with name '" + library.getName() + "' already exists."
             );
@@ -85,4 +85,14 @@ public class LibraryService implements LibraryUseCase {
     public Long getTotalBookCount(Long libraryId) {
         return libraryPort.countTotalBooks(libraryId);
     }
+    @Override
+    public long getBookCountByGenre(Long libraryId, String genre) {
+        return libraryPort.countBooksByGenre(libraryId, genre);
+    }
+
+    @Override
+    public long getBookCountByAuthor(Long libraryId, String author) {
+        return libraryPort.countBooksByAuthor(libraryId, author);
+    }
+
 }

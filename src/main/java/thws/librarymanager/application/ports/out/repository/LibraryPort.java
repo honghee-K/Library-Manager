@@ -11,7 +11,7 @@ public interface LibraryPort {
 
     Optional<Library> getLibraryById(Long id);
     List<Library> findAllLibraries(String location, String name);
-    Optional<Library> findByName(String name);
+    //Optional<Library> findByName(String name);
 
 
     Optional<Library> getLibraryByName(String name);
@@ -22,4 +22,8 @@ public interface LibraryPort {
     Long countTotalBooks(Long libraryId);
 
     List<Book> findBooksInLibrary(Long libraryId);
+    Long countBooksByGenre(Long libraryId, String genre);
+
+    Long countBooksByAuthor(Long libraryId, String author);
+
 }

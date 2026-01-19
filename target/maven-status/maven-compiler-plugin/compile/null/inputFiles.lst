@@ -4,6 +4,7 @@
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/adapters/in/rest/BookController.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/adapters/in/rest/LibraryController.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/adapters/in/rest/LoanController.java
+/mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/adapters/in/rest/StatisticsController.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/adapters/in/rest/UserController.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/adapters/in/rest/mapper/RestMapper.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/adapters/in/rest/models/BaseDTO.java
@@ -11,6 +12,7 @@
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/adapters/in/rest/models/LibraryDTO.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/adapters/in/rest/models/Link.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/adapters/in/rest/models/LoanDTO.java
+/mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/adapters/in/rest/models/StatisticsDTO.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/adapters/in/rest/models/UserDTO.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/adapters/in/rest/services/JwtAuthService.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/adapters/in/rest/util/ETagGenerator.java
@@ -29,9 +31,7 @@
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/adapters/out/jpa/repositories/JpaUserRepository.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/adapters/out/time/SystemTimeProvider.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/application/domain/exceptions/BookAlreadyOnLoanException.java
-/mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/application/domain/exceptions/BookNotFoundException.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/application/domain/exceptions/LoanNotFoundException.java
-/mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/application/domain/exceptions/UserNotFoundException.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/application/domain/models/Book.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/application/domain/models/Librarian.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/application/domain/models/Library.java
@@ -41,12 +41,14 @@
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/application/domain/services/BookService.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/application/domain/services/LibraryService.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/application/domain/services/LoanService.java
+/mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/application/domain/services/StatisticsService.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/application/domain/services/UserService.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/application/ports/in/AuthUseCase.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/application/ports/in/BookStatistics.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/application/ports/in/BookUseCase.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/application/ports/in/LibraryUseCase.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/application/ports/in/LoanUseCase.java
+/mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/application/ports/in/StatisticsUseCase.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/application/ports/in/UserUseCase.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/application/ports/out/repository/BookPort.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/main/java/thws/librarymanager/application/ports/out/repository/LibrarianPort.java

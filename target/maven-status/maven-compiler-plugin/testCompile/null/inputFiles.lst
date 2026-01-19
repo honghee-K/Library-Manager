@@ -3,8 +3,11 @@
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/test/java/thws/librarymanager/adapters/in/rest/LibraryControllerTest.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/test/java/thws/librarymanager/adapters/in/rest/LoanControllerTest.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/test/java/thws/librarymanager/adapters/in/rest/UserControllerTest.java
+/mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/test/java/thws/librarymanager/adapters/out/jpa/repositories/JpaBookRepositoryTest.java
+/mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/test/java/thws/librarymanager/adapters/out/jpa/repositories/JpaLibrarianRepositoryTest.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/test/java/thws/librarymanager/adapters/out/jpa/repositories/JpaLibraryRepositoryIT.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/test/java/thws/librarymanager/adapters/out/jpa/repositories/JpaLoanRepositoryIT.java
+/mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/test/java/thws/librarymanager/adapters/out/jpa/repositories/JpaUserRepositoryTest.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/test/java/thws/librarymanager/application/domain/services/BookServiceTest.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/test/java/thws/librarymanager/application/domain/services/LibraryServiceTest.java
 /mnt/c/Users/gulsu/Backend/teamprojekt/Library-Manager/src/test/java/thws/librarymanager/application/domain/services/LoanServiceTest.java

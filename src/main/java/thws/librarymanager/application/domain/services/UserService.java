@@ -78,4 +78,8 @@ public class UserService implements UserUseCase {
 
         userPort.deleteById(id);
     }
+    @Override
+    public long getRegisteredUserCount() {
+        return userPort.countUsers();
+    }
 }

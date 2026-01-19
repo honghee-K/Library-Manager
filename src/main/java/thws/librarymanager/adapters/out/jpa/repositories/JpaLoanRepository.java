@@ -161,5 +161,15 @@ public class JpaLoanRepository implements LoanPort {
                 .map(jpaConverter::toLoan)
                 .toList();
     }
+    @Override
+    @Transactional(Transactional.TxType.SUPPORTS)
+    public long countActiveLoans() {
+        return em.createQuery(
+                        "SELECT COUNT(l) FROM LoanEntity l WHERE l.status = :status",
+                        Long.class
+                )
+                .setParameter("status", LoanStatusJpa.ACTIVE)
+                .getSingleResult();
+    }
 
 }

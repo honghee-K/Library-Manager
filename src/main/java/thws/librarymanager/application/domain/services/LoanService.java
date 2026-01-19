@@ -96,4 +96,9 @@ public class LoanService implements LoanUseCase {
 
         return loanPort.findAll(userId, isbn, status, overdue, page, size);
     }
+    @Override
+    public long getActiveLoanCount() {
+        return loanPort.countActiveLoans();
+    }
+
 }

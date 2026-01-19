@@ -20,5 +20,7 @@ public interface UserUseCase {
     void addLoanToUser(Long userId, Loan loan);
 
     void removeLoanFromUser(Long userId, Loan loan);
+    long getRegisteredUserCount();
+
 
 }

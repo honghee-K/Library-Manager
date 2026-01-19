@@ -20,4 +20,6 @@ public interface LoanPort {
     List<Loan> findActiveLoans();
 
     List<Loan> findOverdueLoans(LocalDate today);
+    long countActiveLoans();
+
 }

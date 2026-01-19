@@ -28,7 +28,7 @@ public class JpaLibraryRepository implements LibraryPort {
     EntityManager em;
 
     @Inject
-    JpaConverter converter; // User/Book dönüştürme işlemleri için
+    JpaConverter converter;
 
 
 
@@ -95,7 +95,7 @@ public class JpaLibraryRepository implements LibraryPort {
                 .map(converter::toLibrary)
                 .collect(Collectors.toList());
     }
-    @Override
+    /*@Override
     @Transactional(Transactional.TxType.SUPPORTS)
     public Optional<Library> findByName(String name) {
         TypedQuery<LibraryEntity> query = em.createQuery(
@@ -106,7 +106,7 @@ public class JpaLibraryRepository implements LibraryPort {
         List<LibraryEntity> result = query.getResultList();
         return result.isEmpty()
                 ? Optional.empty()
-                : Optional.of(converter.toLibrary(result.get(0))); }
+                : Optional.of(converter.toLibrary(result.get(0))); }*/
 
     @Override
     @Transactional
@@ -140,5 +140,31 @@ public class JpaLibraryRepository implements LibraryPort {
                 .map(converter::toBook)
                 .collect(Collectors.toList());
     }
+    @Override
+    @Transactional(Transactional.TxType.SUPPORTS)
+    public Long countBooksByGenre(Long libraryId, String genre) {
+        return em.createQuery(
+                        "SELECT COUNT(b) FROM BookEntity b " +
+                                "WHERE b.library.id = :libraryId AND LOWER(b.genre) = LOWER(:genre)",
+                        Long.class
+                )
+                .setParameter("libraryId", libraryId)
+                .setParameter("genre", genre)
+                .getSingleResult();
+    }
+
+    @Override
+    @Transactional(Transactional.TxType.SUPPORTS)
+    public Long countBooksByAuthor(Long libraryId, String author) {
+        return em.createQuery(
+                        "SELECT COUNT(b) FROM BookEntity b " +
+                                "WHERE b.library.id = :libraryId AND LOWER(b.author) = LOWER(:author)",
+                        Long.class
+                )
+                .setParameter("libraryId", libraryId)
+                .setParameter("author", author)
+                .getSingleResult();
+    }
+
 }
 
