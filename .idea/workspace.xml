@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ee0d4e81-f1a4-44b7-8c8f-09191ce76d03" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.github/dependabot.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/dependabot.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/build-push-image.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/build-push-image.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/maven.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/maven.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/format.sh" beforeDir="false" afterPath="$PROJECT_DIR$/format.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/BaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/BookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/LibraryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/LibraryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/LoanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/LoanController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/mapper/RestMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/mapper/RestMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/models/BaseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/models/BaseDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/models/BookDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/models/BookDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/models/LibraryDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/models/LibraryDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/models/Link.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/models/Link.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/models/LoanDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/models/LoanDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/models/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/models/UserDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/services/JwtAuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/services/JwtAuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/util/ETagGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/util/ETagGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/util/LibraryServiceLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/in/rest/util/LibraryServiceLogger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/converter/JpaConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/converter/JpaConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/entities/BookEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/entities/BookEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/entities/LibrarianEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/entities/LibrarianEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/entities/LibraryEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/entities/LibraryEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/entities/LoanEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/entities/LoanEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/entities/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/entities/UserEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/enums/LoanStatusJpa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/enums/LoanStatusJpa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/repositories/JpaBookRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/repositories/JpaBookRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/repositories/JpaLibrarianRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/repositories/JpaLibrarianRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/repositories/JpaLibraryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/repositories/JpaLibraryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/repositories/JpaLoanRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/repositories/JpaLoanRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/repositories/JpaUserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/jpa/repositories/JpaUserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/time/SystemTimeProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/adapters/out/time/SystemTimeProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/exceptions/BookAlreadyOnLoanException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/exceptions/BookAlreadyOnLoanException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/exceptions/LoanNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/exceptions/LoanNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/models/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/models/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/models/Librarian.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/models/Librarian.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/models/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/models/Library.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/models/Loan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/models/Loan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/models/LoanStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/models/LoanStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/services/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/services/BookService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/services/LibraryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/services/LibraryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/services/LoanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/services/LoanService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/domain/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/in/AuthUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/in/AuthUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/in/BookStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/in/BookStatistics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/in/BookUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/in/BookUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/in/LibraryUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/in/LibraryUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/in/LoanUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/in/LoanUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/in/UserUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/in/UserUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/out/repository/BookPort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/out/repository/BookPort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/out/repository/LibrarianPort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/out/repository/LibrarianPort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/out/repository/LibraryPort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/out/repository/LibraryPort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/out/repository/LoanPort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/out/repository/LoanPort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/out/repository/UserPort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/out/repository/UserPort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/out/time/TimeProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/thws/librarymanager/application/ports/out/time/TimeProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/keys/generate-rsa-keys.sh" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/keys/generate-rsa-keys.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/keys/privateKey.pem" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/keys/privateKey.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/keys/publicKey.pem" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/keys/publicKey.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/keys/rsaPrivateKey.pem" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/keys/rsaPrivateKey.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/thws/librarymanager/adapters/in/rest/AuthControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/thws/librarymanager/adapters/in/rest/AuthControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/thws/librarymanager/adapters/in/rest/BookControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/thws/librarymanager/adapters/in/rest/BookControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/thws/librarymanager/adapters/in/rest/LibraryControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/thws/librarymanager/adapters/in/rest/LibraryControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/thws/librarymanager/adapters/in/rest/LoanControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/thws/librarymanager/adapters/in/rest/LoanControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/thws/librarymanager/adapters/in/rest/UserControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/thws/librarymanager/adapters/in/rest/UserControllerTest.java" afterDir="false" />
+<<<<<<< Updated upstream
+      <change beforePath="$PROJECT_DIR$/src/test/java/thws/librarymanager/adapters/out/jpa/repositories/JpaBookRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/thws/librarymanager/adapters/out/jpa/repositories/JpaBookRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/thws/librarymanager/adapters/out/jpa/repositories/JpaLibrarianRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/thws/librarymanager/adapters/out/jpa/repositories/JpaLibrarianRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/thws/librarymanager/adapters/out/jpa/repositories/JpaLibraryRepositoryIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/thws/librarymanager/adapters/out/jpa/repositories/JpaLibraryRepositoryIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/thws/librarymanager/adapters/out/jpa/repositories/JpaLoanRepositoryIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/thws/librarymanager/adapters/out/jpa/repositories/JpaLoanRepositoryIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/thws/librarymanager/adapters/out/jpa/repositories/JpaUserRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/thws/librarymanager/adapters/out/jpa/repositories/JpaUserRepositoryTest.java" afterDir="false" />
+=======
+>>>>>>> Stashed changes
+      <change beforePath="$PROJECT_DIR$/src/test/java/thws/librarymanager/application/domain/services/BookServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/thws/librarymanager/application/domain/services/BookServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/thws/librarymanager/application/domain/services/LibraryServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/thws/librarymanager/application/domain/services/LibraryServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/thws/librarymanager/application/domain/services/LoanServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/thws/librarymanager/application/domain/services/LoanServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/thws/librarymanager/application/domain/services/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/thws/librarymanager/application/domain/services/UserServiceTest.java" afterDir="false" />
+<<<<<<< Updated upstream
+      <change beforePath="$PROJECT_DIR$/target/build-metrics.json" beforeDir="false" afterPath="$PROJECT_DIR$/target/build-metrics.json" afterDir="false" />
+=======
+>>>>>>> Stashed changes
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/keys/generate-rsa-keys.sh" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/keys/generate-rsa-keys.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/keys/privateKey.pem" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/keys/privateKey.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/keys/publicKey.pem" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/keys/publicKey.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/keys/rsaPrivateKey.pem" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/keys/rsaPrivateKey.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/AuthController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/BaseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/BaseController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/BookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/BookController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/LibraryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/LibraryController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/LoanController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/LoanController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/mapper/RestMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/mapper/RestMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/models/BaseDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/models/BaseDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/models/BookDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/models/BookDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/models/LibraryDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/models/LibraryDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/models/LoanDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/models/LoanDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/models/UserDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/models/UserDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/services/JwtAuthService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/services/JwtAuthService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/util/ETagGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/util/ETagGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/util/LibraryServiceLogger.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/in/rest/util/LibraryServiceLogger.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/converter/JpaConverter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/converter/JpaConverter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/entities/BookEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/entities/BookEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/entities/LibrarianEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/entities/LibrarianEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/entities/LibraryEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/entities/LibraryEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/entities/LoanEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/entities/LoanEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/entities/UserEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/entities/UserEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/enums/LoanStatusJpa.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/enums/LoanStatusJpa.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/repositories/JpaBookRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/repositories/JpaBookRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/repositories/JpaLibrarianRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/repositories/JpaLibrarianRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/repositories/JpaLibraryRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/repositories/JpaLibraryRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/repositories/JpaLoanRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/repositories/JpaLoanRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/repositories/JpaUserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/jpa/repositories/JpaUserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/time/SystemTimeProvider.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/adapters/out/time/SystemTimeProvider.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/exceptions/BookAlreadyOnLoanException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/exceptions/BookAlreadyOnLoanException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/exceptions/BookNotFoundException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/exceptions/BookNotFoundException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/exceptions/LoanNotFoundException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/exceptions/LoanNotFoundException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/exceptions/UserNotFoundException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/exceptions/UserNotFoundException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/models/Book.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/models/Book.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/models/Librarian.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/models/Librarian.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/models/Library.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/models/Library.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/models/Loan.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/models/Loan.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/models/LoanStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/models/LoanStatus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/models/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/models/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/services/BookService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/services/BookService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/services/LibraryService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/services/LibraryService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/services/LoanService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/services/LoanService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/services/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/domain/services/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/in/AuthUseCase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/in/AuthUseCase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/in/BookStatistics.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/in/BookStatistics.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/in/BookUseCase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/in/BookUseCase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/in/LibraryUseCase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/in/LibraryUseCase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/in/LoanUseCase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/in/LoanUseCase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/in/UserUseCase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/in/UserUseCase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/out/repository/BookPort.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/out/repository/BookPort.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/out/repository/LibrarianPort.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/out/repository/LibrarianPort.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/out/repository/LibraryPort.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/out/repository/LibraryPort.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/out/repository/LoanPort.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/out/repository/LoanPort.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/out/repository/UserPort.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/out/repository/UserPort.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/out/time/TimeProvider.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/thws/librarymanager/application/ports/out/time/TimeProvider.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/null/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/null/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/null/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/null/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/null/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/null/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/null/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/null/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/quarkus/bootstrap/test-app-model.dat" beforeDir="false" afterPath="$PROJECT_DIR$/target/quarkus/bootstrap/test-app-model.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-thws.librarymanager.adapters.in.rest.AuthControllerTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-thws.librarymanager.adapters.in.rest.AuthControllerTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-thws.librarymanager.adapters.in.rest.BookControllerTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-thws.librarymanager.adapters.in.rest.BookControllerTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-thws.librarymanager.adapters.in.rest.LibraryControllerTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-thws.librarymanager.adapters.in.rest.LibraryControllerTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-thws.librarymanager.adapters.in.rest.LoanControllerTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-thws.librarymanager.adapters.in.rest.LoanControllerTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-thws.librarymanager.adapters.in.rest.UserControllerTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-thws.librarymanager.adapters.in.rest.UserControllerTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-thws.librarymanager.application.domain.services.LoanServiceTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-thws.librarymanager.application.domain.services.LoanServiceTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/thws.librarymanager.adapters.in.rest.AuthControllerTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/thws.librarymanager.adapters.in.rest.AuthControllerTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/thws.librarymanager.adapters.in.rest.BookControllerTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/thws.librarymanager.adapters.in.rest.BookControllerTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/thws.librarymanager.adapters.in.rest.LibraryControllerTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/thws.librarymanager.adapters.in.rest.LibraryControllerTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/thws.librarymanager.adapters.in.rest.LoanControllerTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/thws.librarymanager.adapters.in.rest.LoanControllerTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/thws.librarymanager.adapters.in.rest.UserControllerTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/thws.librarymanager.adapters.in.rest.UserControllerTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/thws.librarymanager.application.domain.services.LoanServiceTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/thws.librarymanager.application.domain.services.LoanServiceTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/AuthControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/AuthControllerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/BookControllerTest$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/BookControllerTest$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/BookControllerTest$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/BookControllerTest$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/BookControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/BookControllerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/LibraryControllerTest$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/LibraryControllerTest$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/LibraryControllerTest$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/LibraryControllerTest$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/LibraryControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/LibraryControllerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/LoanControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/LoanControllerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/UserControllerTest$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/UserControllerTest$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/UserControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/in/rest/UserControllerTest.class" afterDir="false" />
+<<<<<<< Updated upstream
+      <change beforePath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/out/jpa/repositories/JpaBookRepositoryTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/out/jpa/repositories/JpaBookRepositoryTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/out/jpa/repositories/JpaLibrarianRepositoryTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/out/jpa/repositories/JpaLibrarianRepositoryTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/out/jpa/repositories/JpaLibraryRepositoryIT.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/out/jpa/repositories/JpaLibraryRepositoryIT.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/out/jpa/repositories/JpaLoanRepositoryIT.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/out/jpa/repositories/JpaLoanRepositoryIT.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/out/jpa/repositories/JpaUserRepositoryTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/adapters/out/jpa/repositories/JpaUserRepositoryTest.class" afterDir="false" />
+=======
+>>>>>>> Stashed changes
+      <change beforePath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/application/domain/services/BookServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/application/domain/services/BookServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/application/domain/services/LibraryServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/application/domain/services/LibraryServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/application/domain/services/LoanServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/application/domain/services/LoanServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/application/domain/services/UserServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/thws/librarymanager/application/domain/services/UserServiceTest.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenRunner">
+    <option name="jreName" value="21" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="38JKerzYOd0cUoevAn2Wwj1fwIy" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.LoanControllerTest.executor&quot;: &quot;Debug&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/loan&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/hghg9/IdeaProjects/LibraryManager&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.runner&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager" selected="JUnit.JpaLoanRepositoryIT">
+    <configuration name="JpaLibraryRepositoryIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="library-manager" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="thws.librarymanager.adapters.out.jpa.repositories.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="thws.librarymanager.adapters.out.jpa.repositories" />
+      <option name="MAIN_CLASS_NAME" value="thws.librarymanager.adapters.out.jpa.repositories.JpaLibraryRepositoryIT" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JpaLoanRepositoryIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="library-manager" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="thws.librarymanager.adapters.out.jpa.repositories.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="thws.librarymanager.adapters.out.jpa.repositories" />
+      <option name="MAIN_CLASS_NAME" value="thws.librarymanager.adapters.out.jpa.repositories.JpaLoanRepositoryIT" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JpaLoanRepositoryIT.save_and_findById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="library-manager" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="thws.librarymanager.adapters.out.jpa.repositories.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="thws.librarymanager.adapters.out.jpa.repositories" />
+      <option name="MAIN_CLASS_NAME" value="thws.librarymanager.adapters.out.jpa.repositories.JpaLoanRepositoryIT" />
+      <option name="METHOD_NAME" value="save_and_findById" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LibraryControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="library-manager" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="thws.librarymanager.adapters.in.rest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="thws.librarymanager.adapters.in.rest" />
+      <option name="MAIN_CLASS_NAME" value="thws.librarymanager.adapters.in.rest.LibraryControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LibraryServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="library-manager" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="thws.librarymanager.application.domain.services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="thws.librarymanager.application.domain.services" />
+      <option name="MAIN_CLASS_NAME" value="thws.librarymanager.application.domain.services.LibraryServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="Library-Manager" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="Library-Manager" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration name="library-manager" type="QuarkusRunConfigurationType" factoryName="Quarkus" nameIsGenerated="true">
+      <module name="library-manager" />
+      <QsMavenRunConfiguration>
+        <MavenSettings>
+          <option name="myGeneralSettings" />
+          <option name="myRunnerSettings" />
+          <option name="myRunnerParameters">
+            <MavenRunnerParameters>
+              <option name="cmdOptions" />
+              <option name="profiles">
+                <set />
+              </option>
+              <option name="goals">
+                <list>
+                  <option value="quarkus:dev" />
+                </list>
+              </option>
+              <option name="pomFileName" value="pom.xml" />
+              <option name="profilesMap">
+                <map />
+              </option>
+              <option name="projectsCmdOptionValues">
+                <list />
+              </option>
+              <option name="resolveToWorkspace" value="false" />
+              <option name="workingDirPath" value="$PROJECT_DIR$" />
+            </MavenRunnerParameters>
+          </option>
+        </MavenSettings>
+        <targetMavenLocalRepo />
+        <emulateTerminal>false</emulateTerminal>
+      </QsMavenRunConfiguration>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.JpaLoanRepositoryIT" />
+        <item itemvalue="JUnit.JpaLoanRepositoryIT.save_and_findById" />
+        <item itemvalue="JUnit.JpaLibraryRepositoryIT" />
+        <item itemvalue="JUnit.LibraryControllerTest" />
+        <item itemvalue="JUnit.LibraryServiceTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-26cb7f24e5b0-intellij.indexing.shared.core-IU-253.29346.138" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ee0d4e81-f1a4-44b7-8c8f-09191ce76d03" name="Changes" comment="" />
+      <created>1768512331511</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1768512331511</updated>
+      <workItem from="1768515427133" duration="900000" />
+      <workItem from="1768518067884" duration="600000" />
+      <workItem from="1768828342905" duration="409000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
