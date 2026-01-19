@@ -3,12 +3,14 @@ package thws.librarymanager.adapters.in.rest;
 import java.net.URI;
 import java.util.List;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.*;
 
 import thws.librarymanager.adapters.in.rest.mapper.RestMapper;
 import thws.librarymanager.adapters.in.rest.models.BookDTO;
+import thws.librarymanager.adapters.in.rest.services.JwtAuthService;
 import thws.librarymanager.adapters.in.rest.util.ETagGenerator;
 import thws.librarymanager.application.domain.models.Book;
 import thws.librarymanager.application.domain.models.Library;
@@ -38,6 +40,7 @@ public class BookController extends BaseController{
         this.bookUseCase = bookUseCase;
     }
 
+    @RolesAllowed(JwtAuthService.Librarian_ROLE)
     @POST
     public Response addBook(BookDTO bookDTO) {
         if (bookDTO.getLibraryId() == null) {

@@ -1,0 +1,1 @@
+INSERT INTO librarians (id, name) VALUES (1, 'admin');

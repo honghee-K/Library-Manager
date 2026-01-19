@@ -78,11 +78,10 @@ public class User {
         }
     }
 
-    public void deleteLoan(Loan loan) {//TODO: Ohne Loan History?
+    public void deleteLoan(Loan loan) {
         if (this.loans != null) {
             this.loans.remove(loan);
         }
-        // loan.setReturned(LocalDate.now());
     }
 
     public boolean hasActiveLoans() {
