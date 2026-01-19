@@ -87,4 +87,13 @@ public class JpaUserRepository implements UserPort {
                 .getSingleResult();
         return count > 0;
     }
+    @Override
+    @Transactional(Transactional.TxType.SUPPORTS)
+    public long countUsers() {
+        return entityManager.createQuery(
+                "SELECT COUNT(u) FROM UserEntity u",
+                Long.class
+        ).getSingleResult();
+    }
+
 }

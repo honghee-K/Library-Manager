@@ -23,5 +23,6 @@ public interface LoanUseCase {
             int page,
             int size
     );
+    long getActiveLoanCount();
 
 }

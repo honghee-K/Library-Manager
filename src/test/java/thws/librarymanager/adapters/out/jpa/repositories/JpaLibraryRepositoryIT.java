@@ -74,13 +74,13 @@ class JpaLibraryRepositoryIT {
 
 
     @Test
-    void getLibraryByName() {
+    void findByName() {
         libraryRepository.save(
                 new Library(null, "City Library", "Hamburg", null)
         );
 
         Optional<Library> found =
-                libraryRepository.getLibraryByName("City Library");
+                libraryRepository.findByName("City Library");
 
         assertTrue(found.isPresent());
         assertEquals("Hamburg", found.get().getLocation());

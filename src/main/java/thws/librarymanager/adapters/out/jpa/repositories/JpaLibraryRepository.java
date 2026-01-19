@@ -1,7 +1,6 @@
 package thws.librarymanager.adapters.out.jpa.repositories;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import jakarta.enterprise.context.ApplicationScoped;
@@ -28,7 +27,7 @@ public class JpaLibraryRepository implements LibraryPort {
     EntityManager em;
 
     @Inject
-    JpaConverter converter; // User/Book dönüştürme işlemleri için
+    JpaConverter converter;
 
 
 
@@ -53,15 +52,6 @@ public class JpaLibraryRepository implements LibraryPort {
                 : Optional.empty();
     }
 
-    @Override
-    @Transactional(Transactional.TxType.SUPPORTS)
-    public Optional<Library> getLibraryByName(String name) {
-        TypedQuery<LibraryEntity> query = em.createQuery(
-                "SELECT l FROM LibraryEntity l WHERE l.name = :name", LibraryEntity.class);
-        query.setParameter("name", name);
-        List<LibraryEntity> result = query.getResultList();
-        return result.isEmpty() ? Optional.empty() : Optional.of(converter.toLibrary(result.get(0)));
-    }
 
     @Override
     @Transactional(Transactional.TxType.SUPPORTS)
@@ -140,5 +130,37 @@ public class JpaLibraryRepository implements LibraryPort {
                 .map(converter::toBook)
                 .collect(Collectors.toList());
     }
+    @Override
+    public Map<String, Long> countBooksGroupedByGenre(Long libraryId) {
+        List<Object[]> results = em.createQuery(
+                        "SELECT b.genre, COUNT(b) FROM BookEntity b " +
+                                "WHERE b.library.id = :libraryId GROUP BY b.genre",
+                        Object[].class
+                ).setParameter("libraryId", libraryId)
+                .getResultList();
+
+        return results.stream()
+                .collect(Collectors.toMap(
+                        r -> (String) r[0],
+                        r -> (Long) r[1]
+                ));
+    }
+
+    @Override
+    public Map<String, Long> countBooksGroupedByAuthor(Long libraryId) {
+        List<Object[]> results = em.createQuery(
+                        "SELECT b.author, COUNT(b) FROM BookEntity b " +
+                                "WHERE b.library.id = :libraryId GROUP BY b.author",
+                        Object[].class
+                ).setParameter("libraryId", libraryId)
+                .getResultList();
+
+        return results.stream()
+                .collect(Collectors.toMap(
+                        r -> (String) r[0],
+                        r -> (Long) r[1]
+                ));
+    }
+
 }
 

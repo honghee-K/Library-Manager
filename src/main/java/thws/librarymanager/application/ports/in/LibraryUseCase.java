@@ -22,4 +22,5 @@ public interface LibraryUseCase {
     void removeBookFromLibrary(Long libraryId, Long bookIsbn);
 
     Long getTotalBookCount(Long libraryId);
+
 }
