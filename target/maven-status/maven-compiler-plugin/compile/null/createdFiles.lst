@@ -1,7 +1,0 @@
-thws/librarymanager/application/ports/in/StatisticsUseCase.class
-thws/librarymanager/adapters/in/rest/models/StatisticsDTO.class
-thws/librarymanager/adapters/in/rest/StatisticsController.class
-thws/librarymanager/adapters/in/rest/models/StatisticsDTO$BooksStatistics.class
-thws/librarymanager/adapters/in/rest/models/StatisticsDTO$UsersStatistics.class
-thws/librarymanager/application/domain/services/StatisticsService.class
-thws/librarymanager/adapters/in/rest/models/StatisticsDTO$LoansStatistics.class
