@@ -37,7 +37,7 @@ public class LibraryService implements LibraryUseCase {
     @Override
     public Library addLibrary(Library library) {
 
-        if (libraryPort.getLibraryByName(library.getName()).isPresent()) {
+        if (libraryPort.findByName(library.getName()).isPresent()) {
             throw new IllegalArgumentException(
                     "Library with name '" + library.getName() + "' already exists."
             );

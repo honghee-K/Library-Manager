@@ -52,15 +52,6 @@ public class JpaLibraryRepository implements LibraryPort {
                 : Optional.empty();
     }
 
-    @Override
-    @Transactional(Transactional.TxType.SUPPORTS)
-    public Optional<Library> getLibraryByName(String name) {
-        TypedQuery<LibraryEntity> query = em.createQuery(
-                "SELECT l FROM LibraryEntity l WHERE l.name = :name", LibraryEntity.class);
-        query.setParameter("name", name);
-        List<LibraryEntity> result = query.getResultList();
-        return result.isEmpty() ? Optional.empty() : Optional.of(converter.toLibrary(result.get(0)));
-    }
 
     @Override
     @Transactional(Transactional.TxType.SUPPORTS)
@@ -94,7 +85,7 @@ public class JpaLibraryRepository implements LibraryPort {
                 .map(converter::toLibrary)
                 .collect(Collectors.toList());
     }
-    /*@Override
+    @Override
     @Transactional(Transactional.TxType.SUPPORTS)
     public Optional<Library> findByName(String name) {
         TypedQuery<LibraryEntity> query = em.createQuery(
@@ -105,7 +96,7 @@ public class JpaLibraryRepository implements LibraryPort {
         List<LibraryEntity> result = query.getResultList();
         return result.isEmpty()
                 ? Optional.empty()
-                : Optional.of(converter.toLibrary(result.get(0))); }*/
+                : Optional.of(converter.toLibrary(result.get(0))); }
 
     @Override
     @Transactional
