@@ -83,11 +83,6 @@ public class LibraryController extends BaseController {
                 .build();
         addLink(rb, booksInLibUri, "books");
 
-        CacheControl cacheControl = new CacheControl();
-        cacheControl.setPrivate(true);
-        cacheControl.setMaxAge(60);
-        rb.cacheControl(cacheControl);
-
         LibraryServiceLogger.logGetAll();
 
         return rb.tag(etag).build();

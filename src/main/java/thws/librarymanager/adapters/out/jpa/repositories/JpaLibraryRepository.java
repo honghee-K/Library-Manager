@@ -18,6 +18,7 @@ import thws.librarymanager.application.domain.models.Book;
 import thws.librarymanager.application.domain.models.Library;
 import thws.librarymanager.application.ports.out.repository.LibraryPort;
 
+
 @ApplicationScoped
 public class JpaLibraryRepository implements LibraryPort {
 

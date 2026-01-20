@@ -15,17 +15,14 @@ public class LoanEntity {
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
 
-    // Kullanıcı ilişkisi
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 
-    // Kitap ilişkisi
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "isbn", referencedColumnName = "isbn", nullable = false)
     private BookEntity book;
 
-    // Tarihler
     @Column(name = "loan_date", nullable = false)
     private LocalDate loanDate;
 
@@ -105,17 +102,4 @@ public class LoanEntity {
         this.status = status;
     }
 
-    // ---- YARDIMCI METOTLAR (optional ama çok faydalı) ----
-    public boolean isReturned() {
-        return this.status == LoanStatusJpa.RETURNED;
-    }
-
-    public boolean isOverdue(LocalDate today) {
-        return !isReturned() && today.isAfter(dueDate);
-    }
-
-    public void markAsReturned(LocalDate returnDate) {
-        this.returnDate = returnDate != null ? returnDate : LocalDate.now();
-        this.status = LoanStatusJpa.RETURNED;
-    }
 }

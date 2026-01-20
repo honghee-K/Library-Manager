@@ -97,16 +97,13 @@ public class LoanController extends BaseController {
     public Response getLoan(@PathParam("id") Long id) {
 
         Loan loan = loanUseCase.getLoanById(id);
-        if (loan == null) {
-            throw new NotFoundException("Loan not found");
-        }
 
         EntityTag etag = new EntityTag(ETagGenerator.fromLoan(loan));
 
         Response.ResponseBuilder precond = request.evaluatePreconditions(etag);
 
         if (precond != null) {
-            return precond.build(); // 304
+            return precond.build();
         }
 
         LoanDTO dto = restMapper.toLoanDTO(loan);
@@ -131,6 +128,7 @@ public class LoanController extends BaseController {
             @QueryParam("overdue") Boolean overdue,
             @QueryParam("page") @DefaultValue("0") int page,
             @QueryParam("size") @DefaultValue("10") int size) {
+
 
         List<LoanDTO> dtos = loanUseCase.getAllLoans(userId, isbn, status, overdue, page, size).stream()
                 .map(restMapper::toLoanDTO)

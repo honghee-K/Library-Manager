@@ -1,8 +1,8 @@
 package thws.librarymanager.adapters.in.rest.models;
 
-import java.time.LocalDate;
-
 import thws.librarymanager.application.domain.models.LoanStatus;
+
+import java.time.LocalDate;
 
 public class LoanDTO extends BaseDTO {
     private Long userId;
@@ -11,56 +11,25 @@ public class LoanDTO extends BaseDTO {
     private LocalDate dueDate;
     private LocalDate returnDate;
     private LoanStatus status;
-
     public LoanDTO() {
         super();
     }
 
-    public Long getUserId() {
-        return userId;
-    }
+    public Long getUserId() { return userId; }
+    public void setUserId(Long userId) { this.userId = userId; }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
+    public Long getIsbn() { return isbn; }
+    public void setIsbn(Long isbn) { this.isbn = isbn; }
 
-    public Long getIsbn() {
-        return isbn;
-    }
+    public LocalDate getLoanDate() { return loanDate; }
+    public void setLoanDate(LocalDate loanDate) { this.loanDate = loanDate; }
 
-    public void setIsbn(Long isbn) {
-        this.isbn = isbn;
-    }
+    public LocalDate getDueDate() { return dueDate; }
+    public void setDueDate(LocalDate dueDate) { this.dueDate = dueDate; }
 
-    public LocalDate getLoanDate() {
-        return loanDate;
-    }
+    public LocalDate getReturnDate() { return returnDate; }
+    public void setReturnDate(LocalDate returnDate) { this.returnDate = returnDate; }
 
-    public void setLoanDate(LocalDate loanDate) {
-        this.loanDate = loanDate;
-    }
-
-    public LocalDate getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(LocalDate dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    public LocalDate getReturnDate() {
-        return returnDate;
-    }
-
-    public void setReturnDate(LocalDate returnDate) {
-        this.returnDate = returnDate;
-    }
-
-    public LoanStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(LoanStatus status) {
-        this.status = status;
-    }
+    public LoanStatus getStatus() { return status; }
+    public void setStatus(LoanStatus status) { this.status = status; }
 }
