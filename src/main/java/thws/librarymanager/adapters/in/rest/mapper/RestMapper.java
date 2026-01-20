@@ -11,7 +11,6 @@ import thws.librarymanager.application.domain.models.*;
 @ApplicationScoped
 public class RestMapper {
 
-    // TODO: Jede andere Links in HEADER speichern (siehe das FOTO)
     public BookDTO toBookDTO(Book book) {
         if (book == null) return null;
 
@@ -49,12 +48,10 @@ public class RestMapper {
 
         if (loan.getUser() != null) {
             dto.setUserId(loan.getUser().getId());
-            dto.setUserName(loan.getUser().getName());
         }
 
         if (loan.getBook() != null) {
             dto.setIsbn(loan.getBook().getIsbn());
-            dto.setBookTitle(loan.getBook().getTitle());
         }
 
         dto.setLoanDate(loan.getLoanDate());

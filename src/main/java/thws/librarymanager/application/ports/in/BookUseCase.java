@@ -23,6 +23,4 @@ public interface BookUseCase {
     void startLoanForBook(Long isbn, Loan loan);
 
     void endLoanForBook(Long isbn, Loan loan);
-
-    BookStatistics getBookCounts();
 }

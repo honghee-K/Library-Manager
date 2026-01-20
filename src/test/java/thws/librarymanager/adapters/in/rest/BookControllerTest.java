@@ -60,6 +60,7 @@ public class BookControllerTest {
 
     @Test
     @Order(1)
+    @TestSecurity(user = "admin", roles = "librarian")
     public void getBookByIsbn() {
 
         BookDTO bookDTO = RestAssured.given()
@@ -84,6 +85,7 @@ public class BookControllerTest {
 
     @Test
     @Order(2)
+    @TestSecurity(user = "admin", roles = "librarian")
     public void getBookByIsbn_HeaderAndCacheValidation() {
         Response response = RestAssured.given().when().pathParam("isbn", 1234L).get("/{isbn}");
 
@@ -102,6 +104,7 @@ public class BookControllerTest {
 
     @Test
     @Order(3)
+    @TestSecurity(user = "admin", roles = "librarian")
     public void getAllBooks() {
 
         List<BookDTO> bookDTOs = RestAssured.given()
@@ -156,6 +159,7 @@ public class BookControllerTest {
 
     @Test
     @Order(5)
+    @TestSecurity(user = "admin", roles = "librarian")
     public void updateBook() {
         BookDTO updateDTO = new BookDTO();
         updateDTO.setTitle("Updated Title");
@@ -189,39 +193,10 @@ public class BookControllerTest {
         List<String> getLinks = getResponse.headers().getValues("Link");
         Assertions.assertTrue(getLinks.stream().anyMatch(l -> l.contains("rel=\"self\"")), "self link missing in GET");
     }
-    /* @Test
-    @Order(5)
-    public void updateBook(){
-        BookDTO updateDTO = new BookDTO();
-        updateDTO.setTitle("Updated Title");
-        updateDTO.setAuthor("Updated Author");
-        updateDTO.setGenre("Updated Genre");
-
-        RestAssured.given()
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(updateDTO)
-                .when()
-                .pathParam("isbn", 1234L)
-                .put("/{isbn}")
-                .then()
-                .statusCode(200)
-                .headers("Link", Matchers.hasItem(Matchers.containsString("rel=\"self\"")))
-                .body("title", Matchers.equalTo("Updated Title"))
-                .body("author", Matchers.equalTo("Updated Author"))
-                .body("genre", Matchers.equalTo("Updated Genre"));
-
-        RestAssured.given()
-                .when()
-                .pathParam("isbn", 1234L)
-                .get("/{isbn}")
-                .then()
-                .statusCode(200)
-                .headers("Link", Matchers.hasItem(Matchers.containsString("rel=\"self\"")))
-                .body("title", Matchers.equalTo("Updated Title"));
-    }*/
 
     @Test
     @Order(6)
+    @TestSecurity(user = "admin", roles = "librarian")
     public void deleteBook() {
         RestAssured.given()
                 .when()

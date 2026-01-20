@@ -62,6 +62,7 @@ public class BookController extends BaseController {
         return rb.entity(restMapper.toBookDTO(newBook)).build();
     }
 
+    @RolesAllowed(JwtAuthService.Librarian_ROLE)
     @PUT
     @Path("/{isbn}")
     public Response updateBook(@PathParam("isbn") Long isbn, BookDTO updateDTO) {
@@ -70,18 +71,17 @@ public class BookController extends BaseController {
         Book updatedBook = bookUseCase.getBookByIsbn(isbn).orElseThrow(() -> new NotFoundException("Book not found"));
         BookDTO responseDto = restMapper.toBookDTO(updatedBook);
 
-        EntityTag etag = new EntityTag(ETagGenerator.fromBook(updatedBook));
-
         Response.ResponseBuilder rb = Response.ok(responseDto);
         addLink(rb, uriInfo.getAbsolutePath(), "self");
 
         CacheControl cc = new CacheControl();
-        cc.setMaxAge(60);
+        cc.setMaxAge(300);
         cc.setPrivate(true);
 
-        return rb.tag(etag).cacheControl(cc).build();
+        return rb.cacheControl(cc).build();
     }
 
+    @RolesAllowed(JwtAuthService.Librarian_ROLE)
     @DELETE
     @Path("/{isbn}")
     public Response deleteBook(@PathParam("isbn") Long isbn) {
@@ -95,6 +95,7 @@ public class BookController extends BaseController {
         return rb.build();
     }
 
+    @RolesAllowed(JwtAuthService.Librarian_ROLE)
     @GET
     @Path("/{isbn}")
     public Response getBookByIsbn(@PathParam("isbn") Long isbn) {
@@ -120,11 +121,11 @@ public class BookController extends BaseController {
         CacheControl cc = new CacheControl();
         cc.setMaxAge(60);
         cc.setPrivate(true);
-        rb.cacheControl(cc);
 
-        return rb.build();
+        return rb.cacheControl(cc).build();
     }
 
+    @RolesAllowed(JwtAuthService.Librarian_ROLE)
     @GET
     public Response getAllBooks(
             @QueryParam("page") @DefaultValue("0") int page,
@@ -140,17 +141,8 @@ public class BookController extends BaseController {
 
         CacheControl cc = new CacheControl();
         cc.setMaxAge(60);
-        rb.cacheControl(cc);
 
-        return rb.build();
+        return rb.cacheControl(cc).build();
     }
-
-    /* @GET
-    @Path("/statistics")
-    public Response getBookStatistics() {
-        BookStatistics stats = bookUseCase.getBookCounts();
-
-        return Response.ok(stats).build();
-    } */
 
 }

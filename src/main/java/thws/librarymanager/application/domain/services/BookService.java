@@ -12,7 +12,6 @@ import jakarta.transaction.Transactional;
 import thws.librarymanager.application.domain.models.Book;
 import thws.librarymanager.application.domain.models.Library;
 import thws.librarymanager.application.domain.models.Loan;
-import thws.librarymanager.application.ports.in.BookStatistics;
 import thws.librarymanager.application.ports.in.BookUseCase;
 import thws.librarymanager.application.ports.out.repository.BookPort;
 
@@ -115,18 +114,4 @@ public class BookService implements BookUseCase {
         persistBookPort.deleteByIsbn(isbn);
     }
 
-    @Override
-    public BookStatistics getBookCounts() {
-        List<Book> allBooks = persistBookPort.findAllForStatistics();
-
-        long totalBooks = allBooks.size();
-
-        Map<String, Long> countByGenre =
-                allBooks.stream().collect(Collectors.groupingBy(Book::getGenre, Collectors.counting()));
-
-        Map<String, Long> countByAuthor =
-                allBooks.stream().collect(Collectors.groupingBy(Book::getAuthor, Collectors.counting()));
-
-        return new BookStatistics(totalBooks, countByGenre, countByAuthor);
-    }
 }

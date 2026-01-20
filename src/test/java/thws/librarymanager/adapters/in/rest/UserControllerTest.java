@@ -2,6 +2,7 @@ package thws.librarymanager.adapters.in.rest;
 
 import java.util.List;
 
+import io.quarkus.test.security.TestSecurity;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -50,6 +51,7 @@ public class UserControllerTest {
 
     @Test
     @Order(1)
+    @TestSecurity(user = "admin", roles = "librarian")
     public void createUser() {
         UserDTO newUserDTO = new UserDTO();
         newUserDTO.setName("newuser");
@@ -70,6 +72,7 @@ public class UserControllerTest {
 
     @Test
     @Order(2)
+    @TestSecurity(user = "admin", roles = "librarian")
     public void getUserById() {
         UserDTO userDTO = RestAssured.given()
                 .when()
@@ -88,6 +91,7 @@ public class UserControllerTest {
 
     @Test
     @Order(3)
+    @TestSecurity(user = "admin", roles = "librarian")
     public void getUserById_HateoasHeaderValidation() {
         Response response = RestAssured.given()
                 // .log().all()
@@ -108,6 +112,7 @@ public class UserControllerTest {
 
     @Test
     @Order(4)
+    @TestSecurity(user = "admin", roles = "librarian")
     public void getAllUsers() {
         List<UserDTO> userDTOs = RestAssured.given()
                 .when()
@@ -124,6 +129,7 @@ public class UserControllerTest {
 
     @Test
     @Order(5)
+    @TestSecurity(user = "admin", roles = "librarian")
     public void updateUser() {
         UserDTO updateDTO = new UserDTO();
         updateDTO.setName("updatedUser");
@@ -150,6 +156,7 @@ public class UserControllerTest {
 
     @Test
     @Order(6)
+    @TestSecurity(user = "admin", roles = "librarian")
     public void deleteUser() {
         RestAssured.given()
                 .when()

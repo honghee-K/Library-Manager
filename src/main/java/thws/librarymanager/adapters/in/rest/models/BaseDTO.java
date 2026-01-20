@@ -8,7 +8,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 public abstract class BaseDTO implements Serializable {
 
-    @Schema(hidden = true)
+    @Schema(readOnly = true)
     @PositiveOrZero
     protected Long id;
 

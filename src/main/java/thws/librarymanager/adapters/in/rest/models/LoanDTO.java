@@ -6,9 +6,7 @@ import thws.librarymanager.application.domain.models.LoanStatus;
 
 public class LoanDTO extends BaseDTO {
     private Long userId;
-    private String userName;
     private Long isbn;
-    private String bookTitle;
     private LocalDate loanDate;
     private LocalDate dueDate;
     private LocalDate returnDate;
@@ -26,28 +24,12 @@ public class LoanDTO extends BaseDTO {
         this.userId = userId;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     public Long getIsbn() {
         return isbn;
     }
 
     public void setIsbn(Long isbn) {
         this.isbn = isbn;
-    }
-
-    public String getBookTitle() {
-        return bookTitle;
-    }
-
-    public void setBookTitle(String bookTitle) {
-        this.bookTitle = bookTitle;
     }
 
     public LocalDate getLoanDate() {

@@ -1,12 +1,15 @@
 package thws.librarymanager.adapters.in.rest.models;
 
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
 public class BookDTO extends BaseDTO {
     private Long isbn;
     private String title;
     private String author;
     private String genre;
     private Long libraryId;
-    private boolean isOnLoan;
+    @Schema(readOnly = true)
+    private boolean OnLoan = false;
 
     public BookDTO() {
         super();
@@ -53,10 +56,10 @@ public class BookDTO extends BaseDTO {
     }
 
     public boolean isOnLoan() {
-        return isOnLoan;
+        return OnLoan;
     }
 
     public void setOnLoan(boolean onLoan) {
-        isOnLoan = onLoan;
+        OnLoan = onLoan;
     }
 }
