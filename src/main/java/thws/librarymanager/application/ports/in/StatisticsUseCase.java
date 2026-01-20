@@ -14,5 +14,3 @@ public interface StatisticsUseCase {
 
     long getActiveLoanCount();
 }
-
-

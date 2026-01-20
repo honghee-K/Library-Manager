@@ -1,14 +1,15 @@
 package thws.librarymanager.application.domain.services;
 
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
-import thws.librarymanager.application.domain.models.User;
-import thws.librarymanager.application.domain.models.Loan;
-import thws.librarymanager.application.ports.in.UserUseCase;
-import thws.librarymanager.application.ports.out.repository.UserPort;
-
 import java.util.List;
 import java.util.Optional;
+
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+
+import thws.librarymanager.application.domain.models.Loan;
+import thws.librarymanager.application.domain.models.User;
+import thws.librarymanager.application.ports.in.UserUseCase;
+import thws.librarymanager.application.ports.out.repository.UserPort;
 
 @ApplicationScoped
 public class UserService implements UserUseCase {
@@ -41,12 +42,12 @@ public class UserService implements UserUseCase {
 
     @Override
     public void addLoanToUser(Long userId, Loan loan) {
-        User user = userPort.findById(userId)
-                .orElseThrow(() -> new IllegalArgumentException("User not found: " + userId));
+        User user =
+                userPort.findById(userId).orElseThrow(() -> new IllegalArgumentException("User not found: " + userId));
 
         user.addLoan(loan);
 
-        //userPort.save(user);
+        // userPort.save(user);
     }
 
     @Override
@@ -55,13 +56,12 @@ public class UserService implements UserUseCase {
 
         user.deleteLoan(loan);
 
-        //userPort.save(user);
+        // userPort.save(user);
     }
 
     @Override
     public void updateUser(Long id, String name, String email) {
-        User user = userPort.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("User not found: " + id));
+        User user = userPort.findById(id).orElseThrow(() -> new IllegalArgumentException("User not found: " + id));
 
         user.updateInfo(name, email);
         userPort.save(user);
@@ -69,8 +69,7 @@ public class UserService implements UserUseCase {
 
     @Override
     public void deleteUser(Long id) {
-        User user = userPort.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("User not found: " + id));
+        User user = userPort.findById(id).orElseThrow(() -> new IllegalArgumentException("User not found: " + id));
 
         if (user.hasActiveLoans()) {
             throw new IllegalStateException("Cannot delete user with active loans.");
@@ -78,6 +77,7 @@ public class UserService implements UserUseCase {
 
         userPort.deleteById(id);
     }
+
     @Override
     public long getRegisteredUserCount() {
         return userPort.countUsers();

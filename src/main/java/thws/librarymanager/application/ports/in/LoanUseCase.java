@@ -1,6 +1,5 @@
 package thws.librarymanager.application.ports.in;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import thws.librarymanager.application.domain.models.Book;
@@ -12,17 +11,11 @@ public interface LoanUseCase {
 
     Loan createLoan(User user, Book book);
 
-    Loan returnLoan(Long loanId); //TODO
+    Loan returnLoan(Long loanId); // TODO
 
     Loan getLoanById(Long loanId);
-    List<Loan> getAllLoans(
-            Long userId,
-            Long isbn,
-            LoanStatus status,
-            Boolean overdue,
-            int page,
-            int size
-    );
-    long getActiveLoanCount();
 
+    List<Loan> getAllLoans(Long userId, Long isbn, LoanStatus status, Boolean overdue, int page, int size);
+
+    long getActiveLoanCount();
 }

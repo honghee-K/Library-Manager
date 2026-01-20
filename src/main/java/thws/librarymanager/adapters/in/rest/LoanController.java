@@ -1,9 +1,13 @@
 package thws.librarymanager.adapters.in.rest;
 
+import java.net.URI;
+import java.util.List;
+
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.*;
+
 import thws.librarymanager.adapters.in.rest.mapper.RestMapper;
 import thws.librarymanager.adapters.in.rest.models.LoanDTO;
 import thws.librarymanager.adapters.in.rest.util.ETagGenerator;
@@ -15,13 +19,10 @@ import thws.librarymanager.application.ports.in.BookUseCase;
 import thws.librarymanager.application.ports.in.LoanUseCase;
 import thws.librarymanager.application.ports.in.UserUseCase;
 
-import java.net.URI;
-import java.util.List;
-
 @Path("/loans")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class LoanController extends BaseController{
+public class LoanController extends BaseController {
 
     @Context
     UriInfo uriInfo;
@@ -45,11 +46,9 @@ public class LoanController extends BaseController{
     @Transactional
     public Response createLoan(LoanDTO dto) {
 
-        User user = userUseCase.getUserById(dto.getUserId())
-                .orElseThrow(() -> new NotFoundException("User not found"));
+        User user = userUseCase.getUserById(dto.getUserId()).orElseThrow(() -> new NotFoundException("User not found"));
 
-        Book book = bookUseCase.getBookByIsbn(dto.getIsbn())
-                .orElseThrow(() -> new NotFoundException("Book not found"));
+        Book book = bookUseCase.getBookByIsbn(dto.getIsbn()).orElseThrow(() -> new NotFoundException("Book not found"));
 
         Loan loan = loanUseCase.createLoan(user, book);
 
@@ -71,11 +70,9 @@ public class LoanController extends BaseController{
 
         Loan loan = loanUseCase.getLoanById(id);
 
-        EntityTag etag =
-                new EntityTag(ETagGenerator.fromLoan(loan));
+        EntityTag etag = new EntityTag(ETagGenerator.fromLoan(loan));
 
-        Response.ResponseBuilder precond =
-                request.evaluatePreconditions(etag);
+        Response.ResponseBuilder precond = request.evaluatePreconditions(etag);
 
         if (precond != null) {
             return precond.build(); // 412
@@ -104,11 +101,9 @@ public class LoanController extends BaseController{
             throw new NotFoundException("Loan not found");
         }
 
-        EntityTag etag =
-                new EntityTag(ETagGenerator.fromLoan(loan));
+        EntityTag etag = new EntityTag(ETagGenerator.fromLoan(loan));
 
-        Response.ResponseBuilder precond =
-                request.evaluatePreconditions(etag);
+        Response.ResponseBuilder precond = request.evaluatePreconditions(etag);
 
         if (precond != null) {
             return precond.build(); // 304
@@ -120,7 +115,6 @@ public class LoanController extends BaseController{
         URI selfUri = uriInfo.getAbsolutePath();
         addLink(precond, selfUri, "self");
 
-
         CacheControl cc = new CacheControl();
         cc.setPrivate(true);
         cc.setMaxAge(3600);
@@ -128,6 +122,7 @@ public class LoanController extends BaseController{
 
         return precond.tag(etag).build();
     }
+
     @GET
     public Response getAllLoans(
             @QueryParam("userId") Long userId,
@@ -135,12 +130,9 @@ public class LoanController extends BaseController{
             @QueryParam("status") LoanStatus status,
             @QueryParam("overdue") Boolean overdue,
             @QueryParam("page") @DefaultValue("0") int page,
-            @QueryParam("size") @DefaultValue("10") int size
-    ) {
+            @QueryParam("size") @DefaultValue("10") int size) {
 
-        List<LoanDTO> dtos = loanUseCase
-                .getAllLoans(userId, isbn, status, overdue, page, size)
-                .stream()
+        List<LoanDTO> dtos = loanUseCase.getAllLoans(userId, isbn, status, overdue, page, size).stream()
                 .map(restMapper::toLoanDTO)
                 .toList();
 
@@ -156,6 +148,4 @@ public class LoanController extends BaseController{
 
         return rb.build();
     }
-
-
 }

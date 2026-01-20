@@ -9,8 +9,13 @@ public class Librarian {
         this.setName(name);
     }
 
-    public Long getId() { return id; }
-    public String getName() { return name; }
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     public void setName(String name) {
         if (name == null || name.isBlank()) {

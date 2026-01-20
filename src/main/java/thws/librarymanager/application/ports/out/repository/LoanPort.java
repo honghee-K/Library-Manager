@@ -15,11 +15,11 @@ public interface LoanPort {
 
     boolean existsActiveLoanForBook(Long bookId);
 
-    List<Loan> findAll(Long userId, Long bookId, LoanStatus status,Boolean overdue, int page, int size);
+    List<Loan> findAll(Long userId, Long bookId, LoanStatus status, Boolean overdue, int page, int size);
 
     List<Loan> findActiveLoans();
 
     List<Loan> findOverdueLoans(LocalDate today);
-    long countActiveLoans();
 
+    long countActiveLoans();
 }

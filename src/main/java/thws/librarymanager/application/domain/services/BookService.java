@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-
 import jakarta.transaction.Transactional;
+
 import thws.librarymanager.application.domain.models.Book;
 import thws.librarymanager.application.domain.models.Library;
 import thws.librarymanager.application.domain.models.Loan;
@@ -53,8 +53,8 @@ public class BookService implements BookUseCase {
     @Override
     @Transactional
     public void addBookToLibrary(Long isbn, Library library) {
-        Book book = persistBookPort.getBookByIsbn(isbn)
-                .orElseThrow(() -> new IllegalArgumentException("Book not found"));
+        Book book =
+                persistBookPort.getBookByIsbn(isbn).orElseThrow(() -> new IllegalArgumentException("Book not found"));
 
         book.setLibrary(library);
 
@@ -67,7 +67,8 @@ public class BookService implements BookUseCase {
 
     @Override
     public void startLoanForBook(Long bookIsbn, Loan loan) {
-        Book book = persistBookPort.getBookByIsbn(bookIsbn)
+        Book book = persistBookPort
+                .getBookByIsbn(bookIsbn)
                 .orElseThrow(() -> new IllegalArgumentException("Book not found for ISBN: " + bookIsbn));
 
         book.startLoan(loan);
@@ -77,7 +78,8 @@ public class BookService implements BookUseCase {
 
     @Override
     public void endLoanForBook(Long bookIsbn, Loan loan) {
-        Book book = persistBookPort.getBookByIsbn(bookIsbn)
+        Book book = persistBookPort
+                .getBookByIsbn(bookIsbn)
                 .orElseThrow(() -> new IllegalArgumentException("Book not found for ISBN: " + bookIsbn));
 
         book.endLoan(loan);
@@ -113,21 +115,18 @@ public class BookService implements BookUseCase {
         persistBookPort.deleteByIsbn(isbn);
     }
 
-
     @Override
-        public BookStatistics getBookCounts() {
-            List<Book> allBooks = persistBookPort.findAllForStatistics();
+    public BookStatistics getBookCounts() {
+        List<Book> allBooks = persistBookPort.findAllForStatistics();
 
-            long totalBooks = allBooks.size();
+        long totalBooks = allBooks.size();
 
-            Map<String, Long> countByGenre = allBooks.stream()
-                    .collect(Collectors.groupingBy(Book::getGenre, Collectors.counting()));
+        Map<String, Long> countByGenre =
+                allBooks.stream().collect(Collectors.groupingBy(Book::getGenre, Collectors.counting()));
 
-            Map<String, Long> countByAuthor = allBooks.stream()
-                    .collect(Collectors.groupingBy(Book::getAuthor, Collectors.counting()));
+        Map<String, Long> countByAuthor =
+                allBooks.stream().collect(Collectors.groupingBy(Book::getAuthor, Collectors.counting()));
 
-            return new BookStatistics(totalBooks, countByGenre, countByAuthor);
-        }
-
-
+        return new BookStatistics(totalBooks, countByGenre, countByAuthor);
+    }
 }

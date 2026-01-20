@@ -5,11 +5,11 @@ import java.util.Optional;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+
 import thws.librarymanager.application.domain.models.Library;
 import thws.librarymanager.application.ports.in.BookUseCase;
 import thws.librarymanager.application.ports.in.LibraryUseCase;
 import thws.librarymanager.application.ports.out.repository.LibraryPort;
-
 
 @ApplicationScoped
 public class LibraryService implements LibraryUseCase {
@@ -23,7 +23,6 @@ public class LibraryService implements LibraryUseCase {
         this.bookUseCase = bookUseCase;
     }
 
-
     @Override
     public Optional<Library> getLibraryById(Long id) {
         return libraryPort.getLibraryById(id);
@@ -34,17 +33,15 @@ public class LibraryService implements LibraryUseCase {
 
         return libraryPort.findAllLibraries(location, name);
     }
+
     @Override
     public Library addLibrary(Library library) {
 
         if (libraryPort.findByName(library.getName()).isPresent()) {
-            throw new IllegalArgumentException(
-                    "Library with name '" + library.getName() + "' already exists."
-            );
+            throw new IllegalArgumentException("Library with name '" + library.getName() + "' already exists.");
         }
         return libraryPort.save(library);
     }
-
 
     @Override
     public void updateLibrary(Long id, String name, String location) {
@@ -56,7 +53,6 @@ public class LibraryService implements LibraryUseCase {
 
         libraryPort.save(updatedLibrary);
     }
-
 
     @Override
     public void deleteLibrary(Long id) {

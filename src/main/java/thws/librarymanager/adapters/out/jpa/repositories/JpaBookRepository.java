@@ -81,11 +81,8 @@ public class JpaBookRepository implements BookPort {
     @Override
     @Transactional
     public List<Book> findAllForStatistics() {
-        return entityManager.createQuery("from BookEntity", BookEntity.class)
-                .getResultList()
-                .stream()
+        return entityManager.createQuery("from BookEntity", BookEntity.class).getResultList().stream()
                 .map(jpaConverter::toBook)
                 .collect(Collectors.toList());
-
     }
 }

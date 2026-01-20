@@ -1,7 +1,8 @@
 package thws.librarymanager.application.ports.out.repository;
 
-import thws.librarymanager.application.domain.models.Librarian;
 import java.util.Optional;
+
+import thws.librarymanager.application.domain.models.Librarian;
 
 public interface LibrarianPort {
     Optional<Librarian> findByName(String name);

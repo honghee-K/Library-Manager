@@ -12,7 +12,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 import thws.librarymanager.application.domain.models.Library;
 import thws.librarymanager.application.ports.in.BookUseCase;
 import thws.librarymanager.application.ports.out.repository.LibraryPort;
@@ -28,7 +27,6 @@ class LibraryServiceTest {
 
     @InjectMocks
     LibraryService libraryService;
-
 
     @Test
     void getLibraryById_success() {
@@ -53,7 +51,6 @@ class LibraryServiceTest {
         verify(libraryPort).getLibraryById(99L);
         verifyNoMoreInteractions(libraryPort, bookUseCase);
     }
-
 
     @Test
     void getAllLibraries_success() {
@@ -101,15 +98,14 @@ class LibraryServiceTest {
         when(library.getName()).thenReturn("Central Library");
         when(libraryPort.findByName("Central Library")).thenReturn(Optional.of(mock(Library.class)));
 
-        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
-                () -> libraryService.addLibrary(library));
+        IllegalArgumentException ex =
+                assertThrows(IllegalArgumentException.class, () -> libraryService.addLibrary(library));
 
         assertTrue(ex.getMessage().contains("already exists"));
         verify(libraryPort).findByName("Central Library");
         verify(libraryPort, never()).save(any());
         verifyNoMoreInteractions(libraryPort, bookUseCase);
     }
-
 
     @Test
     void updateLibrary_success() {
@@ -131,15 +127,14 @@ class LibraryServiceTest {
     void updateLibrary_notFound_throws() {
         when(libraryPort.getLibraryById(404L)).thenReturn(Optional.empty());
 
-        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class,
-                () -> libraryService.updateLibrary(404L, "X", "Y"));
+        IllegalArgumentException ex =
+                assertThrows(IllegalArgumentException.class, () -> libraryService.updateLibrary(404L, "X", "Y"));
 
         assertTrue(ex.getMessage().contains("Library not found"));
         verify(libraryPort).getLibraryById(404L);
         verify(libraryPort, never()).save(any());
         verifyNoMoreInteractions(libraryPort, bookUseCase);
     }
-
 
     @Test
     void deleteLibrary_success() {
@@ -162,7 +157,6 @@ class LibraryServiceTest {
         verify(libraryPort, never()).deleteLibraryById(anyLong());
         verifyNoMoreInteractions(libraryPort, bookUseCase);
     }
-
 
     @Test
     void addBookToLibrary_success() {
@@ -198,7 +192,6 @@ class LibraryServiceTest {
         verifyNoMoreInteractions(bookUseCase);
     }
 
-
     @Test
     void getTotalBookCount_success() {
         when(libraryPort.countTotalBooks(1L)).thenReturn(42L);
@@ -210,4 +203,3 @@ class LibraryServiceTest {
         verifyNoMoreInteractions(libraryPort, bookUseCase);
     }
 }
-

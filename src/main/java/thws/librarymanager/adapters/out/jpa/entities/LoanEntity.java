@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import jakarta.persistence.*;
 
 import thws.librarymanager.adapters.out.jpa.enums.LoanStatusJpa;
-import thws.librarymanager.application.domain.models.LoanStatus;
 
 @Entity
 @Table(name = "loan")
@@ -66,8 +65,13 @@ public class LoanEntity {
         this.user = user;
     }
 
-    public BookEntity getBook() { return book; }
-    public void setBook(BookEntity book) { this.book = book; }
+    public BookEntity getBook() {
+        return book;
+    }
+
+    public void setBook(BookEntity book) {
+        this.book = book;
+    }
 
     public LocalDate getLoanDate() {
         return loanDate;

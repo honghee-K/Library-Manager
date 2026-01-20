@@ -14,28 +14,22 @@ public class ETagGenerator {
         String combined = book.getTitle() + book.getAuthor() + book.getGenre();
         return Integer.toHexString(combined.hashCode());
     }
+
     public static String fromLoan(Loan loan) {
-        String value = loan.getId() + "-" +
-                loan.getStatus() + "-" +
-                loan.getDueDate();
+        String value = loan.getId() + "-" + loan.getStatus() + "-" + loan.getDueDate();
 
         return sha256(value);
     }
 
     public static String fromUser(User user) {
-        String value = user.getId() + "-" +
-                user.getName() + "-" +
-                user.getEmail();
-        return sha256(value);
-    }
-    public static String fromLibrary(Library library) {
-        String value =
-                library.getId() + "-" +
-                        library.getName() + "-" +
-                        library.getLocation();
+        String value = user.getId() + "-" + user.getName() + "-" + user.getEmail();
         return sha256(value);
     }
 
+    public static String fromLibrary(Library library) {
+        String value = library.getId() + "-" + library.getName() + "-" + library.getLocation();
+        return sha256(value);
+    }
 
     private static String sha256(String input) {
         try {

@@ -1,5 +1,12 @@
 package thws.librarymanager.application.domain.services;
 
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
+
+import java.util.List;
+import java.util.Optional;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -9,13 +16,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import thws.librarymanager.application.domain.models.Loan;
 import thws.librarymanager.application.domain.models.User;
 import thws.librarymanager.application.ports.out.repository.UserPort;
-
-import java.util.List;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {

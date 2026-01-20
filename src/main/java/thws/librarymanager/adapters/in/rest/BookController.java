@@ -20,7 +20,7 @@ import thws.librarymanager.application.ports.in.LibraryUseCase;
 @Path("/books")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class BookController extends BaseController{
+public class BookController extends BaseController {
 
     @Context
     UriInfo uriInfo;
@@ -34,7 +34,6 @@ public class BookController extends BaseController{
     @Inject
     private RestMapper restMapper;
 
-
     @Inject
     public BookController(BookUseCase bookUseCase) {
         this.bookUseCase = bookUseCase;
@@ -46,7 +45,8 @@ public class BookController extends BaseController{
         if (bookDTO.getLibraryId() == null) {
             throw new BadRequestException("Library ID must not be null");
         }
-        Library library = libraryUseCase.getLibraryById(bookDTO.getLibraryId())
+        Library library = libraryUseCase
+                .getLibraryById(bookDTO.getLibraryId())
                 .orElseThrow(() -> new NotFoundException("Library not found"));
 
         Book newBook = bookUseCase.addBook(
@@ -67,8 +67,7 @@ public class BookController extends BaseController{
     public Response updateBook(@PathParam("isbn") Long isbn, BookDTO updateDTO) {
         bookUseCase.updateBook(isbn, updateDTO.getTitle(), updateDTO.getAuthor(), updateDTO.getGenre());
 
-        Book updatedBook = bookUseCase.getBookByIsbn(isbn)
-                .orElseThrow(() -> new NotFoundException("Book not found"));
+        Book updatedBook = bookUseCase.getBookByIsbn(isbn).orElseThrow(() -> new NotFoundException("Book not found"));
         BookDTO responseDto = restMapper.toBookDTO(updatedBook);
 
         EntityTag etag = new EntityTag(ETagGenerator.fromBook(updatedBook));
@@ -88,18 +87,18 @@ public class BookController extends BaseController{
     public Response deleteBook(@PathParam("isbn") Long isbn) {
         bookUseCase.deleteBook(isbn);
 
-        URI collectionUri = uriInfo.getBaseUriBuilder().path(BookController.class).build();
+        URI collectionUri =
+                uriInfo.getBaseUriBuilder().path(BookController.class).build();
         Response.ResponseBuilder rb = Response.noContent();
         addLink(rb, collectionUri, "collection");
 
         return rb.build();
     }
-    
+
     @GET
     @Path("/{isbn}")
     public Response getBookByIsbn(@PathParam("isbn") Long isbn) {
-        Book book = bookUseCase.getBookByIsbn(isbn)
-                .orElseThrow(() -> new NotFoundException("Book not found"));
+        Book book = bookUseCase.getBookByIsbn(isbn).orElseThrow(() -> new NotFoundException("Book not found"));
         BookDTO dto = restMapper.toBookDTO(book);
 
         URI selfUri = uriInfo.getAbsolutePath();
@@ -109,8 +108,13 @@ public class BookController extends BaseController{
         addLink(rb, selfUri, "delete");
 
         if (book.getLibrary() != null) {
-            addRelationLink(rb, uriInfo, LibraryController.class, "getLibraryById",
-                    book.getLibrary().getId(), "library");
+            addRelationLink(
+                    rb,
+                    uriInfo,
+                    LibraryController.class,
+                    "getLibraryById",
+                    book.getLibrary().getId(),
+                    "library");
         }
 
         CacheControl cc = new CacheControl();

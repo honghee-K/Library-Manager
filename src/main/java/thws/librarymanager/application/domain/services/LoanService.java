@@ -6,6 +6,7 @@ import java.util.List;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+
 import thws.librarymanager.application.domain.exceptions.BookAlreadyOnLoanException;
 import thws.librarymanager.application.domain.exceptions.LoanNotFoundException;
 import thws.librarymanager.application.domain.models.Book;
@@ -30,16 +31,22 @@ public class LoanService implements LoanUseCase {
     private final TimeProvider timeProvider;
     private final BookUseCase bookUseCase;
     private final UserUseCase userUseCase;
+
     @Inject
-    public LoanService(LoanPort loanPort, UserPort userPort, BookPort bookPort, BookUseCase bookUseCase, UserUseCase userUseCase, TimeProvider timeProvider) {
+    public LoanService(
+            LoanPort loanPort,
+            UserPort userPort,
+            BookPort bookPort,
+            BookUseCase bookUseCase,
+            UserUseCase userUseCase,
+            TimeProvider timeProvider) {
 
         this.loanPort = loanPort;
         this.userPort = userPort;
         this.bookPort = bookPort;
         this.bookUseCase = bookUseCase;
-        this.userUseCase= userUseCase;
+        this.userUseCase = userUseCase;
         this.timeProvider = timeProvider;
-
     }
 
     @Override
@@ -63,7 +70,7 @@ public class LoanService implements LoanUseCase {
         return savedLoan;
     }
 
-   @Override
+    @Override
     public Loan returnLoan(Long loanId) {
 
         Loan loan = loanPort.findById(loanId).orElseThrow(() -> new LoanNotFoundException(loanId));
@@ -82,23 +89,16 @@ public class LoanService implements LoanUseCase {
     }
 
     @Override
-    public List<Loan> getAllLoans(
-            Long userId,
-            Long isbn,
-            LoanStatus status,
-            Boolean overdue,
-            int page,
-            int size
-    ) {
+    public List<Loan> getAllLoans(Long userId, Long isbn, LoanStatus status, Boolean overdue, int page, int size) {
         if (page < 0 || size <= 0) {
             throw new IllegalArgumentException("page must be >= 0 and size > 0");
         }
 
         return loanPort.findAll(userId, isbn, status, overdue, page, size);
     }
+
     @Override
     public long getActiveLoanCount() {
         return loanPort.countActiveLoans();
     }
-
 }

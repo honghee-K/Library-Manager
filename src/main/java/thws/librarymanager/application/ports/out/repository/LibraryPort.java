@@ -11,19 +11,18 @@ public interface LibraryPort {
     Library save(Library library);
 
     Optional<Library> getLibraryById(Long id);
+
     List<Library> findAllLibraries(String location, String name);
+
     Optional<Library> findByName(String name);
 
-
     void deleteLibraryById(Long id);
-
 
     Long countTotalBooks(Long libraryId);
 
     List<Book> findBooksInLibrary(Long libraryId);
+
     Map<String, Long> countBooksGroupedByGenre(Long libraryId);
 
     Map<String, Long> countBooksGroupedByAuthor(Long libraryId);
-
-
 }

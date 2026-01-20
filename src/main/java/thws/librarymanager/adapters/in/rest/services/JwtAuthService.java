@@ -5,10 +5,10 @@ import java.util.Set;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-
-import io.smallrye.jwt.build.Jwt;
 import jakarta.ws.rs.NotAuthorizedException;
 import jakarta.ws.rs.core.Response;
+
+import io.smallrye.jwt.build.Jwt;
 import thws.librarymanager.application.domain.models.Librarian;
 import thws.librarymanager.application.ports.in.AuthUseCase;
 import thws.librarymanager.application.ports.out.repository.LibrarianPort;
@@ -36,12 +36,12 @@ public class JwtAuthService implements AuthUseCase {
 
     @Override
     public String generateAccessToken(String name) {
-        Librarian librarian = librarianPort.findByName(name).orElseThrow(() -> new NotAuthorizedException(
-                Response.status(Response.Status.UNAUTHORIZED)
+        Librarian librarian = librarianPort
+                .findByName(name)
+                .orElseThrow(() -> new NotAuthorizedException(Response.status(Response.Status.UNAUTHORIZED)
                         .header("WWW-Authenticate", "Bearer")
                         .entity("Invalid Librarian Name")
-                        .build()
-                ));
+                        .build()));
         return generateToken(librarian.getId());
     }
 }

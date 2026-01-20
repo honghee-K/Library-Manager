@@ -1,5 +1,12 @@
 package thws.librarymanager.application.domain.services;
 
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
+
+import java.util.ArrayList;
+import java.util.Optional;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,13 +17,6 @@ import thws.librarymanager.application.domain.models.Book;
 import thws.librarymanager.application.domain.models.Library;
 import thws.librarymanager.application.domain.models.Loan;
 import thws.librarymanager.application.ports.out.repository.BookPort;
-
-import java.util.ArrayList;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class BookServiceTest {
@@ -110,6 +110,7 @@ public class BookServiceTest {
         // Verify that delete was never called
         verify(bookPort, never()).deleteByIsbn(anyLong());
     }
+
     @Test
     void addBook_ShouldSaveBook_WhenIsbnIsUnique() {
         // Given

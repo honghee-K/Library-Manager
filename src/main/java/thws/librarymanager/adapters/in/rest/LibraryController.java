@@ -10,7 +10,7 @@ import jakarta.ws.rs.core.*;
 
 import thws.librarymanager.adapters.in.rest.mapper.RestMapper;
 import thws.librarymanager.adapters.in.rest.models.LibraryDTO;
-import thws.librarymanager.adapters.in.rest.util.ETagGenerator; // ➕ EKLENDİ (ETag için)
+import thws.librarymanager.adapters.in.rest.util.ETagGenerator;
 import thws.librarymanager.adapters.in.rest.util.LibraryServiceLogger;
 import thws.librarymanager.application.domain.models.Library;
 import thws.librarymanager.application.ports.in.LibraryUseCase;
@@ -32,16 +32,10 @@ public class LibraryController extends BaseController {
     @Context
     Request request;
 
-
     @GET
-    public Response getAllLibraries(
-            @QueryParam("location") String location,
-            @QueryParam("name") String name
-    ) {
+    public Response getAllLibraries(@QueryParam("location") String location, @QueryParam("name") String name) {
 
-        List<LibraryDTO> dtos = libraryUseCase
-                .getAllLibraries(location, name)
-                .stream()
+        List<LibraryDTO> dtos = libraryUseCase.getAllLibraries(location, name).stream()
                 .map(mapper::toLibraryDTO)
                 .toList();
 
@@ -58,20 +52,18 @@ public class LibraryController extends BaseController {
         return rb.build();
     }
 
-
     @GET
     @Path("/{id}")
     @Transactional
     public Response getLibraryById(@PathParam("id") Long id) {
 
-        Library library = libraryUseCase.getLibraryById(id)
+        Library library = libraryUseCase
+                .getLibraryById(id)
                 .orElseThrow(() -> new NotFoundException("Library not found")); // 🔧 DEĞİŞTİRİLDİ
-
 
         EntityTag etag = new EntityTag(ETagGenerator.fromLibrary(library));
 
-        Response.ResponseBuilder precond =
-                request.evaluatePreconditions(etag);
+        Response.ResponseBuilder precond = request.evaluatePreconditions(etag);
 
         if (precond != null) {
             return precond.build();
@@ -101,17 +93,11 @@ public class LibraryController extends BaseController {
         return rb.tag(etag).build();
     }
 
-
     @POST
     @Transactional
     public Response addLibrary(LibraryDTO dto) {
 
-        Library library = new Library(
-                null,
-                dto.getName(),
-                dto.getLocation(),
-                null
-        );
+        Library library = new Library(null, dto.getName(), dto.getLocation(), null);
 
         Library saved = libraryUseCase.addLibrary(library);
 
@@ -125,21 +111,16 @@ public class LibraryController extends BaseController {
         return rb.entity(mapper.toLibraryDTO(saved)).build();
     }
 
-
     @PUT
     @Path("/{id}")
     @Transactional
-    public Response updateLibrary(
-            @PathParam("id") Long id,
-            LibraryDTO dto
-    ) {
+    public Response updateLibrary(@PathParam("id") Long id, LibraryDTO dto) {
 
-        Library existing = libraryUseCase.getLibraryById(id)
-                .orElseThrow(() -> new NotFoundException("Library not found"));
+        Library existing =
+                libraryUseCase.getLibraryById(id).orElseThrow(() -> new NotFoundException("Library not found"));
 
         EntityTag etag = new EntityTag(ETagGenerator.fromLibrary(existing));
-        Response.ResponseBuilder precond =
-                request.evaluatePreconditions(etag);
+        Response.ResponseBuilder precond = request.evaluatePreconditions(etag);
 
         if (precond != null) {
             return precond.build();
@@ -151,14 +132,10 @@ public class LibraryController extends BaseController {
         addLink(rb, uriInfo.getAbsolutePath(), "self");
 
         EntityTag newTag = new EntityTag(
-                ETagGenerator.fromLibrary(
-                        libraryUseCase.getLibraryById(id).get()
-                )
-        );
+                ETagGenerator.fromLibrary(libraryUseCase.getLibraryById(id).get()));
 
         return rb.tag(newTag).build();
     }
-
 
     @DELETE
     @Path("/{id}")
@@ -169,14 +146,11 @@ public class LibraryController extends BaseController {
         return Response.noContent().build();
     }
 
-
     @POST
     @Path("/{libraryId}/books/{isbn}")
     @Consumes(MediaType.WILDCARD)
     @Transactional
-    public Response addBookToLibrary(
-            @PathParam("libraryId") Long libraryId,
-            @PathParam("isbn") Long isbn) {
+    public Response addBookToLibrary(@PathParam("libraryId") Long libraryId, @PathParam("isbn") Long isbn) {
 
         libraryUseCase.addBookToLibrary(libraryId, isbn);
 
@@ -191,24 +165,19 @@ public class LibraryController extends BaseController {
         return rb.build();
     }
 
-
     @DELETE
     @Path("/{libraryId}/books/{isbn}")
     @Consumes(MediaType.WILDCARD)
     @Transactional
-    public Response removeBookFromLibrary(
-            @PathParam("libraryId") Long libraryId,
-            @PathParam("isbn") Long isbn) {
+    public Response removeBookFromLibrary(@PathParam("libraryId") Long libraryId, @PathParam("isbn") Long isbn) {
 
         libraryUseCase.removeBookFromLibrary(libraryId, isbn);
         return Response.noContent().build();
     }
 
-
     @GET
     @Path("/{libraryId}/books/count")
-    public Response getTotalBookCount(
-            @PathParam("libraryId") Long libraryId) {
+    public Response getTotalBookCount(@PathParam("libraryId") Long libraryId) {
 
         Long count = libraryUseCase.getTotalBookCount(libraryId);
 

@@ -54,11 +54,9 @@ public class User {
         this.email = email;
     }
 
-
     private boolean isValidEmail(String email) {
         return email.contains("@") && email.contains(".");
     }
-
 
     public void updateInfo(String newName, String newEmail) {
         if (newName != null && !newName.isBlank()) {
@@ -87,5 +85,4 @@ public class User {
     public boolean hasActiveLoans() {
         return loans.stream().anyMatch(Loan::isActive);
     }
-
 }

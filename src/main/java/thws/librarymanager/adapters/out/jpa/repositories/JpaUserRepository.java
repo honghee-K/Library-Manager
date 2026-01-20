@@ -53,10 +53,12 @@ public class JpaUserRepository implements UserPort {
     @Override
     @Transactional
     public List<User> findAll(int page, int size) {
-        return entityManager.createQuery("from UserEntity", UserEntity.class)
+        return entityManager
+                .createQuery("from UserEntity", UserEntity.class)
                 .setFirstResult(page * size)
                 .setMaxResults(size)
-                .getResultList().stream()
+                .getResultList()
+                .stream()
                 .map(jpaConverter::toUser)
                 .collect(Collectors.toList());
     }
@@ -69,31 +71,35 @@ public class JpaUserRepository implements UserPort {
             entityManager.remove(entity);
         }
     }
+
     @Override
     @Transactional
     public boolean hasActiveLoans(Long userId) {
-        return entityManager.createQuery(
-                        "SELECT COUNT(l) FROM LoanEntity l WHERE l.user.id = :userId AND l.status = :status", Long.class)
-                .setParameter("userId", userId)
-                .setParameter("status", LoanStatusJpa.ACTIVE)
-                .getSingleResult() > 0;
+        return entityManager
+                        .createQuery(
+                                "SELECT COUNT(l) FROM LoanEntity l WHERE l.user.id = :userId AND l.status = :status",
+                                Long.class)
+                        .setParameter("userId", userId)
+                        .setParameter("status", LoanStatusJpa.ACTIVE)
+                        .getSingleResult()
+                > 0;
     }
 
     @Override
     @Transactional
     public boolean existsByEmail(String email) {
-        Long count = entityManager.createQuery("select COUNT(u) from UserEntity u where u.email = :email", Long.class)
+        Long count = entityManager
+                .createQuery("select COUNT(u) from UserEntity u where u.email = :email", Long.class)
                 .setParameter("email", email)
                 .getSingleResult();
         return count > 0;
     }
+
     @Override
     @Transactional(Transactional.TxType.SUPPORTS)
     public long countUsers() {
-        return entityManager.createQuery(
-                "SELECT COUNT(u) FROM UserEntity u",
-                Long.class
-        ).getSingleResult();
+        return entityManager
+                .createQuery("SELECT COUNT(u) FROM UserEntity u", Long.class)
+                .getSingleResult();
     }
-
 }

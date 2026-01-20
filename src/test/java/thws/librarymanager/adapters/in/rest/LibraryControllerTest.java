@@ -3,15 +3,14 @@ package thws.librarymanager.adapters.in.rest;
 import java.util.List;
 
 import jakarta.inject.Inject;
+import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
 
 import io.quarkus.test.common.http.TestHTTPEndpoint;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.RestAssured;
 import io.restassured.common.mapper.TypeRef;
-import jakarta.persistence.EntityManager;
-import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.*;
-
 import thws.librarymanager.adapters.in.rest.models.LibraryDTO;
 import thws.librarymanager.application.domain.models.Book;
 import thws.librarymanager.application.domain.models.Library;
@@ -26,13 +25,14 @@ public class LibraryControllerTest {
 
     @Inject
     EntityManager em;
+
     @Inject
     LibraryPort libraryPort;
+
     @Inject
     BookPort bookPort;
 
     private Long lib1Id;
-
 
     @BeforeAll
     @Transactional
@@ -45,10 +45,7 @@ public class LibraryControllerTest {
         this.lib1Id = lib1.getId();
         Book book1 = new Book(null, 1234L, "title1", "author1", "genre", null, null);
         bookPort.save(book1);
-
     }
-
-
 
     @Test
     @Order(1)
@@ -65,12 +62,7 @@ public class LibraryControllerTest {
 
         Assertions.assertEquals("Central Library", dto.getName());
 
-        RestAssured.given()
-                .when()
-                .pathParam("id", 999L)
-                .get("/{id}")
-                .then()
-                .statusCode(404);
+        RestAssured.given().when().pathParam("id", 999L).get("/{id}").then().statusCode(404);
     }
 
     @Test
@@ -113,23 +105,22 @@ public class LibraryControllerTest {
         request.setName("New Library");
         request.setLocation("Munich");
 
-        LibraryDTO response =
-                RestAssured.given()
-                        .contentType("application/json")
-                        .body(request)
-                        .when()
-                        .post("/")
-                        .then()
-                        .statusCode(201)
-                        .extract()
-                        .as(LibraryDTO.class);
+        LibraryDTO response = RestAssured.given()
+                .contentType("application/json")
+                .body(request)
+                .when()
+                .post("/")
+                .then()
+                .statusCode(201)
+                .extract()
+                .as(LibraryDTO.class);
 
         Assertions.assertNotNull(response.getId());
         Assertions.assertEquals("New Library", response.getName());
         Assertions.assertEquals("Munich", response.getLocation());
     }
 
-   @Test
+    @Test
     @Order(5)
     void updateLibrary() {
 
@@ -146,49 +137,46 @@ public class LibraryControllerTest {
                 .then()
                 .statusCode(204);
 
-        LibraryDTO updated =
-                RestAssured.given()
-                        .pathParam("id", lib1Id)
-                        .get("/{id}")
-                        .then()
-                        .statusCode(200)
-                        .extract()
-                        .as(LibraryDTO.class);
+        LibraryDTO updated = RestAssured.given()
+                .pathParam("id", lib1Id)
+                .get("/{id}")
+                .then()
+                .statusCode(200)
+                .extract()
+                .as(LibraryDTO.class);
 
         Assertions.assertEquals("Updated Library", updated.getName());
         Assertions.assertEquals("Frankfurt", updated.getLocation());
     }
+
     @Test
     @Order(6)
     void getTotalBookCount_initiallyZero() {
 
-        Long count =
-                RestAssured.given()
-                        .pathParam("libraryId", 1L)
-                        .when()
-                        .get("/{libraryId}/books/count")
-                        .then()
-                        .statusCode(200)
-                        .extract()
-                        .as(Long.class);
+        Long count = RestAssured.given()
+                .pathParam("libraryId", 1L)
+                .when()
+                .get("/{libraryId}/books/count")
+                .then()
+                .statusCode(200)
+                .extract()
+                .as(Long.class);
 
         Assertions.assertEquals(0L, count);
     }
-
 
     @Test
     @Order(7)
     void addBookToLibrary() {
 
-        Long beforeCount =
-                RestAssured.given()
-                        .pathParam("libraryId", lib1Id)
-                        .when()
-                        .get("/{libraryId}/books/count")
-                        .then()
-                        .statusCode(200)
-                        .extract()
-                        .as(Long.class);
+        Long beforeCount = RestAssured.given()
+                .pathParam("libraryId", lib1Id)
+                .when()
+                .get("/{libraryId}/books/count")
+                .then()
+                .statusCode(200)
+                .extract()
+                .as(Long.class);
 
         RestAssured.given()
                 .pathParam("libraryId", lib1Id)
@@ -198,34 +186,29 @@ public class LibraryControllerTest {
                 .then()
                 .statusCode(204);
 
-        Long afterCount =
-                RestAssured.given()
-                        .pathParam("libraryId", lib1Id)
-                        .when()
-                        .get("/{libraryId}/books/count")
-                        .then()
-                        .statusCode(200)
-                        .extract()
-                        .as(Long.class);
+        Long afterCount = RestAssured.given()
+                .pathParam("libraryId", lib1Id)
+                .when()
+                .get("/{libraryId}/books/count")
+                .then()
+                .statusCode(200)
+                .extract()
+                .as(Long.class);
 
         Assertions.assertEquals(beforeCount + 1, afterCount);
     }
-
-
-
 
     @Test
     @Order(8)
     void removeBookFromLibrary() {
 
-        Long beforeCount =
-                RestAssured.given()
-                        .pathParam("libraryId", lib1Id)
-                        .get("/{libraryId}/books/count")
-                        .then()
-                        .statusCode(200)
-                        .extract()
-                        .as(Long.class);
+        Long beforeCount = RestAssured.given()
+                .pathParam("libraryId", lib1Id)
+                .get("/{libraryId}/books/count")
+                .then()
+                .statusCode(200)
+                .extract()
+                .as(Long.class);
 
         RestAssured.given()
                 .pathParam("libraryId", lib1Id)
@@ -235,42 +218,23 @@ public class LibraryControllerTest {
                 .then()
                 .statusCode(204);
 
-        Long afterCount =
-                RestAssured.given()
-                        .pathParam("libraryId", lib1Id)
-                        .get("/{libraryId}/books/count")
-                        .then()
-                        .statusCode(200)
-                        .extract()
-                        .as(Long.class);
+        Long afterCount = RestAssured.given()
+                .pathParam("libraryId", lib1Id)
+                .get("/{libraryId}/books/count")
+                .then()
+                .statusCode(200)
+                .extract()
+                .as(Long.class);
 
         Assertions.assertEquals(beforeCount - 1, afterCount);
     }
-
-
-
-
-
 
     @Test
     @Order(9)
     void deleteLibrary() {
 
-        RestAssured.given()
-                .pathParam("id", 2L)
-                .when()
-                .delete("/{id}")
-                .then()
-                .statusCode(204);
+        RestAssured.given().pathParam("id", 2L).when().delete("/{id}").then().statusCode(204);
 
-        RestAssured.given()
-                .pathParam("id", 2L)
-                .when()
-                .get("/{id}")
-                .then()
-                .statusCode(404);
+        RestAssured.given().pathParam("id", 2L).when().get("/{id}").then().statusCode(404);
     }
-
-
-
 }

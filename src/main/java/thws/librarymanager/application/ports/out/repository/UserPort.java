@@ -18,5 +18,6 @@ public interface UserPort {
     boolean hasActiveLoans(Long userId);
 
     boolean existsByEmail(String email);
+
     long countUsers();
 }

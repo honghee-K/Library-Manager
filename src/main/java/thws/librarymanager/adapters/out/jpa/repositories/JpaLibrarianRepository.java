@@ -1,16 +1,17 @@
 package thws.librarymanager.adapters.out.jpa.repositories;
 
+import java.util.Optional;
+
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.transaction.Transactional;
+
 import thws.librarymanager.adapters.out.jpa.converter.JpaConverter;
 import thws.librarymanager.adapters.out.jpa.entities.LibrarianEntity;
 import thws.librarymanager.application.domain.models.Librarian;
 import thws.librarymanager.application.ports.out.repository.LibrarianPort;
-
-import java.util.Optional;
 
 @ApplicationScoped
 public class JpaLibrarianRepository implements LibrarianPort {

@@ -1,26 +1,34 @@
 package thws.librarymanager.adapters.in.rest;
 
+import java.net.URI;
+import java.util.List;
+
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.*;
+
 import thws.librarymanager.adapters.in.rest.mapper.RestMapper;
 import thws.librarymanager.adapters.in.rest.models.UserDTO;
 import thws.librarymanager.adapters.in.rest.util.ETagGenerator;
 import thws.librarymanager.application.domain.models.User;
 import thws.librarymanager.application.ports.in.UserUseCase;
 
-import java.net.URI;
-import java.util.List;
-
 @Path("/users")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class UserController extends BaseController{
+public class UserController extends BaseController {
 
-    @Inject UserUseCase userUseCase;
-    @Inject RestMapper mapper;
-    @Context UriInfo uriInfo;
-    @Context Request request;
+    @Inject
+    UserUseCase userUseCase;
+
+    @Inject
+    RestMapper mapper;
+
+    @Context
+    UriInfo uriInfo;
+
+    @Context
+    Request request;
 
     @POST
     public Response createUser(UserDTO dto) {
@@ -36,8 +44,8 @@ public class UserController extends BaseController{
     }
 
     @GET
-    public Response getAllUsers(@QueryParam("page") @DefaultValue("0") int page,
-                                @QueryParam("size") @DefaultValue("10") int size) {
+    public Response getAllUsers(
+            @QueryParam("page") @DefaultValue("0") int page, @QueryParam("size") @DefaultValue("10") int size) {
         List<User> users = userUseCase.getAllUsers(page, size);
         List<UserDTO> dtos = mapper.toUserDTOs(users);
 
@@ -54,8 +62,7 @@ public class UserController extends BaseController{
     @GET
     @Path("/{id}")
     public Response getUserById(@PathParam("id") Long id) {
-        User user = userUseCase.getUserById(id)
-                .orElseThrow(() -> new NotFoundException("User not found"));
+        User user = userUseCase.getUserById(id).orElseThrow(() -> new NotFoundException("User not found"));
 
         // Validation
         EntityTag etag = new EntityTag(ETagGenerator.fromUser(user));
@@ -94,9 +101,8 @@ public class UserController extends BaseController{
     public Response deleteUser(@PathParam("id") Long id) {
         userUseCase.deleteUser(id);
 
-        URI collectionUri = uriInfo.getBaseUriBuilder()
-                .path(UserController.class)
-                .build();
+        URI collectionUri =
+                uriInfo.getBaseUriBuilder().path(UserController.class).build();
 
         Response.ResponseBuilder rb = Response.noContent();
         addLink(rb, collectionUri, "collection");

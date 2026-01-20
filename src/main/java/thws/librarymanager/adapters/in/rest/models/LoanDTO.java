@@ -1,8 +1,8 @@
 package thws.librarymanager.adapters.in.rest.models;
 
-import thws.librarymanager.application.domain.models.LoanStatus;
-
 import java.time.LocalDate;
+
+import thws.librarymanager.application.domain.models.LoanStatus;
 
 public class LoanDTO extends BaseDTO {
     private Long userId;
@@ -13,31 +13,72 @@ public class LoanDTO extends BaseDTO {
     private LocalDate dueDate;
     private LocalDate returnDate;
     private LoanStatus status;
+
     public LoanDTO() {
         super();
     }
 
-    public Long getUserId() { return userId; }
-    public void setUserId(Long userId) { this.userId = userId; }
+    public Long getUserId() {
+        return userId;
+    }
 
-    public String getUserName() { return userName; }
-    public void setUserName(String userName) { this.userName = userName; }
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 
-    public Long getIsbn() { return isbn; }
-    public void setIsbn(Long isbn) { this.isbn = isbn; }
+    public String getUserName() {
+        return userName;
+    }
 
-    public String getBookTitle() { return bookTitle; }
-    public void setBookTitle(String bookTitle) { this.bookTitle = bookTitle; }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-    public LocalDate getLoanDate() { return loanDate; }
-    public void setLoanDate(LocalDate loanDate) { this.loanDate = loanDate; }
+    public Long getIsbn() {
+        return isbn;
+    }
 
-    public LocalDate getDueDate() { return dueDate; }
-    public void setDueDate(LocalDate dueDate) { this.dueDate = dueDate; }
+    public void setIsbn(Long isbn) {
+        this.isbn = isbn;
+    }
 
-    public LocalDate getReturnDate() { return returnDate; }
-    public void setReturnDate(LocalDate returnDate) { this.returnDate = returnDate; }
+    public String getBookTitle() {
+        return bookTitle;
+    }
 
-    public LoanStatus getStatus() { return status; }
-    public void setStatus(LoanStatus status) { this.status = status; }
+    public void setBookTitle(String bookTitle) {
+        this.bookTitle = bookTitle;
+    }
+
+    public LocalDate getLoanDate() {
+        return loanDate;
+    }
+
+    public void setLoanDate(LocalDate loanDate) {
+        this.loanDate = loanDate;
+    }
+
+    public LocalDate getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    public LocalDate getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(LocalDate returnDate) {
+        this.returnDate = returnDate;
+    }
+
+    public LoanStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(LoanStatus status) {
+        this.status = status;
+    }
 }

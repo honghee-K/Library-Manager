@@ -1,5 +1,12 @@
-
 package thws.librarymanager.application.domain.services;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,14 +26,6 @@ import thws.librarymanager.application.ports.out.repository.BookPort;
 import thws.librarymanager.application.ports.out.repository.LoanPort;
 import thws.librarymanager.application.ports.out.repository.UserPort;
 import thws.librarymanager.application.ports.out.time.TimeProvider;
-
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class LoanServiceTest {
@@ -58,17 +57,8 @@ class LoanServiceTest {
     @BeforeEach
     void setUp() {
         user = new User(1L, "Ali", "ali@mail.com");
-        book = new Book(
-                10L,
-                1234567890L,
-                "Clean Code",
-                "Robert Martin",
-                "Software",
-                null,
-                null
-        );
+        book = new Book(10L, 1234567890L, "Clean Code", "Robert Martin", "Software", null, null);
     }
-
 
     @Test
     void createLoan_success() {
@@ -93,21 +83,15 @@ class LoanServiceTest {
     void createLoan_bookAlreadyOnLoan() {
         when(loanPort.existsActiveLoanForBook(book.getIsbn())).thenReturn(true);
 
-        assertThrows(BookAlreadyOnLoanException.class,
-                () -> loanService.createLoan(user, book));
+        assertThrows(BookAlreadyOnLoanException.class, () -> loanService.createLoan(user, book));
 
         verify(loanPort, never()).save(any());
     }
 
-
     @Test
     void returnLoan_success() {
         Loan loan = Loan.createLoan(
-                user,
-                book,
-                LocalDate.now().minusDays(5),
-                LocalDate.now().plusDays(10)
-        );
+                user, book, LocalDate.now().minusDays(5), LocalDate.now().plusDays(10));
 
         when(loanPort.findById(5L)).thenReturn(Optional.of(loan));
         when(timeProvider.today()).thenReturn(LocalDate.of(2026, 1, 20));
@@ -127,10 +111,8 @@ class LoanServiceTest {
     void returnLoan_notFound() {
         when(loanPort.findById(99L)).thenReturn(Optional.empty());
 
-        assertThrows(LoanNotFoundException.class,
-                () -> loanService.returnLoan(99L));
+        assertThrows(LoanNotFoundException.class, () -> loanService.returnLoan(99L));
     }
-
 
     @Test
     void getLoanById_success() {
@@ -146,18 +128,14 @@ class LoanServiceTest {
     void getLoanById_notFound() {
         when(loanPort.findById(1L)).thenReturn(Optional.empty());
 
-        assertThrows(LoanNotFoundException.class,
-                () -> loanService.getLoanById(1L));
+        assertThrows(LoanNotFoundException.class, () -> loanService.getLoanById(1L));
     }
-
 
     @Test
     void getAllLoans_success() {
-        when(loanPort.findAll(null, null, null, null, 0, 10))
-                .thenReturn(List.of(mock(Loan.class)));
+        when(loanPort.findAll(null, null, null, null, 0, 10)).thenReturn(List.of(mock(Loan.class)));
 
-        List<Loan> result =
-                loanService.getAllLoans(null, null, null, null, 0, 10);
+        List<Loan> result = loanService.getAllLoans(null, null, null, null, 0, 10);
 
         assertEquals(1, result.size());
         verify(loanPort).findAll(null, null, null, null, 0, 10);
@@ -165,10 +143,8 @@ class LoanServiceTest {
 
     @Test
     void getAllLoans_invalidPaging() {
-        assertThrows(IllegalArgumentException.class,
-                () -> loanService.getAllLoans(null, null, null, null, -1, 10));
+        assertThrows(IllegalArgumentException.class, () -> loanService.getAllLoans(null, null, null, null, -1, 10));
 
-        assertThrows(IllegalArgumentException.class,
-                () -> loanService.getAllLoans(null, null, null, null, 0, 0));
+        assertThrows(IllegalArgumentException.class, () -> loanService.getAllLoans(null, null, null, null, 0, 0));
     }
 }

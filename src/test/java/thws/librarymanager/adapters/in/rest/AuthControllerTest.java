@@ -9,7 +9,6 @@ import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.RestAssured;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.*;
-import thws.librarymanager.application.domain.models.Librarian;
 import thws.librarymanager.application.ports.out.repository.LibrarianPort;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -24,7 +23,6 @@ public class AuthControllerTest {
     private String jwtToken;
 
     public AuthControllerTest() {}
-
 
     @Test
     @Order(1)

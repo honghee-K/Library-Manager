@@ -1,9 +1,9 @@
 package thws.librarymanager.adapters.out.jpa.entities;
 
-import jakarta.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "lib_user") // der Name 'user' kann Probleme in der DB machen, deswegen 'lib_user'
@@ -49,6 +49,11 @@ public class UserEntity {
         this.email = email;
     }
 
-    public List<LoanEntity> getLoans() { return loans; }
-    public void setLoans(List<LoanEntity> loans) { this.loans = loans; }
+    public List<LoanEntity> getLoans() {
+        return loans;
+    }
+
+    public void setLoans(List<LoanEntity> loans) {
+        this.loans = loans;
+    }
 }

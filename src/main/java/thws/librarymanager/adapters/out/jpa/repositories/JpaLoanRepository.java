@@ -26,8 +26,10 @@ public class JpaLoanRepository implements LoanPort {
 
     @Inject
     JpaConverter converter;
+
     @Inject
     private JpaConverter jpaConverter;
+
     @Inject
     private EntityManager entityManager;
 
@@ -111,18 +113,10 @@ public class JpaLoanRepository implements LoanPort {
                 .map(converter::toLoan)
                 .collect(Collectors.toList());
     }
+
     @Override
-    public List<Loan> findAll(
-            Long userId,
-            Long isbn,
-            LoanStatus status,
-            Boolean overdue,
-            int page,
-            int size
-    ) {
-        StringBuilder jpql = new StringBuilder(
-                "select l from LoanEntity l where 1=1"
-        );
+    public List<Loan> findAll(Long userId, Long isbn, LoanStatus status, Boolean overdue, int page, int size) {
+        StringBuilder jpql = new StringBuilder("select l from LoanEntity l where 1=1");
 
         if (userId != null) {
             jpql.append(" and l.user.id = :userId");
@@ -139,37 +133,25 @@ public class JpaLoanRepository implements LoanPort {
 
         jpql.append(" order by l.id");
 
-        TypedQuery<LoanEntity> query =
-                entityManager.createQuery(jpql.toString(), LoanEntity.class);
+        TypedQuery<LoanEntity> query = entityManager.createQuery(jpql.toString(), LoanEntity.class);
 
         if (userId != null) query.setParameter("userId", userId);
         if (isbn != null) query.setParameter("isbn", isbn);
         if (status != null) {
-            query.setParameter(
-                    "status",
-                    LoanStatusJpa.valueOf(status.name())
-            );
+            query.setParameter("status", LoanStatusJpa.valueOf(status.name()));
         }
-
 
         query.setFirstResult(page * size);
         query.setMaxResults(size);
 
-
-        return query.getResultList()
-                .stream()
-                .map(jpaConverter::toLoan)
-                .toList();
+        return query.getResultList().stream().map(jpaConverter::toLoan).toList();
     }
+
     @Override
     @Transactional(Transactional.TxType.SUPPORTS)
     public long countActiveLoans() {
-        return em.createQuery(
-                        "SELECT COUNT(l) FROM LoanEntity l WHERE l.status = :status",
-                        Long.class
-                )
+        return em.createQuery("SELECT COUNT(l) FROM LoanEntity l WHERE l.status = :status", Long.class)
                 .setParameter("status", LoanStatusJpa.ACTIVE)
                 .getSingleResult();
     }
-
 }

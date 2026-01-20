@@ -1,6 +1,8 @@
 package thws.librarymanager.adapters.out.jpa.converter;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import jakarta.enterprise.context.ApplicationScoped;
 
@@ -8,15 +10,10 @@ import thws.librarymanager.adapters.out.jpa.entities.*;
 import thws.librarymanager.adapters.out.jpa.enums.LoanStatusJpa;
 import thws.librarymanager.application.domain.models.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 @ApplicationScoped
 public class JpaConverter {
 
     public JpaConverter() {}
-
 
     public Library toLibraryMinimal(LibraryEntity entity) {
         if (entity == null) return null;
@@ -29,18 +26,10 @@ public class JpaConverter {
         }
 
         List<Book> books = entity.getBooks() != null
-                ? entity.getBooks().stream()
-                .map(this::toBookMinimal)
-                .collect(Collectors.toList())
+                ? entity.getBooks().stream().map(this::toBookMinimal).collect(Collectors.toList())
                 : new ArrayList<>();
 
-        return new Library(
-                entity.getId(),
-                entity.getName(),
-                entity.getLocation(),
-                books
-        );
-
+        return new Library(entity.getId(), entity.getName(), entity.getLocation(), books);
     }
 
     public LibraryEntity toJpaLibraryMinimal(Library library) {
@@ -62,11 +51,9 @@ public class JpaConverter {
         entity.setName(library.getName());
         entity.setLocation(library.getLocation());
 
-
         if (library.getBooks() != null) {
-            List<BookEntity> bookEntities = library.getBooks().stream()
-                    .map(this::toJpaBookMinimal)
-                    .collect(Collectors.toList());
+            List<BookEntity> bookEntities =
+                    library.getBooks().stream().map(this::toJpaBookMinimal).collect(Collectors.toList());
 
             bookEntities.forEach(entity::addBook);
         }
@@ -77,14 +64,7 @@ public class JpaConverter {
     public Book toBookMinimal(BookEntity entity) {
         if (entity == null) return null;
         return new Book(
-                entity.getId(),
-                entity.getIsbn(),
-                entity.getTitle(),
-                entity.getAuthor(),
-                entity.getGenre(),
-                null,
-                null
-        );
+                entity.getId(), entity.getIsbn(), entity.getTitle(), entity.getAuthor(), entity.getGenre(), null, null);
     }
 
     public Book toBook(BookEntity entity) {
@@ -97,8 +77,7 @@ public class JpaConverter {
                 entity.getAuthor(),
                 entity.getGenre(),
                 toLibraryMinimal(entity.getLibrary()),
-                toLoan(entity.getCurrentLoan())
-                );
+                toLoan(entity.getCurrentLoan()));
     }
 
     public BookEntity toJpaBookMinimal(Book book) {
@@ -136,6 +115,7 @@ public class JpaConverter {
         if (status == null) return null;
         return LoanStatusJpa.valueOf(status.name());
     }
+
     private LoanStatus toLoanStatus(LoanStatusJpa jpaStatus) {
         if (jpaStatus == null) return null;
         return LoanStatus.valueOf(jpaStatus.name());
@@ -151,8 +131,7 @@ public class JpaConverter {
                 entity.getBook().getAuthor(),
                 entity.getBook().getGenre(),
                 toLibraryMinimal(entity.getBook().getLibrary()),
-                null
-        );
+                null);
 
         return Loan.restore(
                 entity.getId(),
@@ -161,12 +140,10 @@ public class JpaConverter {
                 entity.getLoanDate(),
                 entity.getDueDate(),
                 entity.getReturnDate(),
-                toLoanStatus(entity.getStatus())
-        );
+                toLoanStatus(entity.getStatus()));
     }
 
-
-        public LoanEntity toJpaLoan(Loan loan) {
+    public LoanEntity toJpaLoan(Loan loan) {
         if (loan == null) return null;
 
         LoanEntity entity = new LoanEntity();
@@ -186,7 +163,6 @@ public class JpaConverter {
 
         return entity;
     }
-
 
     public User toUser(UserEntity userEntity) {
         if (userEntity == null) return null;

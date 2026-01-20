@@ -2,7 +2,6 @@ package thws.librarymanager.adapters.in.rest;
 
 import java.util.List;
 
-import io.restassured.response.Response;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -12,6 +11,7 @@ import io.quarkus.test.common.http.TestHTTPEndpoint;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.RestAssured;
 import io.restassured.common.mapper.TypeRef;
+import io.restassured.response.Response;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.*;
 import thws.librarymanager.adapters.in.rest.models.UserDTO;
@@ -47,6 +47,7 @@ public class UserControllerTest {
         User user2 = new User(null, "user2", "user2@test.com");
         userPort.save(user2);
     }
+
     @Test
     @Order(1)
     public void createUser() {
@@ -66,6 +67,7 @@ public class UserControllerTest {
                 .body("name", Matchers.equalTo("newuser"))
                 .body("email", Matchers.equalTo("new@test.com"));
     }
+
     @Test
     @Order(2)
     public void getUserById() {
@@ -81,21 +83,14 @@ public class UserControllerTest {
         Assertions.assertNotNull(userDTO);
         Assertions.assertEquals("user1", userDTO.getName());
 
-        RestAssured.given()
-                .when()
-                .pathParam("id", 9999L)
-                .get("/{id}")
-                .then()
-                .statusCode(404);
+        RestAssured.given().when().pathParam("id", 9999L).get("/{id}").then().statusCode(404);
     }
-
-
 
     @Test
     @Order(3)
     public void getUserById_HateoasHeaderValidation() {
         Response response = RestAssured.given()
-                //.log().all()
+                // .log().all()
                 .when()
                 .pathParam("id", testUserId)
                 .get("/{id}");

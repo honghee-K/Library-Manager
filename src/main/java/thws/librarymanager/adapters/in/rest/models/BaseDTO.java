@@ -1,13 +1,14 @@
 package thws.librarymanager.adapters.in.rest.models;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import jakarta.validation.constraints.PositiveOrZero;
 
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
 public abstract class BaseDTO implements Serializable {
 
+    @Schema(hidden = true)
     @PositiveOrZero
     protected Long id;
 
@@ -20,5 +21,4 @@ public abstract class BaseDTO implements Serializable {
     public void setId(final Long id) {
         this.id = id;
     }
-
 }

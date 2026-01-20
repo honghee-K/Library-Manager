@@ -1,9 +1,16 @@
 package thws.librarymanager.adapters.out.jpa.repositories;
 
-import io.quarkus.test.junit.QuarkusTest;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
+
+import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import thws.librarymanager.adapters.out.jpa.entities.BookEntity;
@@ -11,12 +18,6 @@ import thws.librarymanager.adapters.out.jpa.entities.LoanEntity;
 import thws.librarymanager.adapters.out.jpa.entities.UserEntity;
 import thws.librarymanager.adapters.out.jpa.enums.LoanStatusJpa;
 import thws.librarymanager.application.domain.models.User;
-
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @QuarkusTest
 public class JpaUserRepositoryTest {
@@ -85,7 +86,8 @@ public class JpaUserRepositoryTest {
         bookEntity.setTitle("Reference Book");
         entityManager.persist(bookEntity);
 
-        LoanEntity activeLoan = new LoanEntity(userEntity, bookEntity, LocalDate.now(), LocalDate.now().plusDays(7), LoanStatusJpa.ACTIVE);
+        LoanEntity activeLoan = new LoanEntity(
+                userEntity, bookEntity, LocalDate.now(), LocalDate.now().plusDays(7), LoanStatusJpa.ACTIVE);
         entityManager.persist(activeLoan);
 
         boolean result = jpaUserRepository.hasActiveLoans(userEntity.getId());

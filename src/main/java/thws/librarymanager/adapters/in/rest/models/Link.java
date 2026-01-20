@@ -1,7 +1,6 @@
 /*
 package thws.librarymanager.adapters.in.rest.models;
 
-import jakarta.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement(name = "link")

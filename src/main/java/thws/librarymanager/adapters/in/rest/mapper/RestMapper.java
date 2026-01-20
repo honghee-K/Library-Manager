@@ -1,20 +1,17 @@
 package thws.librarymanager.adapters.in.rest.mapper;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.UriInfo;
 
 import thws.librarymanager.adapters.in.rest.models.*;
 import thws.librarymanager.application.domain.models.*;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @ApplicationScoped
 public class RestMapper {
 
-
-    //TODO: Jede andere Links in HEADER speichern (siehe das FOTO)
+    // TODO: Jede andere Links in HEADER speichern (siehe das FOTO)
     public BookDTO toBookDTO(Book book) {
         if (book == null) return null;
 
@@ -33,7 +30,6 @@ public class RestMapper {
         return dto;
     }
 
-
     public LibraryDTO toLibraryDTO(Library library) {
         if (library == null) return null;
 
@@ -44,7 +40,6 @@ public class RestMapper {
 
         return dto;
     }
-
 
     public LoanDTO toLoanDTO(Loan loan) {
         if (loan == null) return null;
