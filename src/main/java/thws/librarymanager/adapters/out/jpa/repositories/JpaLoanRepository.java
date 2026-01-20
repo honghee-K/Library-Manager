@@ -22,9 +22,6 @@ import thws.librarymanager.application.ports.out.repository.LoanPort;
 public class JpaLoanRepository implements LoanPort {
 
     @Inject
-    EntityManager em;
-
-    @Inject
     JpaConverter converter;
 
     @Inject
@@ -39,9 +36,9 @@ public class JpaLoanRepository implements LoanPort {
         LoanEntity entity = converter.toJpaLoan(loan);
 
         if (loan.getId() == null) {
-            em.persist(entity);
+            entityManager.persist(entity);
         } else {
-            entity = em.merge(entity);
+            entity = entityManager.merge(entity);
         }
 
         return converter.toLoan(entity);
@@ -50,14 +47,14 @@ public class JpaLoanRepository implements LoanPort {
     @Override
     @Transactional(Transactional.TxType.SUPPORTS)
     public Optional<Loan> findById(Long id) {
-        LoanEntity entity = em.find(LoanEntity.class, id);
+        LoanEntity entity = entityManager.find(LoanEntity.class, id);
         return entity != null ? Optional.of(converter.toLoan(entity)) : Optional.empty();
     }
 
     @Override
     @Transactional(Transactional.TxType.SUPPORTS)
     public boolean existsActiveLoanForBook(Long isbn) {
-        Long count = em.createQuery(
+        Long count = entityManager.createQuery(
                         "SELECT COUNT(l) FROM LoanEntity l WHERE l.book.isbn = :isbn AND l.status = :status",
                         Long.class)
                 .setParameter("isbn", isbn)
@@ -75,7 +72,7 @@ public class JpaLoanRepository implements LoanPort {
         if (bookId != null) jpql.append("AND l.book.id = :bookId ");
         if (status != null) jpql.append("AND l.status = :status ");
 
-        TypedQuery<LoanEntity> query = em.createQuery(jpql.toString(), LoanEntity.class);
+        TypedQuery<LoanEntity> query = entityManager.createQuery(jpql.toString(), LoanEntity.class);
 
         if (userId != null) query.setParameter("userId", userId);
         if (bookId != null) query.setParameter("bookId", bookId);
@@ -90,7 +87,7 @@ public class JpaLoanRepository implements LoanPort {
     @Override
     @Transactional(Transactional.TxType.SUPPORTS)
     public List<Loan> findActiveLoans() {
-        return em
+        return entityManager
                 .createQuery("SELECT l FROM LoanEntity l WHERE l.status = :status", LoanEntity.class)
                 .setParameter("status", LoanStatusJpa.ACTIVE)
                 .getResultList()
@@ -102,7 +99,7 @@ public class JpaLoanRepository implements LoanPort {
     @Override
     @Transactional(Transactional.TxType.SUPPORTS)
     public List<Loan> findOverdueLoans(LocalDate today) {
-        return em
+        return entityManager
                 .createQuery(
                         "SELECT l FROM LoanEntity l " + "WHERE l.status = :status AND l.dueDate < :today",
                         LoanEntity.class)
@@ -150,7 +147,12 @@ public class JpaLoanRepository implements LoanPort {
     @Override
     @Transactional(Transactional.TxType.SUPPORTS)
     public long countActiveLoans() {
-        return em.createQuery("SELECT COUNT(l) FROM LoanEntity l WHERE l.status = :status", Long.class)
+
+        return entityManager.createQuery(
+                        "SELECT COUNT(l) FROM LoanEntity l WHERE l.status = :status",
+                        Long.class
+                )
+
                 .setParameter("status", LoanStatusJpa.ACTIVE)
                 .getSingleResult();
     }

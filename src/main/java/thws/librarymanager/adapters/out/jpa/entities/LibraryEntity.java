@@ -49,16 +49,17 @@ public class LibraryEntity {
         this.books = books;
     }
 
-    // Yardımcı metodlar
-    public void addBook(BookEntity book) {
-        books.add(book);
-        book.setLibrary(this);
-    }
 
-    public void removeBook(BookEntity book) {
-        books.remove(book);
-        book.setLibrary(null);
-    }
+       public void addBook(BookEntity book) {
+           books.add(book);
+           book.setLibrary(this);
+       }
+
+       public void removeBook(BookEntity book) {
+           books.remove(book);
+           book.setLibrary(null);
+       }
+
 
     public void setName(String name) {
         this.name = name;

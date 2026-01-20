@@ -1,5 +1,6 @@
 package thws.librarymanager.application.domain.models;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,7 +21,7 @@ public class Library {
         this.id = id;
         this.name = name;
         this.location = location;
-        this.books = books;
+        this.books = books != null ? books : new ArrayList<>();
     }
 
     public Long getId() {
