@@ -45,11 +45,11 @@ public class UserController extends BaseController {
 
         return rb.entity(mapper.toUserDTO(user)).build();
     }
+
     @RolesAllowed(JwtAuthService.Librarian_ROLE)
     @GET
     public Response getAllUsers(
-            @QueryParam("page") @DefaultValue("0") int page,
-            @QueryParam("size") @DefaultValue("10") int size) {
+            @QueryParam("page") @DefaultValue("0") int page, @QueryParam("size") @DefaultValue("10") int size) {
 
         List<User> users = userUseCase.getAllUsers(page, size);
         List<UserDTO> dtos = mapper.toUserDTOs(users);
@@ -96,8 +96,7 @@ public class UserController extends BaseController {
     @PUT
     @Path("/{id}")
     public Response updateUser(@PathParam("id") Long id, UserDTO dto) {
-        User existingUser = userUseCase.getUserById(id)
-                .orElseThrow(() -> new NotFoundException("User not found"));
+        User existingUser = userUseCase.getUserById(id).orElseThrow(() -> new NotFoundException("User not found"));
 
         EntityTag currentEtag = new EntityTag(ETagGenerator.fromUser(existingUser));
 

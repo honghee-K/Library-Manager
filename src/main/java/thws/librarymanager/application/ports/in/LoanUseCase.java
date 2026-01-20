@@ -11,7 +11,7 @@ public interface LoanUseCase {
 
     Loan createLoan(User user, Book book);
 
-    Loan returnLoan(Long loanId); // TODO
+    Loan returnLoan(Long loanId);
 
     Loan getLoanById(Long loanId);
 

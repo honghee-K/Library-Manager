@@ -72,11 +72,9 @@ public class JpaBookRepositoryTest {
         jpaBookRepository.save(new Book(null, 222L, "Book 2", "Author B", "Genre X", libraryDomain, null));
         jpaBookRepository.save(new Book(null, 333L, "Book 3", "Author A", "Genre Y", libraryDomain, null));
 
-        // When: Search by Genre X
         List<Book> genreXBooks = jpaBookRepository.findAll(0, 10, null, "Genre X");
         assertEquals(2, genreXBooks.size());
 
-        // When: Search by Author A
         List<Book> authorABooks = jpaBookRepository.findAll(0, 10, "Author A", null);
         assertEquals(2, authorABooks.size());
     }

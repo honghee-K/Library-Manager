@@ -11,7 +11,6 @@ import jakarta.ws.rs.core.*;
 import thws.librarymanager.adapters.in.rest.mapper.RestMapper;
 import thws.librarymanager.adapters.in.rest.models.BookDTO;
 import thws.librarymanager.adapters.in.rest.services.JwtAuthService;
-import thws.librarymanager.adapters.in.rest.util.ETagGenerator;
 import thws.librarymanager.application.domain.models.Book;
 import thws.librarymanager.application.domain.models.Library;
 import thws.librarymanager.application.ports.in.BookUseCase;
@@ -144,5 +143,4 @@ public class BookController extends BaseController {
 
         return rb.cacheControl(cc).build();
     }
-
 }

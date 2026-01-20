@@ -101,5 +101,4 @@ public class LoanEntity {
     public void setStatus(LoanStatusJpa status) {
         this.status = status;
     }
-
 }

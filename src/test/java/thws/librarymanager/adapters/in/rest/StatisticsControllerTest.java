@@ -1,19 +1,17 @@
 package thws.librarymanager.adapters.in.rest;
 
+import static io.restassured.RestAssured.given;
+
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 
 import io.quarkus.test.common.http.TestHTTPEndpoint;
 import io.quarkus.test.junit.QuarkusTest;
-
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.*;
-
 import thws.librarymanager.application.domain.models.Library;
 import thws.librarymanager.application.ports.out.repository.LibraryPort;
-
-import static io.restassured.RestAssured.given;
 
 @QuarkusTest
 @TestHTTPEndpoint(StatisticsController.class)
@@ -37,9 +35,7 @@ public class StatisticsControllerTest {
         em.createQuery("DELETE FROM UserEntity").executeUpdate();
         em.createQuery("DELETE FROM LibraryEntity").executeUpdate();
 
-        Library library = libraryPort.save(
-                new Library(null, "Statistics Library", "Würzburg", null)
-        );
+        Library library = libraryPort.save(new Library(null, "Statistics Library", "Würzburg", null));
 
         libraryId = library.getId();
     }
@@ -47,18 +43,13 @@ public class StatisticsControllerTest {
     @Test
     void getStatistics_withoutLibraryId_shouldReturn400() {
 
-        given()
-                .when()
-                .get()
-                .then()
-                .statusCode(400);
+        given().when().get().then().statusCode(400);
     }
 
     @Test
     void getStatistics_withLibraryId_shouldReturnStatistics() {
 
-        given()
-                .queryParam("libraryId", libraryId)
+        given().queryParam("libraryId", libraryId)
                 .when()
                 .get()
                 .then()
@@ -71,8 +62,7 @@ public class StatisticsControllerTest {
     @Test
     void statistics_shouldContainExpectedFields() {
 
-        given()
-                .queryParam("libraryId", libraryId)
+        given().queryParam("libraryId", libraryId)
                 .when()
                 .get()
                 .then()
@@ -85,8 +75,7 @@ public class StatisticsControllerTest {
     @Test
     void statistics_shouldContainCacheControlHeader() {
 
-        given()
-                .queryParam("libraryId", libraryId)
+        given().queryParam("libraryId", libraryId)
                 .when()
                 .get()
                 .then()
@@ -94,4 +83,3 @@ public class StatisticsControllerTest {
                 .header("Cache-Control", Matchers.containsString("max-age"));
     }
 }
-

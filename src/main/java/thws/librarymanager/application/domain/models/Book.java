@@ -71,14 +71,14 @@ public class Book {
         if (this.currentLoan != null) {
             throw new IllegalStateException("Book is already on loan.");
         }
-        this.currentLoan = newLoan; // activate
+        this.currentLoan = newLoan;
     }
 
     public void endLoan(Loan loan) {
         if (this.currentLoan == null) {
             throw new IllegalStateException("Book is not currently on loan.");
         }
-        this.currentLoan = null; // deactivate
+        this.currentLoan = null;
     }
 
     public boolean isOnLoan() {

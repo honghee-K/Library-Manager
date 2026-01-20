@@ -75,8 +75,6 @@ class LibraryServiceTest {
         verifyNoMoreInteractions(libraryPort, bookUseCase);
     }
 
-    // -------- addLibrary --------
-
     @Test
     void addLibrary_success() {
         Library library = mock(Library.class);
@@ -181,8 +179,6 @@ class LibraryServiceTest {
         verifyNoMoreInteractions(libraryPort);
     }
 
-    // -------- removeBookFromLibrary --------
-    // NOTE: Your implementation ignores libraryId and removes by calling addBookToLibrary(isbn, null).
     @Test
     void removeBookFromLibrary_callsBookUseCaseWithNullLibrary() {
         libraryService.removeBookFromLibrary(1L, 123L);

@@ -1,9 +1,7 @@
 package thws.librarymanager.application.domain.services;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -113,5 +111,4 @@ public class BookService implements BookUseCase {
 
         persistBookPort.deleteByIsbn(isbn);
     }
-
 }

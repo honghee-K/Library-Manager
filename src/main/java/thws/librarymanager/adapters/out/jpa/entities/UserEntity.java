@@ -6,7 +6,7 @@ import java.util.List;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "lib_user") // der Name 'user' kann Probleme in der DB machen, deswegen 'lib_user'
+@Table(name = "lib_user")
 public class UserEntity {
 
     @Id

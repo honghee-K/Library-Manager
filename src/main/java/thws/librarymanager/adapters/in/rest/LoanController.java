@@ -75,7 +75,7 @@ public class LoanController extends BaseController {
         Response.ResponseBuilder precond = request.evaluatePreconditions(etag);
 
         if (precond != null) {
-            return precond.build(); // 412
+            return precond.build();
         }
 
         Loan returned = loanUseCase.returnLoan(id);
@@ -128,7 +128,6 @@ public class LoanController extends BaseController {
             @QueryParam("overdue") Boolean overdue,
             @QueryParam("page") @DefaultValue("0") int page,
             @QueryParam("size") @DefaultValue("10") int size) {
-
 
         List<LoanDTO> dtos = loanUseCase.getAllLoans(userId, isbn, status, overdue, page, size).stream()
                 .map(restMapper::toLoanDTO)

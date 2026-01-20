@@ -32,8 +32,6 @@ public class StatisticsDTO {
         this.loans = loans;
     }
 
-    // -------- INNER DTOs --------
-
     public static class BooksStatistics {
         private long total;
         private Map<String, Long> booksByGenre;

@@ -8,6 +8,7 @@ public class BookDTO extends BaseDTO {
     private String author;
     private String genre;
     private Long libraryId;
+
     @Schema(readOnly = true)
     private boolean OnLoan = false;
 

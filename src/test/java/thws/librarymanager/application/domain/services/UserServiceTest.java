@@ -32,7 +32,6 @@ public class UserServiceTest {
 
     @BeforeEach
     void setUp() {
-        // Based on User(Long id, String name, String email)
         testUser = new User(userId, "Test User", email);
     }
 
@@ -83,7 +82,6 @@ public class UserServiceTest {
         userService.addLoanToUser(userId, mockLoan);
 
         assertTrue(testUser.getLoans().contains(mockLoan));
-        // Verify dirty checking: no save call expected in service
         verify(userPort, never()).save(testUser);
     }
 
@@ -112,7 +110,6 @@ public class UserServiceTest {
     @Test
     void deleteUser_ShouldCallDelete_WhenNoActiveLoans() {
         when(userPort.findById(userId)).thenReturn(Optional.of(testUser));
-        // testUser has no active loans by default
 
         userService.deleteUser(userId);
 

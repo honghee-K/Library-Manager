@@ -2,7 +2,6 @@ package thws.librarymanager.adapters.in.rest;
 
 import java.util.List;
 
-import io.quarkus.test.security.TestSecurity;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -10,6 +9,7 @@ import jakarta.ws.rs.core.MediaType;
 
 import io.quarkus.test.common.http.TestHTTPEndpoint;
 import io.quarkus.test.junit.QuarkusTest;
+import io.quarkus.test.security.TestSecurity;
 import io.restassured.RestAssured;
 import io.restassured.common.mapper.TypeRef;
 import io.restassured.response.Response;
@@ -93,11 +93,8 @@ public class UserControllerTest {
     @Order(3)
     @TestSecurity(user = "admin", roles = "librarian")
     public void getUserById_HateoasHeaderValidation() {
-        Response response = RestAssured.given()
-                // .log().all()
-                .when()
-                .pathParam("id", testUserId)
-                .get("/{id}");
+        Response response =
+                RestAssured.given().when().pathParam("id", testUserId).get("/{id}");
 
         response.then().statusCode(200);
 

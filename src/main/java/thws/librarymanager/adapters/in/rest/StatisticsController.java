@@ -3,6 +3,7 @@ package thws.librarymanager.adapters.in.rest;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.*;
+
 import thws.librarymanager.adapters.in.rest.models.StatisticsDTO;
 import thws.librarymanager.application.ports.in.StatisticsUseCase;
 
@@ -41,9 +42,6 @@ public class StatisticsController {
         cacheControl.setPrivate(true);
         cacheControl.setMaxAge(30);
 
-        return Response.ok(dto)
-                .cacheControl(cacheControl)
-                .build();
+        return Response.ok(dto).cacheControl(cacheControl).build();
     }
 }
-

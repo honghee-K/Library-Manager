@@ -34,7 +34,6 @@ public class JpaUserRepositoryTest {
     @BeforeEach
     @Transactional
     void setup() {
-        // FK constraints order: Loan -> Book -> User
         entityManager.createQuery("DELETE FROM LoanEntity").executeUpdate();
         entityManager.createQuery("DELETE FROM BookEntity").executeUpdate();
         entityManager.createQuery("DELETE FROM UserEntity").executeUpdate();
@@ -75,7 +74,6 @@ public class JpaUserRepositoryTest {
     @Test
     @Transactional
     void hasActiveLoans_ShouldReturnTrueWhenUserHasActiveLoan() {
-        // Setup raw entities for association test
         UserEntity userEntity = new UserEntity();
         userEntity.setName("Active User");
         userEntity.setEmail("active@test.com");

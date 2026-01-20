@@ -10,7 +10,7 @@ public class Loan {
     private final LocalDate loanDate;
     private LocalDate dueDate;
     private LocalDate returnDate;
-    private LoanStatus status; // ACTIVE | RETURNED
+    private LoanStatus status;
 
     private Loan(
             Long id,

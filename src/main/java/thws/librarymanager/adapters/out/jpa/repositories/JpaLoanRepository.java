@@ -54,7 +54,8 @@ public class JpaLoanRepository implements LoanPort {
     @Override
     @Transactional(Transactional.TxType.SUPPORTS)
     public boolean existsActiveLoanForBook(Long isbn) {
-        Long count = entityManager.createQuery(
+        Long count = entityManager
+                .createQuery(
                         "SELECT COUNT(l) FROM LoanEntity l WHERE l.book.isbn = :isbn AND l.status = :status",
                         Long.class)
                 .setParameter("isbn", isbn)
@@ -148,11 +149,8 @@ public class JpaLoanRepository implements LoanPort {
     @Transactional(Transactional.TxType.SUPPORTS)
     public long countActiveLoans() {
 
-        return entityManager.createQuery(
-                        "SELECT COUNT(l) FROM LoanEntity l WHERE l.status = :status",
-                        Long.class
-                )
-
+        return entityManager
+                .createQuery("SELECT COUNT(l) FROM LoanEntity l WHERE l.status = :status", Long.class)
                 .setParameter("status", LoanStatusJpa.ACTIVE)
                 .getSingleResult();
     }

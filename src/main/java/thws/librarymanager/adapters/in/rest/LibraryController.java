@@ -57,9 +57,8 @@ public class LibraryController extends BaseController {
     @Transactional
     public Response getLibraryById(@PathParam("id") Long id) {
 
-        Library library = libraryUseCase
-                .getLibraryById(id)
-                .orElseThrow(() -> new NotFoundException("Library not found")); // 🔧 DEĞİŞTİRİLDİ
+        Library library =
+                libraryUseCase.getLibraryById(id).orElseThrow(() -> new NotFoundException("Library not found"));
 
         EntityTag etag = new EntityTag(ETagGenerator.fromLibrary(library));
 
