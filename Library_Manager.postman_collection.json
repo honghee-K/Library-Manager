@@ -1,0 +1,657 @@
+{
+  "info": {
+    "_postman_id": "514bcfd4-0bc5-44fa-bfe1-30f130f715a0",
+    "name": "Library_Manager",
+    "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "51264771",
+    "_collection_link": "https://go.postman.co/collection/51264771-514bcfd4-0bc5-44fa-bfe1-30f130f715a0?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "User Authentication",
+      "item": [
+        {
+          "name": "1-1. Login (Get JWT Token)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/auth/login?name=admin",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "auth",
+                "login"
+              ],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "admin"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Libraries",
+      "item": [
+        {
+          "name": "2-1. Create Library 1",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Würzburg Unibib\",\r\n    \"location\": \"Würzburg\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/libraries",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "libraries"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "2-1. Create Library 2",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Berlin University Library\",\r\n  \"location\": \"Berlin\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/libraries",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "libraries"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "2-2. Get All Libraries",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/libraries",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "libraries"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "2-3. Get Library by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/libraries/1",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "libraries",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "2-4. Update Library",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Würzburg Unibibliothek\",\r\n    \"location\": \"Würzburg\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/libraries/1",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "libraries",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "2-5. Delete Library",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/libraries/2",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "libraries",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Books",
+      "item": [
+        {
+          "name": "3-1. Add Book to Library 1",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"isbn\": 9780134685991,\r\n  \"title\": \"Effective Java\",\r\n  \"author\": \"Joshua Bloch\",\r\n  \"genre\": \"Computer Science\",\r\n  \"libraryId\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/books",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "books"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "3-1. Add Book to Library 2",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"isbn\": 9780132350884,\r\n  \"title\": \"Clean Code\",\r\n  \"author\": \"Robert C. Martin\",\r\n  \"genre\": \"Software Engineering\",\r\n  \"libraryId\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/books",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "books"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "3-1. Add Book to Library 3",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"isbn\": 9780134494166,\r\n  \"title\": \"Clean Architecture\",\r\n  \"author\": \"Robert C. Martin\",\r\n  \"genre\": \"Software Engineering\",\r\n  \"libraryId\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/books",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "books"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "3-2. Get All Books",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/books",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "books"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "3-3. Get Book by ISBN",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/books/1",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "books",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "3-4. Update Book Info",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"isbn\": 9780134685991,\r\n  \"title\": \"Effective Java\",\r\n  \"author\": \"Rosa Park\",\r\n  \"genre\": \"Computer Science\",\r\n  \"libraryId\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/books/1",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "books",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "3-5. Remove Book",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/books/2",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "books",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "4-1. Register User 1",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": " {\r\n  \"name\": \"Anna Schmidt\",\r\n  \"email\": \"anna.schmidt@student.thws.de\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/users",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "4-1. Register User 2",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Mari Hoffmann\",\r\n  \"email\": \"maria.hoffmann@student.thws.de\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/users",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "4-2. Get All Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/users",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "4-3. Get User by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/users/1",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "users",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "4-4. Update User Profile",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Maria Hoffmann\",\r\n  \"email\": \"maria.hoffmann@student.thws.de\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/users/2",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "users",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "4-5. Delete User",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/users/2",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "users",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Loans",
+      "item": [
+        {
+          "name": "5-1. Create New Loan 1",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"userId\": 1,\r\n  \"isbn\": 9780134685991\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/loans",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loans"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "5-1. Create New Loan 2",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"userId\": 2,\r\n  \"isbn\": 9780132350884\r\n} ",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/loans",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loans"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "5-2. Get All Loans",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/loans",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loans"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "5-3. Get Loan by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/loans/1",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loans",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "5-4. Update Loan Status",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"userId\": 1,\r\n  \"isbn\": 9780132350884\r\n} ",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/loans/1",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loans",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "5-5. Return Loan",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/loans/2",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "loans",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1cG4iOiIxIiwiZ3JvdXBzIjpbImxpYnJhcmlhbiJdLCJsaWJyYXJpYW5faWQiOiIxIiwiaWF0IjoxNzY4OTUyNzY5LCJleHAiOjE3Njg5ODE1NjksImp0aSI6Ijg3NjM5ZWZlLWU4YzUtNDE1NC1hMDU0LWMwMzk3YmU4MTA4YiJ9.T7Wzex1Z6ji6pEQXJGRe2AtLxdRTlwpg8KMhkPf04Gph3F9GzV6OqHLUCpDY6dLq2nlVzbL5B8fF5n7wZz9OhbrDgMGvgKLxfMBlAAlRfcJIFigIWepLaWiwJvGi2hVSSSWPn_UEceF_ok4dcLcT-tGdIP4hXdXb7XofHjbbVtubhEqlh-1oauvHZMK8Hvaiga8HO7XdGu7bskiYWRRrJwe0IyVs563ZH3LNIzm93SqrpkVqKgwNBopgusyWSskK1gE17ahrePvDVJnChmvjtVX5zVryh1VNZ901y3WJzqTYdHGnzCb3-0p9791OSFObz0Eyp12H5i6Nyj2D2T2eHg",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseURL",
+      "value": ""
+    }
+  ]
+}
