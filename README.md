@@ -1,7 +1,17 @@
 # Library-Manager
-Backend System
+A backend system for managing libraries, books, users, and loans.
 
-## Install and Run
+## 1. Running Tests
+Before starting the application, you can verify the system by running the automated test suite.
+
+  **Note:** Docker must be running as integration tests use Testcontainers to manage test databases.
+    
+```bash
+mvn verify
+```
+
+
+## 2. Installation & Running
 
 Download and run latest Docker Image from this Github Repository:
 
@@ -9,7 +19,28 @@ Download and run latest Docker Image from this Github Repository:
 docker run -p 8080:8080 ghcr.io/honghee-k/library-manager:latest
 ```
 
-## User Authentication
+
+## 3. Usage & Testing the API
+You can interact with the API using either the **Postman** or **Linux Shell**.
+
+### Option A: Using Postman (Recommended)
+We have provided a pre-configured collection file in this repository to make testing easier.
+
+1. **Download:** Download `Library_Manager.postman_collection.json` in the **root directory** of this repository
+2. **Import:** Open Postman, click the **Import** button, and select the downloaded JSON file.
+3. **Get Token:** Run the `1. Login` request from the collection and **copy** the JWT token string from the response body.
+4. **Set Authorization:**
+    * Select any other request you want to test (e.g., *Create Libraries*).
+    * Navigate to the **Authorization** tab.
+    * Select **Type: Bearer Token** and **paste** the copied token into the 'Token' field.
+5. **Execute:** Click **Send** to test the endpoint.
+
+> **Note on Token Expiry:** The JWT token is valid for **8 hours**. If you receive a `401 Unauthorized` error, please re-run the Login request to refresh your token.
+
+### Option B: Using Linux Shell (curl)
+Open your terminal and follow the sequence below.
+
+#### **Step 1: User Authentication**
 
 Generate JWT Token:
 
@@ -27,7 +58,7 @@ LM_TOKEN=$(curl "http://localhost:8080/auth/login?name=admin")
 
 Set in Auth Bearer Header for every following request.
 
-## Use Library Manager
+#### **Step 2: Use Library Manager**
 
 1. Create Library:
 
@@ -103,8 +134,10 @@ curl -X 'POST' \
   "status": "ACTIVE"
 }'
 ```
+
+ 
 ## Author
 Honghee Kim & Gülsüm Erboga
 
 ## Credit
-thws
+Developed for the Backend Systems Assignment @ THWS
