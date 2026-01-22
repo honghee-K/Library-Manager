@@ -17,12 +17,16 @@ import thws.librarymanager.application.domain.models.Book;
 import thws.librarymanager.application.domain.models.Library;
 import thws.librarymanager.application.domain.models.Loan;
 import thws.librarymanager.application.ports.out.repository.BookPort;
+import thws.librarymanager.application.ports.out.repository.LoanPort;
 
 @ExtendWith(MockitoExtension.class)
 public class BookServiceTest {
 
     @Mock
     private BookPort bookPort;
+
+    @Mock
+    private LoanPort loanPort;
 
     @InjectMocks
     private BookService bookService;
@@ -114,6 +118,8 @@ public class BookServiceTest {
 
         bookService.deleteBook(isbn);
 
+        verify(loanPort, times(1)).deleteLoansByBookIsbn(isbn);
+
         verify(bookPort, times(1)).deleteByIsbn(isbn);
     }
 
@@ -128,4 +134,6 @@ public class BookServiceTest {
         assertEquals(mockLoan, testBook.getCurrentLoan());
         verify(bookPort, times(1)).save(testBook);
     }
+
+
 }
