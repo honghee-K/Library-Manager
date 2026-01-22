@@ -1,11 +1,11 @@
 {
   "info": {
-    "_postman_id": "514bcfd4-0bc5-44fa-bfe1-30f130f715a0",
+    "_postman_id": "644bc23a-d64b-4b32-b106-d618f2d047cb",
     "name": "Library_Manager",
     "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "51264771",
-    "_collection_link": "https://go.postman.co/collection/51264771-514bcfd4-0bc5-44fa-bfe1-30f130f715a0?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/51264771-644bc23a-d64b-4b32-b106-d618f2d047cb?source=collection_link"
   },
   "item": [
     {
@@ -269,6 +269,29 @@
               ],
               "path": [
                 "books"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "3-2. Get All Books with Filter",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/books?genre=Computer Science",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "books"
+              ],
+              "query": [
+                {
+                  "key": "genre",
+                  "value": "Computer Science"
+                }
               ]
             }
           },
@@ -596,16 +619,69 @@
         {
           "name": "5-5. Return Loan",
           "request": {
-            "method": "DELETE",
+            "method": "PUT",
             "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
             "url": {
-              "raw": "{{baseURL}}/loans/2",
+              "raw": "{{baseURL}}/loans/1/return",
               "host": [
                 "{{baseURL}}"
               ],
               "path": [
                 "loans",
-                "2"
+                "1",
+                "return"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Library Statistics",
+      "item": [
+        {
+          "name": "Library Statistics",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseURL}}/statistics?libraryId=1",
+              "host": [
+                "{{baseURL}}"
+              ],
+              "path": [
+                "statistics"
+              ],
+              "query": [
+                {
+                  "key": "libraryId",
+                  "value": "1"
+                }
               ]
             }
           },
@@ -619,7 +695,7 @@
     "bearer": [
       {
         "key": "token",
-        "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1cG4iOiIxIiwiZ3JvdXBzIjpbImxpYnJhcmlhbiJdLCJsaWJyYXJpYW5faWQiOiIxIiwiaWF0IjoxNzY4OTUyNzY5LCJleHAiOjE3Njg5ODE1NjksImp0aSI6Ijg3NjM5ZWZlLWU4YzUtNDE1NC1hMDU0LWMwMzk3YmU4MTA4YiJ9.T7Wzex1Z6ji6pEQXJGRe2AtLxdRTlwpg8KMhkPf04Gph3F9GzV6OqHLUCpDY6dLq2nlVzbL5B8fF5n7wZz9OhbrDgMGvgKLxfMBlAAlRfcJIFigIWepLaWiwJvGi2hVSSSWPn_UEceF_ok4dcLcT-tGdIP4hXdXb7XofHjbbVtubhEqlh-1oauvHZMK8Hvaiga8HO7XdGu7bskiYWRRrJwe0IyVs563ZH3LNIzm93SqrpkVqKgwNBopgusyWSskK1gE17ahrePvDVJnChmvjtVX5zVryh1VNZ901y3WJzqTYdHGnzCb3-0p9791OSFObz0Eyp12H5i6Nyj2D2T2eHg",
+        "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1cG4iOiIxIiwiZ3JvdXBzIjpbImxpYnJhcmlhbiJdLCJsaWJyYXJpYW5faWQiOiIxIiwiaWF0IjoxNzY5MDA2ODY5LCJleHAiOjE3NjkwMzU2NjksImp0aSI6ImYzY2IwOGUxLTg0ZjMtNGExOS05Yjc1LWVjNjAxNzNmOGViOCJ9.UkRON-ECxpSVt6R29PL-bcLzIRGb16VV3ybdGuR6Y8DLYFr-rEacq0sjomGPE7CgKBpjJJ1lsQ8guuxkjEHVfDUSN_LUUgS0D7V0Cjah4pRVnt9yW7_HVs8fkQmjhrpQzorxwt3kMOmCTUt_MsOxYJp3Wz0GCT2JMnBHGPfpCZeV96askaZV0ZnrhhgScYp_Sce_qEgfwabGqUoXjKOb6RCgEGipgfboEKnRDu1jphctdVX3ymgeVLxlsT3bk9aEdcUT21y_6o8OFrqK7Lieit8IvzesgLTIuD5-sG4uB6_7JiTjEDj5HFKy6nIk1oOymwmkHjBvX24v8TGIX8__tg",
         "type": "string"
       }
     ]
