@@ -2,6 +2,7 @@ package thws.librarymanager.adapters.in.rest;
 
 import static io.restassured.RestAssured.given;
 
+import io.quarkus.test.security.TestSecurity;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -61,6 +62,7 @@ public class LoanControllerTest {
 
     @Test
     @Order(1)
+    @TestSecurity(user = "admin", roles = "librarian")
     void createLoan() {
 
         LoanDTO dto = new LoanDTO();
@@ -83,6 +85,7 @@ public class LoanControllerTest {
 
     @Test
     @Order(2)
+    @TestSecurity(user = "admin", roles = "librarian")
     void getLoanById() {
 
         given().pathParam("id", loanId)
@@ -96,6 +99,7 @@ public class LoanControllerTest {
 
     @Test
     @Order(3)
+    @TestSecurity(user = "admin", roles = "librarian")
     void getLoan_NotModified_WithETag() {
 
         String etag = given().pathParam("id", loanId)
@@ -115,6 +119,7 @@ public class LoanControllerTest {
 
     @Test
     @Order(4)
+    @TestSecurity(user = "admin", roles = "librarian")
     void returnLoan() {
 
         String etag = given().pathParam("id", loanId)
@@ -134,6 +139,7 @@ public class LoanControllerTest {
 
     @Test
     @Order(5)
+    @TestSecurity(user = "admin", roles = "librarian")
     void getReturnedLoan() {
 
         given().pathParam("id", loanId)

@@ -3,6 +3,7 @@ package thws.librarymanager.adapters.in.rest;
 import java.net.URI;
 import java.util.List;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
@@ -10,6 +11,7 @@ import jakarta.ws.rs.core.*;
 
 import thws.librarymanager.adapters.in.rest.mapper.RestMapper;
 import thws.librarymanager.adapters.in.rest.models.LoanDTO;
+import thws.librarymanager.adapters.in.rest.services.JwtAuthService;
 import thws.librarymanager.adapters.in.rest.util.ETagGenerator;
 import thws.librarymanager.application.domain.models.Book;
 import thws.librarymanager.application.domain.models.Loan;
@@ -42,6 +44,7 @@ public class LoanController extends BaseController {
     @Inject
     RestMapper restMapper;
 
+    @RolesAllowed(JwtAuthService.Librarian_ROLE)
     @POST
     @Transactional
     public Response createLoan(LoanDTO dto) {
@@ -63,6 +66,7 @@ public class LoanController extends BaseController {
         return rb.entity(restMapper.toLoanDTO(loan)).build();
     }
 
+    @RolesAllowed(JwtAuthService.Librarian_ROLE)
     @PUT
     @Transactional
     @Path("{id}/return")
@@ -91,6 +95,7 @@ public class LoanController extends BaseController {
         return rb.tag(etagAfter).build();
     }
 
+    @RolesAllowed(JwtAuthService.Librarian_ROLE)
     @GET
     @Transactional
     @Path("{id}")
@@ -120,6 +125,7 @@ public class LoanController extends BaseController {
         return precond.tag(etag).build();
     }
 
+    @RolesAllowed(JwtAuthService.Librarian_ROLE)
     @GET
     public Response getAllLoans(
             @QueryParam("userId") Long userId,

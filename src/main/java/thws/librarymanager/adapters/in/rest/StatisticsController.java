@@ -1,10 +1,12 @@
 package thws.librarymanager.adapters.in.rest;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.*;
 
 import thws.librarymanager.adapters.in.rest.models.StatisticsDTO;
+import thws.librarymanager.adapters.in.rest.services.JwtAuthService;
 import thws.librarymanager.application.ports.in.StatisticsUseCase;
 
 @Path("/statistics")
@@ -14,6 +16,7 @@ public class StatisticsController {
     @Inject
     StatisticsUseCase statisticsUseCase;
 
+    @RolesAllowed(JwtAuthService.Librarian_ROLE)
     @GET
     public Response getStatistics(@QueryParam("libraryId") Long libraryId) {
 

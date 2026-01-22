@@ -22,4 +22,6 @@ public interface LoanPort {
     List<Loan> findOverdueLoans(LocalDate today);
 
     long countActiveLoans();
+
+    void deleteLoansByBookIsbn(Long isbn);
 }

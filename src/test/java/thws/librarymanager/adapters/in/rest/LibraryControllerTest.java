@@ -2,6 +2,7 @@ package thws.librarymanager.adapters.in.rest;
 
 import java.util.List;
 
+import io.quarkus.test.security.TestSecurity;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -49,6 +50,7 @@ public class LibraryControllerTest {
 
     @Test
     @Order(1)
+    @TestSecurity(user = "admin", roles = "librarian")
     void getLibraryById() {
 
         LibraryDTO dto = RestAssured.given()
@@ -67,6 +69,7 @@ public class LibraryControllerTest {
 
     @Test
     @Order(2)
+    @TestSecurity(user = "admin", roles = "librarian")
     void getAllLibraries_withoutFilter() {
 
         List<LibraryDTO> libraries = RestAssured.given()
@@ -82,6 +85,7 @@ public class LibraryControllerTest {
 
     @Test
     @Order(3)
+    @TestSecurity(user = "admin", roles = "librarian")
     void getAllLibraries_withLocationFilter() {
 
         List<LibraryDTO> libraries = RestAssured.given()
@@ -99,6 +103,7 @@ public class LibraryControllerTest {
 
     @Test
     @Order(4)
+    @TestSecurity(user = "admin", roles = "librarian")
     void addLibrary() {
 
         LibraryDTO request = new LibraryDTO();
@@ -122,6 +127,7 @@ public class LibraryControllerTest {
 
     @Test
     @Order(5)
+    @TestSecurity(user = "admin", roles = "librarian")
     void updateLibrary() {
 
         LibraryDTO update = new LibraryDTO();
@@ -151,6 +157,7 @@ public class LibraryControllerTest {
 
     @Test
     @Order(6)
+    @TestSecurity(user = "admin", roles = "librarian")
     void getTotalBookCount_initiallyZero() {
 
         Long count = RestAssured.given()
@@ -167,6 +174,7 @@ public class LibraryControllerTest {
 
     @Test
     @Order(7)
+    @TestSecurity(user = "admin", roles = "librarian")
     void addBookToLibrary() {
 
         Long beforeCount = RestAssured.given()
@@ -200,6 +208,7 @@ public class LibraryControllerTest {
 
     @Test
     @Order(8)
+    @TestSecurity(user = "admin", roles = "librarian")
     void removeBookFromLibrary() {
 
         Long beforeCount = RestAssured.given()
@@ -231,6 +240,7 @@ public class LibraryControllerTest {
 
     @Test
     @Order(9)
+    @TestSecurity(user = "admin", roles = "librarian")
     void deleteLibrary() {
 
         RestAssured.given().pathParam("id", 2L).when().delete("/{id}").then().statusCode(204);

@@ -2,6 +2,7 @@ package thws.librarymanager.adapters.in.rest;
 
 import static io.restassured.RestAssured.given;
 
+import io.quarkus.test.security.TestSecurity;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -41,12 +42,14 @@ public class StatisticsControllerTest {
     }
 
     @Test
+    @TestSecurity(user = "admin", roles = "librarian")
     void getStatistics_withoutLibraryId_shouldReturn400() {
 
         given().when().get().then().statusCode(400);
     }
 
     @Test
+    @TestSecurity(user = "admin", roles = "librarian")
     void getStatistics_withLibraryId_shouldReturnStatistics() {
 
         given().queryParam("libraryId", libraryId)
@@ -60,6 +63,7 @@ public class StatisticsControllerTest {
     }
 
     @Test
+    @TestSecurity(user = "admin", roles = "librarian")
     void statistics_shouldContainExpectedFields() {
 
         given().queryParam("libraryId", libraryId)
@@ -73,6 +77,7 @@ public class StatisticsControllerTest {
     }
 
     @Test
+    @TestSecurity(user = "admin", roles = "librarian")
     void statistics_shouldContainCacheControlHeader() {
 
         given().queryParam("libraryId", libraryId)

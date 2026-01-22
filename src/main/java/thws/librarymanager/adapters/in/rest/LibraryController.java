@@ -3,6 +3,7 @@ package thws.librarymanager.adapters.in.rest;
 import java.net.URI;
 import java.util.List;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
@@ -10,6 +11,7 @@ import jakarta.ws.rs.core.*;
 
 import thws.librarymanager.adapters.in.rest.mapper.RestMapper;
 import thws.librarymanager.adapters.in.rest.models.LibraryDTO;
+import thws.librarymanager.adapters.in.rest.services.JwtAuthService;
 import thws.librarymanager.adapters.in.rest.util.ETagGenerator;
 import thws.librarymanager.adapters.in.rest.util.LibraryServiceLogger;
 import thws.librarymanager.application.domain.models.Library;
@@ -32,6 +34,7 @@ public class LibraryController extends BaseController {
     @Context
     Request request;
 
+    @RolesAllowed(JwtAuthService.Librarian_ROLE)
     @GET
     public Response getAllLibraries(@QueryParam("location") String location, @QueryParam("name") String name) {
 
@@ -52,6 +55,7 @@ public class LibraryController extends BaseController {
         return rb.build();
     }
 
+    @RolesAllowed(JwtAuthService.Librarian_ROLE)
     @GET
     @Path("/{id}")
     @Transactional
@@ -87,6 +91,7 @@ public class LibraryController extends BaseController {
         return rb.tag(etag).build();
     }
 
+    @RolesAllowed(JwtAuthService.Librarian_ROLE)
     @POST
     @Transactional
     public Response addLibrary(LibraryDTO dto) {
@@ -105,6 +110,7 @@ public class LibraryController extends BaseController {
         return rb.entity(mapper.toLibraryDTO(saved)).build();
     }
 
+    @RolesAllowed(JwtAuthService.Librarian_ROLE)
     @PUT
     @Path("/{id}")
     @Transactional
@@ -131,6 +137,7 @@ public class LibraryController extends BaseController {
         return rb.tag(newTag).build();
     }
 
+    @RolesAllowed(JwtAuthService.Librarian_ROLE)
     @DELETE
     @Path("/{id}")
     @Transactional
@@ -140,6 +147,7 @@ public class LibraryController extends BaseController {
         return Response.noContent().build();
     }
 
+    @RolesAllowed(JwtAuthService.Librarian_ROLE)
     @POST
     @Path("/{libraryId}/books/{isbn}")
     @Consumes(MediaType.WILDCARD)
@@ -159,6 +167,7 @@ public class LibraryController extends BaseController {
         return rb.build();
     }
 
+    @RolesAllowed(JwtAuthService.Librarian_ROLE)
     @DELETE
     @Path("/{libraryId}/books/{isbn}")
     @Consumes(MediaType.WILDCARD)
@@ -169,6 +178,7 @@ public class LibraryController extends BaseController {
         return Response.noContent().build();
     }
 
+    @RolesAllowed(JwtAuthService.Librarian_ROLE)
     @GET
     @Path("/{libraryId}/books/count")
     public Response getTotalBookCount(@PathParam("libraryId") Long libraryId) {

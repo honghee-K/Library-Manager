@@ -12,15 +12,18 @@ import thws.librarymanager.application.domain.models.Library;
 import thws.librarymanager.application.domain.models.Loan;
 import thws.librarymanager.application.ports.in.BookUseCase;
 import thws.librarymanager.application.ports.out.repository.BookPort;
+import thws.librarymanager.application.ports.out.repository.LoanPort;
 
 @ApplicationScoped
 public class BookService implements BookUseCase {
 
     private final BookPort persistBookPort;
+    private final LoanPort loanPort;
 
     @Inject
-    public BookService(BookPort persistence) {
+    public BookService(BookPort persistence, LoanPort loanPort) {
         this.persistBookPort = persistence;
+        this.loanPort = loanPort;
     }
 
     @Override
@@ -108,6 +111,8 @@ public class BookService implements BookUseCase {
         if (existing == null) throw new IllegalArgumentException("Book not found for ISBN: " + isbn);
 
         if (existing.isOnLoan()) throw new IllegalStateException("Cannot delete book that is on loan.");
+
+        loanPort.deleteLoansByBookIsbn(isbn);
 
         persistBookPort.deleteByIsbn(isbn);
     }
