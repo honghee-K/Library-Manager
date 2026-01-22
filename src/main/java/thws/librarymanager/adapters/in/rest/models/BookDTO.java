@@ -8,6 +8,7 @@ public class BookDTO extends BaseDTO {
     private String author;
     private String genre;
     private Long libraryId;
+    private boolean deleted = false;
 
     @Schema(readOnly = true)
     private boolean OnLoan = false;
@@ -63,4 +64,8 @@ public class BookDTO extends BaseDTO {
     public void setOnLoan(boolean onLoan) {
         OnLoan = onLoan;
     }
+
+    public boolean isDeleted() { return deleted; }
+
+    public void setDeleted(boolean deleted) { this.deleted = deleted; }
 }

@@ -114,6 +114,7 @@ public class BookServiceTest {
 
     @Test
     void deleteBook_ShouldCallDelete_WhenNotOnLoan() {
+        testBook.setDeleted(false);
         when(bookPort.getBookByIsbn(isbn)).thenReturn(Optional.of(testBook));
 
         bookService.deleteBook(isbn);

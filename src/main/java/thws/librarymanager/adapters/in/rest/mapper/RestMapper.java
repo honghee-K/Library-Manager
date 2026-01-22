@@ -21,6 +21,7 @@ public class RestMapper {
         dto.setAuthor(book.getAuthor());
         dto.setGenre(book.getGenre());
         dto.setOnLoan(book.isOnLoan());
+        dto.setDeleted(book.isDeleted());
 
         if (book.getLibrary() != null) {
             dto.setLibraryId(book.getLibrary().getId());

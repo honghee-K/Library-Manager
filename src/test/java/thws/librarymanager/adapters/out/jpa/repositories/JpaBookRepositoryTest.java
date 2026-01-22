@@ -12,6 +12,7 @@ import jakarta.transaction.Transactional;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import thws.librarymanager.adapters.out.jpa.entities.BookEntity;
 import thws.librarymanager.adapters.out.jpa.entities.LibraryEntity;
 import thws.librarymanager.application.domain.models.Book;
 import thws.librarymanager.application.domain.models.Library;
@@ -81,7 +82,7 @@ public class JpaBookRepositoryTest {
 
     @Test
     @Transactional
-    void deleteByIsbn_ShouldRemoveBookFromDatabase() {
+    void deleteByIsbn_ShouldMarkAsDeletedButKeepInDatabase() {
         Library libraryDomain = new Library(sharedLibraryEntity.getId(), "Central Library", "Würzburg", null);
         jpaBookRepository.save(new Book(null, sharedIsbn, "To Be Deleted", "Author", "Genre", libraryDomain, null));
 
@@ -89,5 +90,13 @@ public class JpaBookRepositoryTest {
 
         Optional<Book> foundBook = jpaBookRepository.getBookByIsbn(sharedIsbn);
         assertFalse(foundBook.isPresent());
+
+        BookEntity entity = entityManager.createQuery(
+                        "from BookEntity where isbn = :isbn", BookEntity.class)
+                .setParameter("isbn", sharedIsbn)
+                .getSingleResult();
+
+        assertNotNull(entity);
+        assertTrue(entity.isDeleted());
     }
 }

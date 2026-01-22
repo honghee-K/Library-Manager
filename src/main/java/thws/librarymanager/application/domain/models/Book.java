@@ -8,6 +8,7 @@ public class Book {
     private String genre;
     private Library library;
     private Loan currentLoan;
+    private boolean deleted = false;
 
     public Book(Long id, Long isbn, String title, String author, String genre, Library library, Loan currentLoan) {
         this.id = id;
@@ -46,6 +47,12 @@ public class Book {
 
     public Loan getCurrentLoan() {
         return currentLoan;
+    }
+
+    public boolean isDeleted() { return deleted; }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 
     public void setLibrary(Library library) {

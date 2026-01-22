@@ -72,6 +72,10 @@ public class BookService implements BookUseCase {
                 .getBookByIsbn(bookIsbn)
                 .orElseThrow(() -> new IllegalArgumentException("Book not found for ISBN: " + bookIsbn));
 
+        if (book.isDeleted()) {
+            throw new IllegalStateException("Cannot start loan for a deleted book.");
+        }
+
         book.startLoan(loan);
 
         persistBookPort.save(book);
@@ -112,9 +116,13 @@ public class BookService implements BookUseCase {
     public void deleteBook(long isbn) {
         Book existing = persistBookPort.getBookByIsbn(isbn).orElse(null);
 
-        if (existing == null) throw new IllegalArgumentException("Book not found for ISBN: " + isbn);
+        if (existing == null || existing.isDeleted()) { // [수정] 이미 논리 삭제된 책인지도 확인
+            throw new IllegalArgumentException("Book not found or already deleted for ISBN: " + isbn);
+        }
 
-        if (existing.isOnLoan()) throw new IllegalStateException("Cannot delete book that is on loan.");
+        if (existing.isOnLoan()) {
+            throw new IllegalStateException("Cannot delete book that is on loan.");
+        }
 
         persistBookPort.deleteByIsbn(isbn);
     }

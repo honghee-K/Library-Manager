@@ -42,7 +42,7 @@ public class JpaBookRepository implements BookPort {
     @Transactional
     public Optional<Book> getBookByIsbn(Long isbn) {
         return entityManager
-                .createQuery("from BookEntity where isbn = :isbn", BookEntity.class)
+                .createQuery("from BookEntity b where b.isbn = :isbn and b.deleted = false", BookEntity.class)
                 .setParameter("isbn", isbn)
                 .getResultStream()
                 .findFirst()
@@ -52,18 +52,22 @@ public class JpaBookRepository implements BookPort {
     @Override
     @Transactional
     public void deleteByIsbn(Long isbn) {
-        getBookByIsbn(isbn).ifPresent(book -> {
-            BookEntity entity = entityManager.find(BookEntity.class, book.getId());
-            if (entity != null) {
-                entityManager.remove(entity);
-            }
-        });
+        entityManager.createQuery("from BookEntity where isbn = :isbn", BookEntity.class)
+                .setParameter("isbn", isbn)
+                .getResultStream()
+                .findFirst()
+                .ifPresent(entity -> {
+                    entity.setDeleted(true); // Soft Delete 실행
+                    entityManager.merge(entity);
+                    entityManager.flush(); // 즉시 반영
+                });
     }
 
     @Override
     @Transactional
     public List<Book> findAll(int page, int size, String author, String genre) {
-        StringBuilder jpql = new StringBuilder("from BookEntity b where 1=1");
+        StringBuilder jpql = new StringBuilder("from BookEntity b where b.deleted = false");
+
         if (author != null && !author.isBlank()) jpql.append(" and b.author = :author");
         if (genre != null && !genre.isBlank()) jpql.append(" and b.genre = :genre");
 

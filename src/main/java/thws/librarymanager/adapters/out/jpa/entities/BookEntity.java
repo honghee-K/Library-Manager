@@ -16,6 +16,8 @@ public class BookEntity {
     private String title;
     private String author;
     private String genre;
+    @Column(name = "deleted")
+    private boolean deleted = false;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "library_id", nullable = true)
@@ -82,4 +84,8 @@ public class BookEntity {
     public void setCurrentLoan(LoanEntity currentLoan) {
         this.currentLoan = currentLoan;
     }
+
+    public boolean isDeleted() { return deleted; }
+
+    public void setDeleted(boolean deleted) { this.deleted = deleted; }
 }
