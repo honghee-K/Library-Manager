@@ -154,12 +154,4 @@ public class JpaLoanRepository implements LoanPort {
                 .setParameter("status", LoanStatusJpa.ACTIVE)
                 .getSingleResult();
     }
-
-    @Override
-    @Transactional
-    public void deleteLoansByBookIsbn(Long isbn) {
-        entityManager.createQuery("DELETE FROM LoanEntity l WHERE l.book.isbn = :isbn")
-                .setParameter("isbn", isbn)
-                .executeUpdate();
-    }
 }

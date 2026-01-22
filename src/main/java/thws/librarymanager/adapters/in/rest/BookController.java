@@ -84,6 +84,8 @@ public class BookController extends BaseController {
     @DELETE
     @Path("/{isbn}")
     public Response deleteBook(@PathParam("isbn") Long isbn) {
+
+
         bookUseCase.deleteBook(isbn);
 
         URI collectionUri =

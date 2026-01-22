@@ -19,8 +19,8 @@ public class LoanEntity {
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "isbn", referencedColumnName = "isbn", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "isbn", referencedColumnName = "isbn", nullable = true)
     private BookEntity book;
 
     @Column(name = "loan_date", nullable = false)

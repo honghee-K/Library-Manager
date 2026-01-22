@@ -66,6 +66,7 @@ public class BookService implements BookUseCase {
     }
 
     @Override
+    @Transactional
     public void startLoanForBook(Long bookIsbn, Loan loan) {
         Book book = persistBookPort
                 .getBookByIsbn(bookIsbn)
@@ -77,6 +78,7 @@ public class BookService implements BookUseCase {
     }
 
     @Override
+    @Transactional
     public void endLoanForBook(Long bookIsbn, Loan loan) {
         Book book = persistBookPort
                 .getBookByIsbn(bookIsbn)
@@ -88,6 +90,7 @@ public class BookService implements BookUseCase {
     }
 
     @Override
+    @Transactional
     public void updateBook(Long isbn, String title, String author, String genre) {
         Book existing = persistBookPort.getBookByIsbn(isbn).orElse(null);
 
@@ -105,14 +108,13 @@ public class BookService implements BookUseCase {
     }
 
     @Override
+    @Transactional
     public void deleteBook(long isbn) {
         Book existing = persistBookPort.getBookByIsbn(isbn).orElse(null);
 
         if (existing == null) throw new IllegalArgumentException("Book not found for ISBN: " + isbn);
 
         if (existing.isOnLoan()) throw new IllegalStateException("Cannot delete book that is on loan.");
-
-        loanPort.deleteLoansByBookIsbn(isbn);
 
         persistBookPort.deleteByIsbn(isbn);
     }

@@ -118,8 +118,6 @@ public class BookServiceTest {
 
         bookService.deleteBook(isbn);
 
-        verify(loanPort, times(1)).deleteLoansByBookIsbn(isbn);
-
         verify(bookPort, times(1)).deleteByIsbn(isbn);
     }
 
