@@ -1,11 +1,11 @@
 {
   "info": {
-    "_postman_id": "644bc23a-d64b-4b32-b106-d618f2d047cb",
+    "_postman_id": "58e71f97-dff0-4526-b1fb-1bc613f7bc14",
     "name": "Library_Manager",
     "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "51264771",
-    "_collection_link": "https://go.postman.co/collection/51264771-644bc23a-d64b-4b32-b106-d618f2d047cb?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/51264771-58e71f97-dff0-4526-b1fb-1bc613f7bc14?source=collection_link"
   },
   "item": [
     {
@@ -186,7 +186,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"isbn\": 9780134685991,\r\n  \"title\": \"Effective Java\",\r\n  \"author\": \"Joshua Bloch\",\r\n  \"genre\": \"Computer Science\",\r\n  \"libraryId\": 1\r\n}",
+              "raw": "{\r\n  \"isbn\": 9780134,\r\n  \"title\": \"Effective Java\",\r\n  \"author\": \"Joshua Bloch\",\r\n  \"genre\": \"Computer Science\",\r\n  \"libraryId\": 1\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -212,7 +212,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"isbn\": 9780132350884,\r\n  \"title\": \"Clean Code\",\r\n  \"author\": \"Robert C. Martin\",\r\n  \"genre\": \"Software Engineering\",\r\n  \"libraryId\": 1\r\n}",
+              "raw": "{\r\n  \"isbn\": 9780132,\r\n  \"title\": \"Clean Code\",\r\n  \"author\": \"Robert C. Martin\",\r\n  \"genre\": \"Software Engineering\",\r\n  \"libraryId\": 1\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -238,7 +238,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"isbn\": 9780134494166,\r\n  \"title\": \"Clean Architecture\",\r\n  \"author\": \"Robert C. Martin\",\r\n  \"genre\": \"Software Engineering\",\r\n  \"libraryId\": 1\r\n}",
+              "raw": "{\r\n  \"isbn\": 9780133,\r\n  \"title\": \"Clean Architecture\",\r\n  \"author\": \"Robert C. Martin\",\r\n  \"genre\": \"Software Engineering\",\r\n  \"libraryId\": 1\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -509,7 +509,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"userId\": 1,\r\n  \"isbn\": 9780134685991\r\n}",
+              "raw": "{\r\n  \"userId\": 1,\r\n  \"isbn\": 9780134\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -535,7 +535,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"userId\": 2,\r\n  \"isbn\": 9780132350884\r\n} ",
+              "raw": "{\r\n  \"userId\": 2,\r\n  \"isbn\": 9780132\r\n} ",
               "options": {
                 "raw": {
                   "language": "json"
@@ -690,16 +690,6 @@
       ]
     }
   ],
-  "auth": {
-    "type": "bearer",
-    "bearer": [
-      {
-        "key": "token",
-        "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1cG4iOiIxIiwiZ3JvdXBzIjpbImxpYnJhcmlhbiJdLCJsaWJyYXJpYW5faWQiOiIxIiwiaWF0IjoxNzY5MDA2ODY5LCJleHAiOjE3NjkwMzU2NjksImp0aSI6ImYzY2IwOGUxLTg0ZjMtNGExOS05Yjc1LWVjNjAxNzNmOGViOCJ9.UkRON-ECxpSVt6R29PL-bcLzIRGb16VV3ybdGuR6Y8DLYFr-rEacq0sjomGPE7CgKBpjJJ1lsQ8guuxkjEHVfDUSN_LUUgS0D7V0Cjah4pRVnt9yW7_HVs8fkQmjhrpQzorxwt3kMOmCTUt_MsOxYJp3Wz0GCT2JMnBHGPfpCZeV96askaZV0ZnrhhgScYp_Sce_qEgfwabGqUoXjKOb6RCgEGipgfboEKnRDu1jphctdVX3ymgeVLxlsT3bk9aEdcUT21y_6o8OFrqK7Lieit8IvzesgLTIuD5-sG4uB6_7JiTjEDj5HFKy6nIk1oOymwmkHjBvX24v8TGIX8__tg",
-        "type": "string"
-      }
-    ]
-  },
   "event": [
     {
       "listen": "prerequest",
@@ -727,7 +717,7 @@
   "variable": [
     {
       "key": "baseURL",
-      "value": ""
+      "value": "http://localhost:8080"
     }
   ]
 }
