@@ -3,8 +3,6 @@ A backend system for managing libraries, books, users, and loans.
 
 ## 1. Running Tests
 Before starting the application, you can verify the system by running the automated test suite.
-
-  **Note:** Docker must be running as integration tests use Testcontainers to manage test databases.
     
 ```bash
 mvn verify
